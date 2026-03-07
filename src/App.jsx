@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './pages/Hero';
@@ -6,10 +7,26 @@ import Works from './pages/Works';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
-const App = () => {
+const routeToPage = {
+  '/': 'home',
+  '/about': 'about',
+  '/work': 'works',
+  '/contact': 'contact'
+};
+
+const pageToRoute = {
+  home: '/',
+  about: '/about',
+  works: '/work',
+  contact: '/contact'
+};
+
+const AppShell = () => {
   const [activePage, setActivePage] = useState('home');
   const [darkMode, setDarkMode] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Apply theme to body
@@ -26,29 +43,25 @@ const App = () => {
 
   const handlePageChange = (page) => {
     if (page === activePage) return;
-    
+
     setIsTransitioning(true);
     setTimeout(() => {
       setActivePage(page);
+      const nextPath = pageToRoute[page] || '/';
+      if (location.pathname !== nextPath) {
+        navigate(nextPath);
+      }
       window.scrollTo(0, 0);
       setIsTransitioning(false);
     }, 400);
   };
 
-  const renderPage = () => {
-    switch (activePage) {
-      case 'home':
-        return <Hero setActivePage={handlePageChange} />;
-      case 'works':
-        return <Works />;
-      case 'about':
-        return <About />;
-      case 'contact':
-        return <Contact />;
-      default:
-        return <Hero setActivePage={handlePageChange} />;
+  useEffect(() => {
+    const nextPage = routeToPage[location.pathname] || 'home';
+    if (nextPage !== activePage) {
+      setActivePage(nextPage);
     }
-  };
+  }, [location.pathname, activePage]);
 
   return (
     <div className={`app-wrapper ${darkMode ? 'dark' : 'light'}`}>
@@ -58,9 +71,14 @@ const App = () => {
         toggleDarkMode={toggleDarkMode}
         darkMode={darkMode}
       />
-      
+
       <main className={`page-content ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
-        {renderPage()}
+        <Routes>
+          <Route path="/" element={<Hero setActivePage={handlePageChange} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/work" element={<Works />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
 
       <Footer />
@@ -109,6 +127,14 @@ const App = () => {
         }
       `}</style>
     </div>
+  );
+};
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <AppShell />
+    </BrowserRouter>
   );
 };
 

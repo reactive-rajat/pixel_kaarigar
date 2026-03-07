@@ -39,22 +39,6 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
         </div>
       </nav>
 
-      <div className="side-rail">
-        <div className="rail-icons">
-          <span className="material-symbols-outlined">smart_toy</span>
-          <span className="material-symbols-outlined">edit</span>
-          <span className="material-symbols-outlined">code</span>
-          <span className="material-symbols-outlined">work</span>
-        </div>
-        <div className="rail-scroll">
-          <span className="scroll-text">SCROLL DOWN</span>
-          <span className="material-symbols-outlined scroll-arrow">arrow_downward</span>
-        </div>
-        <div className="rail-footer">
-          <span>© 2024</span>
-        </div>
-      </div>
-
       <style jsx="true">{`
         .fixed-nav-container {
           position: fixed;

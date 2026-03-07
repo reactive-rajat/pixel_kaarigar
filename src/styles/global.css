@@ -2,33 +2,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 :root {
-  /* Colors */
-  --primary-color: #7f13ec;
-  --primary-glow: rgba(127, 19, 236, 0.3);
-  --background-dark: #0a0502;
-  --background-light: #f7f6f8;
-  --surface-dark: #14141a;
-  --surface-light: #ffffff;
-  --text-dark: #ffffff;
-  --text-light: #1a1122;
-  --text-muted: #8e8e93;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-color-light: rgba(0, 0, 0, 0.1);
+  /* Theme Colors */
+  --color-bg-main: #0a0502;
+  --color-bg-soft: #0f0b12;
+  --color-card: #14141a;
+  --color-card-alt: #101018;
+  --color-primary: #7f13ec;
+  --color-primary-glow: rgba(127, 19, 236, 0.35);
+  --color-text: #ffffff;
+  --color-text-muted: #8e8e93;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-light: rgba(0, 0, 0, 0.1);
+
+  /* Typography */
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
 
   /* Spacing */
-  --spacing-small: 0.5rem;
-  --spacing-medium: 1rem;
-  --spacing-large: 2rem;
-  --spacing-xl: 4rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
 
-  /* Border Radius */
-  --border-radius: 0.75rem;
-  --border-radius-lg: 1.5rem;
-  --border-radius-xl: 2.5rem;
-  --border-radius-full: 9999px;
+  /* Radius */
+  --radius-sm: 0.6rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.6rem;
+  --radius-xl: 2.5rem;
+  --radius-pill: 9999px;
 
-  /* Fonts */
-  --font-family: 'Inter', sans-serif;
+  /* Layout */
+  --container-width: 1200px;
+
+  /* Shadows */
+  --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+  /* Backward-compatible aliases */
+  --primary-color: var(--color-primary);
+  --primary-glow: var(--color-primary-glow);
+  --background-dark: var(--color-bg-main);
+  --background-light: #f7f6f8;
+  --surface-dark: var(--color-card);
+  --surface-light: #ffffff;
+  --text-dark: var(--color-text);
+  --text-light: #1a1122;
+  --text-muted: var(--color-text-muted);
+  --border-color: var(--color-border);
+  --border-color-light: var(--color-border-light);
+  --spacing-small: var(--space-xs);
+  --spacing-medium: var(--space-md);
+  --spacing-large: var(--space-lg);
+  --spacing-xl: var(--space-2xl);
+  --border-radius: var(--radius-sm);
+  --border-radius-lg: var(--radius-lg);
+  --border-radius-xl: var(--radius-xl);
+  --border-radius-full: var(--radius-pill);
+  --font-family: var(--font-body);
 }
 
 /* Base Styles */
@@ -39,9 +71,9 @@
 }
 
 body {
-  font-family: var(--font-family);
-  background-color: var(--background-dark);
-  color: var(--text-dark);
+  font-family: var(--font-body);
+  background-color: var(--color-bg-main);
+  color: var(--color-text);
   line-height: 1.5;
   overflow-x: hidden;
   transition: background-color 0.3s, color 0.3s;
@@ -88,9 +120,9 @@ body.light .glass-panel {
 
 /* Layout Utilities */
 .container {
-  max-width: 1300px;
+  max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-large);
+  padding: 0 var(--space-lg);
 }
 
 .flex {
@@ -115,6 +147,10 @@ body.light .glass-panel {
 
 .purple-text {
   color: var(--primary-color);
+}
+
+.primary-text {
+  color: var(--color-primary);
 }
 
 /* Animations */
