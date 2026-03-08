@@ -1,6 +1,19 @@
 import React from 'react';
 
+const brandLogos = [
+  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand One', brandUrl: '#' },
+  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand Two', brandUrl: '#' },
+  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand Three', brandUrl: '#' },
+  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand Four', brandUrl: '#' },
+  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand Five', brandUrl: '#' },
+  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand Six', brandUrl: '#' },
+];
+
 const About = () => {
+  const shouldScroll = brandLogos.length >= 5;
+  // Duplicate the list once so the animation can loop without a visible jump.
+  const displayLogos = shouldScroll ? [...brandLogos, ...brandLogos] : brandLogos;
+
   return (
     <section className="about-page container">
       {/* Hero */}
@@ -33,41 +46,40 @@ const About = () => {
           </div>
         </div>
 
-        <div className="about-hero-card">
-          <div className="profile-card">
-            <div className="profile-header">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGm_IX5VDt3c46DxbEqu-hjLSbisdH0Ip0o5Xkg67K9MaHyjJCpnfkRUeysswwOWG2bgmK0btkQXazaID-093_3QPLdl6r81-T9n2k5r5EsX0D-qQE1Y6UOaQXr2oTtSw-w61yP2cvhovUHdsZdsyqf7pup1w4ujaPN8d7ffrxneZAzJyKo4WgNzO7RRiJ3F71SRroI2y7PDbolbQnPIcj8n75wTEpzXHsy6z_Td9l1qASXIq7eJav9veL2JW4D70__lahqLV9V9Y"
-                alt="Alex"
-                className="profile-avatar"
-                referrerPolicy="no-referrer"
-              />
-              <div>
-                <p className="profile-name">Alex Harper</p>
-                <p className="profile-role">Product Designer • Developer</p>
+        <div className="hero-visual">
+          <div className="character-container animate-float">
+            <div className="glow-overlay"></div>
+            <img 
+              src="/src/assets/brand/about_avatar.png" 
+              alt="Friendly Robot" 
+              className="character-img"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+
+          <div className="hud-panel mood-panel glass-panel">
+            <div className="mood-switcher">
+              <div className="mood-option active">
+                <span className="material-symbols-outlined">sentiment_satisfied</span>
+                <span>Happy</span>
+              </div>
+              <div className="mood-option">
+                <span className="material-symbols-outlined">bolt</span>
+                <span>Focused</span>
               </div>
             </div>
+          </div>
 
-            <div className="profile-stats">
-              <div className="stat-tile">
-                <p className="stat-value">6+</p>
-                <p className="stat-label">Years Exp</p>
+          <div className="hud-panel energy-panel glass-panel">
+            <div className="energy-header">
+              <div className="energy-label">
+                <span className="material-symbols-outlined">battery_charging_full</span>
+                <span>Energy Level</span>
               </div>
-              <div className="stat-tile">
-                <p className="stat-value">48</p>
-                <p className="stat-label">Projects</p>
-              </div>
-              <div className="stat-tile">
-                <p className="stat-value">15</p>
-                <p className="stat-label">Awards</p>
-              </div>
+              <span className="energy-value">94%</span>
             </div>
-
-            <div className="profile-tags">
-              <span className="tag-chip">React</span>
-              <span className="tag-chip">Figma</span>
-              <span className="tag-chip">Next.js</span>
-              <span className="tag-chip">Motion</span>
+            <div className="energy-bar-bg">
+              <div className="energy-bar-fill" style={{ width: '94%' }}></div>
             </div>
           </div>
         </div>
@@ -76,32 +88,46 @@ const About = () => {
       {/* Brands */}
       <div className="brands-section">
         <p className="eyebrow">Brands I&apos;ve Worked With</p>
-        <div className="brands-row">
-          <span>GOOGLE</span>
-          <span>APPLE</span>
-          <span>SPOTIFY</span>
-          <span>STRIPE</span>
-          <span>AIRBNB</span>
+        <div className={`brands-marquee ${shouldScroll ? 'is-scrolling' : 'is-static'}`} aria-label="Brand logos">
+          <div className="brands-track">
+            {displayLogos.map((brand, index) => (
+              <a
+                key={`${brand.brandName}-${index}`}
+                className="brand-item"
+                href={brand.brandUrl}
+                aria-label={brand.brandName}
+              >
+                <div className="brand-logo">
+                  <img src={brand.logoImage} alt={brand.brandName} />
+                </div>
+                <p className="brand-name">{brand.brandName}</p>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* What I Deliver */}
-      <div className="deliver-section">
+      <div className="deliver-section content-section">
+        <span className="section-label">Services</span>
         <h2 className="section-title">
           What I <span className="primary-text">Deliver</span>
         </h2>
+        <p className="section-description">
+          Strategy, design, and development tailored to your product goals.
+        </p>
         <div className="deliver-grid">
-          <div className="deliver-card">
+          <div className="deliver-card content-card">
             <span className="material-symbols-outlined">strategy</span>
             <h3>Strategy</h3>
             <p>Define the purpose and map the journey for maximum impact.</p>
           </div>
-          <div className="deliver-card">
+          <div className="deliver-card content-card">
             <span className="material-symbols-outlined">brush</span>
             <h3>Design</h3>
             <p>Craft crisp, intuitive interfaces with clear hierarchy.</p>
           </div>
-          <div className="deliver-card">
+          <div className="deliver-card content-card">
             <span className="material-symbols-outlined">code</span>
             <h3>Development</h3>
             <p>Build scalable products with clean code and smooth UX.</p>
@@ -110,48 +136,83 @@ const About = () => {
       </div>
 
       {/* Toolkit */}
-      <div className="toolkit-section">
+      <div className="toolkit-section content-section">
+        <span className="section-label">Toolkit</span>
         <h2 className="section-title">
           Digital Toolkit &amp; <span className="primary-text">Power-ups</span>
         </h2>
-        <div className="toolkit-columns">
-          <div className="tool-column">
-            <p className="tool-title">Design</p>
-            <div className="tool-pills">
-              <span>Figma</span>
-              <span>Framer</span>
-              <span>Illustrator</span>
-              <span>After Effects</span>
+        <p className="section-description">
+          The tools I reach for to design, build, and ship polished experiences.
+        </p>
+        <div className="toolkit-grid">
+          <div className="toolkit-card content-card">
+            <div className="toolkit-header">
+              <span className="material-symbols-outlined">auto_awesome</span>
+              <div>
+                <p className="toolkit-eyebrow">Core Expertise</p>
+                <h3>Tools I use daily</h3>
+              </div>
+            </div>
+            <div className="toolkit-pills">
+              <span className="tool-pill">
+                <span className="material-symbols-outlined">draw</span>
+                UX/UI Design
+              </span>
+              <span className="tool-pill">
+                <span className="material-symbols-outlined">modeling</span>
+                Prototyping
+              </span>
+              <span className="tool-pill">
+                <span className="material-symbols-outlined">deployed_code</span>
+                Design Systems
+              </span>
+              <span className="tool-pill">
+                <span className="material-symbols-outlined">auto_graph</span>
+                Visual Design
+              </span>
             </div>
           </div>
-          <div className="tool-column">
-            <p className="tool-title">Frontend</p>
-            <div className="tool-pills">
-              <span>React</span>
-              <span>Next.js</span>
-              <span>GSAP</span>
-              <span>Three.js</span>
+          <div className="toolkit-card content-card">
+            <div className="toolkit-header">
+              <span className="material-symbols-outlined">workspace_premium</span>
+              <div>
+                <p className="toolkit-eyebrow">Certifications</p>
+                <h3>Credentials &amp; badges</h3>
+              </div>
             </div>
-          </div>
-          <div className="tool-column">
-            <p className="tool-title">Backend</p>
-            <div className="tool-pills">
-              <span>Node.js</span>
-              <span>Express</span>
-              <span>MongoDB</span>
-              <span>Supabase</span>
-            </div>
+            <ul className="toolkit-list">
+              <li>
+                <span className="material-symbols-outlined">verified</span>
+                Google UX Design Professional
+              </li>
+              <li>
+                <span className="material-symbols-outlined">verified</span>
+                Framer Certified Partner
+              </li>
+              <li>
+                <span className="material-symbols-outlined">verified</span>
+                Adobe XD Expert
+              </li>
+              <li>
+                <span className="material-symbols-outlined">verified</span>
+                Interaction Design Foundation
+              </li>
+            </ul>
           </div>
         </div>
       </div>
 
       {/* Testimonials */}
-      <div className="testimonials-section">
+      <div className="testimonials-section content-section">
+        <span className="section-label">Testimonials</span>
         <h2 className="section-title">
           Kind Words from <span className="primary-text">Awesome Humans</span>
         </h2>
+        <p className="section-description">
+          A few kind notes from people I&apos;ve partnered with recently.
+        </p>
         <div className="testimonials-grid">
-          <div className="testimonial-card">
+          <div className="testimonial-card content-card">
             <p className="testimonial-text">
               “Alex is a rare breed of designer who actually understands how code
               works. Collaboration became effortless.”
@@ -164,7 +225,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="testimonial-card">
+          <div className="testimonial-card content-card">
             <p className="testimonial-text">
               “The attention to detail in the interactions is next level. Highly
               recommended.”
@@ -181,8 +242,14 @@ const About = () => {
       </div>
 
       {/* Timeline */}
-      <div className="timeline-section">
-        <h2 className="section-title">How it started vs How it&apos;s going</h2>
+      <div className="timeline-section content-section content-card">
+        <span className="section-label">Journey</span>
+        <h2 className="section-title">
+          How it started vs How it&apos;s <span className="primary-text">going</span>
+        </h2>
+        <p className="section-description">
+          The short version of how I got here and what I&apos;m building next.
+        </p>
         <div className="timeline-list">
           <div className="timeline-item">
             <div className="timeline-dot"></div>
@@ -212,17 +279,21 @@ const About = () => {
       </div>
 
       {/* Dual Cards */}
-      <div className="dual-cards-section">
+      <div className="dual-cards-section content-section">
+        <span className="section-label">Approach</span>
         <h2 className="section-title">
           I&apos;m not just an average <span className="primary-text">pixel pusher</span>
         </h2>
+        <p className="section-description">
+          Balancing expressive visuals with systems that scale gracefully.
+        </p>
         <div className="dual-grid">
-          <div className="dual-card visualist">
+          <div className="dual-card visualist content-card">
             <span className="card-tag">THE VISUALIST</span>
             <h3>I craft stories through visuals.</h3>
             <p>Every pixel has a purpose. I focus on hierarchy and emotion.</p>
           </div>
-          <div className="dual-card architect">
+          <div className="dual-card architect content-card">
             <span className="card-tag">THE ARCHITECT</span>
             <h3>I build systems that scale.</h3>
             <p>Robust, maintainable systems that evolve with the product.</p>
@@ -231,11 +302,15 @@ const About = () => {
       </div>
 
       {/* Final CTA */}
-      <div className="final-cta">
+      <div className="final-cta content-section content-card">
         <div className="cta-inner">
+          <span className="section-label">Let&apos;s build</span>
           <h2>
             Have a crazy idea? <span className="primary-text">Let&apos;s build it.</span>
           </h2>
+          <p className="section-description">
+            Tell me about the vision and I&apos;ll help make it real.
+          </p>
           <button className="primary-btn">
             <span>Let&apos;s Talk</span>
             <span className="material-symbols-outlined">arrow_forward</span>
@@ -245,7 +320,7 @@ const About = () => {
 
       <style jsx="true">{`
         .about-page {
-          padding: 7rem 0 8rem;
+          padding: 10rem 0 8rem;
           display: flex;
           flex-direction: column;
           gap: 6rem;
@@ -284,83 +359,123 @@ const About = () => {
           flex-wrap: wrap;
         }
 
-        .about-hero-card {
+        .hero-visual {
+          position: relative;
           display: flex;
           justify-content: center;
+          align-items: center;
         }
 
-        .profile-card {
-          width: min(100%, 420px);
-          background: linear-gradient(180deg, var(--color-card) 0%, var(--color-card-alt) 100%);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-xl);
-          padding: 2rem;
-          box-shadow: var(--shadow-md);
+        .character-container {
+          position: relative;
+          width: 100%;
+          max-width: 450px;
+          aspect-ratio: 1;
+          border-radius: var(--border-radius-xl);
+          overflow: hidden;
         }
 
-        .profile-header {
+        .glow-overlay {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, var(--primary-glow), transparent 70%);
+          opacity: 0.4;
+        }
+
+        .character-img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          position: relative;
+          z-index: 1;
+        }
+
+        .hud-panel {
+          position: absolute;
+          padding: 0.5rem;
+          border-radius: var(--border-radius);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          z-index: 10;
+        }
+
+        .mood-panel {
+          top: 0rem;
+          right: -1rem;
+          transform: rotate(3deg);
+        }
+
+        .mood-switcher {
+          display: flex;
+          background: rgba(0, 0, 0, 0.2);
+          padding: 0.25rem;
+          border-radius: var(--border-radius);
+          gap: 0.25rem;
+        }
+
+        .mood-option {
           display: flex;
           align-items: center;
-          gap: 1rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .profile-avatar {
-          width: 64px;
-          height: 64px;
-          border-radius: 50%;
-          border: 2px solid var(--color-border);
-          object-fit: cover;
-        }
-
-        .profile-name {
-          font-weight: 800;
-          font-size: 1.1rem;
-        }
-
-        .profile-role {
-          color: var(--color-text-muted);
-          font-size: 0.9rem;
-        }
-
-        .profile-stats {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 0.75rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .stat-tile {
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-md);
-          text-align: center;
-          padding: 0.75rem 0.5rem;
-        }
-
-        .stat-value {
-          font-weight: 800;
-          font-size: 1.2rem;
-        }
-
-        .stat-label {
-          font-size: 0.75rem;
-          color: var(--color-text-muted);
-        }
-
-        .profile-tags {
-          display: flex;
-          flex-wrap: wrap;
           gap: 0.5rem;
+          padding: 0.5rem 1rem;
+          font-size: 0.875rem;
+          font-weight: 700;
+          border-radius: 0.75rem;
+          color: rgba(255, 255, 255, 0.5);
+          transition: all 0.2s;
         }
 
-        .tag-chip {
-          padding: 0.4rem 0.9rem;
-          border-radius: var(--radius-pill);
-          border: 1px solid var(--color-border);
-          background: rgba(255, 255, 255, 0.03);
-          font-size: 0.8rem;
-          font-weight: 600;
+        .mood-option.active {
+          background: var(--primary-color);
+          color: white;
+        }
+
+        .energy-panel {
+          bottom: -1rem;
+          left: -1rem;
+          width: 240px;
+          padding: 1rem;
+          transform: rotate(-2deg);
+        }
+
+        .energy-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 0.75rem;
+        }
+
+        .energy-label {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          color: var(--color-text-muted);
+        }
+
+        .energy-label .material-symbols-outlined {
+          color: var(--primary-color);
+          font-size: 1rem;
+        }
+
+        .energy-value {
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: var(--primary-color);
+        }
+
+        .energy-bar-bg {
+          height: 0.5rem;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: var(--border-radius-full);
+          overflow: hidden;
+        }
+
+        .energy-bar-fill {
+          height: 100%;
+          background: linear-gradient(to right, var(--primary-color), #ad92c9);
+          border-radius: var(--border-radius-full);
         }
 
         .brands-section {
@@ -368,46 +483,215 @@ const About = () => {
         }
 
         .eyebrow {
-          font-size: 0.7rem;
+          font-size: 0.9rem;
           text-transform: uppercase;
-          letter-spacing: 0.3em;
-          color: var(--color-text-muted);
-          margin-bottom: 1.5rem;
+          letter-spacing: 0.18em;
+          color: rgba(255, 255, 255, 0.75);
+          margin-bottom: 2rem;
+          font-weight: 800;
+        }
+
+        .brands-marquee {
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          padding: 0.5rem 0;
+          max-width: 900px;
+          margin: 0 auto;
+          mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 15%,
+            black 85%,
+            transparent
+          );
+        }
+
+        .brands-marquee::before,
+        .brands-marquee::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          width: 90px;
+          height: 100%;
+          z-index: 2;
+          pointer-events: none;
+        }
+
+        .brands-marquee::before {
+          left: 0;
+          background: linear-gradient(90deg, rgba(7, 6, 10, 0.95), transparent);
+        }
+
+        .brands-marquee::after {
+          right: 0;
+          background: linear-gradient(270deg, rgba(7, 6, 10, 0.95), transparent);
+        }
+
+        .brands-track {
+          display: flex;
+          align-items: center;
+          gap: 2.5rem;
+          flex-wrap: nowrap;
+          width: max-content;
+          min-width: max-content;
+        }
+
+        .brands-marquee.is-scrolling .brands-track {
+          animation: marquee-left 40s linear infinite;
+          will-change: transform;
+        }
+
+        .brand-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+          text-decoration: none;
+        }
+
+        .brand-logo {
+          height: 80px;
+          width: auto;
+          padding: 0.6rem 1rem;
+          border-radius: 16px;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(127, 19, 236, 0.18));
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+          overflow: hidden;
+        }
+
+        .brand-logo img {
+          height: 100%;
+          width: auto;
+          max-width: 140px;
+          opacity: 0.8;
+          filter: grayscale(1);
+          object-fit: contain;
+        }
+
+        .brand-name {
+          font-size: 0.8rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: rgba(255, 255, 255, 0.55);
           font-weight: 700;
         }
 
-        .brands-row {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 2.5rem;
-          opacity: 0.6;
-          font-weight: 800;
-          letter-spacing: 0.1em;
+        .brands-marquee.is-scrolling:hover .brands-track {
+          animation-play-state: paused;
+        }
+
+        @keyframes marquee-left {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        @media (max-width: 1024px) {
+          .brands-track {
+            gap: 1.75rem;
+          }
+
+          .brand-logo {
+            height: 72px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .brands-track {
+            gap: 1.25rem;
+          }
+
+          .brand-logo {
+            height: 64px;
+          }
+
+          .brand-name {
+            font-size: 0.7rem;
+          }
         }
 
         .section-title {
           font-size: 2.6rem;
           font-weight: 900;
           text-align: center;
-          margin-bottom: 2.5rem;
+          margin: 0;
+        }
+
+        .content-section {
+          max-width: 1200px;
+          margin: 0 auto;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 1.5rem;
+          padding-top: 1rem;
+        }
+
+        .section-label {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.35rem 0.9rem;
+          border-radius: 999px;
+          background: rgba(127, 19, 236, 0.18);
+          color: var(--color-primary);
+          font-size: 0.7rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .section-description {
+          max-width: 680px;
+          font-size: 0.95rem;
+          color: var(--color-text-muted);
+          line-height: 1.7;
+          margin: 0;
+        }
+
+        .content-card {
+          background: var(--color-card);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          padding: 2.4rem 2rem;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .content-card:hover {
+          border-color: rgba(127, 19, 236, 0.5);
+          box-shadow: 0 18px 40px rgba(10, 6, 20, 0.4),
+            0 0 25px rgba(127, 19, 236, 0.25);
+          transform: translateY(-2px);
         }
 
         .deliver-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
+          gap: 2.5rem;
+          width: 100%;
+          align-items: stretch;
+          margin-top: 1rem;
         }
 
         .deliver-card {
-          background: var(--color-card);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-lg);
-          padding: 2.5rem 2rem;
+          border-radius: 22px;
+          background: rgba(10, 8, 16, 0.95);
+          border: 1px solid rgba(255, 255, 255, 0.08);
           text-align: left;
           display: flex;
           flex-direction: column;
           gap: 1rem;
+          height: 100%;
         }
 
         .deliver-card span {
@@ -423,82 +707,160 @@ const About = () => {
         }
 
         .deliver-card p {
-          color: var(--color-text-muted);
+          color: rgba(255, 255, 255, 0.6);
           line-height: 1.6;
+        }
+
+        .deliver-card h3 {
+          font-size: 1.25rem;
+          font-weight: 800;
         }
 
         .toolkit-columns {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
+          gap: 2rem;
+          width: 100%;
         }
 
-        .tool-column {
-          background: var(--color-card);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-lg);
-          padding: 2rem;
+        .toolkit-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 2.5rem;
+          width: 100%;
+        }
+
+        .toolkit-card {
+          background: rgba(10, 8, 16, 0.95);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 22px;
+          padding: 2.5rem;
+          text-align: left;
+        }
+
+        .toolkit-header {
           display: flex;
-          flex-direction: column;
           gap: 1rem;
+          align-items: flex-start;
+          margin-bottom: 1.5rem;
         }
 
-        .tool-title {
+        .toolkit-header .material-symbols-outlined {
+          width: 44px;
+          height: 44px;
+          border-radius: 14px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(127, 19, 236, 0.18);
+          color: var(--color-primary);
+          font-size: 1.4rem;
+          flex-shrink: 0;
+        }
+
+        .toolkit-eyebrow {
           font-weight: 800;
-          letter-spacing: 0.08em;
-          font-size: 0.8rem;
+          letter-spacing: 0.12em;
+          font-size: 0.7rem;
           color: var(--color-text-muted);
           text-transform: uppercase;
+          margin-bottom: 0.4rem;
         }
 
-        .tool-pills {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
+        .toolkit-card h3 {
+          font-size: 1.2rem;
+          font-weight: 800;
+          margin: 0;
         }
 
-        .tool-pills span {
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-pill);
-          padding: 0.4rem 0.9rem;
-          font-size: 0.8rem;
+        .toolkit-pills {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.9rem;
+        }
+
+        .tool-pill {
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 16px;
+          padding: 0.65rem 0.9rem;
+          font-size: 0.85rem;
           font-weight: 600;
-          background: rgba(255, 255, 255, 0.03);
+          background: rgba(255, 255, 255, 0.04);
+          display: inline-flex;
+          gap: 0.5rem;
+          align-items: center;
+          color: rgba(255, 255, 255, 0.85);
+        }
+
+        .tool-pill .material-symbols-outlined {
+          font-size: 1rem;
+          color: var(--color-primary);
+        }
+
+        .toolkit-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.9rem;
+        }
+
+        .toolkit-list li {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.7rem 0.9rem;
+          border-radius: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: rgba(255, 255, 255, 0.04);
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.9rem;
+          font-weight: 600;
+        }
+
+        .toolkit-list .material-symbols-outlined {
+          font-size: 1.1rem;
+          color: var(--color-primary);
         }
 
         .testimonials-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 1.5rem;
+          gap: 2.5rem;
+          width: 100%;
+          align-items: stretch;
         }
 
         .testimonial-card {
-          background: var(--color-card);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-lg);
-          padding: 2.5rem;
+          background: rgba(10, 8, 16, 0.95);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 22px;
+          padding: 2.8rem;
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 2rem;
+          text-align: left;
+          height: 100%;
         }
 
         .testimonial-text {
-          color: var(--color-text);
-          font-size: 1.05rem;
-          line-height: 1.7;
+          color: rgba(255, 255, 255, 0.82);
+          font-size: 1rem;
+          line-height: 1.8;
         }
 
         .testimonial-author {
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 1.1rem;
         }
 
         .author-avatar {
-          width: 42px;
-          height: 42px;
+          width: 46px;
+          height: 46px;
           border-radius: 50%;
-          background: var(--color-primary);
+          background: linear-gradient(135deg, rgba(127, 19, 236, 0.9), rgba(173, 146, 201, 0.85));
           color: #fff;
           font-weight: 800;
           display: flex;
@@ -508,18 +870,17 @@ const About = () => {
 
         .author-name {
           font-weight: 800;
+          font-size: 1rem;
         }
 
         .author-role {
-          color: var(--color-text-muted);
-          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.55);
+          font-size: 0.85rem;
         }
 
         .timeline-section {
-          background: var(--color-card);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-xl);
           padding: 3rem;
+          border-radius: var(--radius-xl);
         }
 
         .timeline-list {
@@ -529,6 +890,8 @@ const About = () => {
           position: relative;
           margin-top: 2rem;
           padding-left: 2.5rem;
+          width: 100%;
+          text-align: left;
         }
 
         .timeline-list::before {
@@ -579,13 +942,11 @@ const About = () => {
         .dual-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 1.5rem;
+          gap: 2rem;
+          width: 100%;
         }
 
         .dual-card {
-          border-radius: var(--radius-xl);
-          padding: 3rem;
-          border: 1px solid var(--color-border);
           display: flex;
           flex-direction: column;
           gap: 1.2rem;
@@ -619,13 +980,10 @@ const About = () => {
         }
 
         .final-cta {
-          background: var(--color-card);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-xl);
-          padding: 4.5rem 3rem;
-          text-align: center;
           position: relative;
           overflow: hidden;
+          padding: 4.5rem 3rem;
+          border-radius: var(--radius-xl);
         }
 
         .final-cta::before {
@@ -655,14 +1013,14 @@ const About = () => {
           }
 
           .deliver-grid,
-          .toolkit-columns,
+          .toolkit-grid,
           .testimonials-grid,
           .dual-grid {
             grid-template-columns: 1fr;
           }
 
-          .profile-card {
-            width: 100%;
+          .hero-visual {
+            order: 1;
           }
         }
       `}</style>

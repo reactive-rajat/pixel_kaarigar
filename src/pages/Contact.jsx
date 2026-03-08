@@ -18,21 +18,7 @@ const Contact = () => {
             I speak fluent pixel and code. Drop a signal below and let's launch your next big idea into orbit.
           </p>
 
-          <div className="mascot-playground animate-float">
-            <div className="orbital-ring ring-1"></div>
-            <div className="orbital-ring ring-2"></div>
-            <div className="mascot-container">
-              <img 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuz5elNd0FEG0XPuMixAv5yzR-AoMsmZ0hdcXHWgW3P4p9RQNmHLFKj0oNsKBNJPqMn4w3KJDa3R2f45l_vN7XhrIEnblV8CYgqxiNKvAw-ftdJQiNAbRgMu3B5TFQQ29jpQIJEG8ndncuPlLxSL8GCrIGUlyTpCvVFk616JOHXx-TmOJpAZG2kf4EEZjeyLSQvEWxhY0GF4V2WSiRsnAc52sp9L79GAQ6xv01D_nse42HQPkbLqPN6yLWqa7tnPAq0YXDlZ8atx4" 
-                alt="Mascot" 
-                className="mascot-img"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="social-orbit orbit-1"><span className="material-symbols-outlined">code</span></div>
-            <div className="social-orbit orbit-2"><span className="material-symbols-outlined">alternate_email</span></div>
-            <div className="social-orbit orbit-3"><span className="material-symbols-outlined">brush</span></div>
-          </div>
+ 
         </div>
 
         {/* Right Column: Portal Form */}
@@ -99,7 +85,7 @@ const Contact = () => {
       <style jsx="true">{`
         .contact-section {
           padding-top: 8rem;
-          padding-bottom: 8rem;
+          padding-bottom: 3rem;
         }
 
         .contact-grid {
@@ -125,75 +111,6 @@ const Contact = () => {
           margin-bottom: 4rem;
         }
 
-        .mascot-playground {
-          position: relative;
-          width: 100%;
-          max-width: 400px;
-          aspect-ratio: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .orbital-ring {
-          position: absolute;
-          border-radius: 50%;
-          border: 1px solid rgba(127, 19, 236, 0.2);
-        }
-
-        .ring-1 { width: 110%; height: 110%; }
-        .ring-2 { width: 125%; height: 125%; border-style: dashed; transform: rotate(45deg); }
-
-        .mascot-container {
-          width: 250px;
-          height: 250px;
-          border-radius: 50%;
-          background: linear-gradient(to bottom, var(--primary-glow), rgba(127, 19, 236, 0.05));
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 20px 40px var(--primary-glow);
-        }
-
-        .mascot-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          opacity: 0.9;
-          transition: transform 0.7s;
-        }
-
-        .mascot-img:hover {
-          transform: scale(1.1);
-        }
-
-        .social-orbit {
-          position: absolute;
-          width: 3.5rem;
-          height: 3.5rem;
-          background: var(--surface-dark);
-          border: 1px solid var(--border-color);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--text-muted);
-          box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-          transition: all 0.3s;
-        }
-
-        .social-orbit:hover {
-          background: var(--primary-color);
-          color: white;
-          border-color: var(--primary-color);
-        }
-
-        .orbit-1 { top: 0; right: 2rem; }
-        .orbit-2 { bottom: 2rem; left: 0; width: 3rem; height: 3rem; }
-        .orbit-3 { bottom: 5rem; right: 0; width: 4rem; height: 4rem; }
-
         .contact-form-card {
           padding: 2.5rem;
           border-radius: var(--border-radius-lg);
@@ -202,12 +119,15 @@ const Contact = () => {
         }
 
         .form-header {
-          margin-bottom: 2rem;
+          margin-bottom: 1rem;
         }
 
         .hud-dots {
           display: flex;
           gap: 0.5rem;
+          position: absolute;
+          top: 1.45rem;
+          left: 1.5rem;
         }
 
         .dot {

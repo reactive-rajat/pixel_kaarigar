@@ -79,6 +79,7 @@ const ProjectCard = ({ project }) => {
         .card-gradient {
           position: absolute;
           inset: 0;
+          border-radius: inherit;
           background: linear-gradient(
             180deg,
             rgba(8, 6, 12, 0.1) 0%,
@@ -87,6 +88,11 @@ const ProjectCard = ({ project }) => {
             rgba(8, 6, 12, 0.95) 100%
           );
           pointer-events: none;
+          transition: opacity 0.3s;
+        }
+
+        .project-card:hover .card-gradient {
+          opacity: 0;
         }
 
         .card-default {
@@ -131,6 +137,7 @@ const ProjectCard = ({ project }) => {
           justify-content: flex-end;
           gap: 1rem;
           padding: 2.2rem 0 0;
+          border-radius: inherit;
           background: linear-gradient(
             180deg,
             rgba(6, 4, 10, 0.15) 0%,
@@ -382,7 +389,7 @@ const Works = () => {
 
       <style jsx="true">{`
         .works-section {
-          padding-top: 8rem;
+          padding-top: 10rem;
           padding-bottom: 8rem;
         }
 

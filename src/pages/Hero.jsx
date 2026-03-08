@@ -40,7 +40,7 @@ const Hero = ({ setActivePage }) => {
           <div className="character-container animate-float">
             <div className="glow-overlay"></div>
             <img 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXAgM3CuGXobTplePYNkLUht3XCnJ8I6Ze9SgQUQmaWjUVVrDuVdR_-YbNU2ju0G9xWTTXa5nOeqi9Gy49O2DUtkbW6ab0Qui2TwtS2v2xlbz1f0b6f7NI6VoFzlotYWicY6Wc0HwjrOnlNE0FJhRTYkodqWEBhaQyMekYkTz5xJOxKX5eF0ezYb0e2Pt7z30L9bR21e_PgbdF9Yv9XL5jxn3U-lrqi3Hjh-thI92-HvZKSDH62Vy738bVghDispQMYo-aoAU0N8E" 
+              src="/src/assets/brand/home_avatar.png" 
               alt="Friendly Robot" 
               className="character-img"
               referrerPolicy="no-referrer"
@@ -78,7 +78,7 @@ const Hero = ({ setActivePage }) => {
 
       <style jsx="true">{`
         .hero-section {
-          min-height: 100vh;
+          min-height: 100dvh;
           display: flex;
           align-items: center;
           padding-top: 6rem;
@@ -97,57 +97,6 @@ const Hero = ({ setActivePage }) => {
           display: flex;
           flex-direction: column;
           gap: 2rem;
-        }
-
-        .status-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.25rem 0.75rem;
-          background: rgba(127, 19, 236, 0.1);
-          border: 1px solid rgba(127, 19, 236, 0.3);
-          border-radius: var(--border-radius-full);
-          width: fit-content;
-        }
-
-        .ping-dot {
-          position: relative;
-          display: flex;
-          width: 0.5rem;
-          height: 0.5rem;
-        }
-
-        .ping-inner {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          background: var(--primary-color);
-          border-radius: 50%;
-          opacity: 0.75;
-          animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-        }
-
-        .ping-outer {
-          position: relative;
-          width: 0.5rem;
-          height: 0.5rem;
-          background: var(--primary-color);
-          border-radius: 50%;
-        }
-
-        @keyframes ping {
-          75%, 100% {
-            transform: scale(2);
-            opacity: 0;
-          }
-        }
-
-        .status-text {
-          font-size: 0.75rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          color: var(--primary-color);
         }
 
         .hero-title {
@@ -247,7 +196,7 @@ const Hero = ({ setActivePage }) => {
         }
 
         .mood-panel {
-          top: -1rem;
+          top: 0.5rem;
           right: -1rem;
           transform: rotate(3deg);
         }
@@ -278,7 +227,7 @@ const Hero = ({ setActivePage }) => {
         }
 
         .energy-panel {
-          bottom: -2rem;
+          bottom: 1.25rem;
           left: -1rem;
           width: 240px;
           padding: 1rem;

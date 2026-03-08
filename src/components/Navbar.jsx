@@ -5,7 +5,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
     <div className="fixed-nav-container">
       <nav className="glass-panel navbar">
         <div className="nav-logo" onClick={() => setActivePage('home')}>
-          <span className="material-symbols-outlined logo-icon">terminal</span>
+          <img src="/src/assets/brand/avatar.png" alt="Avatar" className="logo-avatar" />
           <span className="logo-text">Pixel_Kaarigar</span>
         </div>
 
@@ -55,7 +55,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0.4rem 0.4rem 0.4rem 1.2rem;
+          padding: 0.6rem 0.8rem 0.6rem 1rem;
           border-radius: var(--border-radius-full);
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
           max-width: 600px;
@@ -66,13 +66,20 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
         .nav-logo {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.75rem;
           cursor: pointer;
         }
+        
+        .nav-logo:hover .logo-avatar {
+          animation: logoSpin 1.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
 
-        .logo-icon {
-          color: var(--primary-color);
-          font-size: 1.25rem;
+        .logo-avatar {
+          width: auto;
+          height: 2.15rem;
+          border-radius: 50%;
+          object-fit: cover;
+          transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .logo-text {
@@ -85,14 +92,10 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
           display: flex;
           align-items: center;
           gap: 0.25rem;
-          background: rgba(255, 255, 255, 0.03);
-          padding: 0.25rem;
-          border-radius: var(--border-radius-full);
-          border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .nav-link {
-          padding: 0.4rem 1.2rem;
+          padding: 0.6rem 1.2rem;
           font-size: 0.8rem;
           font-weight: 600;
           color: var(--text-muted);
@@ -196,6 +199,15 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
           0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
           40% {transform: translateY(5px);}
           60% {transform: translateY(3px);}
+        }
+
+        @keyframes logoSpin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
         }
 
         .rail-footer {
