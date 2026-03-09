@@ -1,18 +1,7 @@
 import React from 'react';
-
-const brandLogos = [
-  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand One', brandUrl: '#' },
-  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand Two', brandUrl: '#' },
-  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand Three', brandUrl: '#' },
-  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand Four', brandUrl: '#' },
-  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand Five', brandUrl: '#' },
-  { logoImage: 'https://via.placeholder.com/140x90.png?text=Logo', brandName: 'Brand Six', brandUrl: '#' },
-];
+import Brands from '../components/sections/Brands';
 
 const About = () => {
-  const shouldScroll = brandLogos.length >= 5;
-  // Duplicate the list once so the animation can loop without a visible jump.
-  const displayLogos = shouldScroll ? [...brandLogos, ...brandLogos] : brandLogos;
 
   return (
     <section className="about-page container">
@@ -86,26 +75,7 @@ const About = () => {
       </div>
 
       {/* Brands */}
-      <div className="brands-section">
-        <p className="eyebrow">Brands I&apos;ve Worked With</p>
-        <div className={`brands-marquee ${shouldScroll ? 'is-scrolling' : 'is-static'}`} aria-label="Brand logos">
-          <div className="brands-track">
-            {displayLogos.map((brand, index) => (
-              <a
-                key={`${brand.brandName}-${index}`}
-                className="brand-item"
-                href={brand.brandUrl}
-                aria-label={brand.brandName}
-              >
-                <div className="brand-logo">
-                  <img src={brand.logoImage} alt={brand.brandName} />
-                </div>
-                <p className="brand-name">{brand.brandName}</p>
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Brands />
 
       {/* What I Deliver */}
       <div className="deliver-section content-section">
@@ -222,6 +192,19 @@ const About = () => {
               <div>
                 <p className="author-name">John Doe</p>
                 <p className="author-role">Product Manager @ TechCorp</p>
+              </div>
+            </div>
+          </div>
+          <div className="testimonial-card content-card highlighted">
+            <p className="testimonial-text">
+              “The attention to detail in the interactions is next level. Highly
+              recommended.”
+            </p>
+            <div className="testimonial-author">
+              <div className="author-avatar">JS</div>
+              <div>
+                <p className="author-name">Jane Smith</p>
+                <p className="author-role">Founder @ StartupX</p>
               </div>
             </div>
           </div>
@@ -554,22 +537,16 @@ const About = () => {
           height: 80px;
           width: auto;
           padding: 0.6rem 1rem;
-          border-radius: 16px;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(127, 19, 236, 0.18));
-          border: 1px solid rgba(255, 255, 255, 0.08);
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
           overflow: hidden;
         }
 
         .brand-logo img {
           height: 100%;
           width: auto;
-          max-width: 140px;
-          opacity: 0.8;
-          filter: grayscale(1);
+          max-width: 240px;
           object-fit: contain;
         }
 
@@ -578,7 +555,7 @@ const About = () => {
           letter-spacing: 0.08em;
           text-transform: uppercase;
           color: rgba(255, 255, 255, 0.55);
-          font-weight: 700;
+          font-weight: 400;
         }
 
         .brands-marquee.is-scrolling:hover .brands-track {
@@ -653,7 +630,7 @@ const About = () => {
 
         .section-description {
           max-width: 680px;
-          font-size: 0.95rem;
+          font-size: 1.1rem;
           color: var(--color-text-muted);
           line-height: 1.7;
           margin: 0;
@@ -695,15 +672,15 @@ const About = () => {
         }
 
         .deliver-card span {
-          width: 44px;
-          height: 44px;
-          border-radius: 12px;
+          width: 3.5rem;
+          height: 3.5rem;
+          border-radius: 999px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          background: rgba(127, 19, 236, 0.15);
+          background: rgba(127, 19, 236, 0.2);
           color: var(--color-primary);
-          font-size: 1.5rem;
+          font-size: 1.85rem;
         }
 
         .deliver-card p {
@@ -826,8 +803,8 @@ const About = () => {
 
         .testimonials-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 2.5rem;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
           width: 100%;
           align-items: stretch;
         }
@@ -836,7 +813,7 @@ const About = () => {
           background: rgba(10, 8, 16, 0.95);
           border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 22px;
-          padding: 2.8rem;
+          padding: 2rem;
           display: flex;
           flex-direction: column;
           gap: 2rem;
@@ -844,10 +821,21 @@ const About = () => {
           height: 100%;
         }
 
+        .testimonial-card.highlighted {
+          background: var(--color-primary);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
         .testimonial-text {
           color: rgba(255, 255, 255, 0.82);
           font-size: 1rem;
-          line-height: 1.8;
+          line-height: 1.75;
+          height: 87px;
+        }
+
+        .testimonial-card.highlighted .testimonial-text{
+          font-size: 1.15rem;
+          line-height: 1.65;
         }
 
         .testimonial-author {
@@ -888,16 +876,17 @@ const About = () => {
           flex-direction: column;
           gap: 2rem;
           position: relative;
-          margin-top: 2rem;
-          padding-left: 2.5rem;
+          margin: 0 auto;
           width: 100%;
+          max-width: 600px;
+          margin-top: 2rem;
           text-align: left;
         }
 
         .timeline-list::before {
           content: '';
           position: absolute;
-          left: 1rem;
+          left: 1.8rem;
           top: 0;
           bottom: 0;
           width: 2px;
@@ -909,14 +898,15 @@ const About = () => {
         }
 
         .timeline-dot {
-          width: 12px;
-          height: 12px;
+          width: 3.5rem;
+          height: 3.5rem;
           border-radius: 50%;
           background: var(--color-primary);
+          background: #261933;
           position: absolute;
-          left: -1.65rem;
-          top: 0.45rem;
-          box-shadow: 0 0 0 6px rgba(127, 19, 236, 0.2);
+          left: 0rem;
+          top: 0rem;
+          box-shadow: inset 0 0 0 2px #4D3267;
         }
 
         .timeline-year {
@@ -928,6 +918,10 @@ const About = () => {
           font-weight: 700;
           font-size: 0.75rem;
           margin-bottom: 0.5rem;
+        }
+
+        .timeline-content{
+          padding-left: 5.5rem;
         }
 
         .timeline-content h4 {

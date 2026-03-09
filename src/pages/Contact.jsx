@@ -7,8 +7,11 @@ const Contact = () => {
         {/* Left Column: Content & Mascot */}
         <div className="contact-info">
           <div className="status-badge">
-            <span className="material-symbols-outlined">rocket_launch</span>
-            <span>OPEN FOR NEW PROJECTS</span>
+            <span className="ping-dot">
+              <span className="ping-inner"></span>
+              <span className="ping-outer"></span>
+            </span>
+            <span className="status-text">Open to work</span>
           </div>
           <h1 className="contact-title">
             Let's Build <br />
