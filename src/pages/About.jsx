@@ -325,7 +325,7 @@ const About = () => {
         }
 
         .about-title {
-          font-size: 3.8rem;
+          font-size: 5rem;
           font-weight: 900;
           line-height: 1.05;
           letter-spacing: -0.02em;

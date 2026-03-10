@@ -100,7 +100,7 @@ const Contact = () => {
         }
 
         .contact-title {
-          font-size: 4rem;
+          font-size: 5rem;
           font-weight: 900;
           line-height: 1;
         }

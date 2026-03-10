@@ -184,6 +184,7 @@ const Hero = ({ setActivePage }) => {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            margin-top: 1rem;
           }
 
           .primary-btn {
@@ -384,7 +385,7 @@ const Hero = ({ setActivePage }) => {
             }
 
             .hero-title {
-              font-size: 4rem;
+              font-size: 5rem;
             }
           }
 

@@ -58,7 +58,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
           padding: 0.6rem 0.8rem 0.6rem 1rem;
           border-radius: var(--border-radius-full);
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-          max-width: 600px;
+          max-width: 640px;
           width: 100%;
           border: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -84,7 +84,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
 
         .logo-text {
           font-weight: 800;
-          font-size: 1rem;
+          font-size: 0.95rem;
           letter-spacing: -0.02em;
         }
 
@@ -96,7 +96,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
 
         .nav-link {
           padding: 0.6rem 1.2rem;
-          font-size: 0.8rem;
+          font-size: 0.9rem;
           font-weight: 600;
           color: var(--text-muted);
           border-radius: var(--border-radius-full);
@@ -105,6 +105,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
 
         .nav-link:hover {
           color: var(--text-dark);
+          background: rgba(255, 255, 255, 0.08);
         }
 
         .nav-link.active {
