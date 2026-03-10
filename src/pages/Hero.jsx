@@ -3,10 +3,20 @@ import Brands from "../components/sections/Brands";
 
 const Hero = ({ setActivePage }) => {
   const [isAboutPageActive, setIsAboutPageActive] = useState(false);
+  const [currentMood, setCurrentMood] = useState('focused');
 
   const handleHeroClick = () => {
     setActivePage("about");
   };
+
+  const skills = [
+    "React",
+    "JavaScript",
+    "HTML & CSS",
+    "UI/UX Design",
+    "Design Systems",
+    "Responsive Design",
+  ];
 
   return (
     <section className="hero-section container">
@@ -28,10 +38,16 @@ const Hero = ({ setActivePage }) => {
             </h1>
 
             <p className="hero-description">
-              Building friendly digital playgrounds at the intersection of
-              Design & Code. I turn complex problems into quirky, interactive
-              experiences.
+              A designer who learned to code, building interfaces that are both visually refined and technically solid.
             </p>
+
+            <ul className="skills-list">
+              {skills.map((skill, index) => (
+                <li key={index} className="skill-item">
+                  {skill}
+                </li>
+              ))}
+            </ul>
 
             <div className="hero-actions">
               <button
@@ -51,12 +67,12 @@ const Hero = ({ setActivePage }) => {
           </div>
 
           {/* Right Column: Character Playground */}
-          <div className="hero-visual" onClick={handleHeroClick}>
-            <div className="character-container animate-float">
+          <div className="hero-visual">
+            <div className="character-container animate-float" onClick={handleHeroClick}>
               <div className="glow-overlay"></div>
               <img
-                src="/src/assets/brand/home_avatar.png"
-                alt="Friendly Robot"
+                src={`/src/assets/brand/avatar_${currentMood}.png`}
+                alt="Man working on laptop"
                 className="character-img"
                 referrerPolicy="no-referrer"
               />
@@ -65,13 +81,19 @@ const Hero = ({ setActivePage }) => {
             {/* HUD Panels */}
             <div className="hud-panel mood-panel glass-panel">
               <div className="mood-switcher">
-                <div className="mood-option active">
+                <div
+                  className={currentMood === "relaxed" ? "mood-option active" : "mood-option"}
+                  onClick={() => setCurrentMood("relaxed")}
+                >
                   <span className="material-symbols-outlined">
                     sentiment_satisfied
                   </span>
-                  <span>Happy</span>
+                  <span>Relaxed</span>
                 </div>
-                <div className="mood-option">
+                <div
+                  className={currentMood === "focused" ? "mood-option active" : "mood-option"}
+                  onClick={() => setCurrentMood("focused")}
+                >
                   <span className="material-symbols-outlined">bolt</span>
                   <span>Focused</span>
                 </div>
@@ -137,10 +159,25 @@ const Hero = ({ setActivePage }) => {
           }
 
           .hero-description {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
             max-width: 500px;
             line-height: 1.6;
+          }
+
+          .skills-list{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+          }
+
+          .skill-item{
+            background: rgba(38, 25, 51, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.8rem;
+            white-space: nowrap;
           }
 
           .hero-actions {
@@ -244,22 +281,26 @@ const Hero = ({ setActivePage }) => {
 
           .mood-switcher {
             display: flex;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 0.25rem;
             border-radius: var(--border-radius);
-            gap: 0.25rem;
+            gap: 0.5rem;
+            overflow: hidden;
           }
 
           .mood-option {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1rem 0.5rem 0.7rem;
             font-size: 0.875rem;
             font-weight: 700;
-            border-radius: 0.75rem;
             color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
             transition: all 0.2s;
+            border-radius: var(--border-radius);
+          }
+
+          .mood-option:not(.active):hover {
+            background: rgba(0, 0, 0, 0.3);
           }
 
           .mood-option.active {

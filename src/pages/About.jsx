@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Brands from '../components/sections/Brands';
 
 const About = () => {
+  const [currentMood, setCurrentMood] = useState('relaxed');
 
   return (
     <section className="about-page container">
@@ -21,9 +22,7 @@ const About = () => {
             <span className="primary-text">code</span>.
           </h1>
           <p className="about-lead">
-            Hi, I&apos;m Alex. I exist at the intersection of “make it pretty” and
-            “make it work.” I build digital playgrounds that feel as good as they
-            look.
+            Hi, I&apos;m Rajat. I spend my days designing interfaces and bringing them to life in the browser, preferably in <span className="focus-text"><span className="material-symbols-outlined">bolt</span>Focused</span> mode.
           </p>
 
           <div className="about-actions">
@@ -38,21 +37,27 @@ const About = () => {
         <div className="hero-visual">
           <div className="character-container animate-float">
             <div className="glow-overlay"></div>
-            <img 
-              src="/src/assets/brand/about_avatar.png" 
-              alt="Friendly Robot" 
-              className="character-img"
-              referrerPolicy="no-referrer"
-            />
+            <img
+                src={`/src/assets/brand/avatar_${currentMood}.png`}
+                alt="Man working on laptop"
+                className="character-img"
+                referrerPolicy="no-referrer"
+              />
           </div>
 
           <div className="hud-panel mood-panel glass-panel">
             <div className="mood-switcher">
-              <div className="mood-option active">
+              <div
+                className={currentMood === 'relaxed' ? 'mood-option active' : 'mood-option'}
+                onClick={() => setCurrentMood('relaxed')}
+              >
                 <span className="material-symbols-outlined">sentiment_satisfied</span>
-                <span>Happy</span>
+                <span>Relaxed</span>
               </div>
-              <div className="mood-option">
+              <div
+                className={currentMood === 'focused' ? 'mood-option active' : 'mood-option'}
+                onClick={() => setCurrentMood('focused')}
+              >
                 <span className="material-symbols-outlined">bolt</span>
                 <span>Focused</span>
               </div>
@@ -333,7 +338,22 @@ const About = () => {
           font-size: 1.1rem;
           color: var(--color-text-muted);
           max-width: 540px;
-          line-height: 1.7;
+          line-height: 1.8;
+        }
+
+        .focus-text{
+          background: rgba(38, 25, 51, 0.8);
+          border: 1px solid var(--border-color);
+          border-radius: 999px;
+          padding: 0.25rem 0.7rem 0.35rem 0.4rem;
+          font-size: 0.95rem;
+          margin: 0 0.2rem;
+        }
+
+        .focus-text .material-symbols-outlined{
+          font-size: 1.1rem;
+          vertical-align: middle;
+          margin-right: 0.25rem;
         }
 
         .about-actions {
@@ -404,7 +424,12 @@ const About = () => {
           font-weight: 700;
           border-radius: 0.75rem;
           color: rgba(255, 255, 255, 0.5);
+          cursor: pointer;
           transition: all 0.2s;
+        }
+
+        .mood-option:not(.active):hover {
+          background: rgba(255, 255, 255, 0.08);
         }
 
         .mood-option.active {
