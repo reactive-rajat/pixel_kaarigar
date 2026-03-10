@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const ProjectCard = ({ project }) => {
   return (
-    <div className={`project-card ${project.size || ''}`}>
+    <div className={`project-card ${project.size || ""}`}>
       <div className="card-media">
         <img
           src={project.image}
@@ -28,7 +28,7 @@ const ProjectCard = ({ project }) => {
               <h3 className="hover-title">{project.title}</h3>
               <p className="hover-desc">{project.description}</p>
               <div className="card-tags">
-                {project.tags.map(tag => (
+                {project.tags.map((tag) => (
                   <span key={tag} className="card-tag">
                     {tag}
                   </span>
@@ -46,7 +46,9 @@ const ProjectCard = ({ project }) => {
         .project-card {
           position: relative;
           cursor: pointer;
-          transition: transform 0.35s ease, box-shadow 0.35s ease;
+          transition:
+            transform 0.35s ease,
+            box-shadow 0.35s ease;
           border-radius: 28px;
         }
 
@@ -105,7 +107,9 @@ const ProjectCard = ({ project }) => {
           align-items: center;
           justify-content: space-between;
           gap: 1.5rem;
-          transition: opacity 0.3s ease, transform 0.3s ease;
+          transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
         }
 
         .default-text {
@@ -147,7 +151,9 @@ const ProjectCard = ({ project }) => {
           backdrop-filter: blur(6px);
           opacity: 0;
           transform: translateY(18px);
-          transition: opacity 0.35s ease, transform 0.35s ease;
+          transition:
+            opacity 0.35s ease,
+            transform 0.35s ease;
         }
 
         .hover-content {
@@ -234,7 +240,9 @@ const ProjectCard = ({ project }) => {
 
         .hover-cta .material-symbols-outlined {
           font-size: 1.5rem;
-          transition: transform 0.3s, color 0.3s;
+          transition:
+            transform 0.3s,
+            color 0.3s;
         }
 
         .hover-cta:hover .material-symbols-outlined {
@@ -292,76 +300,90 @@ const ProjectCard = ({ project }) => {
 };
 
 const Works = () => {
-  const [filter, setFilter] = useState('All');
+  const [filter, setFilter] = useState("All");
 
   const projects = [
     {
       id: 1,
-      title: 'E-commerce Redesign',
-      description: 'Making online shopping less boring with immersive product stories.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBgpq3zlGQhytiGf2i-J4kwgFUDXE2xQNZO5j3V5kXRKdakNSW0abGV0NjcjksETUptZeeFSzRdUsBFVltanhJ8Q5aMPVJ50dfpieIrwX-ZWiSLXTM3S6mT90zSprSMy2TDrxJnbF82edElnNlJn96cFR5OZ46BenBbd1YODjVOiOSIZEDGoFK8bpUBmNK1xmTznOr6qRssIBxX7cqsynvolh1d2vPl6A1_LTW2xgC6NtPBaPr8bsfA5068l9SOQYaYgvA42lhtQIk',
-      tags: ['React', 'Figma'],
-      size: 'large',
-      category: 'Design'
+      title: "E-commerce Redesign",
+      description:
+        "Making online shopping less boring with immersive product stories.",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBgpq3zlGQhytiGf2i-J4kwgFUDXE2xQNZO5j3V5kXRKdakNSW0abGV0NjcjksETUptZeeFSzRdUsBFVltanhJ8Q5aMPVJ50dfpieIrwX-ZWiSLXTM3S6mT90zSprSMy2TDrxJnbF82edElnNlJn96cFR5OZ46BenBbd1YODjVOiOSIZEDGoFK8bpUBmNK1xmTznOr6qRssIBxX7cqsynvolh1d2vPl6A1_LTW2xgC6NtPBaPr8bsfA5068l9SOQYaYgvA42lhtQIk",
+      tags: ["React", "Figma"],
+      size: "large",
+      category: "Design",
     },
     {
       id: 2,
-      title: 'Portfolio v1',
-      description: 'A retro-style portfolio playground built with Three.js.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCwT-pEBNNYmXMeFV0H5LC4B01-psJo8kFfwJiqNgPmdZidyrAfM_C364v9b1WqZ4e6Ge1bXJh9MVb4Y4KIn-AiPlB3BFrzdWMU9hZLruSvlXbgo0wkFR_FTN7GgyLAtO2D_zmAT04IXPEW65_4M1HCM6cjfbWrRou-41UfoIQ77-dgS3rhVzp7LNJFqRfWH7Tdq-LBV4mUo8seq5uKVhi7_kfEo2341xHn83sukiRHKKk4f6tt6SBlMEjd4p3Fb7aiGo-hfCRp47A',
-      tags: ['Three.js', 'GSAP'],
-      size: 'medium',
-      category: 'Code'
+      title: "Portfolio v1",
+      description: "A retro-style portfolio playground built with Three.js.",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuCwT-pEBNNYmXMeFV0H5LC4B01-psJo8kFfwJiqNgPmdZidyrAfM_C364v9b1WqZ4e6Ge1bXJh9MVb4Y4KIn-AiPlB3BFrzdWMU9hZLruSvlXbgo0wkFR_FTN7GgyLAtO2D_zmAT04IXPEW65_4M1HCM6cjfbWrRou-41UfoIQ77-dgS3rhVzp7LNJFqRfWH7Tdq-LBV4mUo8seq5uKVhi7_kfEo2341xHn83sukiRHKKk4f6tt6SBlMEjd4p3Fb7aiGo-hfCRp47A",
+      tags: ["Three.js", "GSAP"],
+      size: "medium",
+      category: "Code",
     },
     {
       id: 3,
-      title: 'Crypto Dashboard',
-      description: 'Real-time data visualization for cryptocurrency markets.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBLJLmBuQpSVIkdoim79_8KvtnE0qiPaNGtcAv89wzI55Arlbbx3RtIZp6lLN5EGCyNJXcE97Tner_5cRiQysXFOqdhaLPJkcAE5Ea2YOu6s3I0Aud-Xtc4F90XjkotyUPhBz909JOryBhGii6zuF59YWTCeV1S_wiikAxCdh07Bf5npJayTgszzp4ehxn9PMERqcH95wTObxKXtBXJLB2QY_wSTLAh_O1H1vR09VlsEckrkTrTafS5CpzKjqLEY_SEhK1Bh1oD8CM',
-      tags: ['Vue', 'D3.js'],
-      badge: 'BEST DATA VIZ',
-      size: 'medium',
-      category: 'Interaction'
+      title: "Crypto Dashboard",
+      description: "Real-time data visualization for cryptocurrency markets.",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBLJLmBuQpSVIkdoim79_8KvtnE0qiPaNGtcAv89wzI55Arlbbx3RtIZp6lLN5EGCyNJXcE97Tner_5cRiQysXFOqdhaLPJkcAE5Ea2YOu6s3I0Aud-Xtc4F90XjkotyUPhBz909JOryBhGii6zuF59YWTCeV1S_wiikAxCdh07Bf5npJayTgszzp4ehxn9PMERqcH95wTObxKXtBXJLB2QY_wSTLAh_O1H1vR09VlsEckrkTrTafS5CpzKjqLEY_SEhK1Bh1oD8CM",
+      tags: ["Vue", "D3.js"],
+      badge: "BEST DATA VIZ",
+      size: "medium",
+      category: "Interaction",
     },
     {
       id: 4,
-      title: 'Travel App',
-      description: 'Exploration gamified. A new way to discover local gems.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBCD0bBlXw_WyzuMH22LLq6mg4XWQKnuMWQhWBDQNkrsiqkOai7I0_Vsbs4jKfQmvAAa93rFH1sxbQlZtZbQLsPhtNsSXQCfB4nqVEFfyNx7kshu3nuzIIoV0VzmK-cDKbp9V9IokLgW70EWyztFHQ6giWxtV4mf-WKXYneTzbzX5QcVqbHnX3HIpVG4y7AqXuBfWeLgu5ZPljsRg3ks0clgPI-JGjKe88X6l8B6bnNrNmDOhANlvM3QCETxAps0n3q3OfsBzbpvzw',
-      tags: ['Swift', 'Sketch'],
-      size: 'large',
-      category: 'Design'
+      title: "Travel App",
+      description: "Exploration gamified. A new way to discover local gems.",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBCD0bBlXw_WyzuMH22LLq6mg4XWQKnuMWQhWBDQNkrsiqkOai7I0_Vsbs4jKfQmvAAa93rFH1sxbQlZtZbQLsPhtNsSXQCfB4nqVEFfyNx7kshu3nuzIIoV0VzmK-cDKbp9V9IokLgW70EWyztFHQ6giWxtV4mf-WKXYneTzbzX5QcVqbHnX3HIpVG4y7AqXuBfWeLgu5ZPljsRg3ks0clgPI-JGjKe88X6l8B6bnNrNmDOhANlvM3QCETxAps0n3q3OfsBzbpvzw",
+      tags: ["Swift", "Sketch"],
+      size: "large",
+      category: "Design",
     },
     {
       id: 5,
-      title: 'Experimental Playground',
-      description: 'Where I break things to learn how they work. WebGL, shaders, and creative coding.',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBnyRb_6716v_0aYnI93T-3iUBcor1TYqrg1UD0LQC1TZoYzveqfcxKhqC0oINYgpQSd-mePmGZ_3jjqaa3WtgW8TQoXMrjYLI6ZInuKv5EyJcca54GSRF9pllmvKeryKAAeWMBdtZKmmCR-PQ51dm8cXAlUszh_n4seF1PKvJAwzA3CaADVnHMxlDCWYJn6ufgCrjFfHw5WJI_ppR43Pp16UiIdeLjKMdo81sevXH_n0exRbawgNHN2C0neeu-C3e73qxwknZFCic',
-      tags: ['WebGL', 'GLSL'],
-      size: 'full',
-      category: 'Code'
-    }
+      title: "Experimental Playground",
+      description:
+        "Where I break things to learn how they work. WebGL, shaders, and creative coding.",
+      image:
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBnyRb_6716v_0aYnI93T-3iUBcor1TYqrg1UD0LQC1TZoYzveqfcxKhqC0oINYgpQSd-mePmGZ_3jjqaa3WtgW8TQoXMrjYLI6ZInuKv5EyJcca54GSRF9pllmvKeryKAAeWMBdtZKmmCR-PQ51dm8cXAlUszh_n4seF1PKvJAwzA3CaADVnHMxlDCWYJn6ufgCrjFfHw5WJI_ppR43Pp16UiIdeLjKMdo81sevXH_n0exRbawgNHN2C0neeu-C3e73qxwknZFCic",
+      tags: ["WebGL", "GLSL"],
+      size: "full",
+      category: "Code",
+    },
   ];
 
-  const filteredProjects = filter === 'All' ? projects : projects.filter(p => p.category === filter);
+  const filteredProjects =
+    filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
   return (
     <section className="works-section container">
       <div className="works-header">
         <div className="header-left">
-          <p className="section-label">My Portfolio</p>
-          <h2 className="section-title">Selected <br />Works</h2>
+          <div class="status-badge">
+            <span class="status-text">Featured</span>
+          </div>
+          <h2 className="section-title">
+            Selected <br />
+            <span className="primary-text">Projects</span>
+          </h2>
         </div>
         <p className="header-desc">
-          A collection of digital artifacts, combining pixel-perfect design with clean code.
+          A collection of digital artifacts, combining pixel-perfect design with
+          clean code.
         </p>
       </div>
 
       <div className="filter-chips">
-        {['All', 'Code', 'Design', 'Interaction'].map(cat => (
-          <button 
-            key={cat} 
-            className={`filter-chip ${filter === cat ? 'active' : ''}`}
+        {["All", "Code", "Design", "Interaction"].map((cat) => (
+          <button
+            key={cat}
+            className={`filter-chip ${filter === cat ? "active" : ""}`}
             onClick={() => setFilter(cat)}
           >
             <span>{cat}</span>
@@ -370,7 +392,7 @@ const Works = () => {
       </div>
 
       <div className="projects-grid">
-        {filteredProjects.map(project => (
+        {filteredProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
@@ -378,7 +400,8 @@ const Works = () => {
       <div className="works-cta">
         <div className="cta-glow"></div>
         <h3 className="cta-title">
-          Have a crazy idea?<br />
+          Have a crazy idea?
+          <br />
           <span className="primary-text">Let's build it.</span>
         </h3>
         <button className="cta-btn">
@@ -532,7 +555,9 @@ const Works = () => {
           .projects-grid {
             grid-template-columns: 1fr;
           }
-          .project-card.large, .project-card.medium, .project-card.full {
+          .project-card.large,
+          .project-card.medium,
+          .project-card.full {
             grid-column: span 1;
           }
         }

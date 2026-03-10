@@ -9,12 +9,8 @@ const About = () => {
       {/* Hero */}
       <div className="about-hero">
         <div className="about-hero-text">
-          <div className="status-badge">
-            <span className="ping-dot">
-              <span className="ping-inner"></span>
-              <span className="ping-outer"></span>
-            </span>
-            <span className="status-text">Open to work</span>
+          <div className="status-badge" style={{padding: "0.5rem 0.9rem"}}>
+            <span className="status-text">My Story</span>
           </div>
 
           <h1 className="about-title">
@@ -79,8 +75,42 @@ const About = () => {
         </div>
       </div>
 
-      {/* Brands */}
-      <Brands />
+      {/* Timeline */}
+      <div className="timeline-section content-section content-card">
+        <span className="section-label">Journey</span>
+        <h2 className="section-title">
+          How it started vs How it&apos;s <span className="primary-text">going</span>
+        </h2>
+        <p className="section-description">
+          The short version of how I got here and what I&apos;m building next.
+        </p>
+        <div className="timeline-list">
+          <div className="timeline-item">
+            <div className="timeline-dot"></div>
+            <div className="timeline-content">
+              <span className="timeline-year">2018</span>
+              <h4>Discovered Flexbox. Cried. Learned to love it.</h4>
+              <p>Spent 4 hours trying to center a div. Humbling times.</p>
+            </div>
+          </div>
+          <div className="timeline-item">
+            <div className="timeline-dot"></div>
+            <div className="timeline-content">
+              <span className="timeline-year">2020</span>
+              <h4>First Freelance Gig.</h4>
+              <p>Landed my first real client and shipped a live site.</p>
+            </div>
+          </div>
+          <div className="timeline-item">
+            <div className="timeline-dot"></div>
+            <div className="timeline-content">
+              <span className="timeline-year">Now</span>
+              <h4>Building systems &amp; obsessing over details.</h4>
+              <p>Creating scalable design systems and full-stack products.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* What I Deliver */}
       <div className="deliver-section content-section">
@@ -227,43 +257,10 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Timeline */}
-      <div className="timeline-section content-section content-card">
-        <span className="section-label">Journey</span>
-        <h2 className="section-title">
-          How it started vs How it&apos;s <span className="primary-text">going</span>
-        </h2>
-        <p className="section-description">
-          The short version of how I got here and what I&apos;m building next.
-        </p>
-        <div className="timeline-list">
-          <div className="timeline-item">
-            <div className="timeline-dot"></div>
-            <div className="timeline-content">
-              <span className="timeline-year">2018</span>
-              <h4>Discovered Flexbox. Cried. Learned to love it.</h4>
-              <p>Spent 4 hours trying to center a div. Humbling times.</p>
-            </div>
-          </div>
-          <div className="timeline-item">
-            <div className="timeline-dot"></div>
-            <div className="timeline-content">
-              <span className="timeline-year">2020</span>
-              <h4>First Freelance Gig.</h4>
-              <p>Landed my first real client and shipped a live site.</p>
-            </div>
-          </div>
-          <div className="timeline-item">
-            <div className="timeline-dot"></div>
-            <div className="timeline-content">
-              <span className="timeline-year">Now</span>
-              <h4>Building systems &amp; obsessing over details.</h4>
-              <p>Creating scalable design systems and full-stack products.</p>
-            </div>
-          </div>
-        </div>
+        {/* Brands */}
+      <Brands />
+
       </div>
 
       {/* Dual Cards */}
@@ -293,7 +290,7 @@ const About = () => {
       <div className="final-cta content-section content-card">
         <div className="cta-inner">
           <span className="section-label">Let&apos;s build</span>
-          <h2>
+          <h2 className="section-title">
             Have a crazy idea? <span className="primary-text">Let&apos;s build it.</span>
           </h2>
           <p className="section-description">
@@ -311,7 +308,7 @@ const About = () => {
           padding: 10rem 0 8rem;
           display: flex;
           flex-direction: column;
-          gap: 6rem;
+          gap: 8rem;
         }
 
         .about-hero {
@@ -495,7 +492,7 @@ const About = () => {
           text-transform: uppercase;
           letter-spacing: 0.18em;
           color: rgba(255, 255, 255, 0.75);
-          margin-bottom: 2rem;
+          margin: 4rem 0 0.5rem;
           font-weight: 800;
         }
 
@@ -636,7 +633,6 @@ const About = () => {
           align-items: center;
           text-align: center;
           gap: 1.5rem;
-          padding-top: 1rem;
         }
 
         .section-label {
@@ -1009,6 +1005,8 @@ const About = () => {
           content: '';
           position: absolute;
           inset: 0;
+          left: -50%;
+          top: -20%;
           background: radial-gradient(circle at top, rgba(127, 19, 236, 0.25), transparent 55%);
           opacity: 0.8;
         }

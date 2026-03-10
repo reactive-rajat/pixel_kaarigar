@@ -124,7 +124,7 @@ const Hero = ({ setActivePage }) => {
             align-items: center;
             padding-top: 6rem;
             padding-bottom: 4rem;
-            gap: 4rem;
+            gap: 2rem;
           }
 
           .hero-grid {
@@ -386,6 +386,10 @@ const Hero = ({ setActivePage }) => {
             .hero-title {
               font-size: 4rem;
             }
+          }
+
+          .brands-section{
+            margin-top: 2rem;
           }
 
           @media (max-width: 640px) {

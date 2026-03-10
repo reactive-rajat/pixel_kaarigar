@@ -1,6 +1,9 @@
 import React from 'react';
 
 const Contact = () => {
+  const whatsappLink =
+    'https://wa.me/919899321639?text=Hi%20Rajat%2C%20I%20want%20to%20connect%20with%20you%20about%20a%20project.';
+
   return (
     <section className="contact-section container">
       <div className="contact-grid">
@@ -18,13 +21,13 @@ const Contact = () => {
             <span className="primary-text">Something Weird.</span>
           </h1>
           <p className="contact-description">
-            I speak fluent pixel and code. Drop a signal below and let's launch your next big idea into orbit.
+            I design and build digital experiences that look sharp and work flawlessly. <span style={{color: "white"}}>Got an idea? Let’s bring it to life.</span>
           </p>
 
  
         </div>
 
-        {/* Right Column: Portal Form */}
+        {/* Right Column: Quick Contact */}
         <div className="contact-form-container">
           <div className="glass-panel contact-form-card">
             <div className="form-header">
@@ -35,60 +38,58 @@ const Contact = () => {
               </div>
             </div>
 
-            <form className="contact-form">
-              <div className="form-group">
-                <label>PILOT IDENTITY</label>
-                <div className="input-wrapper">
-                  <span className="material-symbols-outlined">person</span>
-                  <input type="text" placeholder="Captain Name" />
-                </div>
+            <div className="contact-form quick-connect">
+              <div className="connect-head">
+                <p className="connect-label">PRIMARY CHAT</p>
+                <h3>WhatsApp Connect</h3>
+                <p className="connect-note">
+                  Fastest way to reach me. Tap once and chat directly on WhatsApp.
+                </p>
               </div>
 
-              <div className="form-group">
-                <label>COMMUNICATION FREQUENCY</label>
-                <div className="input-wrapper">
-                  <span className="material-symbols-outlined">mail</span>
-                  <input type="email" placeholder="frequency@orbit.com" />
-                </div>
+              <div>
+                <a
+                href={whatsappLink}
+                className="launch-btn whatsapp-btn shimmer"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Chat on WhatsApp</span>
+                <span className="whatsapp-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" role="img">
+                    <path
+                      fill="currentColor"
+                      d="M20.52 3.48A11.86 11.86 0 0 0 12.09 0C5.54 0 .18 5.3.18 11.84c0 2.09.55 4.14 1.6 5.95L0 24l6.37-1.67a11.94 11.94 0 0 0 5.72 1.46h.01c6.55 0 11.91-5.3 11.91-11.84 0-3.16-1.24-6.13-3.49-8.47zm-8.43 18.3h-.01a9.96 9.96 0 0 1-5.08-1.39l-.36-.21-3.78.99 1.01-3.67-.23-.38a9.83 9.83 0 0 1-1.52-5.26c0-5.43 4.47-9.85 9.97-9.85 2.66 0 5.17 1.03 7.05 2.92a9.78 9.78 0 0 1 2.92 6.96c0 5.44-4.48 9.86-9.97 9.86zm5.47-7.47c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.64.08-.3-.15-1.27-.46-2.41-1.47-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.29.5 1.73.64.73.23 1.39.2 1.92.12.58-.09 1.77-.72 2.02-1.41.25-.69.25-1.28.17-1.4-.07-.12-.27-.2-.57-.35z"
+                    />
+                  </svg>
+                </span>
+              </a>
               </div>
 
-              <div className="form-group">
-                <label>MISSION TYPE</label>
-                <div className="input-wrapper">
-                  <span className="material-symbols-outlined">category</span>
-                  <select>
-                    <option value="" disabled selected>Select Project Type</option>
-                    <option value="web">Web Design</option>
-                    <option value="app">App Development</option>
-                    <option value="brand">Branding</option>
-                    <option value="other">Classified Mission</option>
-                  </select>
-                  <span className="material-symbols-outlined select-arrow">expand_more</span>
-                </div>
+              <div className="quick-divider" aria-hidden="true"></div>
+
+              <div className="quick-links">
+                <a href="mailto:hello@example.com" className="quick-link">
+                  Email
+                </a>
+                <a href="tel:+919899321639" className="quick-link">
+                  Call
+                </a>
+                <a href="sms:+919899321639" className="quick-link">
+                  SMS
+                </a>
               </div>
-
-              <div className="form-group">
-                <label>TRANSMISSION CONTENT</label>
-                <textarea placeholder="Describe your signal here..."></textarea>
-              </div>
-
-              <button type="button" className="launch-btn shimmer">
-                <span>Send Message</span>
-                <span className="material-symbols-outlined">send</span>
-              </button>
-
-              <p className="form-footer">
-                Systems failing? <a href="mailto:hello@example.com">Switch to Analog</a>
-              </p>
-            </form>
+            </div>
           </div>
         </div>
       </div>
 
       <style jsx="true">{`
         .contact-section {
-          padding-top: 8rem;
-          padding-bottom: 3rem;
+          padding-top: 10rem;
+          padding-bottom: 2rem;
+          max-height: 750px;
+          overflow: hidden;
         }
 
         .contact-grid {
@@ -102,8 +103,6 @@ const Contact = () => {
           font-size: 4rem;
           font-weight: 900;
           line-height: 1;
-          margin-top: 1rem;
-          margin-bottom: 1.5rem;
         }
 
         .contact-description {
@@ -119,6 +118,7 @@ const Contact = () => {
           border-radius: var(--border-radius-lg);
           box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
           position: relative;
+          max-height: 620px;
         }
 
         .form-header {
@@ -146,7 +146,91 @@ const Contact = () => {
         .contact-form {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1rem;
+          margin-top: 2rem;
+        }
+
+        .connect-head h3 {
+          font-size: 1.8rem;
+          line-height: 1.1;
+          margin-bottom: 0.5rem;
+        }
+
+        .connect-label {
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--text-muted);
+          margin-bottom: 0.5rem;
+        }
+
+        .connect-note {
+          color: var(--text-muted);
+          line-height: 1.5;
+        }
+
+        .contact-direct {
+          font-size: 0.9rem;
+          color: var(--text-muted);
+          margin-top: 0.35rem;
+        }
+
+        .contact-direct a {
+          color: var(--text-dark);
+          font-weight: 600;
+        }
+
+        .whatsapp-btn {
+          background: #25d366;
+          color: #08230f;
+        }
+
+        .whatsapp-icon {
+          width: 1.15rem;
+          height: 1.15rem;
+          display: inline-flex;
+        }
+
+        .whatsapp-icon svg {
+          width: 100%;
+          height: 100%;
+        }
+
+        .whatsapp-btn:hover {
+          box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
+        }
+
+        .quick-links {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 0.6rem;
+        }
+
+        .quick-divider {
+          width: 100%;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+          margin: 1rem 0 1rem;
+        }
+
+        .quick-link {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid var(--border-color);
+          border-radius: var(--border-radius-full);
+          padding: 0.75rem 0.9rem;
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: var(--text-muted);
+          transition: all 0.3s;
+        }
+
+        .quick-link:hover {
+          border-color: var(--primary-color);
+          background: rgba(255, 255, 255, 0.05);
+          color: var(--text-dark);
         }
 
         .form-group {
@@ -233,7 +317,7 @@ const Contact = () => {
           text-align: center;
           font-size: 0.875rem;
           color: var(--text-muted);
-          margin-top: 1rem;
+          margin-top: 0.25rem;
         }
 
         .form-footer a {
@@ -243,21 +327,29 @@ const Contact = () => {
           text-underline-offset: 4px;
         }
 
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+          }
+
         @media (max-width: 1024px) {
           .contact-grid {
             grid-template-columns: 1fr;
             text-align: center;
-          }
-          .contact-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
           }
           .contact-description {
             margin-bottom: 2rem;
           }
           .contact-form-card {
             padding: 1.5rem;
+          }
+          .quick-links {
+            grid-template-columns: 1fr;
+          }
+          .contact-section {
+            max-height: none;
+            overflow: visible;
           }
         }
       `}</style>
