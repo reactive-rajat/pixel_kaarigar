@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Brands from "../components/sections/Brands";
+import StatusBadge from "../components/common/StatusBadge";
 
 const Hero = ({ setActivePage }) => {
   const [isAboutPageActive, setIsAboutPageActive] = useState(false);
@@ -24,13 +25,7 @@ const Hero = ({ setActivePage }) => {
         <div className="hero-grid">
           {/* Left Column: Typography & Intro */}
           <div className="hero-content">
-            <div className="status-badge">
-              <span className="ping-dot">
-                <span className="ping-inner"></span>
-                <span className="ping-outer"></span>
-              </span>
-              <span className="status-text">Open to work</span>
-            </div>
+            <StatusBadge text="Open to work" showPing />
 
             <h1 className="hero-title">
               Designer <br />

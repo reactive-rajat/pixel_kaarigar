@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import Brands from '../components/sections/Brands';
+import StatusBadge from '../components/common/StatusBadge';
+import SectionHeading from '../components/common/SectionHeading';
 
 const About = () => {
   const [currentMood, setCurrentMood] = useState('relaxed');
@@ -9,9 +11,7 @@ const About = () => {
       {/* Hero */}
       <div className="about-hero">
         <div className="about-hero-text">
-          <div className="status-badge" style={{padding: "0.5rem 0.9rem"}}>
-            <span className="status-text">My Story</span>
-          </div>
+          <StatusBadge text="My Story" style={{ padding: '0.5rem 0.9rem' }} />
 
           <h1 className="about-title">
             More than just <span className="primary-text">pixels</span> &amp;{' '}
@@ -77,13 +77,15 @@ const About = () => {
 
       {/* Timeline */}
       <div className="timeline-section content-section content-card">
-        <span className="section-label">Journey</span>
-        <h2 className="section-title">
-          How it started vs How it&apos;s <span className="primary-text">going</span>
-        </h2>
-        <p className="section-description">
-          The short version of how I got here and what I&apos;m building next.
-        </p>
+        <SectionHeading
+          label="Journey"
+          title={
+            <>
+              How it started vs How it&apos;s <span className="primary-text">going</span>
+            </>
+          }
+          description="The short version of how I got here and what I'm building next."
+        />
         <div className="timeline-list">
           <div className="timeline-item">
             <div className="timeline-dot"></div>
@@ -114,13 +116,15 @@ const About = () => {
 
       {/* What I Deliver */}
       <div className="deliver-section content-section">
-        <span className="section-label">Services</span>
-        <h2 className="section-title">
-          What I <span className="primary-text">Deliver</span>
-        </h2>
-        <p className="section-description">
-          Strategy, design, and development tailored to your product goals.
-        </p>
+        <SectionHeading
+          label="Services"
+          title={
+            <>
+              What I <span className="primary-text">Deliver</span>
+            </>
+          }
+          description="Strategy, design, and development tailored to your product goals."
+        />
         <div className="deliver-grid">
           <div className="deliver-card content-card">
             <span className="material-symbols-outlined">strategy</span>
@@ -142,13 +146,15 @@ const About = () => {
 
       {/* Toolkit */}
       <div className="toolkit-section content-section">
-        <span className="section-label">Toolkit</span>
-        <h2 className="section-title">
-          Digital Toolkit &amp; <span className="primary-text">Power-ups</span>
-        </h2>
-        <p className="section-description">
-          The tools I reach for to design, build, and ship polished experiences.
-        </p>
+        <SectionHeading
+          label="Toolkit"
+          title={
+            <>
+              Digital Toolkit &amp; <span className="primary-text">Power-ups</span>
+            </>
+          }
+          description="The tools I reach for to design, build, and ship polished experiences."
+        />
         <div className="toolkit-grid">
           <div className="toolkit-card content-card">
             <div className="toolkit-header">
@@ -209,13 +215,15 @@ const About = () => {
 
       {/* Testimonials */}
       <div className="testimonials-section content-section">
-        <span className="section-label">Testimonials</span>
-        <h2 className="section-title">
-          Kind Words from <span className="primary-text">Awesome Humans</span>
-        </h2>
-        <p className="section-description">
-          A few kind notes from people I&apos;ve partnered with recently.
-        </p>
+        <SectionHeading
+          label="Testimonials"
+          title={
+            <>
+              Kind Words from <span className="primary-text">Awesome Humans</span>
+            </>
+          }
+          description="A few kind notes from people I've partnered with recently."
+        />
         <div className="testimonials-grid">
           <div className="testimonial-card content-card">
             <p className="testimonial-text">
@@ -265,13 +273,15 @@ const About = () => {
 
       {/* Dual Cards */}
       <div className="dual-cards-section content-section">
-        <span className="section-label">Approach</span>
-        <h2 className="section-title">
-          I&apos;m not just an average <span className="primary-text">pixel pusher</span>
-        </h2>
-        <p className="section-description">
-          Balancing expressive visuals with systems that scale gracefully.
-        </p>
+        <SectionHeading
+          label="Approach"
+          title={
+            <>
+              I&apos;m not just an average <span className="primary-text">pixel pusher</span>
+            </>
+          }
+          description="Balancing expressive visuals with systems that scale gracefully."
+        />
         <div className="dual-grid">
           <div className="dual-card visualist content-card">
             <span className="card-tag">THE VISUALIST</span>
@@ -289,13 +299,15 @@ const About = () => {
       {/* Final CTA */}
       <div className="final-cta content-section content-card">
         <div className="cta-inner">
-          <span className="section-label">Let&apos;s build</span>
-          <h2 className="section-title">
-            Have a crazy idea? <span className="primary-text">Let&apos;s build it.</span>
-          </h2>
-          <p className="section-description">
-            Tell me about the vision and I&apos;ll help make it real.
-          </p>
+          <SectionHeading
+            label="Let's build"
+            title={
+              <>
+                Have a crazy idea? <span className="primary-text">Let&apos;s build it.</span>
+              </>
+            }
+            description="Tell me about the vision and I'll help make it real."
+          />
           <button className="primary-btn">
             <span>Let&apos;s Talk</span>
             <span className="material-symbols-outlined">arrow_forward</span>
@@ -402,6 +414,12 @@ const About = () => {
           top: 0rem;
           right: -1rem;
           transform: rotate(3deg);
+          transition: all 0.3s;
+        }
+
+        .hero-visual:hover .mood-panel {
+            transform: rotate(0deg);
+            transition: all 0.3s;
         }
 
         .mood-switcher {
@@ -440,6 +458,12 @@ const About = () => {
           width: 240px;
           padding: 1rem;
           transform: rotate(-2deg);
+          transition: all 0.3s;
+        }
+
+        .hero-visual:hover .energy-panel {
+            transform: rotate(0deg);
+            transition: all 0.3s;
         }
 
         .energy-header {

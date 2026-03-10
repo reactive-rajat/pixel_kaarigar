@@ -1,4 +1,5 @@
 import React from 'react';
+import WhatsAppIcon from './common/WhatsAppIcon';
 
 const Footer = () => {
   return (
@@ -14,14 +15,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="whatsapp-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img">
-                  <path
-                    fill="currentColor"
-                    d="M20.52 3.48A11.86 11.86 0 0 0 12.09 0C5.54 0 .18 5.3.18 11.84c0 2.09.55 4.14 1.6 5.95L0 24l6.37-1.67a11.94 11.94 0 0 0 5.72 1.46h.01c6.55 0 11.91-5.3 11.91-11.84 0-3.16-1.24-6.13-3.49-8.47zm-8.43 18.3h-.01a9.96 9.96 0 0 1-5.08-1.39l-.36-.21-3.78.99 1.01-3.67-.23-.38a9.83 9.83 0 0 1-1.52-5.26c0-5.43 4.47-9.85 9.97-9.85 2.66 0 5.17 1.03 7.05 2.92a9.78 9.78 0 0 1 2.92 6.96c0 5.44-4.48 9.86-9.97 9.86zm5.47-7.47c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.64.08-.3-.15-1.27-.46-2.41-1.47-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.29.5 1.73.64.73.23 1.39.2 1.92.12.58-.09 1.77-.72 2.02-1.41.25-.69.25-1.28.17-1.4-.07-.12-.27-.2-.57-.35z"
-                  />
-                </svg>
-              </span>
+              <WhatsAppIcon />
               <span className="tooltip-box" aria-hidden="true">
                 <span className="tooltip-title">WhatsApp</span>
                 <span className="tooltip-subtext">Start instant chat</span>
@@ -76,14 +70,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span className="whatsapp-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" role="img">
-                <path
-                  fill="currentColor"
-                  d="M20.52 3.48A11.86 11.86 0 0 0 12.09 0C5.54 0 .18 5.3.18 11.84c0 2.09.55 4.14 1.6 5.95L0 24l6.37-1.67a11.94 11.94 0 0 0 5.72 1.46h.01c6.55 0 11.91-5.3 11.91-11.84 0-3.16-1.24-6.13-3.49-8.47zm-8.43 18.3h-.01a9.96 9.96 0 0 1-5.08-1.39l-.36-.21-3.78.99 1.01-3.67-.23-.38a9.83 9.83 0 0 1-1.52-5.26c0-5.43 4.47-9.85 9.97-9.85 2.66 0 5.17 1.03 7.05 2.92a9.78 9.78 0 0 1 2.92 6.96c0 5.44-4.48 9.86-9.97 9.86zm5.47-7.47c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.64.08-.3-.15-1.27-.46-2.41-1.47-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.14 4.54.72.31 1.29.5 1.73.64.73.23 1.39.2 1.92.12.58-.09 1.77-.72 2.02-1.41.25-.69.25-1.28.17-1.4-.07-.12-.27-.2-.57-.35z"
-                />
-              </svg>
-            </span>
+            <WhatsAppIcon />
             <span className="tooltip-box" aria-hidden="true">
               <span className="tooltip-title">WhatsApp</span>
               <span className="tooltip-subtext">Start instant chat</span>
@@ -156,17 +143,6 @@ const Footer = () => {
           background: rgba(255, 255, 255, 0.08);
         }
 
-        .whatsapp-icon {
-          width: 1.15rem;
-          height: 1.15rem;
-          display: inline-flex;
-        }
-
-        .whatsapp-icon svg {
-          width: 100%;
-          height: 100%;
-        }
-
         .tooltip-box {
           position: absolute;
           left: calc(100% + 0.75rem);
@@ -175,7 +151,6 @@ const Footer = () => {
           display: flex;
           flex-direction: column;
           gap: 0.05rem;
-          // min-width: 136px;
           padding: 0.6rem 0.8rem;
           border-radius: 0.75rem;
           border: 1px solid var(--border-color);

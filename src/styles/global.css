@@ -245,6 +245,14 @@ body.light .glass-panel {
   color: #00ff7f;
 }
 
+/* Shared Icons */
+.whatsapp-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
 /* Buttons */
 .primary-btn {
   display: flex;

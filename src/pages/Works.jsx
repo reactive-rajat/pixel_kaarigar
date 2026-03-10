@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import StatusBadge from "../components/common/StatusBadge";
 
 const ProjectCard = ({ project }) => {
   return (
@@ -365,9 +366,7 @@ const Works = () => {
     <section className="works-section container">
       <div className="works-header">
         <div className="header-left">
-          <div class="status-badge">
-            <span class="status-text">Featured</span>
-          </div>
+          <StatusBadge text="Featured" />
           <h2 className="section-title">
             Selected <br />
             <span className="primary-text">Projects</span>
