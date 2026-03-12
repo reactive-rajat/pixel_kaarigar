@@ -330,6 +330,63 @@ const Contact = () => {
             overflow: visible;
           }
         }
+
+        @media (max-width: 768px) {
+          .contact-section {
+            padding-top: 7.5rem;
+            padding-bottom: 5rem;
+          }
+
+          .contact-grid {
+            gap: 2rem;
+          }
+
+          .contact-title {
+            font-size: 2.5rem;
+            line-height: 1.05;
+          }
+
+          .contact-description {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+          }
+
+          .contact-form-card {
+            padding: 1.25rem;
+            border-radius: 1.25rem;
+          }
+
+          .connect-head h3 {
+            font-size: 1.35rem;
+          }
+
+          .launch-btn {
+            width: 100%;
+            padding: 1rem 1.15rem;
+            font-size: 1rem;
+          }
+
+          .quick-link {
+            min-height: 44px;
+          }
+        }
+
+        @media (hover: none) {
+          .whatsapp-btn:hover,
+          .quick-link:hover,
+          .launch-btn:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: var(--border-color);
+            background: transparent;
+            color: var(--text-muted);
+          }
+
+          .whatsapp-btn:hover {
+            background: #25d366;
+            color: #08230f;
+          }
+        }
       `}</style>
     </section>
   );

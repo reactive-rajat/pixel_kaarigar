@@ -36,7 +36,7 @@ function Brands() {
     : brandLogos;
 
   return (
-    <section>
+    <section className="brands-wrapper">
         <div className="brands-section">
       <p className="eyebrow">Brands I&apos;ve Worked With</p>
       <div
@@ -61,9 +61,14 @@ function Brands() {
       </div>
     </div>
     <style jsx="true">{`
+        .brands-wrapper {
+          width: 100%;
+          max-width: 100%;
+        }
 
         .brands-section {
           text-align: center;
+          width: 100%;
         }
 
         .eyebrow {
@@ -80,6 +85,7 @@ function Brands() {
           overflow: hidden;
           display: flex;
           padding: 0.5rem 0;
+          width: 100%;
           max-width: 900px;
           margin: 0 auto;
           mask-image: linear-gradient(

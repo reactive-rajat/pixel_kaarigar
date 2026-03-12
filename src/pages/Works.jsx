@@ -382,6 +382,7 @@ const Works = () => {
           gap: 1rem;
           margin-bottom: 4rem;
           padding-bottom: 1rem;
+          flex-wrap: wrap;
         }
 
         .filter-chip {
@@ -495,9 +496,58 @@ const Works = () => {
         }
 
         @media (max-width: 640px) {
+          .works-section {
+            padding-top: 7.5rem;
+            padding-bottom: 5rem;
+          }
+
+          .section-title {
+            font-size: 2.4rem;
+            line-height: 1;
+          }
+
+          .header-desc {
+            font-size: 1rem;
+            max-width: 100%;
+          }
+
+          .filter-chips {
+            gap: 0.65rem;
+            margin-bottom: 2.25rem;
+          }
+
+          .filter-chip {
+            padding: 0.68rem 1rem;
+            font-size: 0.82rem;
+          }
+
           .projects-grid {
             gap: 0.9rem;
             grid-auto-rows: 210px;
+          }
+
+          .works-cta {
+            margin-top: 4.5rem;
+            gap: 1.4rem;
+          }
+
+          .cta-title {
+            font-size: 2rem;
+          }
+
+          .cta-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+          }
+        }
+
+        @media (hover: none) {
+          .filter-chip:hover,
+          .cta-btn:hover {
+            transform: none;
+            box-shadow: none;
           }
         }
       `}</style>

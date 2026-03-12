@@ -116,6 +116,7 @@ const Hero = ({ setActivePage }) => {
           .hero-section {
             min-height: 100dvh;
             display: grid;
+            grid-template-columns: minmax(0, 1fr);
             align-items: center;
             padding-top: 6rem;
             padding-bottom: 4rem;
@@ -128,12 +129,14 @@ const Hero = ({ setActivePage }) => {
             gap: 4rem;
             align-items: center;
             width: 100%;
+            min-width: 0;
           }
 
           .hero-content {
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            min-width: 0;
           }
 
           .hero-title {
@@ -219,6 +222,7 @@ const Hero = ({ setActivePage }) => {
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            min-width: 0;
           }
 
           .hero-visual:hover .character-img {
@@ -382,7 +386,7 @@ const Hero = ({ setActivePage }) => {
             }
 
             .hero-title {
-              font-size: 5rem;
+              font-size: 4rem;
             }
           }
 
@@ -390,13 +394,92 @@ const Hero = ({ setActivePage }) => {
             margin-top: 2rem;
           }
 
-          @media (max-width: 640px) {
+          @media (max-width: 768px) {
+            .hero-section {
+              min-height: auto;
+              padding-top: 7rem;
+              padding-bottom: 2.5rem;
+            }
+
+            .hero-grid {
+              gap: 2.8rem;
+            }
+
+            .hero-content {
+              gap: 1.5rem;
+            }
+
             .hero-title {
-              font-size: 3rem;
+              font-size: 2.8rem;
+              line-height: 0.95;
+            }
+
+            .hero-description {
+              font-size: 1rem;
+            }
+
+            .skills-list {
+              justify-content: center;
+            }
+
+            .hero-actions {
+              width: 100%;
+              flex-direction: column;
+              align-items: stretch;
+              gap: 0.8rem;
+            }
+
+            .hero-actions .primary-btn,
+            .hero-actions .secondary-btn {
+              justify-content: center;
+              width: 100%;
+            }
+
+            .character-container {
+              max-width: 360px;
+            }
+
+            .mood-panel {
+              right: 0;
+              top: -0.6rem;
+              transform: none;
+            }
+
+            .mood-option {
+              font-size: 0.8rem;
+              padding: 0.45rem 0.7rem;
             }
 
             .energy-panel {
-              width: 200px;
+              width: min(82vw, 220px);
+              left: 0;
+              bottom: -0.5rem;
+              transform: none;
+            }
+          }
+
+          @media (max-width: 640px) {
+            .hero-title {
+              font-size: 2.4rem;
+            }
+
+            .energy-panel {
+              width: min(86vw, 200px);
+              left: 50%;
+              transform: translateX(-50%);
+            }
+          }
+
+          @media (hover: none) {
+            .hero-visual:hover .character-img,
+            .hero-visual:hover .mood-panel,
+            .hero-visual:hover .energy-panel {
+              transform: none;
+            }
+
+            .mood-option:not(.active):hover {
+              background: transparent;
+              color: rgba(255, 255, 255, 0.5);
             }
           }
         `}</style>

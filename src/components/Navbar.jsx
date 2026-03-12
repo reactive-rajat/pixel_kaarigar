@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleNavClick = (page) => {
+    setActivePage(page);
+    setIsMobileMenuOpen(false);
+  };
+
+  // Close mobile menu after route/page change so it never stays open accidentally.
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [activePage]);
+
   return (
     <div className="fixed-nav-container">
       <nav className="glass-panel navbar">
-        <div className="nav-logo" onClick={() => setActivePage('home')}>
+        <div className="nav-logo" onClick={() => handleNavClick('home')}>
           <img src="/src/assets/brand/avatar.png" alt="Avatar" className="logo-avatar" />
           <span className="logo-text">Pixel_Kaarigar</span>
         </div>
@@ -12,19 +24,19 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
         <div className="nav-links">
           <button 
             className={`nav-link ${activePage === 'works' ? 'active' : ''}`}
-            onClick={() => setActivePage('works')}
+            onClick={() => handleNavClick('works')}
           >
             Work
           </button>
           <button 
             className={`nav-link ${activePage === 'about' ? 'active' : ''}`}
-            onClick={() => setActivePage('about')}
+            onClick={() => handleNavClick('about')}
           >
             About
           </button>
           <button 
             className={`nav-link ${activePage === 'contact' ? 'active' : ''}`}
-            onClick={() => setActivePage('contact')}
+            onClick={() => handleNavClick('contact')}
           >
             Contact
           </button>
@@ -36,8 +48,43 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
               {darkMode ? 'light_mode' : 'dark_mode'}
             </span>
           </button>
+          <button
+            type="button"
+            className="menu-toggle"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-nav-menu"
+          >
+            <span className="material-symbols-outlined">
+              {isMobileMenuOpen ? 'close' : 'menu'}
+            </span>
+          </button>
         </div>
       </nav>
+      <div
+        id="mobile-nav-menu"
+        className={isMobileMenuOpen ? 'mobile-menu open glass-panel' : 'mobile-menu glass-panel'}
+      >
+        <button
+          className={`mobile-nav-link ${activePage === 'works' ? 'active' : ''}`}
+          onClick={() => handleNavClick('works')}
+        >
+          Work
+        </button>
+        <button
+          className={`mobile-nav-link ${activePage === 'about' ? 'active' : ''}`}
+          onClick={() => handleNavClick('about')}
+        >
+          About
+        </button>
+        <button
+          className={`mobile-nav-link ${activePage === 'contact' ? 'active' : ''}`}
+          onClick={() => handleNavClick('contact')}
+        >
+          Contact
+        </button>
+      </div>
 
       <style jsx="true">{`
         .fixed-nav-container {
@@ -47,6 +94,8 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
           right: 0;
           z-index: 1000;
           display: flex;
+          flex-direction: column;
+          align-items: center;
           justify-content: center;
           padding: 0 1rem;
         }
@@ -119,6 +168,22 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
           gap: 0.75rem;
         }
 
+        .menu-toggle {
+          width: 2.2rem;
+          height: 2.2rem;
+          border-radius: var(--border-radius-full);
+          border: 1px solid var(--border-color);
+          color: var(--text-dark);
+          background: rgba(255, 255, 255, 0.03);
+          align-items: center;
+          justify-content: center;
+          display: none;
+        }
+
+        .menu-toggle .material-symbols-outlined {
+          font-size: 1.25rem;
+        }
+
         .theme-toggle {
           width: 2.2rem;
           height: 2.2rem;
@@ -138,6 +203,32 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
 
         .theme-toggle:hover {
           transform: scale(1.05);
+        }
+
+        .mobile-menu {
+          display: none;
+          width: 100%;
+          max-width: 640px;
+          margin-top: 0.65rem;
+          padding: 0.6rem;
+          border-radius: 1.25rem;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-nav-link {
+          width: 100%;
+          text-align: left;
+          padding: 0.85rem 1rem;
+          min-height: 44px;
+          border-radius: 0.85rem;
+          color: var(--text-muted);
+          font-size: 0.95rem;
+          font-weight: 600;
+        }
+
+        .mobile-nav-link.active {
+          background: var(--primary-color);
+          color: #fff;
         }
 
         /* Side Rail */
@@ -221,9 +312,49 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
         }
 
         @media (max-width: 1024px) {
+          .navbar {
+            max-width: 760px;
+          }
+
+          .nav-link {
+            padding: 0.55rem 0.9rem;
+          }
+
+          .logo-text {
+            font-size: 0.85rem;
+          }
+
+          .side-rail {
+            display: none;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .fixed-nav-container {
+            top: 1rem;
+            padding: 0 0.75rem;
+          }
+
+          .navbar {
+            padding: 0.55rem 0.7rem 0.55rem 0.85rem;
+          }
+
           .nav-links {
             display: none;
           }
+
+          .menu-toggle {
+            display: inline-flex;
+          }
+
+          .mobile-menu.open {
+            display: block;
+          }
+
+          .logo-text {
+            font-size: 0.82rem;
+          }
+
           .side-rail {
             display: none;
           }

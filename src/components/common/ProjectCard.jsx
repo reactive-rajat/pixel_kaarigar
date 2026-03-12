@@ -489,6 +489,45 @@ const ProjectCard = ({ project, layout }) => {
           }
         }
 
+        @media (hover: none) {
+          .project-card:hover {
+            transform: none;
+          }
+
+          .project-card:hover .card-image {
+            transform: scale(1.02);
+          }
+
+          .project-card:hover .card-gradient {
+            opacity: 1;
+          }
+
+          .project-card:hover .card-default {
+            opacity: 1;
+            transform: none;
+          }
+
+          .project-card:hover .card-hover {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+
+          /* Touch devices do not have hover, so keep detail panel visible. */
+          .card-hover {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          .card-default {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+
+          .hover-cta:hover .material-symbols-outlined {
+            transform: none;
+          }
+        }
+
       `}</style>
     </div>
   );

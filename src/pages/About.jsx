@@ -1226,6 +1226,10 @@ const About = () => {
             text-align: center;
           }
 
+          .about-title {
+            font-size: 4rem;
+          }
+
           .about-hero-text {
             align-items: center;
           }
@@ -1239,6 +1243,172 @@ const About = () => {
 
           .hero-visual {
             order: 1;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .about-page {
+            padding: 7.5rem 0 5rem;
+            gap: 4rem;
+          }
+
+          .about-hero {
+            gap: 2.5rem;
+          }
+
+          .about-title {
+            font-size: 2.6rem;
+            line-height: 1.05;
+          }
+
+          .about-lead {
+            font-size: 1rem;
+            line-height: 1.6;
+          }
+
+          .about-actions {
+            width: 100%;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.8rem;
+          }
+
+          .about-actions .primary-btn,
+          .about-actions .secondary-btn {
+            justify-content: center;
+            width: 100%;
+          }
+
+          .character-container {
+            max-width: 360px;
+          }
+
+          .mood-panel {
+            right: 0;
+            top: -0.5rem;
+            transform: none;
+          }
+
+          .mood-option {
+            font-size: 0.8rem;
+            padding: 0.45rem 0.7rem;
+          }
+
+          .energy-panel {
+            width: min(82vw, 220px);
+            left: 0;
+            bottom: -0.5rem;
+            transform: none;
+          }
+
+          .content-section {
+            gap: 2rem;
+          }
+
+          .content-card {
+            padding: 1.35rem;
+            border-radius: 1.2rem;
+          }
+
+          .section-title {
+            font-size: 2.1rem;
+          }
+
+          .section-description {
+            font-size: 0.98rem;
+            line-height: 1.6;
+          }
+
+          .toolkit-card {
+            padding: 1.4rem;
+          }
+
+          .toolkit-pills {
+            grid-template-columns: 1fr;
+          }
+
+          .testimonial-card {
+            gap: 1.2rem;
+          }
+
+          .testimonial-text,
+          .testimonial-card.highlighted .testimonial-text {
+            height: auto;
+            font-size: 0.95rem;
+            line-height: 1.6;
+          }
+
+          .timeline-section {
+            padding: 1.4rem;
+          }
+
+          .timeline-list {
+            gap: 2.25rem;
+          }
+
+          .timeline-list::before {
+            left: 1.25rem;
+          }
+
+          .timeline-dot {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
+
+          .timeline-dot-icon {
+            font-size: 1.1rem;
+          }
+
+          .timeline-content {
+            padding-left: 3.6rem;
+          }
+
+          .timeline-content h4 {
+            font-size: 1.05rem;
+          }
+
+          .dual-card h3 {
+            font-size: 1.7rem;
+          }
+
+          .final-cta {
+            padding: 2rem 1.35rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .about-title {
+            font-size: 2.2rem;
+          }
+
+          .focus-text {
+            display: inline-flex;
+            align-items: center;
+          }
+
+          .energy-panel {
+            width: min(86vw, 200px);
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+
+        @media (hover: none) {
+          .content-card:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: var(--color-border);
+          }
+
+          .hero-visual:hover .mood-panel,
+          .hero-visual:hover .energy-panel {
+            transform: none;
+          }
+
+          .mood-option:not(.active):hover,
+          .timeline-toggle:hover {
+            background: transparent;
+            color: var(--color-primary);
           }
         }
       `}</style>

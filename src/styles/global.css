@@ -287,3 +287,41 @@ body.light .glass-panel {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.2);
 }
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    min-height: 44px;
+    padding: 0.85rem 1.3rem;
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.85rem;
+  }
+}
+
+@media (hover: none) {
+  .primary-btn:hover,
+  .secondary-btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .primary-btn:active,
+  .secondary-btn:active {
+    transform: scale(0.98);
+  }
+}
