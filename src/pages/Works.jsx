@@ -1,366 +1,192 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import StatusBadge from "../components/common/StatusBadge";
+import ProjectCard from "../components/common/ProjectCard";
+import projects from "../data/projects";
 
-const ProjectCard = ({ project }) => {
-  return (
-    <div className={`project-card ${project.size || ""}`}>
-      <div className="card-media">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="card-image"
-          referrerPolicy="no-referrer"
-        />
-        <div className="card-gradient"></div>
+const GRID_MIN_CARD_WIDTH = 280;
+const GRID_GAP = 20;
 
-        {project.badge && <div className="card-badge">{project.badge}</div>}
+const CARD_MAX_SPAN = {
+  small: { col: 1, row: 1 },
+  medium: { col: 2, row: 1 },
+  large: { col: 2, row: 2 },
+  full: { col: 2, row: 2 },
+};
 
-        <div className="card-default">
-          <div className="default-text">
-            <span className="default-category">{project.category}</span>
-            <h3 className="default-title">{project.title}</h3>
-          </div>
-        </div>
+const getSpanOptions = (size, columns) => {
+  const maxSpan = CARD_MAX_SPAN[size] || CARD_MAX_SPAN.small;
+  const maxCol = Math.min(maxSpan.col, columns);
 
-        <div className="card-hover">
-          <div className="hover-content">
-            <div className="hover-body">
-              <span className="hover-category">{project.category}</span>
-              <h3 className="hover-title">{project.title}</h3>
-              <p className="hover-desc">{project.description}</p>
-              <div className="card-tags">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="card-tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <button className="hover-cta" aria-label="View Project">
-              <span className="material-symbols-outlined">arrow_outward</span>
-            </button>
-          </div>
-        </div>
-      </div>
+  if (maxSpan.row === 2) {
+    if (maxCol === 2) {
+      return [
+        { col: 2, row: 2 },
+        { col: 1, row: 2 },
+        { col: 1, row: 1 },
+      ];
+    }
 
-      <style jsx="true">{`
-        .project-card {
-          position: relative;
-          cursor: pointer;
-          transition:
-            transform 0.35s ease,
-            box-shadow 0.35s ease;
-          border-radius: 28px;
+    return [
+      { col: 1, row: 2 },
+      { col: 1, row: 1 },
+    ];
+  }
+
+  if (maxCol === 2) {
+    return [
+      { col: 2, row: 1 },
+      { col: 1, row: 1 },
+    ];
+  }
+
+  return [{ col: 1, row: 1 }];
+};
+
+const buildCardLayout = (projectList, columns) => {
+  const totalColumns = Math.max(1, columns);
+  const occupied = [];
+
+  const ensureRow = (rowIndex) => {
+    while (occupied.length <= rowIndex) {
+      occupied.push(Array(totalColumns).fill(false));
+    }
+  };
+
+  const canPlace = (row, col, colSpan, rowSpan) => {
+    if (col + colSpan > totalColumns) {
+      return false;
+    }
+
+    for (let rowIndex = row; rowIndex < row + rowSpan; rowIndex += 1) {
+      ensureRow(rowIndex);
+
+      for (let colIndex = col; colIndex < col + colSpan; colIndex += 1) {
+        if (occupied[rowIndex][colIndex]) {
+          return false;
         }
+      }
+    }
 
-        .project-card:hover {
-          transform: translateY(-8px);
-        }
+    return true;
+  };
 
-        .card-media {
-          position: relative;
-          height: var(--card-height, 520px);
-          border-radius: 28px;
-          overflow: hidden;
-          border: 1px solid var(--color-border);
-          background: var(--color-card);
-        }
+  const markPlaced = (row, col, colSpan, rowSpan) => {
+    for (let rowIndex = row; rowIndex < row + rowSpan; rowIndex += 1) {
+      ensureRow(rowIndex);
 
-        .card-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.6s ease;
-          transform: scale(1.02);
-          filter: saturate(1.05);
-        }
+      for (let colIndex = col; colIndex < col + colSpan; colIndex += 1) {
+        occupied[rowIndex][colIndex] = true;
+      }
+    }
+  };
 
-        .project-card:hover .card-image {
-          transform: scale(1.06);
-        }
+  return projectList.map((project) => {
+    const spanOptions = getSpanOptions(project.size, totalColumns);
+    let placedLayout = null;
+    let row = 0;
 
-        .card-gradient {
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          background: linear-gradient(
-            180deg,
-            rgba(8, 6, 12, 0.1) 0%,
-            rgba(8, 6, 12, 0.25) 45%,
-            rgba(8, 6, 12, 0.8) 78%,
-            rgba(8, 6, 12, 0.95) 100%
-          );
-          pointer-events: none;
-          transition: opacity 0.3s;
-        }
-
-        .project-card:hover .card-gradient {
-          opacity: 0;
-        }
-
-        .card-default {
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          padding: 1.6rem 2rem 1.8rem;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1.5rem;
-          transition:
-            opacity 0.3s ease,
-            transform 0.3s ease;
-        }
-
-        .default-text {
-          display: flex;
-          flex-direction: column;
-          gap: 0.4rem;
-        }
-
-        .default-category {
-          font-size: 0.75rem;
-          text-transform: uppercase;
-          letter-spacing: 0.2em;
-          color: rgba(255, 255, 255, 0.65);
-          font-weight: 700;
-        }
-
-        .default-title {
-          font-size: 1.6rem;
-          font-weight: 800;
-          color: #ffffff;
-          line-height: 1.2;
-        }
-
-        .card-hover {
-          position: absolute;
-          inset: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          gap: 1rem;
-          padding: 2.2rem 0 0;
-          border-radius: inherit;
-          background: linear-gradient(
-            180deg,
-            rgba(6, 4, 10, 0.15) 0%,
-            rgba(6, 4, 10, 0.7) 45%,
-            rgba(6, 4, 10, 0.92) 100%
-          );
-          backdrop-filter: blur(6px);
-          opacity: 0;
-          transform: translateY(18px);
-          transition:
-            opacity 0.35s ease,
-            transform 0.35s ease;
-        }
-
-        .hover-content {
-          display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 1.5rem;
-          padding: 1.6rem 1.8rem 1.8rem;
-          border-radius: 0 0 28px 28px;
-          background: rgba(23, 14, 36, 0.72);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-          backdrop-filter: blur(16px);
-          width: 100%;
-        }
-
-        .hover-body {
-          display: flex;
-          flex-direction: column;
-          gap: 0.85rem;
-        }
-
-        .hover-category {
-          font-size: 0.75rem;
-          text-transform: uppercase;
-          letter-spacing: 0.2em;
-          font-weight: 700;
-          color: var(--primary-color);
-        }
-
-        .project-card:hover .card-hover {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .project-card:hover .card-default {
-          opacity: 0;
-          transform: translateY(12px);
-        }
-
-        .card-tags {
-          display: flex;
-          gap: 0.5rem;
-          flex-wrap: wrap;
-        }
-
-        .card-tag {
-          font-size: 0.7rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          color: #f0e7ff;
-          background: rgba(255, 255, 255, 0.08);
-          padding: 0.3rem 0.8rem;
-          border-radius: var(--radius-pill);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .hover-title {
-          font-size: 2rem;
-          font-weight: 800;
-          color: white;
-          line-height: 1.1;
-        }
-
-        .hover-desc {
-          font-size: 0.95rem;
-          color: rgba(255, 255, 255, 0.7);
-          line-height: 1.6;
-          max-width: 520px;
-        }
-
-        .hover-cta {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 54px;
-          height: 54px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.12);
-          color: #ffffff;
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          flex-shrink: 0;
-        }
-
-        .hover-cta .material-symbols-outlined {
-          font-size: 1.5rem;
-          transition:
-            transform 0.3s,
-            color 0.3s;
-        }
-
-        .hover-cta:hover .material-symbols-outlined {
-          transform: translate(4px, -4px);
-        }
-
-        .card-badge {
-          position: absolute;
-          top: 1.4rem;
-          left: 1.4rem;
-          background: rgba(255, 255, 255, 0.9);
-          color: #1a1122;
-          padding: 0.25rem 0.7rem;
-          font-size: 0.65rem;
-          font-weight: 800;
-          border-radius: 0.4rem;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-          z-index: 5;
-        }
-
-        /* Size Variations */
-        .project-card.large {
-          --card-height: 560px;
-        }
-
-        .project-card.medium {
-          --card-height: 480px;
-        }
-
-        .project-card.full {
-          --card-height: 600px;
-        }
-
-        @media (min-width: 1024px) {
-          .project-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 2rem;
+    while (!placedLayout) {
+      for (let col = 0; col < totalColumns; col += 1) {
+        for (const option of spanOptions) {
+          if (!canPlace(row, col, option.col, option.row)) {
+            continue;
           }
-          .project-card.large {
-            grid-column: span 7;
-          }
-          .project-card.medium {
-            grid-column: span 5;
-          }
-          .project-card.full {
-            grid-column: span 12;
-          }
+
+          markPlaced(row, col, option.col, option.row);
+          placedLayout = {
+            columnStart: col + 1,
+            rowStart: row + 1,
+            colSpan: option.col,
+            rowSpan: option.row,
+          };
+          break;
         }
-      `}</style>
-    </div>
-  );
+
+        if (placedLayout) {
+          break;
+        }
+      }
+
+      row += 1;
+    }
+
+    return { project, layout: placedLayout };
+  });
 };
 
 const Works = () => {
   const [filter, setFilter] = useState("All");
+  const [columnCount, setColumnCount] = useState(1);
+  const gridRef = useRef(null);
 
-  const projects = [
-    {
-      id: 1,
-      title: "E-commerce Redesign",
-      description:
-        "Making online shopping less boring with immersive product stories.",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBgpq3zlGQhytiGf2i-J4kwgFUDXE2xQNZO5j3V5kXRKdakNSW0abGV0NjcjksETUptZeeFSzRdUsBFVltanhJ8Q5aMPVJ50dfpieIrwX-ZWiSLXTM3S6mT90zSprSMy2TDrxJnbF82edElnNlJn96cFR5OZ46BenBbd1YODjVOiOSIZEDGoFK8bpUBmNK1xmTznOr6qRssIBxX7cqsynvolh1d2vPl6A1_LTW2xgC6NtPBaPr8bsfA5068l9SOQYaYgvA42lhtQIk",
-      tags: ["React", "Figma"],
-      size: "large",
-      category: "Design",
-    },
-    {
-      id: 2,
-      title: "Portfolio v1",
-      description: "A retro-style portfolio playground built with Three.js.",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuCwT-pEBNNYmXMeFV0H5LC4B01-psJo8kFfwJiqNgPmdZidyrAfM_C364v9b1WqZ4e6Ge1bXJh9MVb4Y4KIn-AiPlB3BFrzdWMU9hZLruSvlXbgo0wkFR_FTN7GgyLAtO2D_zmAT04IXPEW65_4M1HCM6cjfbWrRou-41UfoIQ77-dgS3rhVzp7LNJFqRfWH7Tdq-LBV4mUo8seq5uKVhi7_kfEo2341xHn83sukiRHKKk4f6tt6SBlMEjd4p3Fb7aiGo-hfCRp47A",
-      tags: ["Three.js", "GSAP"],
-      size: "medium",
-      category: "Code",
-    },
-    {
-      id: 3,
-      title: "Crypto Dashboard",
-      description: "Real-time data visualization for cryptocurrency markets.",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBLJLmBuQpSVIkdoim79_8KvtnE0qiPaNGtcAv89wzI55Arlbbx3RtIZp6lLN5EGCyNJXcE97Tner_5cRiQysXFOqdhaLPJkcAE5Ea2YOu6s3I0Aud-Xtc4F90XjkotyUPhBz909JOryBhGii6zuF59YWTCeV1S_wiikAxCdh07Bf5npJayTgszzp4ehxn9PMERqcH95wTObxKXtBXJLB2QY_wSTLAh_O1H1vR09VlsEckrkTrTafS5CpzKjqLEY_SEhK1Bh1oD8CM",
-      tags: ["Vue", "D3.js"],
-      badge: "BEST DATA VIZ",
-      size: "medium",
-      category: "Interaction",
-    },
-    {
-      id: 4,
-      title: "Travel App",
-      description: "Exploration gamified. A new way to discover local gems.",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBCD0bBlXw_WyzuMH22LLq6mg4XWQKnuMWQhWBDQNkrsiqkOai7I0_Vsbs4jKfQmvAAa93rFH1sxbQlZtZbQLsPhtNsSXQCfB4nqVEFfyNx7kshu3nuzIIoV0VzmK-cDKbp9V9IokLgW70EWyztFHQ6giWxtV4mf-WKXYneTzbzX5QcVqbHnX3HIpVG4y7AqXuBfWeLgu5ZPljsRg3ks0clgPI-JGjKe88X6l8B6bnNrNmDOhANlvM3QCETxAps0n3q3OfsBzbpvzw",
-      tags: ["Swift", "Sketch"],
-      size: "large",
-      category: "Design",
-    },
-    {
-      id: 5,
-      title: "Experimental Playground",
-      description:
-        "Where I break things to learn how they work. WebGL, shaders, and creative coding.",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBnyRb_6716v_0aYnI93T-3iUBcor1TYqrg1UD0LQC1TZoYzveqfcxKhqC0oINYgpQSd-mePmGZ_3jjqaa3WtgW8TQoXMrjYLI6ZInuKv5EyJcca54GSRF9pllmvKeryKAAeWMBdtZKmmCR-PQ51dm8cXAlUszh_n4seF1PKvJAwzA3CaADVnHMxlDCWYJn6ufgCrjFfHw5WJI_ppR43Pp16UiIdeLjKMdo81sevXH_n0exRbawgNHN2C0neeu-C3e73qxwknZFCic",
-      tags: ["WebGL", "GLSL"],
-      size: "full",
-      category: "Code",
-    },
-  ];
+  useEffect(() => {
+    const gridElement = gridRef.current;
+
+    if (!gridElement) {
+      return;
+    }
+
+    const updateColumnCount = () => {
+      const width = gridElement.clientWidth;
+      const nextColumns = Math.max(
+        1,
+        Math.floor((width + GRID_GAP) / (GRID_MIN_CARD_WIDTH + GRID_GAP)),
+      );
+
+      setColumnCount((current) =>
+        current === nextColumns ? current : nextColumns,
+      );
+    };
+
+    updateColumnCount();
+
+    if (typeof ResizeObserver !== "undefined") {
+      const observer = new ResizeObserver(updateColumnCount);
+      observer.observe(gridElement);
+
+      return () => {
+        observer.disconnect();
+      };
+    }
+
+    window.addEventListener("resize", updateColumnCount);
+
+    return () => {
+      window.removeEventListener("resize", updateColumnCount);
+    };
+  }, []);
 
   const filteredProjects =
     filter === "All" ? projects : projects.filter((p) => p.category === filter);
+
+  const orderedProjects = useMemo(() => {
+    const nextProjects = [...filteredProjects];
+    const travelAppIndex = nextProjects.findIndex(
+      (project) => project.title === "Travel App",
+    );
+    const experimentalPlaygroundIndex = nextProjects.findIndex(
+      (project) => project.title === "Experimental Playground",
+    );
+
+    if (
+      travelAppIndex !== -1 &&
+      experimentalPlaygroundIndex !== -1 &&
+      travelAppIndex < experimentalPlaygroundIndex
+    ) {
+      [nextProjects[travelAppIndex], nextProjects[experimentalPlaygroundIndex]] =
+        [
+          nextProjects[experimentalPlaygroundIndex],
+          nextProjects[travelAppIndex],
+        ];
+    }
+
+    return nextProjects;
+  }, [filteredProjects]);
+
+  const laidOutProjects = useMemo(
+    () => buildCardLayout(orderedProjects, columnCount),
+    [orderedProjects, columnCount],
+  );
 
   return (
     <section className="works-section container">
@@ -373,13 +199,12 @@ const Works = () => {
           </h2>
         </div>
         <p className="header-desc">
-          A collection of digital artifacts, combining pixel-perfect design with
-          clean code.
+          A showcase of apps, design, and motion — simple ideas turned into polished digital work.
         </p>
       </div>
 
       <div className="filter-chips">
-        {["All", "Code", "Design", "Interaction"].map((cat) => (
+        {["All", "Apps", "Design", "Motion"].map((cat) => (
           <button
             key={cat}
             className={`filter-chip ${filter === cat ? "active" : ""}`}
@@ -390,9 +215,13 @@ const Works = () => {
         ))}
       </div>
 
-      <div className="projects-grid">
-        {filteredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+      <div
+        className="projects-grid"
+        ref={gridRef}
+        style={{ "--grid-columns": columnCount }}
+      >
+        {laidOutProjects.map(({ project, layout }) => (
+          <ProjectCard key={project.id} project={project} layout={layout} />
         ))}
       </div>
 
@@ -442,7 +271,7 @@ const Works = () => {
         .header-desc {
           font-size: 1.25rem;
           color: var(--text-muted);
-          max-width: 400px;
+          max-width: 480px;
           text-align: right;
           line-height: 1.6;
         }
@@ -451,7 +280,6 @@ const Works = () => {
           display: flex;
           gap: 1rem;
           margin-bottom: 4rem;
-          overflow-x: auto;
           padding-bottom: 1rem;
         }
 
@@ -483,9 +311,14 @@ const Works = () => {
         }
 
         .projects-grid {
+          --grid-columns: 1;
           display: grid;
-          grid-template-columns: repeat(12, 1fr);
-          gap: 2rem;
+          width: 100%;
+          grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+          grid-auto-rows: clamp(180px, 16vw, 240px);
+          gap: 1.25rem;
+          grid-auto-flow: dense;
+          align-items: stretch;
         }
 
         .works-cta {
@@ -545,19 +378,25 @@ const Works = () => {
             align-items: flex-start;
             text-align: left;
           }
+
           .header-desc {
             text-align: left;
           }
+
           .section-title {
             font-size: 3.5rem;
           }
+
           .projects-grid {
-            grid-template-columns: 1fr;
+            grid-auto-rows: clamp(170px, 28vw, 220px);
+            gap: 1rem;
           }
-          .project-card.large,
-          .project-card.medium,
-          .project-card.full {
-            grid-column: span 1;
+        }
+
+        @media (max-width: 640px) {
+          .projects-grid {
+            gap: 0.9rem;
+            grid-auto-rows: 210px;
           }
         }
       `}</style>
