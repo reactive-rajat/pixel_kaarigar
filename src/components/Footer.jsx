@@ -241,6 +241,14 @@ const Footer = () => {
             display: none;
           }
         }
+          @media (max-width: 480px) {
+            .mobile-social-links {
+          gap: 0.5rem;
+        }
+          .mobile-footer{
+            background: var(--border-color);
+          }
+          }
       `}</style>
     </>
   );

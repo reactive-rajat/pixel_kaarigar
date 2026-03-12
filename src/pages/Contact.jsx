@@ -371,6 +371,12 @@ const Contact = () => {
           }
         }
 
+        @media (max-width: 480px) {
+          .status-badge{
+            margin: 0 auto;
+          }
+        }
+
         @media (hover: none) {
           .whatsapp-btn:hover,
           .quick-link:hover,

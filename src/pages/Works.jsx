@@ -1,10 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import StatusBadge from "../components/common/StatusBadge";
 import ProjectCard from "../components/common/ProjectCard";
 import projects from "../data/projects";
 
 const GRID_MIN_CARD_WIDTH = 280;
 const GRID_GAP = 20;
+const MOBILE_BREAKPOINT = 768;
 
 const CARD_MAX_SPAN = {
   small: { col: 1, row: 1 },
@@ -16,7 +18,8 @@ const CARD_MAX_SPAN = {
 // Easy future config:
 // [firstCardId, secondCardId] => keep both cards in same column, different rows.
 const STACKED_CARD_PAIRS = [
-  [2, 3], [4, 5],
+  [2, 3],
+  [4, 5],
 ];
 
 const STACKED_PAIR_LOOKUP = new Map(
@@ -31,10 +34,18 @@ const applyStackedPairOrder = (projectList, stackedPairs) => {
       return;
     }
 
-    const firstIndex = orderedProjects.findIndex((project) => project.id === firstId);
-    const secondIndex = orderedProjects.findIndex((project) => project.id === secondId);
+    const firstIndex = orderedProjects.findIndex(
+      (project) => project.id === firstId,
+    );
+    const secondIndex = orderedProjects.findIndex(
+      (project) => project.id === secondId,
+    );
 
-    if (firstIndex === -1 || secondIndex === -1 || secondIndex === firstIndex + 1) {
+    if (
+      firstIndex === -1 ||
+      secondIndex === -1 ||
+      secondIndex === firstIndex + 1
+    ) {
       return;
     }
 
@@ -78,7 +89,11 @@ const getSpanOptions = (size, columns) => {
   return [{ col: 1, row: 1 }];
 };
 
-const buildCardLayout = (projectList, columns, stackedPairLookup = new Map()) => {
+const buildCardLayout = (
+  projectList,
+  columns,
+  stackedPairLookup = new Map(),
+) => {
   const totalColumns = Math.max(1, columns);
   const occupied = [];
 
@@ -193,7 +208,12 @@ const buildCardLayout = (projectList, columns, stackedPairLookup = new Map()) =>
     const spanOptions = getSpanOptions(project.size, totalColumns);
     const placement = findPlacement(spanOptions);
 
-    markPlaced(placement.row, placement.col, placement.colSpan, placement.rowSpan);
+    markPlaced(
+      placement.row,
+      placement.col,
+      placement.colSpan,
+      placement.rowSpan,
+    );
     laidOutProjects.push({
       project,
       layout: {
@@ -208,9 +228,80 @@ const buildCardLayout = (projectList, columns, stackedPairLookup = new Map()) =>
   return laidOutProjects;
 };
 
+const ProjectDetailsModal = ({ project, onClose }) => {
+  const categories = Array.isArray(project.category)
+    ? project.category
+    : [project.category];
+  const categoryLabel = categories.filter(Boolean).join(" + ");
+  const projectTags = Array.isArray(project.tags) ? project.tags : [];
+
+  return (
+    <div
+      className="project-modal-overlay"
+      role="presentation"
+      onClick={onClose}
+    >
+      <div
+        className="project-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${project.title} details`}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          type="button"
+          className="project-modal-close"
+          aria-label="Close project details"
+          onClick={onClose}
+        >
+          <span className="material-symbols-outlined">close</span>
+        </button>
+
+        <div className="project-modal-top">
+          <div className="project-modal-heading">
+            <span className="project-modal-category">{categoryLabel}</span>
+            <h3 className="project-modal-title">{project.title}</h3>
+          </div>
+
+          {project.url ? (
+            <a
+              className="project-modal-link"
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open project link"
+            >
+              <span className="material-symbols-outlined">arrow_outward</span>
+            </a>
+          ) : (
+            <span className="project-modal-link disabled" aria-hidden="true">
+              <span className="material-symbols-outlined">arrow_outward</span>
+            </span>
+          )}
+        </div>
+
+        <div className="project-modal-details">
+          <p className="project-modal-desc">{project.description}</p>
+
+          <div className="project-modal-tags">
+            {projectTags.map((tag) => (
+              <span key={tag} className="project-modal-tag">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Works = () => {
+  const navigate = useNavigate();
   const [filter, setFilter] = useState("All");
   const [columnCount, setColumnCount] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeProject, setActiveProject] = useState(null);
   const gridRef = useRef(null);
 
   useEffect(() => {
@@ -250,6 +341,60 @@ const Works = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
+
+    const updateViewportMode = (event) => {
+      const nextIsMobile =
+        typeof event?.matches === "boolean"
+          ? event.matches
+          : mediaQuery.matches;
+
+      setIsMobile(nextIsMobile);
+
+      if (!nextIsMobile) {
+        setActiveProject(null);
+      }
+    };
+
+    updateViewportMode();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", updateViewportMode);
+
+      return () => {
+        mediaQuery.removeEventListener("change", updateViewportMode);
+      };
+    }
+
+    mediaQuery.addListener(updateViewportMode);
+
+    return () => {
+      mediaQuery.removeListener(updateViewportMode);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!activeProject) {
+      return undefined;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setActiveProject(null);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [activeProject]);
+
   const filteredProjects =
     filter === "All"
       ? projects
@@ -274,11 +419,13 @@ const Works = () => {
       experimentalPlaygroundIndex !== -1 &&
       travelAppIndex < experimentalPlaygroundIndex
     ) {
-      [nextProjects[travelAppIndex], nextProjects[experimentalPlaygroundIndex]] =
-        [
-          nextProjects[experimentalPlaygroundIndex],
-          nextProjects[travelAppIndex],
-        ];
+      [
+        nextProjects[travelAppIndex],
+        nextProjects[experimentalPlaygroundIndex],
+      ] = [
+        nextProjects[experimentalPlaygroundIndex],
+        nextProjects[travelAppIndex],
+      ];
     }
 
     return applyStackedPairOrder(nextProjects, STACKED_CARD_PAIRS);
@@ -300,7 +447,8 @@ const Works = () => {
           </h2>
         </div>
         <p className="header-desc">
-          A showcase of apps, design, and motion — simple ideas turned into polished digital work.
+          A showcase of apps, design, and motion — simple ideas turned into
+          polished digital work.
         </p>
       </div>
 
@@ -322,7 +470,13 @@ const Works = () => {
         style={{ "--grid-columns": columnCount }}
       >
         {laidOutProjects.map(({ project, layout }) => (
-          <ProjectCard key={project.id} project={project} layout={layout} />
+          <ProjectCard
+            key={project.id}
+            project={project}
+            layout={layout}
+            isMobile={isMobile}
+            onMobileCardTap={setActiveProject}
+          />
         ))}
       </div>
 
@@ -333,11 +487,18 @@ const Works = () => {
           <br />
           <span className="primary-text">Let's build it.</span>
         </h3>
-        <button className="cta-btn">
+        <button className="cta-btn" type="button" onClick={() => navigate("/contact")}>
           <span className="material-symbols-outlined">handshake</span>
           <span>Let's work together</span>
         </button>
       </div>
+
+      {isMobile && activeProject && (
+        <ProjectDetailsModal
+          project={activeProject}
+          onClose={() => setActiveProject(null)}
+        />
+      )}
 
       <style jsx="true">{`
         .works-section {
@@ -474,6 +635,127 @@ const Works = () => {
           box-shadow: 0 20px 60px var(--primary-glow);
         }
 
+        .project-modal-overlay {
+          position: sticky;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem;
+          background: rgba(7, 5, 10, 0.75);
+          backdrop-filter: blur(4px);
+          z-index: 1300;
+        }
+
+        .project-modal {
+          position: relative;
+          width: min(560px, 100%);
+          border-radius: 18px;
+          border: 1px solid var(--border-color);
+          background: rgba(17, 12, 26, 0.98);
+          padding: 1.25rem;
+          box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+        }
+
+        .project-modal-close {
+          position: fixed;
+          top: 6rem;
+          right: 1rem;
+          width: 3rem;
+          height: 3rem;
+          border-radius: 999px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          color: #ffffff;
+          background: rgba(7, 5, 12, 0.85);
+        }
+
+        .project-modal-close .material-symbols-outlined {
+          font-size: 1.05rem;
+        }
+
+        .project-modal-top {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 0.75rem;
+          margin-bottom: 1rem;
+          padding-right: 2.25rem;
+        }
+
+        .project-modal-heading {
+          display: flex;
+          flex-direction: column;
+          gap: 0.55rem;
+        }
+
+        .project-modal-category {
+          font-size: 0.72rem;
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
+          font-weight: 700;
+          color: var(--primary-color);
+        }
+
+        .project-modal-title {
+          font-size: 1.35rem;
+          line-height: 1.2;
+          font-weight: 800;
+          color: #ffffff;
+        }
+
+        .project-modal-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          background: rgba(255, 255, 255, 0.08);
+          color: #ffffff;
+          flex-shrink: 0;
+        }
+
+        .project-modal-link .material-symbols-outlined {
+          font-size: 1.3rem;
+        }
+
+        .project-modal-link.disabled {
+          opacity: 0.45;
+        }
+
+        .project-modal-details {
+          display: flex;
+          flex-direction: column;
+          gap: 0.95rem;
+        }
+
+        .project-modal-desc {
+          color: rgba(255, 255, 255, 0.76);
+          font-size: 0.92rem;
+          line-height: 1.6;
+        }
+
+        .project-modal-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .project-modal-tag {
+          font-size: 0.66rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          border-radius: var(--radius-pill);
+          padding: 0.34rem 0.75rem;
+          color: #f0e7ff;
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          background: rgba(255, 255, 255, 0.08);
+        }
+
         @media (max-width: 1024px) {
           .works-header {
             flex-direction: column;
@@ -496,6 +778,32 @@ const Works = () => {
         }
 
         @media (max-width: 640px) {
+          .header-left {
+            text-align: center;
+            font-size: 2.5rem;
+            display: grid;
+            gap: 2rem;
+            justify-content: center;
+            width: 100%;
+          }
+
+          .status-badge {
+            margin: 0 auto;
+          }
+
+          .project-modal-overlay {
+            height: 100dvh;
+            top: 0;
+            left: 0;
+            align-items: flex-end;
+            padding-top: 10rem;
+            padding-bottom: 2rem;
+          }
+
+          .project-modal-top {
+            padding-right: 0;
+          }
+
           .works-section {
             padding-top: 7.5rem;
             padding-bottom: 5rem;
@@ -509,6 +817,7 @@ const Works = () => {
           .header-desc {
             font-size: 1rem;
             max-width: 100%;
+            text-align: center;
           }
 
           .filter-chips {
@@ -543,11 +852,28 @@ const Works = () => {
           }
         }
 
-        @media (hover: none) {
+        @media (max-width: 768px) {
           .filter-chip:hover,
           .cta-btn:hover {
             transform: none;
             box-shadow: none;
+          }
+
+          .filter-chip:hover {
+            border-color: var(--border-color);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+          }
+
+          .filter-chip.active:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 10px 20px var(--primary-glow);
+          }
+
+          .cta-btn:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
           }
         }
       `}</style>

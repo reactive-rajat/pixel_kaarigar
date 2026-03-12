@@ -4,15 +4,18 @@ const VIDEO_FILE_PATTERN = /\.(mp4|webm|ogg|mov|m4v|mkv)(\?.*)?$/i;
 
 const isVideoPath = (path = "") => VIDEO_FILE_PATTERN.test(path);
 
-const ProjectCard = ({ project, layout }) => {
+const ProjectCard = ({ project, layout, isMobile = false, onMobileCardTap }) => {
   const [isVideoPreviewOpen, setIsVideoPreviewOpen] = useState(false);
   const isCompact = layout?.rowSpan === 1;
   const hasUrl = Boolean(project.url);
+  const isMobileTapEnabled =
+    isMobile && typeof onMobileCardTap === "function";
   const categories = Array.isArray(project.category)
     ? project.category
     : [project.category];
   const mediaSrc = project.image || "";
   const canPreviewVideo = categories.includes("Motion") && isVideoPath(mediaSrc);
+  const isInteractive = canPreviewVideo || hasUrl || isMobileTapEnabled;
   const categoryLabel = categories.filter(Boolean).join(" + ");
   const cardStyle = layout
     ? {
@@ -48,6 +51,11 @@ const ProjectCard = ({ project, layout }) => {
       return;
     }
 
+    if (isMobileTapEnabled) {
+      onMobileCardTap(project);
+      return;
+    }
+
     openProject();
   };
 
@@ -57,6 +65,12 @@ const ProjectCard = ({ project, layout }) => {
     }
 
     event.preventDefault();
+
+    if (isMobileTapEnabled) {
+      onMobileCardTap(project);
+      return;
+    }
+
     openProject();
   };
 
@@ -64,8 +78,8 @@ const ProjectCard = ({ project, layout }) => {
     <div
       className={`project-card ${project.size || ""} ${isCompact ? "compact" : ""}`}
       style={cardStyle}
-      role={canPreviewVideo ? "button" : hasUrl ? "link" : undefined}
-      tabIndex={canPreviewVideo || hasUrl ? 0 : undefined}
+      role={isMobileTapEnabled || canPreviewVideo ? "button" : hasUrl ? "link" : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
       onClick={handleCardClick}
       onKeyDown={handleKeyDown}
     >
@@ -467,6 +481,11 @@ const ProjectCard = ({ project, layout }) => {
         }
 
         @media (max-width: 768px) {
+          .project-card,
+          .project-card:hover {
+            transform: none;
+          }
+
           .card-media {
             border-radius: 22px;
           }
@@ -487,12 +506,6 @@ const ProjectCard = ({ project, layout }) => {
             font-size: 0.85rem;
             line-height: 1.45;
           }
-        }
-
-        @media (hover: none) {
-          .project-card:hover {
-            transform: none;
-          }
 
           .project-card:hover .card-image {
             transform: scale(1.02);
@@ -512,15 +525,15 @@ const ProjectCard = ({ project, layout }) => {
             transform: translateY(18px);
           }
 
-          /* Touch devices do not have hover, so keep detail panel visible. */
           .card-hover {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 0;
+            transform: translateY(18px);
+            pointer-events: none;
           }
 
           .card-default {
-            opacity: 0;
-            transform: translateY(12px);
+            opacity: 1;
+            transform: none;
           }
 
           .hover-cta:hover .material-symbols-outlined {

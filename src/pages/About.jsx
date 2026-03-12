@@ -131,7 +131,7 @@ const About = () => {
               <span className="material-symbols-outlined timeline-dot-icon">grid_view</span>
             </div>
             <div className="timeline-content">
-              <span className="timeline-year start">September 2021</span>
+              <span className="timeline-year start">Sep 2021</span>
               <span className="timeline-year end">May 2025</span>
               <h4>Senior Web Designer / UI Developer | BOLD </h4>
               <div id="timeline-details-bold" className={expandedTimelineItems.bold ? 'timeline-details expanded' : 'timeline-details'}>
@@ -158,8 +158,8 @@ const About = () => {
               <span className="material-symbols-outlined timeline-dot-icon">code</span>
             </div>
             <div className="timeline-content">
-              <span className="timeline-year start">January 2019</span>
-              <span className="timeline-year end">September 2021</span>
+              <span className="timeline-year start">Jan 2019</span>
+              <span className="timeline-year end">Sep 2021</span>
               <h4>UI Designer / Developer | Avalon Infosys</h4>
               <div id="timeline-details-avalon" className={expandedTimelineItems.avalon ? 'timeline-details expanded' : 'timeline-details'}>
                 <ul>
@@ -396,22 +396,17 @@ const About = () => {
       </div>
 
       {/* Final CTA */}
-      <div className="final-cta content-section content-card">
-        <div className="cta-inner">
-          <SectionHeading
-            label="Let's build"
-            title={
-              <>
-                Have a crazy idea? <span className="primary-text">Let&apos;s build it.</span>
-              </>
-            }
-            description="Tell me about the vision and I'll help make it real."
-          />
-          <button className="primary-btn" onClick={() => navigate('/contact')}>
-            <span>Let&apos;s Talk</span>
-            <span className="material-symbols-outlined">arrow_forward</span>
-          </button>
-        </div>
+      <div className="works-cta about-cta content-section" style={{ marginTop: '0' }}>
+        <div className="cta-glow"></div>
+        <h3 className="cta-title">
+          Have a crazy idea?
+          <br />
+          <span className="primary-text">Let&apos;s build it.</span>
+        </h3>
+        <button className="cta-btn" type="button" onClick={() => navigate('/contact')}>
+          <span className="material-symbols-outlined">handshake</span>
+          <span>Let&apos;s work together</span>
+        </button>
       </div>
 
       <style jsx="true">{`
@@ -549,20 +544,6 @@ const About = () => {
         .mood-option.active {
           background: var(--primary-color);
           color: white;
-        }
-
-        .energy-panel {
-          bottom: -1rem;
-          left: -1rem;
-          width: 240px;
-          padding: 1rem;
-          transform: rotate(-2deg);
-          transition: all 0.3s;
-        }
-
-        .hero-visual:hover .energy-panel {
-            transform: rotate(0deg);
-            transition: all 0.3s;
         }
 
         .energy-header {
@@ -715,6 +696,22 @@ const About = () => {
             transform: translateX(-50%);
           }
         }
+
+        @media (min-width: 1024px) {
+            .energy-panel {
+          bottom: -1rem;
+          left: -1rem;
+          width: 240px;
+          padding: 1rem;
+          transform: rotate(-2deg);
+          transition: all 0.3s;
+        }
+
+        .hero-visual:hover .energy-panel {
+            transform: rotate(0deg);
+            transition: all 0.3s;
+        }
+          }
 
         @media (max-width: 1024px) {
           .brands-track {
@@ -928,9 +925,21 @@ const About = () => {
           gap: 0.9rem;
         }
 
-        .toolkit-list li {
+        .toolkit-header{
+          flex-direction: column;
+          align-items: center;
+          margin: 0.5rem 0 1.75rem 0;
+        }
+
+        .testimonial-author{
+          text-align: left;
+        }
+
+        .toolkit-list > li {
           display: flex;
           align-items: center;
+          justify-content: flex-start;
+          text-align: left;
           gap: 0.75rem;
           padding: 0.7rem 0.9rem;
           border-radius: 16px;
@@ -1195,29 +1204,51 @@ const About = () => {
           line-height: 1.6;
         }
 
-        .final-cta {
+        .works-cta {
           position: relative;
-          overflow: hidden;
-          padding: 4.5rem 3rem;
-          border-radius: var(--radius-xl);
-        }
-
-        .final-cta::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          left: -50%;
-          top: -20%;
-          background: radial-gradient(circle at top, rgba(127, 19, 236, 0.25), transparent 55%);
-          opacity: 0.8;
-        }
-
-        .cta-inner {
-          position: relative;
+          margin-top: 8rem;
           display: flex;
           flex-direction: column;
-          gap: 2rem;
           align-items: center;
+          gap: 2rem;
+          text-align: center;
+        }
+
+        .cta-glow {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 300px;
+          height: 300px;
+          background: var(--primary-glow);
+          filter: blur(80px);
+          z-index: -1;
+        }
+
+        .cta-title {
+          font-size: 3rem;
+          font-weight: 700;
+          line-height: 1.2;
+        }
+
+        .cta-btn {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 1.25rem 2.5rem;
+          background: white;
+          color: var(--background-dark);
+          border-radius: var(--border-radius-full);
+          font-weight: 700;
+          font-size: 1.125rem;
+          transition: all 0.3s;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-btn:hover {
+          transform: scale(1.05);
+          box-shadow: 0 20px 60px var(--primary-glow);
         }
 
         @media (max-width: 1024px) {
@@ -1239,6 +1270,7 @@ const About = () => {
           .testimonials-grid,
           .dual-grid {
             grid-template-columns: 1fr;
+            gap: 1.5rem;
           }
 
           .hero-visual {
@@ -1248,7 +1280,7 @@ const About = () => {
 
         @media (max-width: 768px) {
           .about-page {
-            padding: 7.5rem 0 5rem;
+            padding: 7rem 0.85rem 8rem;
             gap: 4rem;
           }
 
@@ -1263,7 +1295,6 @@ const About = () => {
 
           .about-lead {
             font-size: 1rem;
-            line-height: 1.6;
           }
 
           .about-actions {
@@ -1308,7 +1339,11 @@ const About = () => {
           .content-card {
             padding: 1.35rem;
             border-radius: 1.2rem;
+            text-align: center;
           }
+            .deliver-card span{
+              margin: 0 auto;
+            }
 
           .section-title {
             font-size: 2.1rem;
@@ -1336,6 +1371,7 @@ const About = () => {
             height: auto;
             font-size: 0.95rem;
             line-height: 1.6;
+            text-align: left;
           }
 
           .timeline-section {
@@ -1343,7 +1379,8 @@ const About = () => {
           }
 
           .timeline-list {
-            gap: 2.25rem;
+            margin-top: 1rem;
+            gap: 2.5rem;
           }
 
           .timeline-list::before {
@@ -1371,8 +1408,20 @@ const About = () => {
             font-size: 1.7rem;
           }
 
-          .final-cta {
-            padding: 2rem 1.35rem;
+          .works-cta {
+            margin-top: 4.5rem;
+            gap: 1.4rem;
+          }
+
+          .cta-title {
+            font-size: 2rem;
+          }
+
+          .cta-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
           }
         }
 
@@ -1384,6 +1433,10 @@ const About = () => {
           .focus-text {
             display: inline-flex;
             align-items: center;
+            font-size: 0.85rem;
+            color: var(--color-text);
+            padding-top: 0.1rem;
+            padding-bottom: 0.2rem;
           }
 
           .energy-panel {
@@ -1402,7 +1455,8 @@ const About = () => {
 
           .hero-visual:hover .mood-panel,
           .hero-visual:hover .energy-panel {
-            transform: none;
+            transform: none !important;
+            left: initial;
           }
 
           .mood-option:not(.active):hover,

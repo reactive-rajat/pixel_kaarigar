@@ -310,20 +310,6 @@ const Hero = ({ setActivePage }) => {
             color: white;
           }
 
-          .energy-panel {
-            bottom: 1.25rem;
-            left: -1rem;
-            width: 240px;
-            padding: 1rem;
-            transform: rotate(-2deg);
-            transition: all 0.3s;
-          }
-
-          .hero-visual:hover .energy-panel {
-            transform: rotate(0deg);
-            transition: all 0.3s;
-          }
-
           .energy-header {
             display: flex;
             justify-content: space-between;
@@ -367,6 +353,22 @@ const Hero = ({ setActivePage }) => {
               #ad92c9
             );
             border-radius: var(--border-radius-full);
+          }
+
+          @media (min-width: 1024px) {
+            .energy-panel {
+          bottom: -1rem;
+          left: -1rem;
+          width: 240px;
+          padding: 1rem;
+          transform: rotate(-2deg);
+          transition: all 0.3s;
+        }
+
+        .hero-visual:hover .energy-panel {
+            transform: rotate(0deg);
+            transition: all 0.3s;
+        }
           }
 
           @media (max-width: 1024px) {
@@ -474,7 +476,8 @@ const Hero = ({ setActivePage }) => {
             .hero-visual:hover .character-img,
             .hero-visual:hover .mood-panel,
             .hero-visual:hover .energy-panel {
-              transform: none;
+              transform: none !important;
+              left: initial;
             }
 
             .mood-option:not(.active):hover {

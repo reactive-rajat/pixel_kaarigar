@@ -313,11 +313,24 @@ video {
   }
 }
 
-@media (hover: none) {
+@media (max-width: 768px) {
+  [class*='card']:hover,
+  [class*='chip']:hover,
+  [class*='btn']:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
   .primary-btn:hover,
   .secondary-btn:hover {
     transform: none;
     box-shadow: none;
+  }
+
+  .secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--border-color);
+    color: var(--text-dark);
   }
 
   .primary-btn:active,
