@@ -66,7 +66,7 @@ const Hero = ({ setActivePage }) => {
             <div className="character-container animate-float" onClick={handleHeroClick}>
               <div className="glow-overlay"></div>
               <img
-                src={`/src/assets/brand/avatar_${currentMood}.png`}
+                src={`/assets/brand/avatar_${currentMood}.png`}
                 alt="Man working on laptop"
                 className="character-img"
                 referrerPolicy="no-referrer"

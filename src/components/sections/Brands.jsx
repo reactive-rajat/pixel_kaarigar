@@ -2,27 +2,27 @@ import React from "react";
 
 const brandLogos = [
   {
-    logoImage: "/src/assets/clients_logo/asman_logo.png",
+    logoImage: "/assets/clients_logo/asman_logo.png",
     brandName: "ASMAN",
     brandUrl: "#",
   },
   {
-    logoImage: "/src/assets/clients_logo/bold_logo.png",
+    logoImage: "/assets/clients_logo/bold_logo.png",
     brandName: "BOLD",
     brandUrl: "#",
   },
   {
-    logoImage: "/src/assets/clients_logo/mpr_logo.png",
+    logoImage: "/assets/clients_logo/mpr_logo.png",
     brandName: "MyPerfectResume",
     brandUrl: "#",
   },
   {
-    logoImage: "/src/assets/clients_logo/unicef_logo.png",
+    logoImage: "/assets/clients_logo/unicef_logo.png",
     brandName: "UNICEF",
     brandUrl: "#",
   },
   {
-    logoImage: "/src/assets/clients_logo/unfpa_logo.png",
+    logoImage: "/assets/clients_logo/unfpa_logo.png",
     brandName: "UNFPA",
     brandUrl: "#",
   },
