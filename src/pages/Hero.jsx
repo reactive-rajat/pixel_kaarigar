@@ -261,6 +261,7 @@ const Hero = ({ setActivePage }) => {
             border-radius: var(--border-radius);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             z-index: 10;
+            background: rgba(0, 0, 0, 0.2);
           }
 
           .mood-panel {
@@ -296,7 +297,8 @@ const Hero = ({ setActivePage }) => {
           }
 
           .mood-option:not(.active):hover {
-            background: rgba(0, 0, 0, 0.3);
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.08);
           }
 
           .mood-option.active {

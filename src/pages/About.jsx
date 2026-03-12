@@ -408,6 +408,7 @@ const About = () => {
           border-radius: var(--border-radius);
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
           z-index: 10;
+          background: rgba(0, 0, 0, 0.2);
         }
 
         .mood-panel {
@@ -424,8 +425,6 @@ const About = () => {
 
         .mood-switcher {
           display: flex;
-          background: rgba(0, 0, 0, 0.2);
-          padding: 0.25rem;
           border-radius: var(--border-radius);
           gap: 0.25rem;
         }
@@ -437,13 +436,14 @@ const About = () => {
           padding: 0.5rem 1rem;
           font-size: 0.875rem;
           font-weight: 700;
-          border-radius: 0.75rem;
+          border-radius: var(--border-radius);
           color: rgba(255, 255, 255, 0.5);
           cursor: pointer;
           transition: all 0.2s;
         }
 
         .mood-option:not(.active):hover {
+          color: var(--text-dark);
           background: rgba(255, 255, 255, 0.08);
         }
 
