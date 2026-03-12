@@ -13,6 +13,42 @@ const CARD_MAX_SPAN = {
   full: { col: 2, row: 2 },
 };
 
+// Easy future config:
+// [firstCardId, secondCardId] => keep both cards in same column, different rows.
+const STACKED_CARD_PAIRS = [
+  [2, 3], [4, 5],
+];
+
+const STACKED_PAIR_LOOKUP = new Map(
+  STACKED_CARD_PAIRS.map(([firstId, secondId]) => [firstId, secondId]),
+);
+
+const applyStackedPairOrder = (projectList, stackedPairs) => {
+  const orderedProjects = [...projectList];
+
+  stackedPairs.forEach(([firstId, secondId]) => {
+    if (firstId === secondId) {
+      return;
+    }
+
+    const firstIndex = orderedProjects.findIndex((project) => project.id === firstId);
+    const secondIndex = orderedProjects.findIndex((project) => project.id === secondId);
+
+    if (firstIndex === -1 || secondIndex === -1 || secondIndex === firstIndex + 1) {
+      return;
+    }
+
+    const [secondProject] = orderedProjects.splice(secondIndex, 1);
+    const updatedFirstIndex = orderedProjects.findIndex(
+      (project) => project.id === firstId,
+    );
+
+    orderedProjects.splice(updatedFirstIndex + 1, 0, secondProject);
+  });
+
+  return orderedProjects;
+};
+
 const getSpanOptions = (size, columns) => {
   const maxSpan = CARD_MAX_SPAN[size] || CARD_MAX_SPAN.small;
   const maxCol = Math.min(maxSpan.col, columns);
@@ -42,7 +78,7 @@ const getSpanOptions = (size, columns) => {
   return [{ col: 1, row: 1 }];
 };
 
-const buildCardLayout = (projectList, columns) => {
+const buildCardLayout = (projectList, columns, stackedPairLookup = new Map()) => {
   const totalColumns = Math.max(1, columns);
   const occupied = [];
 
@@ -80,38 +116,96 @@ const buildCardLayout = (projectList, columns) => {
     }
   };
 
-  return projectList.map((project) => {
-    const spanOptions = getSpanOptions(project.size, totalColumns);
-    let placedLayout = null;
+  const findPlacement = (spanOptions) => {
     let row = 0;
 
-    while (!placedLayout) {
+    while (true) {
       for (let col = 0; col < totalColumns; col += 1) {
         for (const option of spanOptions) {
           if (!canPlace(row, col, option.col, option.row)) {
             continue;
           }
 
-          markPlaced(row, col, option.col, option.row);
-          placedLayout = {
-            columnStart: col + 1,
-            rowStart: row + 1,
+          return {
+            row,
+            col,
             colSpan: option.col,
             rowSpan: option.row,
           };
-          break;
-        }
-
-        if (placedLayout) {
-          break;
         }
       }
 
       row += 1;
     }
+  };
 
-    return { project, layout: placedLayout };
-  });
+  const findStackedPairPlacement = () => {
+    let row = 0;
+
+    while (true) {
+      for (let col = 0; col < totalColumns; col += 1) {
+        if (canPlace(row, col, 1, 1) && canPlace(row + 1, col, 1, 1)) {
+          return { row, col };
+        }
+      }
+
+      row += 1;
+    }
+  };
+
+  const laidOutProjects = [];
+
+  for (let index = 0; index < projectList.length; index += 1) {
+    const project = projectList[index];
+    const nextProject = projectList[index + 1];
+    const secondCardId = stackedPairLookup.get(project.id);
+    const isStackedPair = nextProject && secondCardId === nextProject.id;
+
+    if (isStackedPair) {
+      const pairPlacement = findStackedPairPlacement();
+
+      markPlaced(pairPlacement.row, pairPlacement.col, 1, 1);
+      laidOutProjects.push({
+        project,
+        layout: {
+          columnStart: pairPlacement.col + 1,
+          rowStart: pairPlacement.row + 1,
+          colSpan: 1,
+          rowSpan: 1,
+        },
+      });
+
+      markPlaced(pairPlacement.row + 1, pairPlacement.col, 1, 1);
+      laidOutProjects.push({
+        project: nextProject,
+        layout: {
+          columnStart: pairPlacement.col + 1,
+          rowStart: pairPlacement.row + 2,
+          colSpan: 1,
+          rowSpan: 1,
+        },
+      });
+
+      index += 1;
+      continue;
+    }
+
+    const spanOptions = getSpanOptions(project.size, totalColumns);
+    const placement = findPlacement(spanOptions);
+
+    markPlaced(placement.row, placement.col, placement.colSpan, placement.rowSpan);
+    laidOutProjects.push({
+      project,
+      layout: {
+        columnStart: placement.col + 1,
+        rowStart: placement.row + 1,
+        colSpan: placement.colSpan,
+        rowSpan: placement.rowSpan,
+      },
+    });
+  }
+
+  return laidOutProjects;
 };
 
 const Works = () => {
@@ -157,7 +251,14 @@ const Works = () => {
   }, []);
 
   const filteredProjects =
-    filter === "All" ? projects : projects.filter((p) => p.category === filter);
+    filter === "All"
+      ? projects
+      : projects.filter((project) => {
+          const categories = Array.isArray(project.category)
+            ? project.category
+            : [project.category];
+          return categories.includes(filter);
+        });
 
   const orderedProjects = useMemo(() => {
     const nextProjects = [...filteredProjects];
@@ -180,11 +281,11 @@ const Works = () => {
         ];
     }
 
-    return nextProjects;
+    return applyStackedPairOrder(nextProjects, STACKED_CARD_PAIRS);
   }, [filteredProjects]);
 
   const laidOutProjects = useMemo(
-    () => buildCardLayout(orderedProjects, columnCount),
+    () => buildCardLayout(orderedProjects, columnCount, STACKED_PAIR_LOOKUP),
     [orderedProjects, columnCount],
   );
 

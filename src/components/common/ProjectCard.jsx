@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+
+const VIDEO_FILE_PATTERN = /\.(mp4|webm|ogg|mov|m4v|mkv)(\?.*)?$/i;
+
+const isVideoPath = (path = "") => VIDEO_FILE_PATTERN.test(path);
 
 const ProjectCard = ({ project, layout }) => {
+  const [isVideoPreviewOpen, setIsVideoPreviewOpen] = useState(false);
   const isCompact = layout?.rowSpan === 1;
   const hasUrl = Boolean(project.url);
+  const categories = Array.isArray(project.category)
+    ? project.category
+    : [project.category];
+  const mediaSrc = project.image || "";
+  const canPreviewVideo = categories.includes("Motion") && isVideoPath(mediaSrc);
+  const categoryLabel = categories.filter(Boolean).join(" + ");
   const cardStyle = layout
     ? {
         gridColumn: `${layout.columnStart} / span ${layout.colSpan}`,
@@ -11,11 +22,33 @@ const ProjectCard = ({ project, layout }) => {
     : undefined;
 
   const openProject = () => {
+    if (canPreviewVideo) {
+      setIsVideoPreviewOpen(true);
+      return;
+    }
+
     if (!hasUrl) {
       return;
     }
 
     window.open(project.url, "_blank", "noopener,noreferrer");
+  };
+
+  const closeVideoPreview = () => {
+    setIsVideoPreviewOpen(false);
+  };
+
+  const handleCardClick = (event) => {
+    const target = event.target;
+
+    if (
+      target instanceof Element &&
+      target.closest(".video-preview-overlay")
+    ) {
+      return;
+    }
+
+    openProject();
   };
 
   const handleKeyDown = (event) => {
@@ -31,34 +64,52 @@ const ProjectCard = ({ project, layout }) => {
     <div
       className={`project-card ${project.size || ""} ${isCompact ? "compact" : ""}`}
       style={cardStyle}
-      role={hasUrl ? "link" : undefined}
-      tabIndex={hasUrl ? 0 : undefined}
-      onClick={openProject}
+      role={canPreviewVideo ? "button" : hasUrl ? "link" : undefined}
+      tabIndex={canPreviewVideo || hasUrl ? 0 : undefined}
+      onClick={handleCardClick}
       onKeyDown={handleKeyDown}
     >
       <div className="card-media">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="card-image"
-          referrerPolicy="no-referrer"
-        />
+        {canPreviewVideo ? (
+          <video
+            src={mediaSrc}
+            className="card-image card-video"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        ) : (
+          <img
+            src={project.image}
+            alt={project.title}
+            className="card-image"
+            referrerPolicy="no-referrer"
+          />
+        )}
         <div className="card-gradient"></div>
 
         {project.badge && <div className="card-badge">{project.badge}</div>}
 
         <div className="card-default">
           <div className="default-text">
-            <span className="default-category">{project.category}</span>
+            <span className="default-category">{categoryLabel}</span>
             <h3 className="default-title">{project.title}</h3>
           </div>
         </div>
 
         <div className="card-hover">
           <div className="hover-content">
-            <div className="hover-body">
-              <span className="hover-category">{project.category}</span>
-              <h3 className="hover-title">{project.title}</h3>
+            <div className="hover-top">
+              <div className="hover-heading">
+                <span className="hover-category">{categoryLabel}</span>
+                <h3 className="hover-title">{project.title}</h3>
+              </div>
+              <button className="hover-cta" aria-label="View Project" type="button">
+                <span className="material-symbols-outlined">arrow_outward</span>
+              </button>
+            </div>
+            <div className="hover-details">
               <p className="hover-desc">{project.description}</p>
               <div className="card-tags">
                 {project.tags.map((tag) => (
@@ -68,12 +119,37 @@ const ProjectCard = ({ project, layout }) => {
                 ))}
               </div>
             </div>
-            <button className="hover-cta" aria-label="View Project" type="button">
-              <span className="material-symbols-outlined">arrow_outward</span>
-            </button>
           </div>
         </div>
       </div>
+
+      {canPreviewVideo && isVideoPreviewOpen && (
+        <div
+          className="video-preview-overlay"
+          onClick={closeVideoPreview}
+          role="presentation"
+        >
+          <div
+            className="video-preview-container"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="video-preview-close"
+              type="button"
+              aria-label="Close Preview"
+              onClick={closeVideoPreview}
+            >
+              <span className="material-symbols-outlined">close</span>
+            </button>
+            <video
+              src={mediaSrc}
+              className="video-preview-player"
+              controls
+              playsInline
+            />
+          </div>
+        </div>
+      )}
 
       <style jsx="true">{`
         .project-card {
@@ -118,6 +194,10 @@ const ProjectCard = ({ project, layout }) => {
 
         .project-card:hover .card-image {
           transform: scale(1.06);
+        }
+
+        .card-video {
+          pointer-events: none;
         }
 
         .card-gradient {
@@ -182,7 +262,6 @@ const ProjectCard = ({ project, layout }) => {
           flex-direction: column;
           justify-content: flex-end;
           gap: 1rem;
-          padding: 2.2rem 0 0;
           border-radius: inherit;
           background: linear-gradient(
             180deg,
@@ -200,27 +279,42 @@ const ProjectCard = ({ project, layout }) => {
 
         .hover-content {
           display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 1.5rem;
+          flex-direction: column;
+          justify-content: flex-start;
+          gap: 1rem;
           padding: 1.6rem 1.8rem 1.8rem;
           border-radius: 0 0 28px 28px;
-          background: rgba(23, 14, 36, 0.72);
+          background: rgba(23, 14, 36, 0.75);
           border: 1px solid rgba(255, 255, 255, 0.08);
           box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
           backdrop-filter: blur(16px);
           width: 100%;
+          height: 100%;
+          max-height: 260px;
         }
 
         .project-card.compact .hover-content {
           gap: 1rem;
-          padding: 1.1rem 1.2rem 1.2rem;
         }
 
-        .hover-body {
+        .hover-top {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 1rem;
+        }
+
+        .hover-heading {
           display: flex;
           flex-direction: column;
           gap: 0.85rem;
+        }
+
+        .hover-details {
+          display: flex;
+          flex-direction: column;
+          gap: 0.85rem;
+          width: 100%;
         }
 
         .hover-category {
@@ -280,7 +374,7 @@ const ProjectCard = ({ project, layout }) => {
           display: -webkit-box;
           overflow: hidden;
           -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
+          -webkit-line-clamp: 3;
         }
 
         .hover-cta {
@@ -321,6 +415,55 @@ const ProjectCard = ({ project, layout }) => {
           letter-spacing: 0.08em;
           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
           z-index: 5;
+        }
+
+        .video-preview-overlay {
+          position: fixed;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem;
+          background: rgba(6, 4, 10, 0.8);
+          backdrop-filter: blur(4px);
+          z-index: 1200;
+        }
+
+        .video-preview-container {
+          position: relative;
+          width: min(900px, 95vw);
+          border-radius: 16px;
+          padding: 0.9rem;
+          background: rgba(11, 8, 18, 0.98);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .video-preview-player {
+          width: 100%;
+          max-height: 80vh;
+          border-radius: 12px;
+          background: #050407;
+        }
+
+        .video-preview-close {
+          position: absolute;
+          top: 1.3rem;
+          right: 1.3rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          background: rgba(10, 8, 16, 0.85);
+          color: #ffffff;
+          z-index: 2;
+        }
+
+        .video-preview-close .material-symbols-outlined {
+          font-size: 1.15rem;
         }
 
         @media (max-width: 768px) {

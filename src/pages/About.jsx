@@ -1,10 +1,24 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import Brands from '../components/sections/Brands';
 import StatusBadge from '../components/common/StatusBadge';
 import SectionHeading from '../components/common/SectionHeading';
 
 const About = () => {
   const [currentMood, setCurrentMood] = useState('relaxed');
+  const navigate = useNavigate();
+  const [expandedTimelineItems, setExpandedTimelineItems] = useState({
+    freelance: false,
+    bold: false,
+    avalon: false,
+  });
+
+  const toggleTimelineDetails = (itemKey) => {
+    setExpandedTimelineItems((prev) => ({
+      ...prev,
+      [itemKey]: !prev[itemKey],
+    }));
+  };
 
   return (
     <section className="about-page container">
@@ -88,27 +102,82 @@ const About = () => {
         />
         <div className="timeline-list">
           <div className="timeline-item">
-            <div className="timeline-dot"></div>
+            <div className="timeline-dot">
+              <span className="material-symbols-outlined timeline-dot-icon">rocket_launch</span>
+            </div>
             <div className="timeline-content">
-              <span className="timeline-year">2018</span>
-              <h4>Discovered Flexbox. Cried. Learned to love it.</h4>
-              <p>Spent 4 hours trying to center a div. Humbling times.</p>
+              <span className="timeline-year start">Now</span>
+              <span className="timeline-year end">May 2025</span>
+              <h4>Independent UI/UX & Frontend Developer | Freelance </h4>
+              <div id="timeline-details-freelance" className={expandedTimelineItems.freelance ? 'timeline-details expanded' : 'timeline-details'}>
+                <ul>
+                  <li className="timeline-list-item"><p><span className="main-text">Product Development:</span> Designing and building responsive web applications and a personal portfolio using React, Tailwind CSS, and AI-assisted workflows.</p></li>
+                  <li className="timeline-list-item"><p><span className="main-text">Client Consulting: </span> Transforming complex requirements into high-fidelity Figma designs and production-ready UI code with 100% design fidelity.</p></li>
+                </ul>
+              </div>
+              <button
+                type="button"
+                className="timeline-toggle"
+                onClick={() => toggleTimelineDetails('freelance')}
+                aria-expanded={expandedTimelineItems.freelance}
+                aria-controls="timeline-details-freelance"
+              >
+                {expandedTimelineItems.freelance ? 'Show less' : 'Read more'}
+              </button>
             </div>
           </div>
           <div className="timeline-item">
-            <div className="timeline-dot"></div>
+            <div className="timeline-dot">
+              <span className="material-symbols-outlined timeline-dot-icon">grid_view</span>
+            </div>
             <div className="timeline-content">
-              <span className="timeline-year">2020</span>
-              <h4>First Freelance Gig.</h4>
-              <p>Landed my first real client and shipped a live site.</p>
+              <span className="timeline-year start">September 2021</span>
+              <span className="timeline-year end">May 2025</span>
+              <h4>Senior Web Designer / UI Developer | BOLD </h4>
+              <div id="timeline-details-bold" className={expandedTimelineItems.bold ? 'timeline-details expanded' : 'timeline-details'}>
+                <ul>
+                  <li className="timeline-list-item"><p>Led the UI/UX migration for 'ResumeHelp', creating a modern app interface that significantly improved user metrics.</p></li>
+                  <li className="timeline-list-item"><p>Acted as the technical bridge between Creative & Dev teams to ensure 100% pixel-perfect implementation of design systems.</p></li>
+                  <li className="timeline-list-item"><p>Developed the 'Bold India' site independently, adapting global design standards for local performance</p></li>
+                  <li className="timeline-list-item"><p>Managed design reviews for internal teams and external agencies to maintain brand consistency across products.</p></li>
+                </ul>
+              </div>
+              <button
+                type="button"
+                className="timeline-toggle"
+                onClick={() => toggleTimelineDetails('bold')}
+                aria-expanded={expandedTimelineItems.bold}
+                aria-controls="timeline-details-bold"
+              >
+                {expandedTimelineItems.bold ? 'Show less' : 'Read more'}
+              </button>
             </div>
           </div>
           <div className="timeline-item">
-            <div className="timeline-dot"></div>
+            <div className="timeline-dot">
+              <span className="material-symbols-outlined timeline-dot-icon">code</span>
+            </div>
             <div className="timeline-content">
-              <span className="timeline-year">Now</span>
-              <h4>Building systems &amp; obsessing over details.</h4>
-              <p>Creating scalable design systems and full-stack products.</p>
+              <span className="timeline-year start">January 2019</span>
+              <span className="timeline-year end">September 2021</span>
+              <h4>UI Designer / Developer | Avalon Infosys</h4>
+              <div id="timeline-details-avalon" className={expandedTimelineItems.avalon ? 'timeline-details expanded' : 'timeline-details'}>
+                <ul>
+                  <li className="timeline-list-item"><p>Designed data-driven web platforms for international NGOs and UN agencies across 130+ countries.</p></li>
+                  <li className="timeline-list-item"><p>Engineered reusable HTML/SCSS markups, significantly reducing development cycles and UI regressions.</p></li>
+                  <li className="timeline-list-item"><p>Built mobile-first layouts ensuring seamless performance and accessibility for a global user base.</p></li>
+                  <li className="timeline-list-item"><p>Created visual branding assets, including iconography and digital illustrations for diverse project needs.</p></li>
+                </ul>
+              </div>
+              <button
+                type="button"
+                className="timeline-toggle"
+                onClick={() => toggleTimelineDetails('avalon')}
+                aria-expanded={expandedTimelineItems.avalon}
+                aria-controls="timeline-details-avalon"
+              >
+                {expandedTimelineItems.avalon ? 'Show less' : 'Read more'}
+              </button>
             </div>
           </div>
         </div>
@@ -167,6 +236,22 @@ const About = () => {
             <div className="toolkit-pills">
               <span className="tool-pill">
                 <span className="material-symbols-outlined">draw</span>
+                React.js
+              </span>
+              <span className="tool-pill">
+                <span className="material-symbols-outlined">draw</span>
+                Tailwind
+              </span>
+              <span className="tool-pill">
+                <span className="material-symbols-outlined">draw</span>
+                Javascript
+              </span>
+              <span className="tool-pill">
+                <span className="material-symbols-outlined">draw</span>
+                HTML/CSS
+              </span>
+              <span className="tool-pill">
+                <span className="material-symbols-outlined">draw</span>
                 UX/UI Design
               </span>
               <span className="tool-pill">
@@ -182,33 +267,35 @@ const About = () => {
                 Visual Design
               </span>
             </div>
+            <p style={{opacity: '0.35', textAlign: 'center', marginTop: '1rem', fontWeight: '400'}}>and many more...</p>
           </div>
           <div className="toolkit-card content-card">
             <div className="toolkit-header">
               <span className="material-symbols-outlined">workspace_premium</span>
               <div>
                 <p className="toolkit-eyebrow">Certifications</p>
-                <h3>Credentials &amp; badges</h3>
+                <h3>Courses &amp; Certifications</h3>
               </div>
             </div>
             <ul className="toolkit-list">
               <li>
                 <span className="material-symbols-outlined">verified</span>
-                Google UX Design Professional
+                Meta - React
               </li>
               <li>
                 <span className="material-symbols-outlined">verified</span>
-                Framer Certified Partner
+                Meta - Programming with Javascript
               </li>
               <li>
                 <span className="material-symbols-outlined">verified</span>
-                Adobe XD Expert
+                Uxcel - UX Design Foundation + Typography
               </li>
               <li>
                 <span className="material-symbols-outlined">verified</span>
-                Interaction Design Foundation
+                Uxcel - Color Psychology + Wireframing + Accessibility
               </li>
             </ul>
+            <p style={{opacity: '0.35', textAlign: 'center', marginTop: '1rem', fontWeight: '400'}}>and many more...</p>
           </div>
         </div>
       </div>
@@ -219,48 +306,60 @@ const About = () => {
           label="Testimonials"
           title={
             <>
-              Kind Words from <span className="primary-text">Awesome Humans</span>
+              What People Say<span className="primary-text"> About Me</span>
             </>
           }
-          description="A few kind notes from people I've partnered with recently."
+          description="A few kind words from people I've worked with."
         />
         <div className="testimonials-grid">
           <div className="testimonial-card content-card">
             <p className="testimonial-text">
-              “Alex is a rare breed of designer who actually understands how code
-              works. Collaboration became effortless.”
+              “I had the pleasure of working with Rajat and was consistently impressed by his talent, versatility, and reliability.”
             </p>
             <div className="testimonial-author">
-              <div className="author-avatar">JD</div>
+              <img
+                className="author-avatar"
+                src="src/assets/testimonials/danielle_bain_thumbnail.jpeg"
+                alt="John Doe"
+                loading="lazy"
+              />
               <div>
-                <p className="author-name">John Doe</p>
-                <p className="author-role">Product Manager @ TechCorp</p>
+                <p className="author-name">Danielle Bain</p>
+                <p className="author-role">Creative Director @ BOLD</p>
               </div>
             </div>
           </div>
           <div className="testimonial-card content-card highlighted">
             <p className="testimonial-text">
-              “The attention to detail in the interactions is next level. Highly
-              recommended.”
+              “Rajat has a remarkable ability to translate complex concepts into intuitive, user-friendly designs.”
             </p>
             <div className="testimonial-author">
-              <div className="author-avatar">JS</div>
+              <img
+                className="author-avatar"
+                src="src/assets/testimonials/abhishek_kumar_thumbnail.jpeg"
+                alt="Jane Smith"
+                loading="lazy"
+              />
               <div>
-                <p className="author-name">Jane Smith</p>
-                <p className="author-role">Founder @ StartupX</p>
+                <p className="author-name">Abhishek Kumar</p>
+                <p className="author-role">Director – UI @ BOLD</p>
               </div>
             </div>
           </div>
           <div className="testimonial-card content-card">
             <p className="testimonial-text">
-              “The attention to detail in the interactions is next level. Highly
-              recommended.”
+              “Rajat could understand complex briefs and translate them into clean, effective, and visually engaging designs.”
             </p>
             <div className="testimonial-author">
-              <div className="author-avatar">JS</div>
+              <img
+                className="author-avatar"
+                src="src/assets/testimonials/jeeveeta_agnihotri_thumbnail.jpeg"
+                alt="Jane Smith"
+                loading="lazy"
+              />
               <div>
-                <p className="author-name">Jane Smith</p>
-                <p className="author-role">Founder @ StartupX</p>
+                <p className="author-name">Jeeveeta Soobarah Agnihotri</p>
+                <p className="author-role">Chief Programme Officer</p>
               </div>
             </div>
           </div>
@@ -308,7 +407,7 @@ const About = () => {
             }
             description="Tell me about the vision and I'll help make it real."
           />
-          <button className="primary-btn">
+          <button className="primary-btn" onClick={() => navigate('/contact')}>
             <span>Let&apos;s Talk</span>
             <span className="material-symbols-outlined">arrow_forward</span>
           </button>
@@ -656,7 +755,7 @@ const About = () => {
           flex-direction: column;
           align-items: center;
           text-align: center;
-          gap: 1.5rem;
+          gap: 3rem;
         }
 
         .section-label {
@@ -671,6 +770,7 @@ const About = () => {
           font-weight: 700;
           letter-spacing: 0.08em;
           text-transform: uppercase;
+          margin-bottom: 0.8rem;
         }
 
         .section-description {
@@ -678,7 +778,7 @@ const About = () => {
           font-size: 1.1rem;
           color: var(--color-text-muted);
           line-height: 1.7;
-          margin: 0;
+          margin-top: 0.65rem;
         }
 
         .content-card {
@@ -893,12 +993,10 @@ const About = () => {
           width: 46px;
           height: 46px;
           border-radius: 50%;
-          background: linear-gradient(135deg, rgba(127, 19, 236, 0.9), rgba(173, 146, 201, 0.85));
-          color: #fff;
-          font-weight: 800;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          object-fit: cover;
+          display: block;
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          background: rgba(255, 255, 255, 0.05);
         }
 
         .author-name {
@@ -919,12 +1017,12 @@ const About = () => {
         .timeline-list {
           display: flex;
           flex-direction: column;
-          gap: 2rem;
+          gap: 3rem;
           position: relative;
           margin: 0 auto;
           width: 100%;
-          max-width: 600px;
-          margin-top: 2rem;
+          max-width: 680px;
+          margin-top: 0.25rem;
           text-align: left;
         }
 
@@ -946,23 +1044,68 @@ const About = () => {
           width: 3.5rem;
           height: 3.5rem;
           border-radius: 50%;
-          background: var(--color-primary);
           background: #261933;
           position: absolute;
           left: 0rem;
           top: 0rem;
           box-shadow: inset 0 0 0 2px #4D3267;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .timeline-dot-icon {
+          font-size: 1.4rem;
+          color: rgba(255, 255, 255, 0.92);
         }
 
         .timeline-year {
           display: inline-block;
+          position: relative;
           padding: 0.2rem 0.7rem;
           border-radius: var(--radius-pill);
-          background: rgba(127, 19, 236, 0.15);
-          color: var(--color-primary);
-          font-weight: 700;
+          background: #261933;
+          color: rgba(255, 255, 255, 0.5);
+          font-weight: 400;
           font-size: 0.75rem;
           margin-bottom: 0.5rem;
+          border: 2px solid #4D3267;
+        }
+
+        .timeline-year.start:after {
+          content: '-';
+          position: absolute;
+          right: -0.8rem;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        .timeline-year.end {
+          margin-left: 1rem;
+        }
+
+        .timeline-list-item {
+          position: relative;
+          margin-left: 1.25rem;
+        }
+
+        .timeline-list-item:not(:last-child) {
+          margin-bottom: 0.5rem;
+        }
+
+        .timeline-list-item:before {
+          content: '';
+          position: absolute;
+          width: 0.4rem;
+          height: 0.4rem;
+          background: var(--color-primary);
+          border-radius: 50%;
+          left: -1rem;
+          top: 0.6rem;
+        }
+
+        .timeline-list-item .main-text{
+          color: var(--color-text);
         }
 
         .timeline-content{
@@ -971,11 +1114,45 @@ const About = () => {
 
         .timeline-content h4 {
           font-size: 1.2rem;
-          margin-bottom: 0.4rem;
+          margin-bottom: 0.6rem;
+          margin-top: 0.25rem;
         }
 
         .timeline-content p {
           color: var(--color-text-muted);
+        }
+
+        .timeline-details {
+          max-height: 3rem;
+          overflow: hidden;
+          transition: max-height 0.24s ease;
+        }
+
+        .timeline-details.expanded {
+          max-height: 40rem;
+        }
+
+        .timeline-toggle {
+          margin-top: 0.8rem;
+          padding: 0;
+          border: none;
+          background: transparent;
+          color: var(--color-primary);
+          font-size: 0.88rem;
+          font-weight: 600;
+          line-height: 1;
+          cursor: pointer;
+          font-family: inherit;
+        }
+
+        .timeline-toggle:hover {
+          color: #fff;
+        }
+
+        .timeline-toggle:focus-visible {
+          outline: 2px solid var(--color-primary);
+          outline-offset: 3px;
+          border-radius: 3px;
         }
 
         .dual-grid {
