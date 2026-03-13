@@ -319,8 +319,8 @@ const About = () => {
             <div className="testimonial-author">
               <img
                 className="author-avatar"
-                src="src/assets/testimonials/danielle_bain_thumbnail.jpeg"
-                alt="John Doe"
+                src="/assets/testimonials/danielle_bain_thumbnail.jpeg"
+                alt="Denielle Bain"
                 loading="lazy"
               />
               <div>
@@ -336,8 +336,8 @@ const About = () => {
             <div className="testimonial-author">
               <img
                 className="author-avatar"
-                src="src/assets/testimonials/abhishek_kumar_thumbnail.jpeg"
-                alt="Jane Smith"
+                src="/assets/testimonials/abhishek_kumar_thumbnail.jpeg"
+                alt="Abhishek Kumar"
                 loading="lazy"
               />
               <div>
@@ -353,8 +353,8 @@ const About = () => {
             <div className="testimonial-author">
               <img
                 className="author-avatar"
-                src="src/assets/testimonials/jeeveeta_agnihotri_thumbnail.jpeg"
-                alt="Jane Smith"
+                src="/assets/testimonials/jeeveeta_agnihotri_thumbnail.jpeg"
+                alt="Jeeveeta Soobarah Agnihotri"
                 loading="lazy"
               />
               <div>
