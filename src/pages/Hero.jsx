@@ -170,7 +170,7 @@ const Hero = ({ setActivePage }) => {
           }
 
           .skill-item{
-            background: rgba(38, 25, 51, 0.8);
+            background: var(--color-bg-soft);
             border: 1px solid var(--border-color);
             border-radius: 999px;
             padding: 0.2rem 0.7rem;

@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
+/* =========================
+   DEFAULT THEME (DARK)
+========================= */
+
 :root {
   /* Theme Colors */
   --color-bg-main: #191022;
-  --color-bg-soft: #0f0b12;
+  --color-bg-soft: rgba(107, 10, 204, 0.2);
   --color-card: #14141a;
   --color-card-alt: #101018;
   --color-primary: #7f13ec;
@@ -63,6 +67,30 @@
   --font-family: var(--font-body);
 }
 
+
+/* =========================
+   LIGHT THEME
+========================= */
+
+[data-theme="light"] {
+
+  --color-bg-main: #d9cee6;
+  --color-bg-soft: rgba(239, 229, 255, 0.3);
+
+  --color-card: #ffffff;
+  --color-card-alt: #f0ebf7;
+
+  --color-primary: #7f13ec;
+  --color-primary-glow: rgba(127, 19, 236, 0.18);
+
+  --color-text: #1a1122;
+  --color-text-muted: #62586f;
+
+  --color-border: rgba(77, 50, 103, 0.16);
+  --color-border-light: rgba(77, 50, 103, 0.08);
+
+}
+
 /* Base Styles */
 * {
   margin: 0;
@@ -102,20 +130,9 @@ ul {
 
 /* Glassmorphism Utility */
 .glass-panel {
-  background: rgba(38, 25, 51, 0.8);
+  background: var(--color-bg-soft);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
-}
-
-.glass-panel-dark {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border-color);
-}
-
-body.light .glass-panel {
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid var(--border-color-light);
 }
 
 /* Layout Utilities */

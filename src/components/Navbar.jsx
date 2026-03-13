@@ -45,7 +45,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
         <div className="nav-actions">
           <button className="theme-toggle" onClick={toggleDarkMode}>
             <span className="material-symbols-outlined">
-              {darkMode ? 'light_mode' : 'dark_mode'}
+              {darkMode ? 'dark_mode' : 'light_mode'}
             </span>
           </button>
           <button

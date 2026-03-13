@@ -29,12 +29,7 @@ const AppShell = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Apply theme to body
-    if (darkMode) {
-      document.body.classList.remove('light');
-    } else {
-      document.body.classList.add('light');
-    }
+    document.documentElement.dataset.theme = darkMode ? 'dark' : 'light';
   }, [darkMode]);
 
   const toggleDarkMode = () => {
@@ -64,7 +59,7 @@ const AppShell = () => {
   }, [location.pathname, activePage]);
 
   return (
-    <div className={`app-wrapper ${darkMode ? 'dark' : 'light'}`}>
+    <div className="app-wrapper">
       <Navbar 
         activePage={activePage} 
         setActivePage={handlePageChange} 
@@ -88,7 +83,6 @@ const AppShell = () => {
           min-height: 100vh;
           display: flex;
           flex-direction: column;
-          background: var(--background-dark);
           color: var(--text-dark);
           transition: background 0.3s, color 0.3s;
         }
