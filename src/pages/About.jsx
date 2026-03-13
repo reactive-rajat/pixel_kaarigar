@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Brands from '../components/sections/Brands';
+import HeroVisual from '../components/common/HeroVisual';
 import StatusBadge from '../components/common/StatusBadge';
 import SectionHeading from '../components/common/SectionHeading';
 
 const About = () => {
-  const [currentMood, setCurrentMood] = useState('relaxed');
   const navigate = useNavigate();
   const [expandedTimelineItems, setExpandedTimelineItems] = useState({
     freelance: false,
@@ -44,49 +44,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="hero-visual">
-          <div className="character-container animate-float">
-            <div className="glow-overlay"></div>
-            <img
-                src={`/assets/brand/avatar_${currentMood}.png`}
-                alt="Man working on laptop"
-                className="character-img"
-                referrerPolicy="no-referrer"
-              />
-          </div>
-
-          <div className="hud-panel mood-panel glass-panel">
-            <div className="mood-switcher">
-              <div
-                className={currentMood === 'relaxed' ? 'mood-option active' : 'mood-option'}
-                onClick={() => setCurrentMood('relaxed')}
-              >
-                <span className="material-symbols-outlined">sentiment_satisfied</span>
-                <span>Relaxed</span>
-              </div>
-              <div
-                className={currentMood === 'focused' ? 'mood-option active' : 'mood-option'}
-                onClick={() => setCurrentMood('focused')}
-              >
-                <span className="material-symbols-outlined">bolt</span>
-                <span>Focused</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="hud-panel energy-panel glass-panel">
-            <div className="energy-header">
-              <div className="energy-label">
-                <span className="material-symbols-outlined">battery_charging_full</span>
-                <span>Energy Level</span>
-              </div>
-              <span className="energy-value">94%</span>
-            </div>
-            <div className="energy-bar-bg">
-              <div className="energy-bar-fill" style={{ width: '94%' }}></div>
-            </div>
-          </div>
-        </div>
+        <HeroVisual defaultMood="relaxed" />
       </div>
 
       {/* Timeline */}
@@ -445,11 +403,13 @@ const About = () => {
         }
 
         .focus-text{
-          background: rgba(38, 25, 51, 0.8);
-          border: 1px solid var(--border-color);
+          background: var(--color-bg-soft);
+          border: 1px solid var(--color-secondary);
+          color: var(--color-secondary);
           border-radius: 999px;
           padding: 0.25rem 0.7rem 0.35rem 0.4rem;
-          font-size: 0.95rem;
+          font-size: 0.9rem;
+          font-weight: 500;
           margin: 0 0.2rem;
         }
 
@@ -465,128 +425,6 @@ const About = () => {
           flex-wrap: wrap;
         }
 
-        .hero-visual {
-          position: relative;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .character-container {
-          position: relative;
-          width: 100%;
-          max-width: 450px;
-          aspect-ratio: 1;
-          border-radius: var(--border-radius-xl);
-          overflow: hidden;
-        }
-
-        .glow-overlay {
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle at center, var(--primary-glow), transparent 70%);
-          opacity: 0.4;
-        }
-
-        .character-img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          position: relative;
-          z-index: 1;
-        }
-
-        .hud-panel {
-          position: absolute;
-          padding: 0.5rem;
-          border-radius: var(--border-radius);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-          z-index: 10;
-          background: rgba(0, 0, 0, 0.2);
-        }
-
-        .mood-panel {
-          top: 0rem;
-          right: -1rem;
-          transform: rotate(3deg);
-          transition: all 0.3s;
-        }
-
-        .hero-visual:hover .mood-panel {
-            transform: rotate(0deg);
-            transition: all 0.3s;
-        }
-
-        .mood-switcher {
-          display: flex;
-          border-radius: var(--border-radius);
-          gap: 0.25rem;
-        }
-
-        .mood-option {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.5rem 1rem;
-          font-size: 0.875rem;
-          font-weight: 700;
-          border-radius: var(--border-radius);
-          color: rgba(255, 255, 255, 0.5);
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-
-        .mood-option:not(.active):hover {
-          color: var(--text-dark);
-          background: rgba(255, 255, 255, 0.08);
-        }
-
-        .mood-option.active {
-          background: var(--primary-color);
-          color: white;
-        }
-
-        .energy-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 0.75rem;
-        }
-
-        .energy-label {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 0.75rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          color: var(--color-text-muted);
-        }
-
-        .energy-label .material-symbols-outlined {
-          color: var(--primary-color);
-          font-size: 1rem;
-        }
-
-        .energy-value {
-          font-size: 0.75rem;
-          font-weight: 700;
-          color: var(--primary-color);
-        }
-
-        .energy-bar-bg {
-          height: 0.5rem;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: var(--border-radius-full);
-          overflow: hidden;
-        }
-
-        .energy-bar-fill {
-          height: 100%;
-          background: linear-gradient(to right, var(--primary-color), #ad92c9);
-          border-radius: var(--border-radius-full);
-        }
-
         .brands-section {
           text-align: center;
         }
@@ -595,8 +433,8 @@ const About = () => {
           font-size: 0.9rem;
           text-transform: uppercase;
           letter-spacing: 0.18em;
-          color: rgba(255, 255, 255, 0.75);
-          margin: 4rem 0 0.5rem;
+          color: var(--color-text);
+          margin: 2rem 0 1.25rem 0;
           font-weight: 800;
         }
 
@@ -625,16 +463,6 @@ const About = () => {
           height: 100%;
           z-index: 2;
           pointer-events: none;
-        }
-
-        .brands-marquee::before {
-          left: 0;
-          background: linear-gradient(90deg, rgba(7, 6, 10, 0.95), transparent);
-        }
-
-        .brands-marquee::after {
-          right: 0;
-          background: linear-gradient(270deg, rgba(7, 6, 10, 0.95), transparent);
         }
 
         .brands-track {
@@ -680,7 +508,7 @@ const About = () => {
           font-size: 0.8rem;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: rgba(255, 255, 255, 0.55);
+          color: var(--color-text-muted);
           font-weight: 400;
         }
 
@@ -696,22 +524,6 @@ const About = () => {
             transform: translateX(-50%);
           }
         }
-
-        @media (min-width: 1024px) {
-            .energy-panel {
-          bottom: -1rem;
-          left: -1rem;
-          width: 240px;
-          padding: 1rem;
-          transform: rotate(-2deg);
-          transition: all 0.3s;
-        }
-
-        .hero-visual:hover .energy-panel {
-            transform: rotate(0deg);
-            transition: all 0.3s;
-        }
-          }
 
         @media (max-width: 1024px) {
           .brands-track {
@@ -759,9 +571,10 @@ const About = () => {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          padding: 0.35rem 0.9rem;
+          padding: 0.5rem 1rem 0.4rem 1rem;
           border-radius: 999px;
-          background: rgba(127, 19, 236, 0.18);
+          background: var(--color-bg-soft);
+          border: 1px solid color-mix(in srgb, var(--color-secondary) 10%, transparent);
           color: var(--color-primary);
           font-size: 0.7rem;
           font-weight: 700;
@@ -804,8 +617,8 @@ const About = () => {
 
         .deliver-card {
           border-radius: 22px;
-          background: rgba(10, 8, 16, 0.95);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: var(--color-card);
+          border: 1px solid var(--color-border);
           text-align: left;
           display: flex;
           flex-direction: column;
@@ -826,7 +639,7 @@ const About = () => {
         }
 
         .deliver-card p {
-          color: rgba(255, 255, 255, 0.6);
+          color: var(--color-text-muted);
           line-height: 1.6;
         }
 
@@ -850,8 +663,8 @@ const About = () => {
         }
 
         .toolkit-card {
-          background: rgba(10, 8, 16, 0.95);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: var(--color-card);
+          border: 1px solid var(--color-border);
           border-radius: 22px;
           padding: 2.5rem;
           text-align: left;
@@ -884,12 +697,14 @@ const About = () => {
           color: var(--color-text-muted);
           text-transform: uppercase;
           margin-bottom: 0.4rem;
+          text-align: center;
         }
 
         .toolkit-card h3 {
           font-size: 1.2rem;
           font-weight: 800;
           margin: 0;
+          text-align: center;
         }
 
         .toolkit-pills {
@@ -899,21 +714,21 @@ const About = () => {
         }
 
         .tool-pill {
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: var(--color-bg-soft);
+          border: 1px solid color-mix(in srgb, var(--color-secondary) 10%, transparent);
+          color: var(--color-secondary);
           border-radius: 16px;
           padding: 0.65rem 0.9rem;
           font-size: 0.85rem;
           font-weight: 600;
-          background: rgba(255, 255, 255, 0.04);
           display: inline-flex;
           gap: 0.5rem;
           align-items: center;
-          color: rgba(255, 255, 255, 0.85);
         }
 
         .tool-pill .material-symbols-outlined {
-          font-size: 1rem;
-          color: var(--color-primary);
+          font-size: 1.35rem;
+          color: var(--color-secondary);
         }
 
         .toolkit-list {
@@ -943,16 +758,16 @@ const About = () => {
           gap: 0.75rem;
           padding: 0.7rem 0.9rem;
           border-radius: 16px;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          background: rgba(255, 255, 255, 0.04);
-          color: rgba(255, 255, 255, 0.8);
+          background: var(--color-bg-soft);
+          border: 1px solid color-mix(in srgb, var(--color-secondary) 10%, transparent);
+          color: var(--color-secondary);
           font-size: 0.9rem;
           font-weight: 600;
         }
 
         .toolkit-list .material-symbols-outlined {
-          font-size: 1.1rem;
-          color: var(--color-primary);
+          font-size: 1.35rem;
+          color: var(--color-secondary);
         }
 
         .testimonials-grid {
@@ -964,8 +779,8 @@ const About = () => {
         }
 
         .testimonial-card {
-          background: rgba(10, 8, 16, 0.95);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: var(--color-card);
+          border: 1px solid var(--color-border);
           border-radius: 22px;
           padding: 2rem;
           display: flex;
@@ -977,11 +792,14 @@ const About = () => {
 
         .testimonial-card.highlighted {
           background: var(--color-primary);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        html[data-theme="light"] .testimonial-card.highlighted{
+          background: var(--color-bg-soft);
         }
 
         .testimonial-text {
-          color: rgba(255, 255, 255, 0.82);
+          color: var(--color-text-muted);
           font-size: 1rem;
           line-height: 1.75;
           height: 87px;
@@ -990,6 +808,7 @@ const About = () => {
         .testimonial-card.highlighted .testimonial-text{
           font-size: 1.15rem;
           line-height: 1.65;
+          color: var(--color-text);
         }
 
         .testimonial-author {
@@ -1004,8 +823,6 @@ const About = () => {
           border-radius: 50%;
           object-fit: cover;
           display: block;
-          border: 1px solid rgba(255, 255, 255, 0.16);
-          background: rgba(255, 255, 255, 0.05);
         }
 
         .author-name {
@@ -1014,7 +831,7 @@ const About = () => {
         }
 
         .author-role {
-          color: rgba(255, 255, 255, 0.55);
+          color: var(--color-text-muted);
           font-size: 0.85rem;
         }
 
@@ -1042,7 +859,8 @@ const About = () => {
           top: 0;
           bottom: 0;
           width: 2px;
-          background: rgba(255, 255, 255, 0.08);
+          background: var(--color-bg-soft);
+          z-index: 0;
         }
 
         .timeline-item {
@@ -1053,11 +871,10 @@ const About = () => {
           width: 3.5rem;
           height: 3.5rem;
           border-radius: 50%;
-          background: #261933;
+          background: var(--color-secondary);
           position: absolute;
           left: 0rem;
           top: 0rem;
-          box-shadow: inset 0 0 0 2px #4D3267;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -1065,20 +882,21 @@ const About = () => {
 
         .timeline-dot-icon {
           font-size: 1.4rem;
-          color: rgba(255, 255, 255, 0.92);
+          color: white;
         }
 
         .timeline-year {
           display: inline-block;
           position: relative;
-          padding: 0.2rem 0.7rem;
           border-radius: var(--radius-pill);
-          background: #261933;
-          color: rgba(255, 255, 255, 0.5);
-          font-weight: 400;
-          font-size: 0.75rem;
+          background: var(--color-bg-soft);
+          font-weight: 500;
           margin-bottom: 0.5rem;
-          border: 2px solid #4D3267;
+          border: 1px solid color-mix(in srgb, var(--color-secondary) 10%, transparent);
+          color: var(--color-secondary);
+          padding: 0.2rem 0.7rem;
+          font-size: 0.8rem;
+          white-space: nowrap;
         }
 
         .timeline-year.start:after {
@@ -1155,7 +973,7 @@ const About = () => {
         }
 
         .timeline-toggle:hover {
-          color: #fff;
+          color: white;
         }
 
         .timeline-toggle:focus-visible {
@@ -1175,22 +993,14 @@ const About = () => {
           display: flex;
           flex-direction: column;
           gap: 1.2rem;
-        }
-
-        .dual-card.visualist {
-          background: linear-gradient(135deg, #1a1a1a, #0b0b10);
-        }
-
-        .dual-card.architect {
-          background: linear-gradient(135deg, #0b0b10, #1a1a1a);
-          border-color: rgba(127, 19, 236, 0.4);
+          background: var(--color-card);
         }
 
         .card-tag {
           font-size: 0.7rem;
           letter-spacing: 0.25em;
           text-transform: uppercase;
-          color: var(--color-primary);
+          color: var(--color-secondary);
           font-weight: 800;
         }
 
@@ -1238,17 +1048,22 @@ const About = () => {
           gap: 1rem;
           padding: 1.25rem 2.5rem;
           background: white;
-          color: var(--background-dark);
+          color: var(--color-primary);
           border-radius: var(--border-radius-full);
           font-weight: 700;
           font-size: 1.125rem;
           transition: all 0.3s;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 20px 40px var(--color-primary-glow);
         }
 
         .cta-btn:hover {
           transform: scale(1.05);
           box-shadow: 0 20px 60px var(--primary-glow);
+        }
+
+        html[data-theme="light"] .cta-btn {
+          background: var(--color-primary);
+          color: white;
         }
 
         @media (max-width: 1024px) {
@@ -1308,28 +1123,6 @@ const About = () => {
           .about-actions .secondary-btn {
             justify-content: center;
             width: 100%;
-          }
-
-          .character-container {
-            max-width: 360px;
-          }
-
-          .mood-panel {
-            right: 0;
-            top: -0.5rem;
-            transform: none;
-          }
-
-          .mood-option {
-            font-size: 0.8rem;
-            padding: 0.45rem 0.7rem;
-          }
-
-          .energy-panel {
-            width: min(82vw, 220px);
-            left: 0;
-            bottom: -0.5rem;
-            transform: none;
           }
 
           .content-section {
@@ -1434,16 +1227,10 @@ const About = () => {
             display: inline-flex;
             align-items: center;
             font-size: 0.85rem;
-            color: var(--color-text);
             padding-top: 0.1rem;
             padding-bottom: 0.2rem;
           }
 
-          .energy-panel {
-            width: min(86vw, 200px);
-            left: 50%;
-            transform: translateX(-50%);
-          }
         }
 
         @media (hover: none) {
@@ -1453,13 +1240,6 @@ const About = () => {
             border-color: var(--color-border);
           }
 
-          .hero-visual:hover .mood-panel,
-          .hero-visual:hover .energy-panel {
-            transform: none !important;
-            left: initial;
-          }
-
-          .mood-option:not(.active):hover,
           .timeline-toggle:hover {
             background: transparent;
             color: var(--color-primary);

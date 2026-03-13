@@ -75,7 +75,7 @@ function Brands() {
           font-size: 0.9rem;
           text-transform: uppercase;
           letter-spacing: 0.18em;
-          color: rgba(255, 255, 255, 0.75);
+          color: var(--color-text);
           margin-bottom: 2rem;
           font-weight: 800;
         }
@@ -106,16 +106,6 @@ function Brands() {
           height: 100%;
           z-index: 2;
           pointer-events: none;
-        }
-
-        .brands-marquee::before {
-          left: 0;
-          background: linear-gradient(90deg, rgba(7, 6, 10, 0.95), transparent);
-        }
-
-        .brands-marquee::after {
-          right: 0;
-          background: linear-gradient(270deg, rgba(7, 6, 10, 0.95), transparent);
         }
 
         .brands-track {
@@ -161,7 +151,7 @@ function Brands() {
           font-size: 0.8rem;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: rgba(255, 255, 255, 0.55);
+          color: var(--color-text-muted);
           font-weight: 400;
         }
 

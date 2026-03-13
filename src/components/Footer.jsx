@@ -154,11 +154,11 @@ const Footer = () => {
           padding: 0.6rem 0.8rem;
           border-radius: 0.75rem;
           border: 1px solid var(--border-color);
-          background: rgba(20, 20, 26, 0.95);
+          background: var(--color-bg-main);
           pointer-events: none;
           opacity: 0;
           transition: opacity 0.2s ease, transform 0.2s ease;
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: -6px 2px 24px var(--color-primary-glow);
           z-index: 2;
         }
 
@@ -170,7 +170,7 @@ const Footer = () => {
           width: 8px;
           height: 8px;
           transform: translateY(-50%) rotate(45deg);
-          background: rgba(20, 20, 26, 0.95);
+          background: var(--color-bg-main);
           border-left: 1px solid var(--border-color);
           border-bottom: 1px solid var(--border-color);
         }

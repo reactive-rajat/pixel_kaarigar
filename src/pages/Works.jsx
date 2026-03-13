@@ -551,8 +551,8 @@ const Works = () => {
           align-items: center;
           gap: 0.5rem;
           padding: 0.75rem 1.5rem;
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid var(--border-color);
+          background: var(--color-bg-soft);
+          border: 1px solid transparent;
           color: var(--text-muted);
           border-radius: var(--border-radius-full);
           font-weight: 700;
@@ -578,7 +578,7 @@ const Works = () => {
           display: grid;
           width: 100%;
           grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
-          grid-auto-rows: clamp(180px, 16vw, 240px);
+          grid-auto-rows: clamp(180px, 18vw, 250px);
           gap: 1.25rem;
           grid-auto-flow: dense;
           align-items: stretch;
@@ -622,7 +622,7 @@ const Works = () => {
           gap: 1rem;
           padding: 1.25rem 2.5rem;
           background: white;
-          color: var(--background-dark);
+          color: var(--color-primary);
           border-radius: var(--border-radius-full);
           font-weight: 700;
           font-size: 1.125rem;
@@ -642,7 +642,7 @@ const Works = () => {
           align-items: center;
           justify-content: center;
           padding: 1rem;
-          background: rgba(7, 5, 10, 0.75);
+          background: color-mix(in srgb, var(--color-bg-main) 70%, transparent);
           backdrop-filter: blur(4px);
           z-index: 1300;
         }
@@ -652,9 +652,9 @@ const Works = () => {
           width: min(560px, 100%);
           border-radius: 18px;
           border: 1px solid var(--border-color);
-          background: rgba(17, 12, 26, 0.98);
+          background: var(--color-card);
           padding: 1.25rem;
-          box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+          box-shadow: 0 24px 50px var(--color-primary-glow);
         }
 
         .project-modal-close {
@@ -703,7 +703,7 @@ const Works = () => {
           font-size: 1.35rem;
           line-height: 1.2;
           font-weight: 800;
-          color: #ffffff;
+          color: var(--color-text);
         }
 
         .project-modal-link {
@@ -725,6 +725,7 @@ const Works = () => {
 
         .project-modal-link.disabled {
           opacity: 0.45;
+          background: var(--color-text-muted);
         }
 
         .project-modal-details {
@@ -734,7 +735,7 @@ const Works = () => {
         }
 
         .project-modal-desc {
-          color: rgba(255, 255, 255, 0.76);
+          color: var(--color-text-muted);
           font-size: 0.92rem;
           line-height: 1.6;
         }
@@ -751,9 +752,9 @@ const Works = () => {
           text-transform: uppercase;
           border-radius: var(--radius-pill);
           padding: 0.34rem 0.75rem;
-          color: #f0e7ff;
-          border: 1px solid rgba(255, 255, 255, 0.16);
-          background: rgba(255, 255, 255, 0.08);
+          color: var(--color-secondary);
+          border: 1px solid color-mix(in srgb, var(--color-secondary) 10%, transparent);
+          background: var(--color-bg-soft);
         }
 
         @media (max-width: 1024px) {
@@ -778,6 +779,9 @@ const Works = () => {
         }
 
         @media (max-width: 640px) {
+        .project-modal-link{
+          background: var(--color-primary);
+        }
           .header-left {
             text-align: center;
             font-size: 2.5rem;

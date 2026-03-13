@@ -17,7 +17,7 @@ const Contact = () => {
             <span className="primary-text">Something Weird.</span>
           </h1>
           <p className="contact-description">
-            I design and build digital experiences that look sharp and work flawlessly. <span style={{color: "white"}}>Got an idea? Let’s bring it to life.</span>
+            I design and build digital experiences that look sharp and work flawlessly. <span className="focus-text">Got an idea? Let’s bring it to life.</span>
           </p>
 
  
@@ -58,13 +58,13 @@ const Contact = () => {
               <div className="quick-divider" aria-hidden="true"></div>
 
               <div className="quick-links">
-                <a href="mailto:hello@example.com" className="quick-link">
+                <a href="mailto:hello@example.com" className="secondary-btn">
                   Email
                 </a>
-                <a href="tel:+919899321639" className="quick-link">
+                <a href="tel:+919899321639" className="secondary-btn">
                   Call
                 </a>
-                <a href="sms:+919899321639" className="quick-link">
+                <a href="sms:+919899321639" className="secondary-btn">
                   SMS
                 </a>
               </div>
@@ -78,7 +78,6 @@ const Contact = () => {
           padding-top: 10rem;
           padding-bottom: 2rem;
           max-height: 750px;
-          overflow: hidden;
         }
 
         .contact-grid {
@@ -102,12 +101,23 @@ const Contact = () => {
           margin-bottom: 4rem;
         }
 
+        .contact-description .focus-text{
+          font-weight: 600;
+          color: white;
+        }
+
+        html[data-theme="light"] .contact-description .focus-text{
+          color: var(--color-primary);
+        }
+
         .contact-form-card {
           padding: 2.5rem;
           border-radius: var(--border-radius-lg);
-          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 30px 60px var(--color-primary-glow);
           position: relative;
           max-height: 620px;
+          border: 1px solid var(--color-border);
+          background: var(--color-card);
         }
 
         .form-header {
@@ -196,17 +206,23 @@ const Contact = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          border: 1px solid var(--border-color);
+          border: 1px solid var(--color-primary);
           border-radius: var(--border-radius-full);
           padding: 0.75rem 0.9rem;
           font-size: 0.9rem;
           font-weight: 500;
-          color: var(--text-muted);
+          color: var(--color-primary);
           transition: all 0.3s;
         }
 
         .quick-link:hover {
           border-color: var(--primary-color);
+          background: rgba(255, 255, 255, 0.05);
+          color: var(--text-dark);
+        }
+
+        html[data-theme="dark"] .quick-link {
+          border-color: var(--text-dark);
           background: rgba(255, 255, 255, 0.05);
           color: var(--text-dark);
         }

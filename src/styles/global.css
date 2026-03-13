@@ -8,15 +8,18 @@
 :root {
   /* Theme Colors */
   --color-bg-main: #191022;
-  --color-bg-soft: rgba(107, 10, 204, 0.2);
-  --color-card: #14141a;
+  --color-bg-soft: rgba(163, 72, 255, 0.175);
+  --color-card: #0a0810;
   --color-card-alt: #101018;
   --color-primary: #7f13ec;
-  --color-primary-glow: rgba(127, 19, 236, 0.35);
-  --color-text: #ffffff;
-  --color-text-muted: #8e8e93;
-  --color-border: rgba(77, 50, 103, 1);
+  --color-primary-glow: rgba(146, 43, 248, 0.206);
+  --color-secondary: rgba(211, 167, 255, 0.594);
+  --color-text-rgb: 255, 255, 255;
+  --color-text: rgb(var(--color-text-rgb));
+  --color-text-muted: rgba(var(--color-text-rgb), 0.5);
+  --color-border: rgba(77, 50, 103, 0.5);
   --color-border-light: rgba(0, 0, 0, 0.1);
+  --color-success: #00ff7f;
 
   /* Typography */
   --font-heading: 'Inter', sans-serif;
@@ -74,20 +77,26 @@
 
 [data-theme="light"] {
 
-  --color-bg-main: #d9cee6;
-  --color-bg-soft: rgba(239, 229, 255, 0.3);
+  --color-bg-main: #f3e8ff;
+  --color-bg-soft: rgba(197, 136, 255, 0.28);
 
   --color-card: #ffffff;
   --color-card-alt: #f0ebf7;
 
   --color-primary: #7f13ec;
-  --color-primary-glow: rgba(127, 19, 236, 0.18);
+  --color-primary-glow: rgba(127, 19, 236, 0.198);
 
-  --color-text: #1a1122;
-  --color-text-muted: #62586f;
+  --color-secondary: rgba(85, 8, 163, 0.693);
 
-  --color-border: rgba(77, 50, 103, 0.16);
+  --color-text-rgb: 26, 17, 34;
+
+  --color-text: rgb(var(--color-text-rgb));
+  --color-text-muted: rgba(var(--color-text-rgb), 0.65);
+
+  --color-border: rgba(127, 19, 236, 0.336);
   --color-border-light: rgba(77, 50, 103, 0.08);
+
+  --color-success: #06ac54;
 
 }
 
@@ -216,8 +225,8 @@ ul {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.8rem;
-  background: rgba(0, 255, 127, 0.05);
-  border: 1px solid rgba(0, 255, 127, 0.2);
+  background: color-mix(in srgb, var(--color-success) 10%, transparent);
+  border: 1px solid var(--color-success);
   border-radius: var(--border-radius-full);
   width: fit-content;
 }
@@ -233,7 +242,7 @@ ul {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #00ff7f;
+  background: var(--color-success);
   border-radius: 50%;
   opacity: 0.75;
   animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
@@ -243,7 +252,7 @@ ul {
   position: relative;
   width: 0.5rem;
   height: 0.5rem;
-  background: #00ff7f;
+  background: var(--color-success);
   border-radius: 50%;
 }
 
@@ -259,7 +268,7 @@ ul {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #00ff7f;
+  color: var(--color-success);
 }
 
 /* Shared Icons */
@@ -284,25 +293,31 @@ ul {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.primary-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px var(--primary-glow);
-}
-
 .secondary-btn {
   padding: 0.8rem 1.8rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-color);
-  color: var(--text-dark);
+  background: var(--color-bg-main);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
   border-radius: var(--border-radius-full);
   font-weight: 700;
   font-size: 0.95rem;
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+}
+
+.primary-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px var(--primary-glow);
 }
 
 .secondary-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+  background: color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+
+html[data-theme="dark"] .secondary-btn{
+  border: 1px solid white;
+  color: white;
 }
 
 img,

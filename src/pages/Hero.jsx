@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Brands from "../components/sections/Brands";
 import StatusBadge from "../components/common/StatusBadge";
+import HeroVisual from "../components/common/HeroVisual";
 
 const Hero = ({ setActivePage }) => {
-  const [isAboutPageActive, setIsAboutPageActive] = useState(false);
-  const [currentMood, setCurrentMood] = useState('focused');
-
   const handleHeroClick = () => {
     setActivePage("about");
   };
@@ -62,54 +60,7 @@ const Hero = ({ setActivePage }) => {
           </div>
 
           {/* Right Column: Character Playground */}
-          <div className="hero-visual">
-            <div className="character-container animate-float" onClick={handleHeroClick}>
-              <div className="glow-overlay"></div>
-              <img
-                src={`/assets/brand/avatar_${currentMood}.png`}
-                alt="Man working on laptop"
-                className="character-img"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-
-            {/* HUD Panels */}
-            <div className="hud-panel mood-panel glass-panel">
-              <div className="mood-switcher">
-                <div
-                  className={currentMood === "relaxed" ? "mood-option active" : "mood-option"}
-                  onClick={() => setCurrentMood("relaxed")}
-                >
-                  <span className="material-symbols-outlined">
-                    sentiment_satisfied
-                  </span>
-                  <span>Relaxed</span>
-                </div>
-                <div
-                  className={currentMood === "focused" ? "mood-option active" : "mood-option"}
-                  onClick={() => setCurrentMood("focused")}
-                >
-                  <span className="material-symbols-outlined">bolt</span>
-                  <span>Focused</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="hud-panel energy-panel glass-panel">
-              <div className="energy-header">
-                <div className="energy-label">
-                  <span className="material-symbols-outlined">
-                    battery_charging_full
-                  </span>
-                  <span>Energy Level</span>
-                </div>
-                <span className="energy-value">94%</span>
-              </div>
-              <div className="energy-bar-bg">
-                <div className="energy-bar-fill" style={{ width: "94%" }}></div>
-              </div>
-            </div>
-          </div>
+          <HeroVisual defaultMood="focused" onCharacterClick={handleHeroClick} />
         </div>
 
         <style jsx="true">{`
@@ -171,7 +122,8 @@ const Hero = ({ setActivePage }) => {
 
           .skill-item{
             background: var(--color-bg-soft);
-            border: 1px solid var(--border-color);
+            border: 1px solid color-mix(in srgb, var(--color-secondary) 10%, transparent);
+            color: var(--color-secondary);
             border-radius: 999px;
             padding: 0.2rem 0.7rem;
             font-size: 0.8rem;
@@ -183,192 +135,6 @@ const Hero = ({ setActivePage }) => {
             gap: 1rem;
             flex-wrap: wrap;
             margin-top: 1rem;
-          }
-
-          .primary-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: var(--primary-color);
-            color: white;
-            border-radius: var(--border-radius-full);
-            font-weight: 700;
-            transition: all 0.3s;
-          }
-
-          .primary-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px var(--primary-glow);
-          }
-
-          .secondary-btn {
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-dark);
-            border-radius: var(--border-radius-full);
-            font-weight: 700;
-            transition: all 0.3s;
-          }
-
-          .secondary-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-          }
-
-          .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            min-width: 0;
-          }
-
-          .hero-visual:hover .character-img {
-            transform: scale(1.05);
-            transition: all 0.6s;
-          }
-
-          .character-container {
-            position: relative;
-            width: 100%;
-            max-width: 450px;
-            aspect-ratio: 1;
-            border-radius: var(--border-radius-xl);
-            overflow: hidden;
-          }
-
-          .glow-overlay {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(
-              circle at center,
-              var(--primary-glow),
-              transparent 70%
-            );
-            opacity: 0.4;
-          }
-
-          .character-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            position: relative;
-            z-index: 1;
-            transition: all 0.3s;
-          }
-
-          .hud-panel {
-            position: absolute;
-            padding: 0.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.2);
-          }
-
-          .mood-panel {
-            top: 0.5rem;
-            right: -1rem;
-            transform: rotate(3deg);
-            transition: all 0.3s;
-          }
-
-          .hero-visual:hover .mood-panel {
-            transform: rotate(0deg);
-            transition: all 0.3s;
-          }
-
-          .mood-switcher {
-            display: flex;
-            border-radius: var(--border-radius);
-            gap: 0.5rem;
-            overflow: hidden;
-          }
-
-          .mood-option {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem 0.5rem 0.7rem;
-            font-size: 0.875rem;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.2s;
-            border-radius: var(--border-radius);
-          }
-
-          .mood-option:not(.active):hover {
-            color: var(--text-dark);
-            background: rgba(255, 255, 255, 0.08);
-          }
-
-          .mood-option.active {
-            background: var(--primary-color);
-            color: white;
-          }
-
-          .energy-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-          }
-
-          .energy-label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--text-muted);
-          }
-
-          .energy-label .material-symbols-outlined {
-            color: var(--primary-color);
-            font-size: 1rem;
-          }
-
-          .energy-value {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--primary-color);
-          }
-
-          .energy-bar-bg {
-            height: 0.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius-full);
-            overflow: hidden;
-          }
-
-          .energy-bar-fill {
-            height: 100%;
-            background: linear-gradient(
-              to right,
-              var(--primary-color),
-              #ad92c9
-            );
-            border-radius: var(--border-radius-full);
-          }
-
-          @media (min-width: 1024px) {
-            .energy-panel {
-          bottom: -1rem;
-          left: -1rem;
-          width: 240px;
-          padding: 1rem;
-          transform: rotate(-2deg);
-          transition: all 0.3s;
-        }
-
-        .hero-visual:hover .energy-panel {
-            transform: rotate(0deg);
-            transition: all 0.3s;
-        }
           }
 
           @media (max-width: 1024px) {
@@ -437,52 +203,11 @@ const Hero = ({ setActivePage }) => {
               width: 100%;
             }
 
-            .character-container {
-              max-width: 360px;
-            }
-
-            .mood-panel {
-              right: 0;
-              top: -0.6rem;
-              transform: none;
-            }
-
-            .mood-option {
-              font-size: 0.8rem;
-              padding: 0.45rem 0.7rem;
-            }
-
-            .energy-panel {
-              width: min(82vw, 220px);
-              left: 0;
-              bottom: -0.5rem;
-              transform: none;
-            }
           }
 
           @media (max-width: 640px) {
             .hero-title {
               font-size: 2.4rem;
-            }
-
-            .energy-panel {
-              width: min(86vw, 200px);
-              left: 50%;
-              transform: translateX(-50%);
-            }
-          }
-
-          @media (hover: none) {
-            .hero-visual:hover .character-img,
-            .hero-visual:hover .mood-panel,
-            .hero-visual:hover .energy-panel {
-              transform: none !important;
-              left: initial;
-            }
-
-            .mood-option:not(.active):hover {
-              background: transparent;
-              color: rgba(255, 255, 255, 0.5);
             }
           }
         `}</style>

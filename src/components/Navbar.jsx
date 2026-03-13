@@ -106,10 +106,10 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
           justify-content: space-between;
           padding: 0.6rem 0.8rem 0.6rem 1rem;
           border-radius: var(--border-radius-full);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 30px var(--color-primary-glow);
           max-width: 640px;
           width: 100%;
-          border: 1px solid rgba(255, 255, 255, 0.05);
+          border: 1px solid var(--color-border);
         }
 
         .nav-logo {
@@ -154,7 +154,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
 
         .nav-link:hover {
           color: var(--text-dark);
-          background: rgba(255, 255, 255, 0.08);
+          background: var(--color-bg-soft);
         }
 
         .nav-link.active {

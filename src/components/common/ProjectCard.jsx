@@ -336,7 +336,15 @@ const ProjectCard = ({ project, layout, isMobile = false, onMobileCardTap }) => 
           text-transform: uppercase;
           letter-spacing: 0.2em;
           font-weight: 700;
-          color: var(--primary-color);
+          color: var(--color-secondary);
+        }
+
+        html[data-theme="light"] .hover-category{
+          color: var(--color-primary);
+        }
+
+        html[data-theme="light"] .card-tag{
+          color: white;
         }
 
         .project-card:hover .card-hover {
@@ -359,11 +367,11 @@ const ProjectCard = ({ project, layout, isMobile = false, onMobileCardTap }) => 
           font-size: 0.7rem;
           font-weight: 700;
           text-transform: uppercase;
-          color: #f0e7ff;
-          background: rgba(255, 255, 255, 0.08);
+          color: var(--color-secondary);
+          background: var(--color-bg-soft);
           padding: 0.3rem 0.8rem;
           border-radius: var(--radius-pill);
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          border: 1px solid color-mix(in srgb, var(--color-secondary) 20%, transparent);
         }
 
         .hover-title {
@@ -398,9 +406,8 @@ const ProjectCard = ({ project, layout, isMobile = false, onMobileCardTap }) => 
           width: 54px;
           height: 54px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.12);
+          background: var(--color-primary);
           color: #ffffff;
-          border: 1px solid rgba(255, 255, 255, 0.14);
           flex-shrink: 0;
         }
 
