@@ -18,7 +18,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
       <nav className="glass-panel navbar">
         <div className="nav-logo" onClick={() => handleNavClick('home')}>
           <img src="/assets/brand/avatar.png" alt="Avatar" className="logo-avatar" />
-          <span className="logo-text">Pixel_Kaarigar</span>
+          <span className="logo-text">Rajat_Gulati</span>
         </div>
 
         <div className="nav-links">

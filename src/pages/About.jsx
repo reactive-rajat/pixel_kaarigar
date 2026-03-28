@@ -389,10 +389,6 @@ const About = () => {
         }
 
         .about-title {
-          font-size: 5rem;
-          font-weight: 900;
-          line-height: 1.05;
-          letter-spacing: -0.02em;
         }
 
         .about-lead {
@@ -550,10 +546,7 @@ const About = () => {
         }
 
         .section-title {
-          font-size: 2.6rem;
-          font-weight: 900;
           text-align: center;
-          margin: 0;
         }
 
         .content-section {
@@ -643,11 +636,6 @@ const About = () => {
           line-height: 1.6;
         }
 
-        .deliver-card h3 {
-          font-size: 1.25rem;
-          font-weight: 800;
-        }
-
         .toolkit-columns {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -701,9 +689,6 @@ const About = () => {
         }
 
         .toolkit-card h3 {
-          font-size: 1.2rem;
-          font-weight: 800;
-          margin: 0;
           text-align: center;
         }
 
@@ -1005,8 +990,6 @@ const About = () => {
         }
 
         .dual-card h3 {
-          font-size: 2.2rem;
-          line-height: 1.1;
         }
 
         .dual-card p {
@@ -1034,12 +1017,6 @@ const About = () => {
           background: var(--primary-glow);
           filter: blur(80px);
           z-index: -1;
-        }
-
-        .cta-title {
-          font-size: 3rem;
-          font-weight: 700;
-          line-height: 1.2;
         }
 
         .cta-btn {
@@ -1072,10 +1049,6 @@ const About = () => {
             text-align: center;
           }
 
-          .about-title {
-            font-size: 4rem;
-          }
-
           .about-hero-text {
             align-items: center;
           }
@@ -1101,11 +1074,6 @@ const About = () => {
 
           .about-hero {
             gap: 2.5rem;
-          }
-
-          .about-title {
-            font-size: 2.6rem;
-            line-height: 1.05;
           }
 
           .about-lead {
@@ -1137,10 +1105,6 @@ const About = () => {
             .deliver-card span{
               margin: 0 auto;
             }
-
-          .section-title {
-            font-size: 2.1rem;
-          }
 
           .section-description {
             font-size: 0.98rem;
@@ -1197,17 +1161,9 @@ const About = () => {
             font-size: 1.05rem;
           }
 
-          .dual-card h3 {
-            font-size: 1.7rem;
-          }
-
           .works-cta {
             margin-top: 4.5rem;
             gap: 1.4rem;
-          }
-
-          .cta-title {
-            font-size: 2rem;
           }
 
           .cta-btn {
@@ -1219,10 +1175,6 @@ const About = () => {
         }
 
         @media (max-width: 480px) {
-          .about-title {
-            font-size: 2.2rem;
-          }
-
           .focus-text {
             display: inline-flex;
             align-items: center;

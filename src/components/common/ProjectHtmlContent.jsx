@@ -254,26 +254,6 @@ const ProjectHtmlContent = ({ contentPath, title, omitPrimaryHeading = false }) 
           border-top: 0;
         }
 
-        .project-html-content h1,
-        .project-html-content h2,
-        .project-html-content h3,
-        .project-html-content h4 {
-          line-height: 1.15;
-          letter-spacing: -0.03em;
-        }
-
-        .project-html-content h1 {
-          font-size: clamp(1.8rem, 3vw, 2.8rem);
-        }
-
-        .project-html-content h2 {
-          font-size: clamp(1.35rem, 2.2vw, 2rem);
-        }
-
-        .project-html-content h3 {
-          font-size: 1.1rem;
-        }
-
         .project-html-content p,
         .project-html-content li,
         .project-html-content figcaption,

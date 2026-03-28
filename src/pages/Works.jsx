@@ -310,21 +310,20 @@ const Works = () => {
     <section className="works-section container">
       <div className="works-header">
         <div className="header-left">
-          <StatusBadge text="Featured" />
-          <h2 className="section-title">
-            Selected <br />
-            <span className="primary-text">Projects</span>
-          </h2>
+          <StatusBadge text="SELECTED WORK" />
+          <h1 className="section-title">
+            <span className="primary-text">Work </span>
+             That<br />Solved Problems.
+          </h1>
           <p className="header-desc">
-          A showcase of apps, design, and motion — simple ideas turned into
-          polished digital work.
+          Real problems, real decisions, real outcomes — this is how I think and what I make.
         </p>
         </div>
       </div>
 
       <div className="filter-container">
         <div className="filter-chips">
-        {["All", "Apps", "Design", "Motion"].map((cat) => (
+        {["All", "Case Studies", "UI & Dev", "Creative"].map((cat) => (
           <button
             key={cat}
             className={`filter-chip ${filter === cat ? "active" : ""}`}
@@ -353,17 +352,15 @@ const Works = () => {
 
       <div className="works-cta">
         <div className="cta-glow"></div>
-        <h3 className="cta-title">
-          Have a crazy idea?
-          <br />
-          <span className="primary-text">Let's build it.</span>
-        </h3>
+        <h2 className="cta-title">
+          Have a problem worth solving?
+        </h2>
+        {/* <h3 className="primary-text" style={{display: "block"}}>Let's talk about it.</h3> */}
         <button
           className="cta-btn"
           type="button"
           onClick={() => navigate("/contact")}
         >
-          <span className="material-symbols-outlined">handshake</span>
           <span>Let's work together</span>
         </button>
       </div>
@@ -389,13 +386,6 @@ const Works = () => {
           letter-spacing: 0.1em;
           font-size: 0.875rem;
           margin-bottom: 0.5rem;
-        }
-
-        .section-title {
-          font-size: 5rem;
-          font-weight: 900;
-          line-height: 0.9;
-          letter-spacing: -0.04em;
         }
 
         .header-desc {
@@ -477,8 +467,10 @@ const Works = () => {
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
           gap: 2rem;
           text-align: center;
+          height: 30dvh;
         }
 
         .cta-glow {
@@ -491,12 +483,6 @@ const Works = () => {
           background: var(--primary-glow);
           filter: blur(80px);
           z-index: -1;
-        }
-
-        .cta-title {
-          font-size: 3rem;
-          font-weight: 700;
-          line-height: 1.2;
         }
 
         .primary-text {
@@ -533,10 +519,6 @@ const Works = () => {
             text-align: left;
           }
 
-          .section-title {
-            font-size: 3.5rem;
-          }
-
           .projects-grid {
             grid-auto-rows: clamp(170px, 28vw, 220px);
             gap: 1rem;
@@ -568,11 +550,6 @@ const Works = () => {
             padding-bottom: 5rem;
           }
 
-          .section-title {
-            font-size: 2.4rem;
-            line-height: 1;
-          }
-
           .header-desc {
             font-size: 1rem;
             max-width: 100%;
@@ -597,10 +574,6 @@ const Works = () => {
           .works-cta {
             margin-top: 4.5rem;
             gap: 1.4rem;
-          }
-
-          .cta-title {
-            font-size: 2rem;
           }
 
           .cta-btn {

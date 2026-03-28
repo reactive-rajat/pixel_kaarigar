@@ -8,15 +8,15 @@ import { slugifyProjectTitle } from "../utils/projectMeta";
 const projectEntries = [
   {
     id: 1,
-    title: "Resume Help",
-    projectType: "coding",
+    title: "Rebuilding ResumeHelp's Design\nFoundation",
+    projectType: "case-study",
     url: "https://resumehelp.com/",
     description:
-      "ResumeHelp is an online resume builder for job seekers. I worked on UI updates, page templates, and migrating the product to the Flamingo design system to improve visual consistency.",
+      "Migrated a live product to a new design system — fixing accessibility, consistency, and scalability.",
     image: "/assets/projects/thumbnails/resumehelp_thumbnail.png",
-    tags: ["HTML/CSS", "WEB APP", "DESIGN SYSTEM", "UI DESIGN", "FIGMA"],
+    tags: ["UX", "DESIGN SYSTEM", "FIGMA"],
     size: "large",
-    category: ["Apps", "Design"],
+    category: ["Case Studies"],
   },
   {
     id: 2,

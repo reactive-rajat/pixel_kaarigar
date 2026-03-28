@@ -75,11 +75,6 @@ const ProjectDetail = () => {
             border-radius: var(--border-radius-xl);
           }
 
-          .project-not-found h1 {
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            line-height: 1;
-          }
-
           .project-not-found p {
             color: var(--text-muted);
             line-height: 1.7;
@@ -444,12 +439,6 @@ const ProjectDetail = () => {
           color: var(--primary-color);
         }
 
-        .project-title {
-          font-size: clamp(2.3rem, 5vw, 4.25rem);
-          line-height: 0.95;
-          letter-spacing: -0.05em;
-        }
-
         .project-description {
           max-width: 58ch;
           color: var(--text-muted);
@@ -557,11 +546,6 @@ const ProjectDetail = () => {
           letter-spacing: 0.2em;
           font-weight: 700;
           color: var(--primary-color);
-        }
-
-        .project-section-head h2 {
-          font-size: clamp(1.5rem, 3vw, 2.4rem);
-          line-height: 1;
         }
 
         .project-section-head p {

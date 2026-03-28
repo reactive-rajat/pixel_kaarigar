@@ -66,7 +66,12 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         <div className="card-default">
           <div className="default-text">
             <span className="default-category">{categoryLabel}</span>
-            <h3 className="default-title">{project.title}</h3>
+            <h3 className="default-title">{project.title.split("\n").map((line, i) => (
+  <span key={i}>
+    {line}
+    <br />
+  </span>
+))}</h3>
           </div>
         </div>
 
@@ -192,10 +197,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         }
 
         .default-title {
-          font-size: 1.6rem;
-          font-weight: 800;
           color: var(--color-text);
-          line-height: 1.2;
         }
 
         .card-hover {
@@ -304,14 +306,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         }
 
         .hover-title {
-          font-size: 2rem;
-          font-weight: 800;
           color: var(--color-text);
-          line-height: 1.1;
-        }
-
-        .project-card.compact .hover-title {
-          font-size: 1.35rem;
         }
 
         .hover-desc {
@@ -377,16 +372,8 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
             border-radius: 22px;
           }
 
-          .default-title {
-            font-size: 1.35rem;
-          }
-
           .hover-content {
             padding: 1.2rem;
-          }
-
-          .hover-title {
-            font-size: 1.45rem;
           }
 
           .hover-desc {

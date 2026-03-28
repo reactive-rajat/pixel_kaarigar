@@ -87,12 +87,6 @@ const Contact = () => {
           align-items: center;
         }
 
-        .contact-title {
-          font-size: 5rem;
-          font-weight: 900;
-          line-height: 1;
-        }
-
         .contact-description {
           font-size: 1.25rem;
           color: var(--text-muted);
@@ -147,12 +141,6 @@ const Contact = () => {
           flex-direction: column;
           gap: 1rem;
           margin-top: 2rem;
-        }
-
-        .connect-head h3 {
-          font-size: 1.8rem;
-          line-height: 1.1;
-          margin-bottom: 0.5rem;
         }
 
         .connect-label {
@@ -357,11 +345,6 @@ const Contact = () => {
             gap: 2rem;
           }
 
-          .contact-title {
-            font-size: 2.5rem;
-            line-height: 1.05;
-          }
-
           .contact-description {
             font-size: 1rem;
             margin-bottom: 1rem;
@@ -370,10 +353,6 @@ const Contact = () => {
           .contact-form-card {
             padding: 1.25rem;
             border-radius: 1.25rem;
-          }
-
-          .connect-head h3 {
-            font-size: 1.35rem;
           }
 
           .launch-btn {

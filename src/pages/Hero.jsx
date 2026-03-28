@@ -9,12 +9,13 @@ const Hero = ({ setActivePage }) => {
   };
 
   const skills = [
-    "React",
-    "JavaScript",
-    "HTML & CSS",
-    "UI/UX Design",
+    "UX Design",
     "Design Systems",
-    "Responsive Design",
+    "Figma",
+    "Accessibility",
+    "User Research",
+    "HTML & CSS",
+    "React",
   ];
 
   return (
@@ -26,12 +27,13 @@ const Hero = ({ setActivePage }) => {
             <StatusBadge text="Open to work" showPing />
 
             <h1 className="hero-title">
-              Designer <br />
-              <span className="gradient-text">who Codes.</span>
+              UX Designer <br />
+              <span className="gradient-text">who also Codes.</span>
             </h1>
 
             <p className="hero-description">
-              A designer who learned to code, building interfaces that are both visually refined and technically solid.
+              I design experiences that solve real problems —
+then bring them to life with code.
             </p>
 
             <ul className="skills-list">
@@ -90,13 +92,6 @@ const Hero = ({ setActivePage }) => {
             min-width: 0;
           }
 
-          .hero-title {
-            font-size: 5rem;
-            font-weight: 900;
-            line-height: 0.9;
-            letter-spacing: -0.04em;
-          }
-
           .gradient-text {
             background: linear-gradient(
               to right,
@@ -153,9 +148,6 @@ const Hero = ({ setActivePage }) => {
               order: 1;
             }
 
-            .hero-title {
-              font-size: 4rem;
-            }
           }
 
           .brands-section{
@@ -177,11 +169,6 @@ const Hero = ({ setActivePage }) => {
               gap: 1.5rem;
             }
 
-            .hero-title {
-              font-size: 2.8rem;
-              line-height: 0.95;
-            }
-
             .hero-description {
               font-size: 1rem;
             }
@@ -201,13 +188,6 @@ const Hero = ({ setActivePage }) => {
             .hero-actions .secondary-btn {
               justify-content: center;
               width: 100%;
-            }
-
-          }
-
-          @media (max-width: 640px) {
-            .hero-title {
-              font-size: 2.4rem;
             }
           }
         `}</style>
