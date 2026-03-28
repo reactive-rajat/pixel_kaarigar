@@ -855,7 +855,7 @@ const About = () => {
         .timeline-list::before {
           content: '';
           position: absolute;
-          left: 1.8rem;
+          left: 1.71rem;
           top: 0;
           bottom: 0;
           width: 2px;
@@ -871,7 +871,7 @@ const About = () => {
           width: 3.5rem;
           height: 3.5rem;
           border-radius: 50%;
-          background: var(--color-secondary);
+          background: var(--color-primary);
           position: absolute;
           left: 0rem;
           top: 0rem;

@@ -188,8 +188,8 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
           width: 2.2rem;
           height: 2.2rem;
           border-radius: var(--border-radius-full);
-          background: var(--primary-color);
-          color: white;
+          background: white;
+          color: var(--color-primary);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -330,6 +330,14 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
         }
 
         @media (max-width: 767px) {
+        .theme-toggle{
+          background: white;
+          border: 1px solid var(--color-primary);
+          box-shadow: none;
+        }
+          .material-symbols-outlined{
+            color: var(--color-primary);
+          }
           .fixed-nav-container {
             top: 1rem;
             padding: 0 0.75rem;
@@ -345,6 +353,15 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
 
           .menu-toggle {
             display: inline-flex;
+            background: var(--color-primary);
+          }
+
+          .menu-toggle .material-symbols-outlined{
+            color: white;
+          }
+
+          button[aria-expanded="true"]{
+            background: var(--color-danger);
           }
 
           .mobile-menu.open {
