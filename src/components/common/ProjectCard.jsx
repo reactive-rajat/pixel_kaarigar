@@ -145,19 +145,18 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         }
 
         .card-gradient {
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          background: linear-gradient(
-            180deg,
-            rgba(8, 6, 12, 0.1) 0%,
-            rgba(8, 6, 12, 0.25) 45%,
-            rgba(8, 6, 12, 0.8) 78%,
-            rgba(8, 6, 12, 0.95) 100%
-          );
-          pointer-events: none;
-          transition: opacity 0.3s;
-        }
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--color-bg-main) 10%, transparent) 0%,
+          color-mix(in srgb, var(--color-bg-main) 25%, transparent) 30%,
+          color-mix(in srgb, var(--color-bg-main) 95%, transparent) 100%
+        );
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
 
         .project-card:hover .card-gradient {
           opacity: 0;
@@ -188,14 +187,14 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
           font-size: 0.75rem;
           text-transform: uppercase;
           letter-spacing: 0.2em;
-          color: rgba(255, 255, 255, 0.65);
+          color: var(--color-secondary);
           font-weight: 700;
         }
 
         .default-title {
           font-size: 1.6rem;
           font-weight: 800;
-          color: #ffffff;
+          color: var(--color-text);
           line-height: 1.2;
         }
 
@@ -209,9 +208,9 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
           border-radius: inherit;
           background: linear-gradient(
             180deg,
-            rgba(6, 4, 10, 0.15) 0%,
-            rgba(6, 4, 10, 0.7) 45%,
-            rgba(6, 4, 10, 0.92) 100%
+            color-mix(in srgb, var(--color-bg-main) 15%, transparent) 0%,
+            color-mix(in srgb, var(--color-bg-main) 70%, transparent) 45%,
+            color-mix(in srgb, var(--color-bg-main) 92%, transparent) 100%
           );
           backdrop-filter: blur(6px);
           opacity: 0;
@@ -228,9 +227,9 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
           gap: 1rem;
           padding: 1.6rem 1.8rem 1.8rem;
           border-radius: 0 0 28px 28px;
-          background: rgba(23, 14, 36, 0.75);
+           color-mix(in srgb, var(--color-bg-main) 10%, transparent)
           border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 -8px 40px color-mix(in srgb, var(--color-primary) 20%, transparent);
           backdrop-filter: blur(16px);
           width: 100%;
           height: 100%;
@@ -274,7 +273,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         }
 
         html[data-theme="light"] .card-tag{
-          color: white;
+          color: var(--color-secondary);
         }
 
         .project-card:hover .card-hover {
@@ -307,7 +306,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         .hover-title {
           font-size: 2rem;
           font-weight: 800;
-          color: white;
+          color: var(--color-text);
           line-height: 1.1;
         }
 
@@ -317,7 +316,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
 
         .hover-desc {
           font-size: 0.95rem;
-          color: rgba(255, 255, 255, 0.7);
+          color: var(--text-muted);
           line-height: 1.6;
           max-width: 100%;
         }

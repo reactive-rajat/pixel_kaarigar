@@ -54,12 +54,20 @@ const sanitizeUri = (value, assetBaseUrl) => {
   }
 };
 
-const sanitizeProjectHtml = (html, assetBaseUrl) => {
+const sanitizeProjectHtml = (html, assetBaseUrl, omitPrimaryHeading = false) => {
   const parser = new DOMParser();
   const parsedDocument = parser.parseFromString(html, "text/html");
   const { body } = parsedDocument;
 
   removeBlockedNodes(body);
+
+  if (omitPrimaryHeading) {
+    const primaryHeading = body.querySelector("h1");
+
+    if (primaryHeading) {
+      primaryHeading.remove();
+    }
+  }
 
   body.querySelectorAll("*").forEach((element) => {
     [...element.attributes].forEach((attribute) => {
@@ -128,7 +136,7 @@ const sanitizeProjectHtml = (html, assetBaseUrl) => {
   return body.innerHTML;
 };
 
-const ProjectHtmlContent = ({ contentPath, title }) => {
+const ProjectHtmlContent = ({ contentPath, title, omitPrimaryHeading = false }) => {
   const [html, setHtml] = useState("");
   const [status, setStatus] = useState("loading");
 
@@ -155,7 +163,11 @@ const ProjectHtmlContent = ({ contentPath, title }) => {
 
         const rawHtml = await response.text();
         const assetBaseUrl = new URL("./", requestUrl).toString();
-        const safeHtml = sanitizeProjectHtml(rawHtml, assetBaseUrl);
+        const safeHtml = sanitizeProjectHtml(
+          rawHtml,
+          assetBaseUrl,
+          omitPrimaryHeading,
+        );
 
         if (!isMounted) {
           return;
@@ -178,7 +190,7 @@ const ProjectHtmlContent = ({ contentPath, title }) => {
     return () => {
       isMounted = false;
     };
-  }, [contentPath]);
+  }, [contentPath, omitPrimaryHeading]);
 
   if (status === "loading") {
     return (
@@ -229,10 +241,17 @@ const ProjectHtmlContent = ({ contentPath, title }) => {
           display: flex;
           flex-direction: column;
           gap: 1rem;
-          padding: 1.5rem;
-          border-radius: var(--border-radius-lg);
-          border: 1px solid var(--border-color);
-          background: color-mix(in srgb, var(--color-card-alt) 72%, transparent);
+          padding: 1.75rem 0;
+          padding-top: 2.75rem;
+          border: 0;
+          border-top: 1px solid var(--border-color);
+          background: transparent;
+        }
+
+        .project-html-content section:first-child,
+        .project-html-content article:first-child {
+          padding-top: 0;
+          border-top: 0;
         }
 
         .project-html-content h1,
@@ -265,9 +284,25 @@ const ProjectHtmlContent = ({ contentPath, title }) => {
 
         .project-html-content ul,
         .project-html-content ol {
-          padding-left: 1.2rem;
+          padding-left: 0;
+          list-style: none;
           display: grid;
           gap: 0.6rem;
+        }
+
+        .project-html-content li {
+          position: relative;
+          padding-left: 1.6rem;
+        }
+
+        .project-html-content li::before {
+          content: "✦";
+          position: absolute;
+          top: 0.05rem;
+          left: 0;
+          color: var(--primary-color);
+          font-size: 1.15rem;
+          line-height: 1.4;
         }
 
         .project-html-content a {
@@ -303,19 +338,25 @@ const ProjectHtmlContent = ({ contentPath, title }) => {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
           gap: 1rem;
+          margin-top: 1rem;
         }
 
         .project-html-content .stats-grid div {
-          padding: 1rem;
+          padding: 1.5rem;
           border-radius: 1rem;
-          border: 1px solid var(--border-color);
-          background: color-mix(in srgb, var(--color-bg-soft) 65%, transparent);
+          border: 1px solid color-mix(in srgb, var(--primary-color) 24%, var(--border-color));
+          background: linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--color-bg-soft) 78%, transparent) 0%,
+            color-mix(in srgb, var(--color-card-alt) 92%, transparent) 100%
+          );
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
         }
 
         .project-html-content .stats-grid strong {
           display: block;
           margin-bottom: 0.35rem;
-          font-size: 1rem;
+          font-size: 1.25rem;
         }
       `}</style>
     </>

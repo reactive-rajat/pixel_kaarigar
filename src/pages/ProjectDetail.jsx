@@ -2,11 +2,8 @@ import React, { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import StatusBadge from "../components/common/StatusBadge";
 import ProjectHtmlContent from "../components/common/ProjectHtmlContent";
-import { getProjectBySlug } from "../data/projects";
-import {
-  getProjectCategories,
-  getProjectPreview,
-} from "../utils/projectMeta";
+import projects, { getProjectBySlug } from "../data/projects";
+import { getProjectCategories } from "../utils/projectMeta";
 
 const getContentHeading = (projectType) => {
   if (projectType === "case-study") {
@@ -24,10 +21,21 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const { slug = "" } = useParams();
   const project = useMemo(() => getProjectBySlug(slug), [slug]);
-  const preview = useMemo(
-    () => (project ? getProjectPreview(project) : null),
-    [project],
-  );
+  const nextProject = useMemo(() => {
+    if (!project || projects.length < 2) {
+      return null;
+    }
+
+    const currentIndex = projects.findIndex(
+      (currentProject) => currentProject.slug === project.slug,
+    );
+
+    if (currentIndex === -1) {
+      return null;
+    }
+
+    return projects[(currentIndex + 1) % projects.length];
+  }, [project]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -93,48 +101,58 @@ const ProjectDetail = () => {
 
   const categoryLabel = getProjectCategories(project).filter(Boolean).join(" + ");
   const contentHeading = getContentHeading(project.projectType);
-  const showPreviewButton = project.projectType === "coding" && Boolean(preview);
 
   return (
     <section className="project-detail-section container">
       <div className="project-detail-shell">
-        <Link to="/work" className="project-back-link">
-          <span className="material-symbols-outlined">arrow_back</span>
-          <span>Back to work</span>
-        </Link>
+        <div className="project-nav-row">
+          <Link to="/work" className="project-back-link project-nav-pill">
+            <span
+              className="project-back-icon-wrap project-nav-icon-wrap"
+              aria-hidden="true"
+            >
+              <span className="material-symbols-outlined">arrow_back</span>
+            </span>
+            <span className="project-back-link-label project-nav-pill-label">
+              Back to work
+            </span>
+          </Link>
+
+          {nextProject && (
+            <Link
+              to={`/project/${nextProject.slug}`}
+              className="project-next-link project-nav-pill"
+              aria-label={`Go to next project: ${nextProject.title}`}
+            >
+              <span className="project-next-link-label project-nav-pill-label">
+                Next Project
+              </span>
+              <span
+                className="project-next-icon-wrap project-nav-icon-wrap"
+                aria-hidden="true"
+              >
+                <span className="material-symbols-outlined">arrow_forward</span>
+              </span>
+            </Link>
+          )}
+        </div>
 
         <header className="project-hero glass-panel">
           <div className="project-hero-copy">
-            <StatusBadge text={project.projectType === "case-study" ? "Case Study" : "Project"} />
             <span className="project-category">{categoryLabel}</span>
             <h1 className="project-title">{project.title}</h1>
             <p className="project-description">{project.description}</p>
 
-            <div className="project-tags">
-              {(project.tags || []).map((tag) => (
-                <span key={tag} className="project-tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
             <div className="project-actions">
               {project.liveUrl && (
                 <a
-                  className="project-primary-btn"
+                  className="primary-btn project-primary-btn"
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <span className="material-symbols-outlined">rocket_launch</span>
-                  <span>Live Demo</span>
-                </a>
-              )}
-
-              {showPreviewButton && (
-                <a className="project-secondary-btn" href="#project-preview">
-                  <span className="material-symbols-outlined">preview</span>
-                  <span>Preview Demo</span>
+                  <span>Live Preview</span>
                 </a>
               )}
 
@@ -150,6 +168,18 @@ const ProjectDetail = () => {
                 </a>
               )}
             </div>
+
+            {(project.tags || []).length > 0 && (
+              <div className="project-meta-footer">
+                <div className="project-tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="project-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="project-hero-media">
@@ -171,39 +201,7 @@ const ProjectDetail = () => {
           </div>
         </header>
 
-        {preview && (
-          <section id="project-preview" className="project-preview glass-panel">
-            <div className="project-section-head">
-              <div>
-                <span className="project-section-kicker">{preview.label}</span>
-                <h2>Interactive Preview</h2>
-              </div>
-              <p>{preview.note}</p>
-            </div>
-
-            <div className="project-preview-frame">
-              {preview.type === "iframe" ? (
-                <iframe
-                  src={preview.src}
-                  title={`${project.title} preview`}
-                  className="project-preview-iframe"
-                  loading="lazy"
-                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                  referrerPolicy="no-referrer"
-                />
-              ) : (
-                <video
-                  src={preview.src}
-                  className="project-preview-video"
-                  controls
-                  playsInline
-                />
-              )}
-            </div>
-          </section>
-        )}
-
-        <section className="project-content glass-panel">
+        <section className="project-content">
           <div className="project-section-head">
             <div>
               <span className="project-section-kicker">{contentHeading}</span>
@@ -213,15 +211,12 @@ const ProjectDetail = () => {
                   : "Detailed content"}
               </h2>
             </div>
-            <p>
-              Loaded from <code>{project.contentPath}</code> so each project can
-              be updated independently.
-            </p>
           </div>
 
           <ProjectHtmlContent
             contentPath={project.contentPath}
             title={project.title}
+            omitPrimaryHeading
           />
         </section>
       </div>
@@ -238,38 +233,207 @@ const ProjectDetail = () => {
           gap: 1.5rem;
         }
 
-        .project-back-link {
-          display: inline-flex;
+        .project-nav-row {
+          display: flex;
           align-items: center;
-          gap: 0.55rem;
-          width: fit-content;
-          color: var(--text-muted);
-          font-weight: 600;
+          justify-content: space-between;
+          gap: 1rem;
         }
 
-        .project-back-link .material-symbols-outlined {
-          font-size: 1.1rem;
+        .project-nav-pill {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 0;
+          width: 3rem;
+          height: 3rem;
+          padding: 0.2rem 0.2rem;
+          overflow: hidden;
+          border-radius: 999px;
+          border: 1px solid
+            color-mix(in srgb, var(--primary-color) 18%, var(--border-color));
+          background: color-mix(in srgb, var(--color-bg-soft) 52%, transparent);
+          color: var(--color-text);
+          font-weight: 600;
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+          transition:
+            width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.3s ease,
+            border-color 0.25s ease,
+            background 0.25s ease,
+            box-shadow 0.35s ease;
+        }
+
+        .project-nav-pill::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            120deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.06) 35%,
+            transparent 70%
+          );
+          transform: translateX(-120%);
+          transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+          pointer-events: none;
+        }
+
+        .project-nav-icon-wrap {
+          position: relative;
+          z-index: 1;
+          width: 2.4rem;
+          height: 2.4rem;
+          min-width: 2.4rem;
+          left: 0.06rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 999px;
+          color: var(--primary-color);
+          transition:
+            transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+            background 0.25s ease;
+        }
+
+        .project-nav-icon-wrap .material-symbols-outlined {
+          font-size: 1.4rem;
+          transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .project-nav-pill-label {
+          position: relative;
+          z-index: 1;
+          font-size: 0.9rem;
+          max-width: 0;
+          opacity: 0;
+          white-space: nowrap;
+          color: var(--color-primary);
+          transform: translateX(-0.45rem);
+          transition:
+            max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.22s ease,
+            transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+            margin-left 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .project-next-link {
+          background: var(--primary-color);
+          color: #ffffff;
+          justify-content: end;
+        }
+
+        .project-next-icon-wrap {
+          left: auto;
+          right: 0.06rem;
+          color: #ffffff;
+        }
+
+        .project-next-link-label {
+          order: -1;
+          color: #ffffff;
+          transform: translateX(0.45rem);
+        }
+
+        .project-back-link:hover,
+        .project-next-link:hover {
+          transform: translateY(-1px);
+          width: 10.75rem;
+          box-shadow: 0 0 40px var(--primary-glow);
+        }
+
+        .project-back-link:hover {
+          border-color: color-mix(
+            in srgb,
+            var(--primary-color) 35%,
+            var(--border-color)
+          );
+          background: color-mix(in srgb, var(--color-bg-soft) 72%, transparent);
+        }
+
+        .project-nav-pill:hover::after,
+        .project-nav-pill:focus-visible::after {
+          transform: translateX(120%);
+        }
+
+        .project-back-link:hover .project-nav-icon-wrap,
+        .project-back-link:focus-visible .project-nav-icon-wrap {
+          transform: translateX(0.08rem) scale(1.02);
+          background: color-mix(
+            in srgb,
+            var(--primary-color) 26%,
+            rgba(255, 255, 255, 0.05)
+          );
+        }
+
+        .project-back-link:hover .project-nav-icon-wrap .material-symbols-outlined,
+        .project-back-link:focus-visible
+          .project-nav-icon-wrap
+          .material-symbols-outlined {
+          transform: translateX(-0.08rem);
+          color: white;
+        }
+
+        .project-next-link:hover .project-nav-icon-wrap,
+        .project-next-link:focus-visible .project-nav-icon-wrap {
+          transform: translateX(-0.08rem) scale(1.02);
+          background: rgba(255, 255, 255, 0.18);
+        }
+
+        .project-next-link:hover .project-nav-icon-wrap .material-symbols-outlined,
+        .project-next-link:focus-visible
+          .project-nav-icon-wrap
+          .material-symbols-outlined {
+          transform: translateX(0.08rem);
+        }
+
+        .project-back-link:hover .project-nav-pill-label,
+        .project-back-link:focus-visible .project-nav-pill-label {
+          max-width: 7rem;
+          margin-left: 0.8rem;
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        .project-next-link:hover .project-nav-pill-label,
+        .project-next-link:focus-visible .project-nav-pill-label {
+          max-width: 8.6rem;
+          margin-right: 0.8rem;
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        .project-nav-pill:focus-visible {
+          outline: 2px solid var(--primary-color);
+          outline-offset: 3px;
+          width: 10.75rem;
         }
 
         .project-hero,
-        .project-preview,
         .project-content {
           display: grid;
           gap: 1.5rem;
-          padding: 1.5rem;
-          border-radius: var(--border-radius-xl);
         }
 
         .project-hero {
+          padding: 1.5rem;
+          border-radius: var(--border-radius-xl);
           grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
           align-items: stretch;
+        }
+
+        .project-content {
+          padding-top: 3.5rem;
         }
 
         .project-hero-copy {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 1rem;
+          gap: 0.75rem;
+          margin-top: 0.35rem;
+          margin-left: 0.5rem;
         }
 
         .project-category {
@@ -281,7 +445,7 @@ const ProjectDetail = () => {
         }
 
         .project-title {
-          font-size: clamp(2.3rem, 5vw, 4.75rem);
+          font-size: clamp(2.3rem, 5vw, 4.25rem);
           line-height: 0.95;
           letter-spacing: -0.05em;
         }
@@ -300,10 +464,11 @@ const ProjectDetail = () => {
         }
 
         .project-tag {
-          padding: 0.45rem 0.8rem;
+          padding: 0.45rem 0.9rem;
+          padding-bottom: 0.35rem;
           border-radius: var(--border-radius-full);
           border: 1px solid var(--border-color);
-          background: color-mix(in srgb, var(--color-bg-soft) 60%, transparent);
+          background: color-mix(in srgb, var(--color-bg-main) 35%, transparent);
           color: var(--color-secondary);
           font-size: 0.72rem;
           font-weight: 700;
@@ -315,7 +480,25 @@ const ProjectDetail = () => {
           display: flex;
           flex-wrap: wrap;
           gap: 0.85rem;
-          margin-top: 0.5rem;
+          margin-top: 1rem;
+        }
+
+        .project-meta-footer {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 0.85rem;
+          margin-top: 1rem;
+          padding-top: 1.75rem;
+          border-top: 1px solid var(--border-color);
+        }
+
+        .project-meta-label {
+          font-size: 0.72rem;
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
+          font-weight: 700;
+          color: var(--text-muted);
         }
 
         .project-primary-btn,
@@ -332,7 +515,6 @@ const ProjectDetail = () => {
         .project-primary-btn {
           background: #ffffff;
           color: var(--color-primary);
-          box-shadow: 0 18px 32px rgba(0, 0, 0, 0.18);
         }
 
         .project-secondary-btn {
@@ -389,35 +571,6 @@ const ProjectDetail = () => {
           text-align: right;
         }
 
-        .project-preview-frame {
-          overflow: hidden;
-          border-radius: 1.4rem;
-          border: 1px solid var(--border-color);
-          background: #050407;
-        }
-
-        .project-preview-iframe {
-          display: block;
-          width: 100%;
-          height: min(72vh, 840px);
-          border: 0;
-          background: #ffffff;
-        }
-
-        .project-preview-video {
-          width: 100%;
-          max-height: 72vh;
-          display: block;
-          background: #050407;
-        }
-
-        code {
-          padding: 0.12rem 0.35rem;
-          border-radius: 0.4rem;
-          background: color-mix(in srgb, var(--color-bg-soft) 70%, transparent);
-          color: var(--color-text);
-        }
-
         @media (max-width: 1024px) {
           .project-hero {
             grid-template-columns: 1fr;
@@ -434,15 +587,51 @@ const ProjectDetail = () => {
         }
 
         @media (max-width: 640px) {
+          .project-nav-row {
+            align-items: stretch;
+          }
+
           .project-detail-section {
             padding-top: 7.5rem;
             padding-bottom: 5rem;
           }
 
+          .project-nav-pill {
+            width: auto;
+            min-width: 0;
+            padding-right: 1rem;
+          }
+
+          .project-next-link {
+            justify-content: flex-start;
+            padding-left: 1rem;
+          }
+
+          .project-next-link-label {
+            order: 0;
+          }
+
+          .project-nav-pill-label {
+            max-width: 7rem;
+            margin-left: 0.8rem;
+            opacity: 1;
+            transform: translateX(0);
+          }
+
+          .project-next-link .project-nav-pill-label {
+            max-width: 8.6rem;
+            margin-left: 0;
+            margin-right: 0.8rem;
+          }
+
           .project-hero,
-          .project-preview,
           .project-content {
             padding: 1rem;
+          }
+
+          .project-content {
+            padding-left: 0;
+            padding-right: 0;
           }
 
           .project-cover-media {
@@ -454,14 +643,15 @@ const ProjectDetail = () => {
             flex-direction: column;
           }
 
+          .project-meta-footer {
+            margin-top: 0.85rem;
+            padding-top: 1rem;
+          }
+
           .project-primary-btn,
           .project-secondary-btn {
             width: 100%;
             justify-content: center;
-          }
-
-          .project-preview-iframe {
-            height: 440px;
           }
         }
       `}</style>

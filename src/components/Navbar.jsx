@@ -154,7 +154,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
 
         .nav-link:hover {
           color: var(--text-dark);
-          background: var(--color-bg-soft);
+          background: color-mix(in srgb, var(--color-primary) 30%, transparent);
         }
 
         .nav-link.active {

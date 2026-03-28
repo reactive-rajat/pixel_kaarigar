@@ -315,14 +315,15 @@ const Works = () => {
             Selected <br />
             <span className="primary-text">Projects</span>
           </h2>
-        </div>
-        <p className="header-desc">
+          <p className="header-desc">
           A showcase of apps, design, and motion — simple ideas turned into
           polished digital work.
         </p>
+        </div>
       </div>
 
-      <div className="filter-chips">
+      <div className="filter-container">
+        <div className="filter-chips">
         {["All", "Apps", "Design", "Motion"].map((cat) => (
           <button
             key={cat}
@@ -332,6 +333,7 @@ const Works = () => {
             <span>{cat}</span>
           </button>
         ))}
+      </div>
       </div>
 
       <div
@@ -376,7 +378,7 @@ const Works = () => {
           display: flex;
           justify-content: space-between;
           align-items: flex-end;
-          margin-bottom: 4rem;
+          margin-bottom: 3rem;
           gap: 2rem;
         }
 
@@ -397,19 +399,37 @@ const Works = () => {
         }
 
         .header-desc {
-          font-size: 1.25rem;
-          color: var(--text-muted);
-          max-width: 480px;
-          text-align: right;
-          line-height: 1.6;
+          font-size: 1.1rem;
+          color: var(--color-text-muted);
+          max-width: 540px;
+          line-height: 1.8;
         }
 
         .filter-chips {
           display: flex;
+          justify-content: center;
           gap: 1rem;
-          margin-bottom: 4rem;
-          padding-bottom: 1rem;
+          margin: 0 auto;
+          margin-bottom: 1.5rem;
           flex-wrap: wrap;
+          background: var(--color-bg-main);
+          border-radius: 2rem;
+        }
+
+        .filter-container{
+          position: relative;
+          display: grid;
+          margin-bottom: 1rem;
+        }
+
+        .filter-container:before {
+          position: absolute;
+          z-index: -1;
+          top: 1.25rem;
+          content: "";
+          width: 100%;
+          height: 1px;
+          background: var(--border-color);
         }
 
         .filter-chip {
@@ -417,9 +437,9 @@ const Works = () => {
           align-items: center;
           gap: 0.5rem;
           padding: 0.75rem 1.5rem;
-          background: var(--color-bg-soft);
-          border: 1px solid transparent;
-          color: var(--text-muted);
+          background: var(--color-bg-main);
+          border: 1px solid var(--color-secondary);
+          color: var(--color-secondary);
           border-radius: var(--border-radius-full);
           font-weight: 700;
           font-size: 0.875rem;
@@ -429,6 +449,7 @@ const Works = () => {
 
         .filter-chip:hover {
           border-color: var(--primary-color);
+          background: var(--color-bg-soft);
           transform: scale(1.05);
         }
 
@@ -520,6 +541,12 @@ const Works = () => {
             grid-auto-rows: clamp(170px, 28vw, 220px);
             gap: 1rem;
           }
+        }
+
+        .header-left {
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-lg);
         }
 
         @media (max-width: 640px) {
