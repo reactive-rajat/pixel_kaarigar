@@ -1,12 +1,19 @@
-const projects = [
+import { slugifyProjectTitle } from "../utils/projectMeta";
+
+// Supported fields:
+// - projectType: "coding" | "case-study" | "motion"
+// - url/liveUrl: public live link
+// - previewUrl/embedUrl: iframe-safe preview URL
+// - repoUrl/githubUrl: repository URL used for code references and preview fallback
+const projectEntries = [
   {
     id: 1,
     title: "Resume Help",
+    projectType: "coding",
     url: "https://resumehelp.com/",
     description:
       "ResumeHelp is an online resume builder for job seekers. I worked on UI updates, page templates, and migrating the product to the Flamingo design system to improve visual consistency.",
-    image:
-      "/assets/projects/thumbnails/resumehelp_thumbnail.png",
+    image: "/assets/projects/thumbnails/resumehelp_thumbnail.png",
     tags: ["HTML/CSS", "WEB APP", "DESIGN SYSTEM", "UI DESIGN", "FIGMA"],
     size: "large",
     category: ["Apps", "Design"],
@@ -14,10 +21,10 @@ const projects = [
   {
     id: 2,
     title: "Portfolio v1",
+    projectType: "coding",
     url: "https://imrajat.netlify.app/",
     description: "A retro-style portfolio playground built with Three.js.",
-    image:
-      "/assets/projects/thumbnails/portfolio_v1_thumbnail.png",
+    image: "/assets/projects/thumbnails/portfolio_v1_thumbnail.png",
     tags: ["Three.js", "GSAP"],
     size: "medium",
     category: ["Apps"],
@@ -25,10 +32,11 @@ const projects = [
   {
     id: 3,
     title: "Resume Nerd",
+    projectType: "coding",
     url: "https://www.resumenerd.com/",
-    description: "It is an online resume and cover letter builder. I worked on UI updates and some HTML/CSS improvements.",
-    image:
-      "/assets/projects/thumbnails/nerd_thumbnail.png",
+    description:
+      "It is an online resume and cover letter builder. I worked on UI updates and some HTML/CSS improvements.",
+    image: "/assets/projects/thumbnails/nerd_thumbnail.png",
     tags: ["HTML/CSS", "UI DESIGN", "FIGMA"],
     size: "medium",
     category: ["Apps", "Design"],
@@ -36,11 +44,10 @@ const projects = [
   {
     id: 4,
     title: "Behance",
+    projectType: "case-study",
     url: "https://www.behance.net/designifinity",
-    description:
-      "Explore more of my design work on Behance.",
-    image:
-      "/assets/projects/thumbnails/behance_thumbnail.png",
+    description: "Explore more of my design work on Behance.",
+    image: "/assets/projects/thumbnails/behance_thumbnail.png",
     tags: ["BEHANCE", "MORE PROJECTS"],
     size: "small",
     category: ["Design"],
@@ -48,11 +55,10 @@ const projects = [
   {
     id: 5,
     title: "Wedding Invite",
-    // url: "https://www.behance.net/designifinity",
+    projectType: "motion",
     description:
       "A custom animated wedding invitation video created for a special celebration.",
-    image:
-      "/assets/projects/thumbnails/harshit_himanshi_invite.mp4",
+    image: "/assets/projects/thumbnails/harshit_himanshi_invite.mp4",
     tags: ["VIDEO", "INVITATION"],
     size: "small",
     category: ["Motion"],
@@ -60,14 +66,31 @@ const projects = [
   {
     id: 6,
     title: "BOLD India",
+    projectType: "case-study",
     url: "https://www.india.bold.com/",
-    description: "Bold India is an internal website for employee onboarding and India-specific company policies. I designed and built it using HTML/CSS, created a UI kit from Bold.com for brand consistency, and published it on Google Sites.",
-    image:
-      "/assets/projects/thumbnails/bold_india_thumbnail.png",
+    description:
+      "Bold India is an internal website for employee onboarding and India-specific company policies. I designed and built it using HTML/CSS, created a UI kit from Bold.com for brand consistency, and published it on Google Sites.",
+    image: "/assets/projects/thumbnails/bold_india_thumbnail.png",
     tags: ["WEB DESIGN", "HTML / CSS", "UI KIT", "GOOGLE SITES"],
     size: "large",
     category: ["Apps", "Design"],
   },
 ];
+
+const projects = projectEntries.map((project) => {
+  const slug = project.slug || slugifyProjectTitle(project.title);
+
+  return {
+    ...project,
+    slug,
+    contentPath: project.contentPath || `/projects/${slug}/index.html`,
+    liveUrl: project.liveUrl || project.url || "",
+    repoUrl: project.repoUrl || project.githubUrl || "",
+    previewUrl: project.previewUrl || project.embedUrl || "",
+  };
+});
+
+export const getProjectBySlug = (slug) =>
+  projects.find((project) => project.slug === slug);
 
 export default projects;

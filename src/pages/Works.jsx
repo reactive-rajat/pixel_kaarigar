@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import StatusBadge from "../components/common/StatusBadge";
 import ProjectCard from "../components/common/ProjectCard";
 import projects from "../data/projects";
+import { getProjectCategories } from "../utils/projectMeta";
 
 const GRID_MIN_CARD_WIDTH = 280;
 const GRID_GAP = 20;
-const MOBILE_BREAKPOINT = 768;
 
 const CARD_MAX_SPAN = {
   small: { col: 1, row: 1 },
@@ -15,8 +15,6 @@ const CARD_MAX_SPAN = {
   full: { col: 2, row: 2 },
 };
 
-// Easy future config:
-// [firstCardId, secondCardId] => keep both cards in same column, different rows.
 const STACKED_CARD_PAIRS = [
   [2, 3],
   [4, 5],
@@ -214,6 +212,7 @@ const buildCardLayout = (
       placement.colSpan,
       placement.rowSpan,
     );
+
     laidOutProjects.push({
       project,
       layout: {
@@ -228,80 +227,10 @@ const buildCardLayout = (
   return laidOutProjects;
 };
 
-const ProjectDetailsModal = ({ project, onClose }) => {
-  const categories = Array.isArray(project.category)
-    ? project.category
-    : [project.category];
-  const categoryLabel = categories.filter(Boolean).join(" + ");
-  const projectTags = Array.isArray(project.tags) ? project.tags : [];
-
-  return (
-    <div
-      className="project-modal-overlay"
-      role="presentation"
-      onClick={onClose}
-    >
-      <div
-        className="project-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-label={`${project.title} details`}
-        onClick={(event) => event.stopPropagation()}
-      >
-        <button
-          type="button"
-          className="project-modal-close"
-          aria-label="Close project details"
-          onClick={onClose}
-        >
-          <span className="material-symbols-outlined">close</span>
-        </button>
-
-        <div className="project-modal-top">
-          <div className="project-modal-heading">
-            <span className="project-modal-category">{categoryLabel}</span>
-            <h3 className="project-modal-title">{project.title}</h3>
-          </div>
-
-          {project.url ? (
-            <a
-              className="project-modal-link"
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open project link"
-            >
-              <span className="material-symbols-outlined">arrow_outward</span>
-            </a>
-          ) : (
-            <span className="project-modal-link disabled" aria-hidden="true">
-              <span className="material-symbols-outlined">arrow_outward</span>
-            </span>
-          )}
-        </div>
-
-        <div className="project-modal-details">
-          <p className="project-modal-desc">{project.description}</p>
-
-          <div className="project-modal-tags">
-            {projectTags.map((tag) => (
-              <span key={tag} className="project-modal-tag">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const Works = () => {
   const navigate = useNavigate();
   const [filter, setFilter] = useState("All");
   const [columnCount, setColumnCount] = useState(1);
-  const [isMobile, setIsMobile] = useState(false);
-  const [activeProject, setActiveProject] = useState(null);
   const gridRef = useRef(null);
 
   useEffect(() => {
@@ -341,69 +270,10 @@ const Works = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
-
-    const updateViewportMode = (event) => {
-      const nextIsMobile =
-        typeof event?.matches === "boolean"
-          ? event.matches
-          : mediaQuery.matches;
-
-      setIsMobile(nextIsMobile);
-
-      if (!nextIsMobile) {
-        setActiveProject(null);
-      }
-    };
-
-    updateViewportMode();
-
-    if (typeof mediaQuery.addEventListener === "function") {
-      mediaQuery.addEventListener("change", updateViewportMode);
-
-      return () => {
-        mediaQuery.removeEventListener("change", updateViewportMode);
-      };
-    }
-
-    mediaQuery.addListener(updateViewportMode);
-
-    return () => {
-      mediaQuery.removeListener(updateViewportMode);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!activeProject) {
-      return undefined;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
-        setActiveProject(null);
-      }
-    };
-
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleEscape);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleEscape);
-    };
-  }, [activeProject]);
-
   const filteredProjects =
     filter === "All"
       ? projects
-      : projects.filter((project) => {
-          const categories = Array.isArray(project.category)
-            ? project.category
-            : [project.category];
-          return categories.includes(filter);
-        });
+      : projects.filter((project) => getProjectCategories(project).includes(filter));
 
   const orderedProjects = useMemo(() => {
     const nextProjects = [...filteredProjects];
@@ -474,8 +344,7 @@ const Works = () => {
             key={project.id}
             project={project}
             layout={layout}
-            isMobile={isMobile}
-            onMobileCardTap={setActiveProject}
+            onProjectOpen={() => navigate(`/project/${project.slug}`)}
           />
         ))}
       </div>
@@ -487,18 +356,15 @@ const Works = () => {
           <br />
           <span className="primary-text">Let's build it.</span>
         </h3>
-        <button className="cta-btn" type="button" onClick={() => navigate("/contact")}>
+        <button
+          className="cta-btn"
+          type="button"
+          onClick={() => navigate("/contact")}
+        >
           <span className="material-symbols-outlined">handshake</span>
           <span>Let's work together</span>
         </button>
       </div>
-
-      {isMobile && activeProject && (
-        <ProjectDetailsModal
-          project={activeProject}
-          onClose={() => setActiveProject(null)}
-        />
-      )}
 
       <style jsx="true">{`
         .works-section {
@@ -635,128 +501,6 @@ const Works = () => {
           box-shadow: 0 20px 60px var(--primary-glow);
         }
 
-        .project-modal-overlay {
-          position: sticky;
-          inset: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 1rem;
-          background: color-mix(in srgb, var(--color-bg-main) 70%, transparent);
-          backdrop-filter: blur(4px);
-          z-index: 1300;
-        }
-
-        .project-modal {
-          position: relative;
-          width: min(560px, 100%);
-          border-radius: 18px;
-          border: 1px solid var(--border-color);
-          background: var(--color-card);
-          padding: 1.25rem;
-          box-shadow: 0 24px 50px var(--color-primary-glow);
-        }
-
-        .project-modal-close {
-          position: fixed;
-          top: 6rem;
-          right: 1rem;
-          width: 3rem;
-          height: 3rem;
-          border-radius: 999px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid rgba(255, 255, 255, 0.16);
-          color: #ffffff;
-          background: rgba(7, 5, 12, 0.85);
-        }
-
-        .project-modal-close .material-symbols-outlined {
-          font-size: 1.05rem;
-        }
-
-        .project-modal-top {
-          display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 0.75rem;
-          margin-bottom: 1rem;
-          padding-right: 2.25rem;
-        }
-
-        .project-modal-heading {
-          display: flex;
-          flex-direction: column;
-          gap: 0.55rem;
-        }
-
-        .project-modal-category {
-          font-size: 0.72rem;
-          text-transform: uppercase;
-          letter-spacing: 0.2em;
-          font-weight: 700;
-          color: var(--primary-color);
-        }
-
-        .project-modal-title {
-          font-size: 1.35rem;
-          line-height: 1.2;
-          font-weight: 800;
-          color: var(--color-text);
-        }
-
-        .project-modal-link {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 46px;
-          height: 46px;
-          border-radius: 50%;
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          background: rgba(255, 255, 255, 0.08);
-          color: #ffffff;
-          flex-shrink: 0;
-        }
-
-        .project-modal-link .material-symbols-outlined {
-          font-size: 1.3rem;
-        }
-
-        .project-modal-link.disabled {
-          opacity: 0.45;
-          background: var(--color-text-muted);
-        }
-
-        .project-modal-details {
-          display: flex;
-          flex-direction: column;
-          gap: 0.95rem;
-        }
-
-        .project-modal-desc {
-          color: var(--color-text-muted);
-          font-size: 0.92rem;
-          line-height: 1.6;
-        }
-
-        .project-modal-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-        }
-
-        .project-modal-tag {
-          font-size: 0.66rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          border-radius: var(--radius-pill);
-          padding: 0.34rem 0.75rem;
-          color: var(--color-secondary);
-          border: 1px solid color-mix(in srgb, var(--color-secondary) 10%, transparent);
-          background: var(--color-bg-soft);
-        }
-
         @media (max-width: 1024px) {
           .works-header {
             flex-direction: column;
@@ -779,9 +523,6 @@ const Works = () => {
         }
 
         @media (max-width: 640px) {
-        .project-modal-link{
-          background: var(--color-primary);
-        }
           .header-left {
             text-align: center;
             font-size: 2.5rem;
@@ -793,19 +534,6 @@ const Works = () => {
 
           .status-badge {
             margin: 0 auto;
-          }
-
-          .project-modal-overlay {
-            height: 100dvh;
-            top: 0;
-            left: 0;
-            align-items: flex-end;
-            padding-top: 10rem;
-            padding-bottom: 2rem;
-          }
-
-          .project-modal-top {
-            padding-right: 0;
           }
 
           .works-section {

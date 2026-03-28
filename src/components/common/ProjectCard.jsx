@@ -1,21 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { getProjectCategories, isVideoPath } from "../../utils/projectMeta";
 
-const VIDEO_FILE_PATTERN = /\.(mp4|webm|ogg|mov|m4v|mkv)(\?.*)?$/i;
-
-const isVideoPath = (path = "") => VIDEO_FILE_PATTERN.test(path);
-
-const ProjectCard = ({ project, layout, isMobile = false, onMobileCardTap }) => {
-  const [isVideoPreviewOpen, setIsVideoPreviewOpen] = useState(false);
+const ProjectCard = ({ project, layout, onProjectOpen }) => {
   const isCompact = layout?.rowSpan === 1;
-  const hasUrl = Boolean(project.url);
-  const isMobileTapEnabled =
-    isMobile && typeof onMobileCardTap === "function";
-  const categories = Array.isArray(project.category)
-    ? project.category
-    : [project.category];
+  const categories = getProjectCategories(project);
   const mediaSrc = project.image || "";
   const canPreviewVideo = categories.includes("Motion") && isVideoPath(mediaSrc);
-  const isInteractive = canPreviewVideo || hasUrl || isMobileTapEnabled;
+  const isInteractive = typeof onProjectOpen === "function";
   const categoryLabel = categories.filter(Boolean).join(" + ");
   const cardStyle = layout
     ? {
@@ -24,39 +15,12 @@ const ProjectCard = ({ project, layout, isMobile = false, onMobileCardTap }) => 
       }
     : undefined;
 
-  const openProject = () => {
-    if (canPreviewVideo) {
-      setIsVideoPreviewOpen(true);
+  const handleOpen = () => {
+    if (!isInteractive) {
       return;
     }
 
-    if (!hasUrl) {
-      return;
-    }
-
-    window.open(project.url, "_blank", "noopener,noreferrer");
-  };
-
-  const closeVideoPreview = () => {
-    setIsVideoPreviewOpen(false);
-  };
-
-  const handleCardClick = (event) => {
-    const target = event.target;
-
-    if (
-      target instanceof Element &&
-      target.closest(".video-preview-overlay")
-    ) {
-      return;
-    }
-
-    if (isMobileTapEnabled) {
-      onMobileCardTap(project);
-      return;
-    }
-
-    openProject();
+    onProjectOpen(project);
   };
 
   const handleKeyDown = (event) => {
@@ -65,22 +29,16 @@ const ProjectCard = ({ project, layout, isMobile = false, onMobileCardTap }) => 
     }
 
     event.preventDefault();
-
-    if (isMobileTapEnabled) {
-      onMobileCardTap(project);
-      return;
-    }
-
-    openProject();
+    handleOpen();
   };
 
   return (
     <div
       className={`project-card ${project.size || ""} ${isCompact ? "compact" : ""}`}
       style={cardStyle}
-      role={isMobileTapEnabled || canPreviewVideo ? "button" : hasUrl ? "link" : undefined}
+      role={isInteractive ? "button" : undefined}
       tabIndex={isInteractive ? 0 : undefined}
-      onClick={handleCardClick}
+      onClick={handleOpen}
       onKeyDown={handleKeyDown}
     >
       <div className="card-media">
@@ -119,14 +77,14 @@ const ProjectCard = ({ project, layout, isMobile = false, onMobileCardTap }) => 
                 <span className="hover-category">{categoryLabel}</span>
                 <h3 className="hover-title">{project.title}</h3>
               </div>
-              <button className="hover-cta" aria-label="View Project" type="button">
+              <span className="hover-cta" aria-hidden="true">
                 <span className="material-symbols-outlined">arrow_outward</span>
-              </button>
+              </span>
             </div>
             <div className="hover-details">
               <p className="hover-desc">{project.description}</p>
               <div className="card-tags">
-                {project.tags.map((tag) => (
+                {(project.tags || []).map((tag) => (
                   <span key={tag} className="card-tag">
                     {tag}
                   </span>
@@ -136,34 +94,6 @@ const ProjectCard = ({ project, layout, isMobile = false, onMobileCardTap }) => 
           </div>
         </div>
       </div>
-
-      {canPreviewVideo && isVideoPreviewOpen && (
-        <div
-          className="video-preview-overlay"
-          onClick={closeVideoPreview}
-          role="presentation"
-        >
-          <div
-            className="video-preview-container"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              className="video-preview-close"
-              type="button"
-              aria-label="Close Preview"
-              onClick={closeVideoPreview}
-            >
-              <span className="material-symbols-outlined">close</span>
-            </button>
-            <video
-              src={mediaSrc}
-              className="video-preview-player"
-              controls
-              playsInline
-            />
-          </div>
-        </div>
-      )}
 
       <style jsx="true">{`
         .project-card {
@@ -436,55 +366,6 @@ const ProjectCard = ({ project, layout, isMobile = false, onMobileCardTap }) => 
           letter-spacing: 0.08em;
           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
           z-index: 5;
-        }
-
-        .video-preview-overlay {
-          position: fixed;
-          inset: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 1rem;
-          background: rgba(6, 4, 10, 0.8);
-          backdrop-filter: blur(4px);
-          z-index: 1200;
-        }
-
-        .video-preview-container {
-          position: relative;
-          width: min(900px, 95vw);
-          border-radius: 16px;
-          padding: 0.9rem;
-          background: rgba(11, 8, 18, 0.98);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-        }
-
-        .video-preview-player {
-          width: 100%;
-          max-height: 80vh;
-          border-radius: 12px;
-          background: #050407;
-        }
-
-        .video-preview-close {
-          position: absolute;
-          top: 1.3rem;
-          right: 1.3rem;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 36px;
-          height: 36px;
-          border-radius: 999px;
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          background: rgba(10, 8, 16, 0.85);
-          color: #ffffff;
-          z-index: 2;
-        }
-
-        .video-preview-close .material-symbols-outlined {
-          font-size: 1.15rem;
         }
 
         @media (max-width: 768px) {

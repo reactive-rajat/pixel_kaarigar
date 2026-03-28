@@ -6,6 +6,7 @@ import Hero from './pages/Hero';
 import Works from './pages/Works';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import ProjectDetail from './pages/ProjectDetail';
 
 const routeToPage = {
   '/': 'home',
@@ -37,12 +38,13 @@ const AppShell = () => {
   };
 
   const handlePageChange = (page) => {
-    if (page === activePage) return;
+    const nextPath = pageToRoute[page] || '/';
+
+    if (page === activePage && location.pathname === nextPath) return;
 
     setIsTransitioning(true);
     setTimeout(() => {
       setActivePage(page);
-      const nextPath = pageToRoute[page] || '/';
       if (location.pathname !== nextPath) {
         navigate(nextPath);
       }
@@ -52,7 +54,9 @@ const AppShell = () => {
   };
 
   useEffect(() => {
-    const nextPage = routeToPage[location.pathname] || 'home';
+    const nextPage = location.pathname.startsWith('/project/')
+      ? 'works'
+      : routeToPage[location.pathname] || 'home';
     if (nextPage !== activePage) {
       setActivePage(nextPage);
     }
@@ -72,6 +76,7 @@ const AppShell = () => {
           <Route path="/" element={<Hero setActivePage={handlePageChange} />} />
           <Route path="/about" element={<About />} />
           <Route path="/work" element={<Works />} />
+          <Route path="/project/:slug" element={<ProjectDetail />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
