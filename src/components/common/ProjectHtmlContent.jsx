@@ -144,7 +144,14 @@ const ProjectHtmlContent = ({ contentPath, title, omitPrimaryHeading = false }) 
     let isMounted = true;
 
     const loadContent = async () => {
+      if (!contentPath) {
+        setHtml("");
+        setStatus("error");
+        return;
+      }
+
       try {
+        setHtml("");
         setStatus("loading");
 
         const requestUrl = new URL(

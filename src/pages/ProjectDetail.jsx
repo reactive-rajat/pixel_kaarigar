@@ -135,7 +135,7 @@ const ProjectDetail = () => {
         <header className="project-hero glass-panel">
           <div className="project-hero-copy">
             <span className="project-category">{categoryLabel}</span>
-            <h1 className="project-title">{project.title}</h1>
+            <h2 className="project-title">{project.title}</h2>
             <p className="project-description">{project.description}</p>
 
             <div className="project-actions">

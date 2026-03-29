@@ -225,8 +225,8 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         .hover-content {
           display: flex;
           flex-direction: column;
-          justify-content: flex-start;
-          gap: 1rem;
+          justify-content: center;
+          gap: 0.3rem;
           padding: 1.6rem 1.8rem 1.8rem;
           border-radius: 0 0 28px 28px;
            color-mix(in srgb, var(--color-bg-main) 10%, transparent)
@@ -239,7 +239,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         }
 
         .project-card.compact .hover-content {
-          gap: 1rem;
+          gap: 0.35rem;
         }
 
         .hover-top {
@@ -252,7 +252,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         .hover-heading {
           display: flex;
           flex-direction: column;
-          gap: 0.85rem;
+          gap: 0.35rem;
         }
 
         .hover-details {

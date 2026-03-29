@@ -312,8 +312,7 @@ const Works = () => {
         <div className="header-left">
           <StatusBadge text="SELECTED WORK" />
           <h1 className="section-title">
-            <span className="primary-text">Work </span>
-             That<br />Solved Problems.
+            Work <br />That Solved<br/><span className="primary-text">Problems.</span>
           </h1>
           <p className="header-desc">
           Real problems, real decisions, real outcomes — this is how I think and what I make.

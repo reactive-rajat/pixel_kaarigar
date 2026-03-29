@@ -27,8 +27,8 @@ const Hero = ({ setActivePage }) => {
             <StatusBadge text="Open to work" showPing />
 
             <h1 className="hero-title">
-              UX Designer <br />
-              <span className="gradient-text">who also Codes.</span>
+              <span className="gradient-text">UX Designer <br /></span>
+              with an unfair advantage.
             </h1>
 
             <p className="hero-description">
@@ -71,7 +71,7 @@ then bring them to life with code.
             display: grid;
             grid-template-columns: minmax(0, 1fr);
             align-items: center;
-            padding-top: 6rem;
+            padding-top: 8rem;
             padding-bottom: 4rem;
             gap: 2rem;
           }
@@ -192,9 +192,6 @@ then bring them to life with code.
           }
         `}</style>
       </div>
-
-      {/* Brands */}
-      <Brands/>
     </section>
   );
 };

@@ -28,11 +28,11 @@ const About = () => {
           <StatusBadge text="My Story" style={{ padding: '0.5rem 0.9rem' }} />
 
           <h1 className="about-title">
-            More than just <span className="primary-text">pixels</span> &amp;{' '}
-            <span className="primary-text">code</span>.
+            I design experiences
+          <span className="primary-text"> people actually enjoy.</span>
           </h1>
           <p className="about-lead">
-            Hi, I&apos;m Rajat. I spend my days designing interfaces and bringing them to life in the browser, preferably in <span className="focus-text"><span className="material-symbols-outlined">bolt</span>Focused</span> mode.
+            Hi, I'm Rajat — a Senior UX Designer with 7+ years of experience. I design digital products, and I also code. Which means I know exactly what's buildable, and why it matters.
           </p>
 
           <div className="about-actions">

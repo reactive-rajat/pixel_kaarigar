@@ -5,11 +5,45 @@ import { slugifyProjectTitle } from "../utils/projectMeta";
 // - url/liveUrl: public live link
 // - previewUrl/embedUrl: iframe-safe preview URL
 // - repoUrl/githubUrl: repository URL used for code references and preview fallback
+// - folderPath/folder: project detail content location inside `public/projects`
+//
+// Editing flow:
+// 1. Create a folder like `public/projects/my-new-project/`
+// 2. Add an `index.html` file inside that folder
+// 3. Add a project entry below with `folder: "my-new-project"`
+//
+// The route slug and detailed walkthrough path are derived automatically
+// from the folder name, so folder + HTML stay in sync.
+const PROJECTS_BASE_PATH = "/projects";
+
+const trimTrailingSlash = (value = "") => value.replace(/\/+$/, "");
+
+const getFolderNameFromPath = (value = "") =>
+  trimTrailingSlash(value).split("/").filter(Boolean).pop() || "";
+
+const getProjectFolderPath = (project) => {
+  if (project.folderPath) {
+    const normalizedPath = trimTrailingSlash(project.folderPath);
+
+    if (normalizedPath.startsWith("/")) {
+      return normalizedPath;
+    }
+
+    return `${PROJECTS_BASE_PATH}/${normalizedPath}`;
+  }
+
+  if (project.folder) {
+    return `${PROJECTS_BASE_PATH}/${trimTrailingSlash(project.folder)}`;
+  }
+
+  return `${PROJECTS_BASE_PATH}/${slugifyProjectTitle(project.title)}`;
+};
+
 const projectEntries = [
   {
-    id: 1,
     title: "Rebuilding ResumeHelp's Design\nFoundation",
     projectType: "case-study",
+    folder: "resume-help",
     url: "https://resumehelp.com/",
     description:
       "Migrated a live product to a new design system — fixing accessibility, consistency, and scalability.",
@@ -19,9 +53,9 @@ const projectEntries = [
     category: ["Case Studies"],
   },
   {
-    id: 2,
     title: "Portfolio v1",
     projectType: "coding",
+    folder: "portfolio-v1",
     url: "https://imrajat.netlify.app/",
     description: "A retro-style portfolio playground built with Three.js.",
     image: "/assets/projects/thumbnails/portfolio_v1_thumbnail.png",
@@ -30,9 +64,9 @@ const projectEntries = [
     category: ["Apps"],
   },
   {
-    id: 3,
     title: "Resume Nerd",
     projectType: "coding",
+    folder: "resume-nerd",
     url: "https://www.resumenerd.com/",
     description:
       "It is an online resume and cover letter builder. I worked on UI updates and some HTML/CSS improvements.",
@@ -42,9 +76,9 @@ const projectEntries = [
     category: ["Apps", "Design"],
   },
   {
-    id: 4,
     title: "Behance",
     projectType: "case-study",
+    folder: "behance",
     url: "https://www.behance.net/designifinity",
     description: "Explore more of my design work on Behance.",
     image: "/assets/projects/thumbnails/behance_thumbnail.png",
@@ -53,9 +87,9 @@ const projectEntries = [
     category: ["Design"],
   },
   {
-    id: 5,
     title: "Wedding Invite",
     projectType: "motion",
+    folder: "wedding-invite",
     description:
       "A custom animated wedding invitation video created for a special celebration.",
     image: "/assets/projects/thumbnails/harshit_himanshi_invite.mp4",
@@ -64,9 +98,9 @@ const projectEntries = [
     category: ["Motion"],
   },
   {
-    id: 6,
     title: "BOLD India",
     projectType: "case-study",
+    folder: "bold-india",
     url: "https://www.india.bold.com/",
     description:
       "Bold India is an internal website for employee onboarding and India-specific company policies. I designed and built it using HTML/CSS, created a UI kit from Bold.com for brand consistency, and published it on Google Sites.",
@@ -77,13 +111,19 @@ const projectEntries = [
   },
 ];
 
-const projects = projectEntries.map((project) => {
-  const slug = project.slug || slugifyProjectTitle(project.title);
+const projects = projectEntries.map((project, index) => {
+  const folderPath = getProjectFolderPath(project);
+  const folderName = getFolderNameFromPath(folderPath);
+  const slug =
+    project.slug || folderName || slugifyProjectTitle(project.title);
 
   return {
     ...project,
+    id: project.id || index + 1,
     slug,
-    contentPath: project.contentPath || `/projects/${slug}/index.html`,
+    folder: folderName,
+    folderPath,
+    contentPath: project.contentPath || `${folderPath}/index.html`,
     liveUrl: project.liveUrl || project.url || "",
     repoUrl: project.repoUrl || project.githubUrl || "",
     previewUrl: project.previewUrl || project.embedUrl || "",
