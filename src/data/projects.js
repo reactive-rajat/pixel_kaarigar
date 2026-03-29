@@ -43,6 +43,7 @@ const projectEntries = [
   {
     title: "Rebuilding ResumeHelp's Design\nFoundation",
     projectType: "case-study",
+    featuredOrder: 1,
     folder: "resume-help",
     url: "https://resumehelp.com/",
     description:
@@ -66,6 +67,7 @@ const projectEntries = [
   {
     title: "Resume Nerd",
     projectType: "coding",
+    featuredOrder: 2,
     folder: "resume-nerd",
     url: "https://www.resumenerd.com/",
     description:
@@ -100,6 +102,7 @@ const projectEntries = [
   {
     title: "BOLD India",
     projectType: "case-study",
+    featuredOrder: 3,
     folder: "bold-india",
     url: "https://www.india.bold.com/",
     description:
@@ -132,5 +135,11 @@ const projects = projectEntries.map((project, index) => {
 
 export const getProjectBySlug = (slug) =>
   projects.find((project) => project.slug === slug);
+
+export const featuredProjects = [...projects]
+  .filter((project) => Number.isFinite(project.featuredOrder))
+  .sort((firstProject, secondProject) => {
+    return firstProject.featuredOrder - secondProject.featuredOrder;
+  });
 
 export default projects;

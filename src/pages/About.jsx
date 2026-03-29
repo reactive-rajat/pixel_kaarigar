@@ -4,6 +4,7 @@ import Brands from '../components/sections/Brands';
 import HeroVisual from '../components/common/HeroVisual';
 import StatusBadge from '../components/common/StatusBadge';
 import SectionHeading from '../components/common/SectionHeading';
+import { aboutSkills, testimonials } from '../data/about';
 
 const About = () => {
   const navigate = useNavigate();
@@ -192,38 +193,12 @@ const About = () => {
               </div>
             </div>
             <div className="toolkit-pills">
-              <span className="tool-pill">
-                <span className="material-symbols-outlined">draw</span>
-                React.js
-              </span>
-              <span className="tool-pill">
-                <span className="material-symbols-outlined">draw</span>
-                Tailwind
-              </span>
-              <span className="tool-pill">
-                <span className="material-symbols-outlined">draw</span>
-                Javascript
-              </span>
-              <span className="tool-pill">
-                <span className="material-symbols-outlined">draw</span>
-                HTML/CSS
-              </span>
-              <span className="tool-pill">
-                <span className="material-symbols-outlined">draw</span>
-                UX/UI Design
-              </span>
-              <span className="tool-pill">
-                <span className="material-symbols-outlined">modeling</span>
-                Prototyping
-              </span>
-              <span className="tool-pill">
-                <span className="material-symbols-outlined">deployed_code</span>
-                Design Systems
-              </span>
-              <span className="tool-pill">
-                <span className="material-symbols-outlined">auto_graph</span>
-                Visual Design
-              </span>
+              {aboutSkills.map((skill) => (
+                <span key={skill.name} className="tool-pill">
+                  <span className="material-symbols-outlined">{skill.icon}</span>
+                  {skill.name}
+                </span>
+              ))}
             </div>
             <p style={{opacity: '0.35', textAlign: 'center', marginTop: '1rem', fontWeight: '400'}}>and many more...</p>
           </div>
@@ -270,57 +245,28 @@ const About = () => {
           description="A few kind words from people I've worked with."
         />
         <div className="testimonials-grid">
-          <div className="testimonial-card content-card">
-            <p className="testimonial-text">
-              “I had the pleasure of working with Rajat and was consistently impressed by his talent, versatility, and reliability.”
-            </p>
-            <div className="testimonial-author">
-              <img
-                className="author-avatar"
-                src="/assets/testimonials/danielle_bain_thumbnail.jpeg"
-                alt="Denielle Bain"
-                loading="lazy"
-              />
-              <div>
-                <p className="author-name">Danielle Bain</p>
-                <p className="author-role">Creative Director @ BOLD</p>
+          {testimonials.map((testimonial) => (
+            <div
+              key={testimonial.name}
+              className={`testimonial-card content-card${testimonial.highlighted ? ' highlighted' : ''}`}
+            >
+              <p className="testimonial-text">
+                &ldquo;{testimonial.quote}&rdquo;
+              </p>
+              <div className="testimonial-author">
+                <img
+                  className="author-avatar"
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  loading="lazy"
+                />
+                <div>
+                  <p className="author-name">{testimonial.name}</p>
+                  <p className="author-role">{testimonial.role}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="testimonial-card content-card highlighted">
-            <p className="testimonial-text">
-              “Rajat has a remarkable ability to translate complex concepts into intuitive, user-friendly designs.”
-            </p>
-            <div className="testimonial-author">
-              <img
-                className="author-avatar"
-                src="/assets/testimonials/abhishek_kumar_thumbnail.jpeg"
-                alt="Abhishek Kumar"
-                loading="lazy"
-              />
-              <div>
-                <p className="author-name">Abhishek Kumar</p>
-                <p className="author-role">Director – UI @ BOLD</p>
-              </div>
-            </div>
-          </div>
-          <div className="testimonial-card content-card">
-            <p className="testimonial-text">
-              “Rajat could understand complex briefs and translate them into clean, effective, and visually engaging designs.”
-            </p>
-            <div className="testimonial-author">
-              <img
-                className="author-avatar"
-                src="/assets/testimonials/jeeveeta_agnihotri_thumbnail.jpeg"
-                alt="Jeeveeta Soobarah Agnihotri"
-                loading="lazy"
-              />
-              <div>
-                <p className="author-name">Jeeveeta Soobarah Agnihotri</p>
-                <p className="author-role">Chief Programme Officer</p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Brands */}
