@@ -43,7 +43,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
       onClick={handleOpen}
       onKeyDown={handleKeyDown}
     >
-      <div className="card-media">
+      <div className="card-media card-1 card-hoverable">
         {canPreviewVideo ? (
           <video
             src={mediaSrc}
@@ -63,11 +63,11 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         )}
         <div className="card-gradient"></div>
 
-        {project.badge && <div className="card-badge">{project.badge}</div>}
+        {project.badge && <div className="card-badge label-tag">{project.badge}</div>}
 
         <div className="card-default">
           <div className="default-text">
-            <span className="default-category">{categoryLabel}</span>
+            <span className="default-category label-tag">{categoryLabel}</span>
             <h3 className="default-title">{project.title.split("\n").map((line, i) => (
   <span key={i}>
     {line}
@@ -78,10 +78,10 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         </div>
 
         <div className="card-hover">
-          <div className="hover-content">
+          <div className="hover-content card-2">
             <div className="hover-top">
               <div className="hover-heading">
-                <span className="hover-category">{categoryLabel}</span>
+                <span className="hover-category label-tag">{categoryLabel}</span>
                 <h3 className="hover-title">{project.title}</h3>
               </div>
               <span className="hover-cta" aria-hidden="true">
@@ -92,7 +92,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
               <p className="hover-desc">{project.description}</p>
               <div className="card-tags">
                 {(project.tags || []).map((tag) => (
-                  <span key={tag} className="card-tag">
+                  <span key={tag} className="card-tag label-tag">
                     {tag}
                   </span>
                 ))}

@@ -1,6 +1,6 @@
 .works-section {
-          padding-top: 10rem;
-          padding-bottom: 8rem;
+          padding-top: var(--space-2xl);
+          padding-bottom: var(--space-2xl);
         }
 
         .works-header {
@@ -11,19 +11,8 @@
           gap: 2rem;
         }
 
-        .section-label {
-          color: var(--primary-color);
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          font-size: 0.875rem;
-          margin-bottom: 0.5rem;
-        }
-
         .header-desc {
-          font-size: 1.1rem;
           color: var(--color-text-muted);
-          max-width: 540px;
           line-height: 1.8;
         }
 
@@ -31,7 +20,6 @@
           display: flex;
           justify-content: center;
           gap: 1rem;
-          margin: 0 auto;
           margin-bottom: 1.5rem;
           flex-wrap: wrap;
           background: var(--color-bg-main);
@@ -55,31 +43,7 @@
         }
 
         .filter-chip {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.75rem 1.5rem;
-          background: var(--color-bg-main);
-          border: 1px solid var(--color-secondary);
-          color: var(--color-secondary);
-          border-radius: var(--border-radius-full);
-          font-weight: 700;
-          font-size: 0.875rem;
-          transition: all 0.3s;
           white-space: nowrap;
-        }
-
-        .filter-chip:hover {
-          border-color: var(--primary-color);
-          background: var(--color-bg-soft);
-          transform: scale(1.05);
-        }
-
-        .filter-chip.active {
-          background: var(--primary-color);
-          color: white;
-          border-color: var(--primary-color);
-          box-shadow: 0 10px 20px var(--primary-glow);
         }
 
         .projects-grid {
@@ -104,7 +68,7 @@
 
         .works-cta {
           position: relative;
-          margin-top: 8rem;
+          margin-top: var(--space-2xl);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -128,25 +92,6 @@
 
         .primary-text {
           color: var(--primary-color);
-        }
-
-        .cta-btn {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          padding: 1.25rem 2.5rem;
-          background: white;
-          color: var(--color-primary);
-          border-radius: var(--border-radius-full);
-          font-weight: 700;
-          font-size: 1.125rem;
-          transition: all 0.3s;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-btn:hover {
-          transform: scale(1.05);
-          box-shadow: 0 20px 60px var(--primary-glow);
         }
 
         @media (max-width: 1024px) {
@@ -175,7 +120,6 @@
         @media (max-width: 640px) {
           .header-left {
             text-align: center;
-            font-size: 2.5rem;
             display: grid;
             gap: 2rem;
             justify-content: center;
@@ -187,24 +131,17 @@
           }
 
           .works-section {
-            padding-top: 7.5rem;
-            padding-bottom: 5rem;
+            padding-top: var(--space-2xl);
+            padding-bottom: var(--space-2xl);
           }
 
           .header-desc {
-            font-size: 1rem;
-            max-width: 100%;
             text-align: center;
           }
 
           .filter-chips {
             gap: 0.65rem;
             margin-bottom: 2.25rem;
-          }
-
-          .filter-chip {
-            padding: 0.68rem 1rem;
-            font-size: 0.82rem;
           }
 
           .projects-grid {
@@ -217,35 +154,16 @@
             gap: 1.4rem;
           }
 
-          .cta-btn {
+          .works-cta .primary-btn {
             width: 100%;
             justify-content: center;
-            padding: 1rem 1.25rem;
-            font-size: 1rem;
           }
         }
 
         @media (max-width: 768px) {
           .filter-chip:hover,
-          .cta-btn:hover {
+          .works-cta .primary-btn:hover {
             transform: none;
             box-shadow: none;
-          }
-
-          .filter-chip:hover {
-            border-color: var(--border-color);
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text-muted);
-          }
-
-          .filter-chip.active:hover {
-            border-color: var(--primary-color);
-            background: var(--primary-color);
-            color: white;
-            box-shadow: 0 10px 20px var(--primary-glow);
-          }
-
-          .cta-btn:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
           }
         }

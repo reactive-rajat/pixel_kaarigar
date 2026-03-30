@@ -13,7 +13,7 @@ function Brands() {
 
   return (
     <section className="brands-wrapper">
-      <div className="brands-shell card-glass">
+      <div className="brands-shell card-3">
         <div className="brands-header">
           <span className="label-tag">Brands I&apos;ve worked with</span>
           <h3>Products and teams I&apos;ve helped shape along the way.</h3>
@@ -31,7 +31,7 @@ function Brands() {
               {displayLogos.map((brand, index) => (
                 <a
                   key={`${brand.brandName}-${index}`}
-                  className="brand-card"
+                  className="brand-card card-1 card-hoverable"
                   href={brand.brandUrl}
                   aria-label={brand.brandName}
                 >
@@ -51,7 +51,7 @@ function Brands() {
               {reverseLogos.map((brand, index) => (
                 <a
                   key={`${brand.brandName}-reverse-${index}`}
-                  className="brand-card"
+                  className="brand-card card-1 card-hoverable"
                   href={brand.brandUrl}
                   aria-label={brand.brandName}
                 >

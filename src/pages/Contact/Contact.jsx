@@ -18,7 +18,7 @@ const Contact = () => {
             <span className="primary-text">Something Weird.</span>
           </h1>
           <p className="contact-description">
-            I design and build digital experiences that look sharp and work flawlessly. <span className="focus-text">Got an idea? Let’s bring it to life.</span>
+            I design and build digital experiences that look sharp and work flawlessly. <span className="label-tag">Got an idea? Let’s bring it to life.</span>
           </p>
 
  
@@ -26,7 +26,7 @@ const Contact = () => {
 
         {/* Right Column: Quick Contact */}
         <div className="contact-form-container">
-          <div className="glass-panel contact-form-card">
+          <div className="contact-form-card card-3">
             <div className="form-header">
               <div className="hud-dots">
                 <span className="dot red"></span>
@@ -36,8 +36,8 @@ const Contact = () => {
             </div>
 
             <div className="contact-form quick-connect">
-              <div className="connect-head">
-                <p className="connect-label">PRIMARY CHAT</p>
+              <div className="head-group">
+                <span className="label-tag">PRIMARY CHAT</span>
                 <h3>WhatsApp Connect</h3>
                 <p className="connect-note">
                   Fastest way to reach me. Tap once and chat directly on WhatsApp.
@@ -47,7 +47,7 @@ const Contact = () => {
               <div>
                 <a
                 href={whatsappLink}
-                className="launch-btn whatsapp-btn shimmer"
+                className="primary-btn"
                 target="_blank"
                 rel="noopener noreferrer"
               >

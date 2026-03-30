@@ -11,12 +11,7 @@ import {
   aboutSnapshotCards,
   testimonials,
 } from "../../data/about.js";
-
-const showcaseGradients = [
-  "radial-gradient(circle at top left, rgba(127, 19, 236, 0.18), transparent 42%), linear-gradient(135deg, rgba(18, 12, 28, 0.96), rgba(13, 9, 23, 0.94))",
-  "radial-gradient(circle at top right, rgba(173, 146, 201, 0.16), transparent 40%), linear-gradient(135deg, rgba(14, 10, 24, 0.97), rgba(20, 10, 31, 0.94))",
-  "radial-gradient(circle at center left, rgba(98, 45, 172, 0.18), transparent 44%), linear-gradient(135deg, rgba(16, 10, 26, 0.97), rgba(10, 8, 20, 0.95))",
-];
+const SHOWCASE_GRADIENT_COUNT = 3;
 
 const sectionReveal = {
   hidden: { opacity: 0, y: 48 },
@@ -151,7 +146,7 @@ const Hero = ({ setActivePage }) => {
   const activeProject = showcaseProjects[activeProjectIndex];
   const activeTestimonial = testimonials[activeTestimonialIndex];
   const showcaseGradientClass = `showcase-shell-gradient-${
-    activeProjectIndex % showcaseGradients.length
+    activeProjectIndex % SHOWCASE_GRADIENT_COUNT
   }`;
 
   const showPreviousTestimonial = () => {
@@ -226,7 +221,7 @@ then bring them to life with code.
             viewport={{ once: true, amount: 0.2 }}
           >
             <div
-              className={`showcase-shell glass-surface card-glass ${showcaseGradientClass}`}
+              className={`showcase-shell card-lg card-3 ${showcaseGradientClass}`}
               onMouseEnter={() => setIsProjectPaused(true)}
               onMouseLeave={() => setIsProjectPaused(false)}
             >
@@ -325,18 +320,18 @@ then bring them to life with code.
               {aboutSnapshotCards.map((card) => (
                 <motion.article
                   key={card.id}
-                  className={`snapshot-card glass-surface card-glass`}
+                  className="snapshot-card card-3 card-md"
                   variants={staggerItem}
                 >
                   {card.type === "stat" ? (
                     <>
-                      <p className="snapshot-value">
+                      <h2 className="snapshot-value">
                         <CountUpNumber
                           value={card.value}
                           suffix={card.suffix}
                           start={startSnapshotCount}
                         />
-                      </p>
+                      </h2>
                       <h3 className="snapshot-label">{card.label}</h3>
                       <p className="snapshot-text">{card.description}</p>
                     </>
@@ -344,9 +339,9 @@ then bring them to life with code.
                     <>
                       <div className="snapshot-brand-copy">
                         <div>
-                          <p className="snapshot-value">
+                          <h2 className="snapshot-value">
                             20+
-                          </p>
+                          </h2>
                           <h3 className="snapshot-brand-heading">{card.label}</h3>
                         </div>
                       </div>
@@ -382,8 +377,8 @@ then bring them to life with code.
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
           >
-            <div className="skills-glimpse-header">
-              <p className="section-kicker">Skills & tools</p>
+            <div className="head-group skills-glimpse-header">
+              <span className="label-tag section-kicker">Skills & tools</span>
               <h3 className="section-title">
                 A quick glimpse of the tools behind the work.
               </h3>
@@ -442,26 +437,28 @@ then bring them to life with code.
               <AnimatePresence initial={false} mode="wait">
                 <motion.div
                   key={activeTestimonial.name}
-                  className="testimonial-spotlight"
+                  className="testimonial-spotlight card-2 card-lg"
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -14 }}
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <img
+                  <div className="testimonial-copy">
+                    <h3 className="testimonial-quote">
+                      &ldquo;{activeTestimonial.quote}&rdquo;
+                    </h3>
+
+                    <div className="testimonial-meta">
+                      <img
                     className="testimonial-avatar"
                     src={activeTestimonial.image}
                     alt={activeTestimonial.name}
                     loading="lazy"
                   />
-                  <div className="testimonial-copy">
-                    <p className="testimonial-quote">
-                      &ldquo;{activeTestimonial.quote}&rdquo;
-                    </p>
-
-                    <div className="testimonial-meta">
-                      <h4 className="testimonial-name">{activeTestimonial.name}</h4>
+                      <div>
+                        <h4 className="testimonial-name">{activeTestimonial.name}</h4>
                       <p className="testimonial-role">{activeTestimonial.role}</p>
+                      </div>
                     </div>
                   </div>
                 </motion.div>

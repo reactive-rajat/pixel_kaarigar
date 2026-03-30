@@ -45,7 +45,7 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <section className="project-detail-section container">
-        <div className="project-not-found glass-panel">
+        <div className="project-not-found card-2">
           <StatusBadge text="Not Found" />
           <h1>Project not found</h1>
           <p>
@@ -54,7 +54,7 @@ const ProjectDetail = () => {
           </p>
           <button
             type="button"
-            className="project-primary-btn"
+            className="primary-btn"
             onClick={() => navigate("/work")}
           >
             Back to work
@@ -102,16 +102,16 @@ const ProjectDetail = () => {
           )}
         </div>
 
-        <header className="project-hero glass-panel">
+        <header className="project-hero card-3">
           <div className="project-hero-copy">
-            <span className="project-category">{categoryLabel}</span>
+            <span className="label-tag project-category">{categoryLabel}</span>
             <h2 className="project-title">{project.title}</h2>
             <p className="project-description">{project.description}</p>
 
             <div className="project-actions">
               {project.liveUrl && (
                 <a
-                  className="primary-btn project-primary-btn"
+                  className="primary-btn"
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -123,7 +123,7 @@ const ProjectDetail = () => {
 
               {project.repoUrl && (
                 <a
-                  className="project-secondary-btn"
+                  className="secondary-btn"
                   href={project.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -138,7 +138,7 @@ const ProjectDetail = () => {
               <div className="project-meta-footer">
                 <div className="project-tags">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="project-tag">
+                    <span key={tag} className="label-tag project-tag">
                       {tag}
                     </span>
                   ))}
@@ -169,7 +169,7 @@ const ProjectDetail = () => {
         <section className="project-content">
           <div className="project-section-head">
             <div>
-              <span className="project-section-kicker">{contentHeading}</span>
+              <span className="label-tag project-section-kicker">{contentHeading}</span>
               <h2>
                 {project.projectType === "case-study"
                   ? "Detailed walkthrough"

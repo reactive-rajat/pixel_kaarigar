@@ -17,7 +17,7 @@
   --color-text-rgb: 255, 255, 255;
   --color-text: rgb(var(--color-text-rgb));
   --color-text-muted: rgba(var(--color-text-rgb), 0.5);
-  --color-border: rgba(77, 50, 103, 0.5);
+  --color-border: rgba(92, 56, 127, 0.6);
   --color-border-light: rgba(0, 0, 0, 0.1);
   --color-success: #00ff7f;
   --color-danger: #c43d3d;
@@ -40,6 +40,25 @@
   --radius-lg: 1.6rem;
   --radius-xl: 2.5rem;
   --radius-pill: 9999px;
+
+  /* Card Backgrounds — only these 3 */
+  --card-bg-1: var(--color-card);
+  --card-bg-2: var(--color-card-alt);
+  --card-bg-3: var(--color-bg-soft);
+
+  /* Card Border — only these 2 */
+  --card-border-1: var(--color-border);
+  --card-border-2: var(--color-primary-glow);
+
+  /* Card Border Radius — only these 3 */
+  --card-radius-sm: var(--radius-md);
+  --card-radius-md: var(--radius-lg);
+  --card-radius-lg: var(--radius-xl);
+
+  /* Card Padding — only these 3 */
+  --card-padding-sm: var(--space-md);
+  --card-padding-md: var(--space-lg);
+  --card-padding-lg: var(--space-xl);
 
   /* Layout */
   --container-width: 1200px;
@@ -171,7 +190,7 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color-text-muted);
-  background: rgba(127, 19, 236, 0.12);
+  background: var(--color-bg-soft);
   border: 1px solid var(--color-border);
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-pill);
@@ -194,35 +213,53 @@ p {
   cursor: default;
 }
 
-.card-default {
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
+.card-1, .card-2, .card-3{
+  border: 1px solid var(--card-border-1);
 }
 
-.card-hover {
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  transition: all 0.3s ease;
+.card-1 {
+  background: var(--card-bg-1);
+  border-color: var(--card-border-1);
+}
+
+.card-2 {
+  background: var(--card-bg-2);
+  border-color: var(--card-border-1);
+}
+
+.card-3 {
+  background: var(--card-bg-3);
+  border-color: var(--card-border-1);
+}
+
+.card-md{
+  border-radius: var(--card-radius-md);
+  padding: var(--card-padding-md);
+}
+
+.card-lg{
+  border-radius: var(--card-radius-lg);
+  padding: var(--card-padding-lg);
+}
+
+.card-hoverable {
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
 }
 
-.card-hover:hover {
-  background: var(--color-card-alt);
-  border-color: var(--color-primary);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px var(--color-primary-glow);
+.head-group{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  align-items: flex-start;
 }
 
-.card-glass {
-  background: var(--color-bg-soft);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-lg);
+.card-hoverable:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px var(--color-primary-glow);
 }
 
 .icon-sm  { width: 20px; height: 20px; }
@@ -260,7 +297,7 @@ ul {
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 8rem var(--space-lg) 0;
+  padding: 9rem var(--space-lg) 0;
   width: 100%;
 }
 

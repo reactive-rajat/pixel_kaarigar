@@ -84,7 +84,7 @@ const Footer = () => {
       {/* CTA Section before footer */}
       <section className="pre-footer-cta">
         <div className="container">
-          <div className="cta-card glass-panel">
+          <div className="cta-card card-3 card-lg">
             <div className="cta-content">
               <div className="status-badge">
                 <div className="ping-dot">
@@ -129,6 +129,16 @@ const Footer = () => {
                   <p className="brand-tagline">UX Designer & Developer</p>
                 </div>
               </div>
+              <div className="footer-badges">
+                <div className="skill-pill footer-badge">
+                  <span className="material-symbols-outlined">verified</span>
+                  <span>5+ Years</span>
+                </div>
+                <div className="skill-pill footer-badge">
+                  <span className="material-symbols-outlined">workspace_premium</span>
+                  <span>50+ Projects</span>
+                </div>
+              </div>
               <p className="footer-bio">
                 Designing experiences that solve real problems and bringing them to life with code.
               </p>
@@ -155,7 +165,7 @@ const Footer = () => {
                 {quickLinks.map(({ label, href }) => (
                   <a key={label} href={href} className="footer-nav-link">
                     <span className="material-symbols-outlined">arrow_forward</span>
-                    <span>{label}</span>
+                    <span className="quick-link-label">{label}</span>
                   </a>
                 ))}
               </nav>
@@ -169,7 +179,7 @@ const Footer = () => {
                   <a
                     key={label}
                     href={href}
-                    className="contact-method"
+                    className="contact-method card-1 card-hoverable"
                     {...(external
                       ? {
                           target: '_blank',
@@ -191,41 +201,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Column 4: Newsletter */}
-            <div className="footer-col">
-              <h4 className="footer-heading">Stay Updated</h4>
-              <p className="newsletter-description">
-                Get design insights and project updates delivered to your inbox.
-              </p>
-              <form className="newsletter-form" onSubmit={handleSubscribe}>
-                <div className="input-group">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="newsletter-input"
-                    required
-                  />
-                  <button type="submit" className="newsletter-btn" aria-label="Subscribe">
-                    <span className="material-symbols-outlined">send</span>
-                  </button>
-                </div>
-                {subscribeStatus === 'success' && (
-                  <p className="subscribe-success">✓ Thanks for subscribing!</p>
-                )}
-              </form>
-              <div className="footer-badges">
-                <div className="badge">
-                  <span className="material-symbols-outlined">verified</span>
-                  <span>5+ Years</span>
-                </div>
-                <div className="badge">
-                  <span className="material-symbols-outlined">workspace_premium</span>
-                  <span>50+ Projects</span>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Footer Bottom */}

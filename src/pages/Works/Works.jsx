@@ -327,7 +327,7 @@ const Works = () => {
         {["All", "Case Studies", "UI & Dev", "Creative"].map((cat) => (
           <button
             key={cat}
-            className={`filter-chip ${filter === cat ? "active" : ""}`}
+            className={filter === cat ? "primary-btn filter-chip" : "secondary-btn filter-chip"}
             onClick={() => setFilter(cat)}
           >
             <span>{cat}</span>
@@ -356,7 +356,7 @@ const Works = () => {
           Have a problem worth solving?
         </h2>
         <button
-          className="cta-btn"
+          className="primary-btn"
           type="button"
           onClick={() => navigate("/contact")}
         >

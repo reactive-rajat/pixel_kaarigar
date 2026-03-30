@@ -3,8 +3,8 @@
             display: grid;
             grid-template-columns: minmax(0, 1fr);
             align-items: center;
-            padding-top: 8rem;
-            padding-bottom: 4rem;
+            padding-top: var(--space-2xl);
+            padding-bottom: var(--space-2xl);
             gap: 2rem;
           }
 
@@ -24,9 +24,7 @@
             min-width: 0;
           }
 
-          .hero-description {
-            font-size: 1.1rem;
-            max-width: 500px;
+.hero-description {
             line-height: 1.6;
           }
 
@@ -54,28 +52,6 @@
             margin-top: clamp(5rem, 8vw, 6rem);
           }
 
-          .glass-surface {
-            position: relative;
-            overflow: hidden;
-            background:
-              linear-gradient(
-                180deg,
-                color-mix(
-                  in srgb,
-                  var(--color-bg-soft) 88%,
-                  rgba(255, 255, 255, 0.03)
-                ),
-                color-mix(in srgb, var(--color-bg-main) 90%, transparent)
-              ) padding-box,
-              linear-gradient(
-                140deg,
-                color-mix(in srgb, var(--primary-color) 62%, transparent),
-                rgba(255, 255, 255, 0.05),
-                transparent 72%
-              ) border-box;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
-          }
-
           .featured-work-section,
           .snapshot-section,
           .skills-section,
@@ -84,7 +60,8 @@
           }
 
           .showcase-shell {
-            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
           }
 
           .showcase-shell-gradient-0 {
@@ -155,18 +132,14 @@
 
           .showcase-category {
             width: fit-content;
-            background: color-mix(in srgb, var(--primary-color) 18%, transparent);
-            border: 1px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
             color: var(--color-text);
           }
 
           .showcase-title {
             color: var(--color-text);
-            max-width: 11ch;
           }
 
           .showcase-description {
-            max-width: 40ch;
             color: color-mix(in srgb, var(--color-text) 78%, transparent);
           }
 
@@ -177,8 +150,6 @@
           }
 
           .showcase-tag {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.14);
             color: var(--color-text);
           }
 
@@ -187,7 +158,6 @@
             margin-top: 0.4rem;
             color: var(--color-text);
             font-weight: 700;
-            font-size: 0.96rem;
             transition: transform 0.2s ease, color 0.2s ease;
           }
 
@@ -201,8 +171,8 @@
             min-width: 0;
             border-radius: 1.6rem;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: color-mix(in srgb, var(--color-text) 3%, transparent);
+            border: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
           }
 
           .showcase-media::after {
@@ -211,8 +181,8 @@
             inset: 0;
             background: linear-gradient(
               180deg,
-              rgba(14, 10, 24, 0.06) 0%,
-              rgba(14, 10, 24, 0.28) 100%
+              color-mix(in srgb, var(--color-bg-main) 6%, transparent) 0%,
+              color-mix(in srgb, var(--color-bg-main) 28%, transparent) 100%
             );
           }
 
@@ -234,8 +204,8 @@
             width: 0.75rem;
             height: 0.75rem;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.18);
-            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: color-mix(in srgb, var(--color-text) 18%, transparent);
+            border: 1px solid color-mix(in srgb, var(--color-text) 16%, transparent);
             transition:
               transform 0.25s ease,
               background 0.25s ease,
@@ -255,31 +225,16 @@
           }
 
           .snapshot-card {
-            padding: 1.6rem;
             min-height: 15rem;
-            transition:
-              transform 0.25s ease,
-              box-shadow 0.25s ease,
-              border-color 0.25s ease;
-          }
-
-          .snapshot-card:hover {
-            transform: translateY(-4px);
-            box-shadow:
-              0 0 0 1px color-mix(in srgb, var(--primary-color) 28%, transparent),
-              0 26px 54px rgba(0, 0, 0, 0.2);
           }
 
           .snapshot-card-brands {
             grid-column: 1 / -1;
-            padding: 0;
             min-height: auto;
           }
 
           .snapshot-value {
-            font-size: clamp(2.8rem, 6vw, 4rem);
             line-height: 1;
-            font-weight: 900;
             color: var(--color-primary);
             margin-bottom: 1rem;
           }
@@ -291,7 +246,6 @@
           }
 
           .snapshot-text {
-            max-width: 30ch;
           }
 
           .snapshot-brand-copy {
@@ -328,9 +282,6 @@
             align-items: center;
             justify-content: center;
             gap: 0.65rem;
-            border-radius: 1.1rem;
-            padding: 1rem;
-            background-color: var(--color-bg-main);
           }
 
           .snapshot-brand-logo-frame {
@@ -361,15 +312,15 @@
 
           .skills-section {
             position: relative;
-            padding: 1rem 0;
             display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 3rem 0;
           }
 
           .skills-glimpse-header {
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            max-width: 32rem;
             margin-bottom: 1.5rem;
           }
 
@@ -386,9 +337,7 @@
             align-items: center;
             justify-content: center;
             gap: 0.55rem;
-            padding: 0.65rem 1rem;
             animation: skill-float 5.8s ease-in-out infinite;
-            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
           }
 
           .skills-highlight-pill-0 { animation-delay: 0s; }
@@ -406,20 +355,15 @@
 
           .section-kicker {
             margin-bottom: 0.55rem;
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
             color: var(--text-muted);
           }
 
           .section-title {
             color: var(--color-text);
-            max-width: 18ch;
           }
 
           .testimonial-shell {
-            padding: 1.1rem 0 0;
+            padding: 3rem 0 0;
             border-top: 1px solid var(--color-border);
           }
 
@@ -431,8 +375,8 @@
           }
 
           .testimonial-arrow {
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 3.6rem;
+            height: 3.6rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -448,7 +392,7 @@
 
           .testimonial-arrow:hover {
             transform: translateY(-2px);
-            background: color-mix(in srgb, var(--primary-color) 16%, rgba(255, 255, 255, 0.04));
+            background: color-mix(in srgb, var(--primary-color) 16%, transparent);
             box-shadow: 0 12px 24px var(--color-primary-glow);
           }
 
@@ -457,17 +401,16 @@
             grid-template-columns: auto minmax(0, 1fr);
             align-items: center;
             gap: 1rem;
-            max-width: 52rem;
             padding: 0 0 0.25rem;
           }
 
           .testimonial-avatar {
-            width: 4.75rem;
-            height: 4.75rem;
+            width: 4rem;
+            height: 4rem;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid color-mix(in srgb, var(--color-primary) 25%, var(--color-border));
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+            box-shadow: var(--shadow-sm);
           }
 
           .testimonial-copy {
@@ -477,9 +420,15 @@
           }
 
           .testimonial-quote {
-            font-size: clamp(1.02rem, 2vw, 1.22rem);
-            line-height: 1.7;
+            line-height: 1.4;
             color: var(--color-text);
+          }
+
+          .testimonial-meta{
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
           }
 
           .testimonial-name {
@@ -488,6 +437,11 @@
 
           .testimonial-role {
             color: var(--text-muted);
+          }
+
+          .skill-pill{
+            font-size: 0.85rem !important;
+            padding-bottom: 0.55rem !important;
           }
 
           @keyframes brand-loop {
@@ -541,11 +495,9 @@
             }
 
             .showcase-title {
-              max-width: 100%;
             }
 
             .showcase-description {
-              max-width: 42ch;
             }
 
             .showcase-media {
@@ -560,8 +512,8 @@
           @media (max-width: 768px) {
             .hero-section {
               min-height: auto;
-              padding-top: 7rem;
-              padding-bottom: 2.5rem;
+              padding-top: var(--space-2xl);
+              padding-bottom: var(--space-2xl);
             }
 
             .hero-grid {
@@ -570,10 +522,6 @@
 
             .hero-content {
               gap: 1.5rem;
-            }
-
-            .hero-description {
-              font-size: 1rem;
             }
 
             .skills-list {

@@ -20,7 +20,7 @@ const HeroVisual = ({ defaultMood = 'focused', onCharacterClick }) => {
         />
       </div>
 
-      <div className="hud-panel mood-panel glass-panel">
+      <div className="hud-panel card-1 mood-panel">
         <div className="mood-switcher">
           <div
             className={currentMood === 'relaxed' ? 'mood-option active' : 'mood-option'}
@@ -39,7 +39,7 @@ const HeroVisual = ({ defaultMood = 'focused', onCharacterClick }) => {
         </div>
       </div>
 
-      <div className="hud-panel energy-panel glass-panel">
+      <div className="hud-panel energy-panel card-1">
         <div className="energy-header">
           <div className="energy-label">
             <span className="material-symbols-outlined">battery_charging_full</span>

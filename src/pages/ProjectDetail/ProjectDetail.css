@@ -1,35 +1,16 @@
 .project-detail-section {
-            padding-top: 10rem;
-            padding-bottom: 6rem;
-          }
+          padding-top: var(--space-2xl);
+          padding-bottom: var(--space-2xl);
+        }
 
-          .project-not-found {
-            max-width: 760px;
-            margin: 0 auto;
-            display: grid;
-            gap: 1.25rem;
-            padding: 2rem;
-            border-radius: var(--border-radius-xl);
-          }
+        .project-not-found {
+          display: grid;
+          gap: 1.25rem;
+        }
 
-          .project-not-found p {
-            color: var(--text-muted);
-            line-height: 1.7;
-          }
-
-          .project-primary-btn {
-            width: fit-content;
-            min-height: 48px;
-            padding: 0.9rem 1.25rem;
-            border-radius: var(--border-radius-full);
-            background: var(--primary-color);
-            color: #fff;
-            font-weight: 700;
-          }
-
-.project-detail-section {
-          padding-top: 9.5rem;
-          padding-bottom: 6rem;
+        .project-not-found p {
+          color: var(--text-muted);
+          line-height: 1.7;
         }
 
         .project-detail-shell {
@@ -61,7 +42,7 @@
           background: color-mix(in srgb, var(--color-bg-soft) 52%, transparent);
           color: var(--color-text);
           font-weight: 600;
-          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+          box-shadow: var(--shadow-sm);
           transition:
             width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
             transform 0.3s ease,
@@ -77,7 +58,7 @@
           background: linear-gradient(
             120deg,
             transparent 0%,
-            rgba(255, 255, 255, 0.06) 35%,
+            color-mix(in srgb, var(--surface-light) 6%, transparent) 35%,
             transparent 70%
           );
           transform: translateX(-120%);
@@ -125,19 +106,19 @@
 
         .project-next-link {
           background: var(--primary-color);
-          color: #ffffff;
+          color: var(--surface-light);
           justify-content: end;
         }
 
         .project-next-icon-wrap {
           left: auto;
           right: 0.06rem;
-          color: #ffffff;
+          color: var(--surface-light);
         }
 
         .project-next-link-label {
           order: -1;
-          color: #ffffff;
+          color: var(--surface-light);
           transform: translateX(0.45rem);
         }
 
@@ -165,11 +146,7 @@
         .project-back-link:hover .project-nav-icon-wrap,
         .project-back-link:focus-visible .project-nav-icon-wrap {
           transform: translateX(0.08rem) scale(1.02);
-          background: color-mix(
-            in srgb,
-            var(--primary-color) 26%,
-            rgba(255, 255, 255, 0.05)
-          );
+          background: color-mix(in srgb, var(--primary-color) 26%, transparent);
         }
 
         .project-back-link:hover .project-nav-icon-wrap .material-symbols-outlined,
@@ -177,13 +154,13 @@
           .project-nav-icon-wrap
           .material-symbols-outlined {
           transform: translateX(-0.08rem);
-          color: white;
+          color: var(--surface-light);
         }
 
         .project-next-link:hover .project-nav-icon-wrap,
         .project-next-link:focus-visible .project-nav-icon-wrap {
           transform: translateX(-0.08rem) scale(1.02);
-          background: rgba(255, 255, 255, 0.18);
+          background: color-mix(in srgb, var(--surface-light) 18%, transparent);
         }
 
         .project-next-link:hover .project-nav-icon-wrap .material-symbols-outlined,
@@ -222,8 +199,6 @@
         }
 
         .project-hero {
-          padding: 1.5rem;
-          border-radius: var(--border-radius-xl);
           grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
           align-items: stretch;
         }
@@ -242,17 +217,11 @@
         }
 
         .project-category {
-          font-size: 0.78rem;
-          text-transform: uppercase;
-          letter-spacing: 0.2em;
-          font-weight: 700;
-          color: var(--primary-color);
+          margin-bottom: 0.25rem;
         }
 
         .project-description {
-          max-width: 58ch;
           color: var(--text-muted);
-          font-size: 1rem;
           line-height: 1.8;
         }
 
@@ -260,19 +229,6 @@
           display: flex;
           flex-wrap: wrap;
           gap: 0.6rem;
-        }
-
-        .project-tag {
-          padding: 0.45rem 0.9rem;
-          padding-bottom: 0.35rem;
-          border-radius: var(--border-radius-full);
-          border: 1px solid var(--border-color);
-          background: color-mix(in srgb, var(--color-bg-main) 35%, transparent);
-          color: var(--color-secondary);
-          font-size: 0.72rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
         }
 
         .project-actions {
@@ -292,38 +248,9 @@
           border-top: 1px solid var(--border-color);
         }
 
-        .project-meta-label {
-          font-size: 0.72rem;
-          text-transform: uppercase;
-          letter-spacing: 0.2em;
-          font-weight: 700;
-          color: var(--text-muted);
-        }
-
-        .project-primary-btn,
-        .project-secondary-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.6rem;
-          min-height: 48px;
-          padding: 0.9rem 1.2rem;
-          border-radius: var(--border-radius-full);
-          font-weight: 700;
-        }
-
-        .project-primary-btn {
-          background: #ffffff;
-          color: var(--color-primary);
-        }
-
-        .project-secondary-btn {
-          border: 1px solid var(--border-color);
-          background: color-mix(in srgb, var(--color-bg-soft) 60%, transparent);
-          color: var(--color-text);
-        }
-
-        .project-primary-btn .material-symbols-outlined,
-        .project-secondary-btn .material-symbols-outlined {
+        .project-actions .primary-btn .material-symbols-outlined,
+        .project-actions .secondary-btn .material-symbols-outlined,
+        .project-not-found .primary-btn .material-symbols-outlined {
           font-size: 1.1rem;
         }
 
@@ -338,7 +265,7 @@
           border-radius: 1.4rem;
           border: 1px solid var(--border-color);
           object-fit: cover;
-          background: rgba(0, 0, 0, 0.24);
+          background: color-mix(in srgb, var(--color-bg-main) 24%, transparent);
         }
 
         .project-section-head {
@@ -351,18 +278,6 @@
         .project-section-kicker {
           display: inline-block;
           margin-bottom: 0.45rem;
-          font-size: 0.76rem;
-          text-transform: uppercase;
-          letter-spacing: 0.2em;
-          font-weight: 700;
-          color: var(--primary-color);
-        }
-
-        .project-section-head p {
-          max-width: 46ch;
-          color: var(--text-muted);
-          line-height: 1.7;
-          text-align: right;
         }
 
         @media (max-width: 1024px) {
@@ -374,10 +289,6 @@
             flex-direction: column;
             align-items: flex-start;
           }
-
-          .project-section-head p {
-            text-align: left;
-          }
         }
 
         @media (max-width: 640px) {
@@ -386,8 +297,8 @@
           }
 
           .project-detail-section {
-            padding-top: 7.5rem;
-            padding-bottom: 5rem;
+            padding-top: var(--space-2xl);
+            padding-bottom: var(--space-2xl);
           }
 
           .project-nav-pill {
@@ -418,14 +329,8 @@
             margin-right: 0.8rem;
           }
 
-          .project-hero,
           .project-content {
-            padding: 1rem;
-          }
-
-          .project-content {
-            padding-left: 0;
-            padding-right: 0;
+            padding-top: 1rem;
           }
 
           .project-cover-media {
@@ -442,8 +347,9 @@
             padding-top: 1rem;
           }
 
-          .project-primary-btn,
-          .project-secondary-btn {
+          .project-actions .primary-btn,
+          .project-actions .secondary-btn,
+          .project-not-found .primary-btn {
             width: 100%;
             justify-content: center;
           }

@@ -50,7 +50,7 @@ const About = () => {
       </div>
 
       {/* Timeline */}
-      <div className="timeline-section content-section content-card">
+      <div className="timeline-section content-section card-1">
         <SectionHeading
           label="Journey"
           title={
@@ -66,8 +66,8 @@ const About = () => {
               <span className="material-symbols-outlined timeline-dot-icon">rocket_launch</span>
             </div>
             <div className="timeline-content">
-              <span className="timeline-year start">Now</span>
-              <span className="timeline-year end">May 2025</span>
+              <span className="timeline-year start label-tag">Now</span>
+              <span className="timeline-year end label-tag">May 2025</span>
               <h4>Independent UI/UX & Frontend Developer | Freelance </h4>
               <div id="timeline-details-freelance" className={expandedTimelineItems.freelance ? 'timeline-details expanded' : 'timeline-details'}>
                 <ul>
@@ -77,7 +77,7 @@ const About = () => {
               </div>
               <button
                 type="button"
-                className="timeline-toggle"
+                className="secondary-btn timeline-toggle"
                 onClick={() => toggleTimelineDetails('freelance')}
                 aria-expanded={expandedTimelineItems.freelance}
                 aria-controls="timeline-details-freelance"
@@ -91,8 +91,8 @@ const About = () => {
               <span className="material-symbols-outlined timeline-dot-icon">grid_view</span>
             </div>
             <div className="timeline-content">
-              <span className="timeline-year start">Sep 2021</span>
-              <span className="timeline-year end">May 2025</span>
+              <span className="timeline-year start label-tag">Sep 2021</span>
+              <span className="timeline-year end label-tag">May 2025</span>
               <h4>Senior Web Designer / UI Developer | BOLD </h4>
               <div id="timeline-details-bold" className={expandedTimelineItems.bold ? 'timeline-details expanded' : 'timeline-details'}>
                 <ul>
@@ -104,7 +104,7 @@ const About = () => {
               </div>
               <button
                 type="button"
-                className="timeline-toggle"
+                className="secondary-btn timeline-toggle"
                 onClick={() => toggleTimelineDetails('bold')}
                 aria-expanded={expandedTimelineItems.bold}
                 aria-controls="timeline-details-bold"
@@ -118,8 +118,8 @@ const About = () => {
               <span className="material-symbols-outlined timeline-dot-icon">code</span>
             </div>
             <div className="timeline-content">
-              <span className="timeline-year start">Jan 2019</span>
-              <span className="timeline-year end">Sep 2021</span>
+              <span className="timeline-year start label-tag">Jan 2019</span>
+              <span className="timeline-year end label-tag">Sep 2021</span>
               <h4>UI Designer / Developer | Avalon Infosys</h4>
               <div id="timeline-details-avalon" className={expandedTimelineItems.avalon ? 'timeline-details expanded' : 'timeline-details'}>
                 <ul>
@@ -131,7 +131,7 @@ const About = () => {
               </div>
               <button
                 type="button"
-                className="timeline-toggle"
+                className="secondary-btn timeline-toggle"
                 onClick={() => toggleTimelineDetails('avalon')}
                 aria-expanded={expandedTimelineItems.avalon}
                 aria-controls="timeline-details-avalon"
@@ -155,17 +155,17 @@ const About = () => {
           description="Strategy, design, and development tailored to your product goals."
         />
         <div className="deliver-grid">
-          <div className="deliver-card content-card">
+          <div className="deliver-card card-1">
             <span className="material-symbols-outlined">strategy</span>
             <h3>Strategy</h3>
             <p>Define the purpose and map the journey for maximum impact.</p>
           </div>
-          <div className="deliver-card content-card">
+          <div className="deliver-card card-1">
             <span className="material-symbols-outlined">brush</span>
             <h3>Design</h3>
             <p>Craft crisp, intuitive interfaces with clear hierarchy.</p>
           </div>
-          <div className="deliver-card content-card">
+          <div className="deliver-card card-1">
             <span className="material-symbols-outlined">code</span>
             <h3>Development</h3>
             <p>Build scalable products with clean code and smooth UX.</p>
@@ -185,17 +185,17 @@ const About = () => {
           description="The tools I reach for to design, build, and ship polished experiences."
         />
         <div className="toolkit-grid">
-          <div className="toolkit-card content-card">
+          <div className="toolkit-card card-2">
             <div className="toolkit-header">
               <span className="material-symbols-outlined">auto_awesome</span>
               <div>
-                <p className="toolkit-eyebrow">Core Expertise</p>
+                <span className="label-tag toolkit-eyebrow">Core Expertise</span>
                 <h3>Tools I use daily</h3>
               </div>
             </div>
             <div className="toolkit-pills">
               {aboutSkills.map((skill) => (
-                <span key={skill.name} className="tool-pill">
+                <span key={skill.name} className="skill-pill tool-pill">
                   <span className="material-symbols-outlined">{skill.icon}</span>
                   {skill.name}
                 </span>
@@ -203,28 +203,28 @@ const About = () => {
             </div>
             <p className="toolkit-more">and many more...</p>
           </div>
-          <div className="toolkit-card content-card">
+          <div className="toolkit-card card-2">
             <div className="toolkit-header">
               <span className="material-symbols-outlined">workspace_premium</span>
               <div>
-                <p className="toolkit-eyebrow">Certifications</p>
+                <span className="label-tag toolkit-eyebrow">Certifications</span>
                 <h3>Courses &amp; Certifications</h3>
               </div>
             </div>
             <ul className="toolkit-list">
-              <li>
+              <li className="skill-pill">
                 <span className="material-symbols-outlined">verified</span>
                 Meta - React
               </li>
-              <li>
+              <li className="skill-pill">
                 <span className="material-symbols-outlined">verified</span>
                 Meta - Programming with Javascript
               </li>
-              <li>
+              <li className="skill-pill">
                 <span className="material-symbols-outlined">verified</span>
                 Uxcel - UX Design Foundation + Typography
               </li>
-              <li>
+              <li className="skill-pill">
                 <span className="material-symbols-outlined">verified</span>
                 Uxcel - Color Psychology + Wireframing + Accessibility
               </li>
@@ -249,7 +249,7 @@ const About = () => {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.name}
-              className={`testimonial-card content-card${testimonial.highlighted ? ' highlighted' : ''}`}
+              className={`testimonial-card ${testimonial.highlighted ? 'card-2 highlighted' : 'card-1'}`}
             >
               <p className="testimonial-text">
                 &ldquo;{testimonial.quote}&rdquo;
@@ -262,7 +262,7 @@ const About = () => {
                   loading="lazy"
                 />
                 <div>
-                  <p className="author-name">{testimonial.name}</p>
+                  <h4 className="author-name">{testimonial.name}</h4>
                   <p className="author-role">{testimonial.role}</p>
                 </div>
               </div>
@@ -287,13 +287,13 @@ const About = () => {
           description="Balancing expressive visuals with systems that scale gracefully."
         />
         <div className="dual-grid">
-          <div className="dual-card visualist content-card">
-            <span className="card-tag">THE VISUALIST</span>
+          <div className="dual-card visualist card-1">
+            <span className="label-tag card-tag">THE VISUALIST</span>
             <h3>I craft stories through visuals.</h3>
             <p>Every pixel has a purpose. I focus on hierarchy and emotion.</p>
           </div>
-          <div className="dual-card architect content-card">
-            <span className="card-tag">THE ARCHITECT</span>
+          <div className="dual-card architect card-1">
+            <span className="label-tag card-tag">THE ARCHITECT</span>
             <h3>I build systems that scale.</h3>
             <p>Robust, maintainable systems that evolve with the product.</p>
           </div>
@@ -308,7 +308,7 @@ const About = () => {
           <br />
           <span className="primary-text">Let&apos;s build it.</span>
         </h3>
-        <button className="cta-btn" type="button" onClick={() => navigate('/contact')}>
+        <button className="primary-btn" type="button" onClick={() => navigate('/contact')}>
           <span className="material-symbols-outlined">handshake</span>
           <span>Let&apos;s work together</span>
         </button>
