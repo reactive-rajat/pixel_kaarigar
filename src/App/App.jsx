@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Hero from './pages/Hero';
-import Works from './pages/Works';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import ProjectDetail from './pages/ProjectDetail';
+import Navbar from '../components/Navbar/Navbar';
+import Footer from '../components/Footer/Footer';
+import Hero from '../pages/Hero/Hero';
+import Works from '../pages/Works/Works';
+import About from '../pages/About/About';
+import Contact from '../pages/Contact/Contact';
+import ProjectDetail from '../pages/ProjectDetail/ProjectDetail';
+import "./App.css";
 
 const routeToPage = {
   '/': 'home',
@@ -82,49 +83,6 @@ const AppShell = () => {
       </main>
 
       <Footer />
-
-      <style jsx="true">{`
-        .app-wrapper {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          color: var(--text-dark);
-          transition: background 0.3s, color 0.3s;
-        }
-
-        .page-content {
-          flex: 1;
-          transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        .fade-in {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .fade-out {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-          width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-          background: var(--background-dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-          background: var(--border-color);
-          border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-          background: var(--primary-color);
-        }
-      `}</style>
     </div>
   );
 };

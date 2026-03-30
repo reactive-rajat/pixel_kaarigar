@@ -1,4 +1,5 @@
 import React from 'react';
+import "./WhatsAppIcon.css";
 
 // Single source for WhatsApp icon markup, reused in multiple pages.
 const WhatsAppIcon = ({ className = '' }) => {

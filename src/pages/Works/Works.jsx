@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import StatusBadge from "../components/common/StatusBadge";
-import ProjectCard from "../components/common/ProjectCard";
-import projects from "../data/projects";
-import { getProjectCategories } from "../utils/projectMeta";
+import StatusBadge from "../../components/common/StatusBadge/StatusBadge";
+import ProjectCard from "../../components/common/ProjectCard/ProjectCard";
+import projects from "../../data/projects.js";
+import { getProjectCategories } from "../../utils/projectMeta.js";
+import "./Works.css";
 
 const GRID_MIN_CARD_WIDTH = 280;
 const GRID_GAP = 20;
@@ -305,6 +306,7 @@ const Works = () => {
     () => buildCardLayout(orderedProjects, columnCount, STACKED_PAIR_LOOKUP),
     [orderedProjects, columnCount],
   );
+  const gridColumnClass = `projects-grid--columns-${Math.min(columnCount, 8)}`;
 
   return (
     <section className="works-section container">
@@ -335,9 +337,8 @@ const Works = () => {
       </div>
 
       <div
-        className="projects-grid"
+        className={`projects-grid ${gridColumnClass}`}
         ref={gridRef}
-        style={{ "--grid-columns": columnCount }}
       >
         {laidOutProjects.map(({ project, layout }) => (
           <ProjectCard
@@ -354,7 +355,6 @@ const Works = () => {
         <h2 className="cta-title">
           Have a problem worth solving?
         </h2>
-        {/* <h3 className="primary-text" style={{display: "block"}}>Let's talk about it.</h3> */}
         <button
           className="cta-btn"
           type="button"
@@ -363,251 +363,6 @@ const Works = () => {
           <span>Let's work together</span>
         </button>
       </div>
-
-      <style jsx="true">{`
-        .works-section {
-          padding-top: 10rem;
-          padding-bottom: 8rem;
-        }
-
-        .works-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          margin-bottom: 3rem;
-          gap: 2rem;
-        }
-
-        .section-label {
-          color: var(--primary-color);
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          font-size: 0.875rem;
-          margin-bottom: 0.5rem;
-        }
-
-        .header-desc {
-          font-size: 1.1rem;
-          color: var(--color-text-muted);
-          max-width: 540px;
-          line-height: 1.8;
-        }
-
-        .filter-chips {
-          display: flex;
-          justify-content: center;
-          gap: 1rem;
-          margin: 0 auto;
-          margin-bottom: 1.5rem;
-          flex-wrap: wrap;
-          background: var(--color-bg-main);
-          border-radius: 2rem;
-        }
-
-        .filter-container{
-          position: relative;
-          display: grid;
-          margin-bottom: 1rem;
-        }
-
-        .filter-container:before {
-          position: absolute;
-          z-index: -1;
-          top: 1.25rem;
-          content: "";
-          width: 100%;
-          height: 1px;
-          background: var(--border-color);
-        }
-
-        .filter-chip {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.75rem 1.5rem;
-          background: var(--color-bg-main);
-          border: 1px solid var(--color-secondary);
-          color: var(--color-secondary);
-          border-radius: var(--border-radius-full);
-          font-weight: 700;
-          font-size: 0.875rem;
-          transition: all 0.3s;
-          white-space: nowrap;
-        }
-
-        .filter-chip:hover {
-          border-color: var(--primary-color);
-          background: var(--color-bg-soft);
-          transform: scale(1.05);
-        }
-
-        .filter-chip.active {
-          background: var(--primary-color);
-          color: white;
-          border-color: var(--primary-color);
-          box-shadow: 0 10px 20px var(--primary-glow);
-        }
-
-        .projects-grid {
-          --grid-columns: 1;
-          display: grid;
-          width: 100%;
-          grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
-          grid-auto-rows: clamp(180px, 18vw, 250px);
-          gap: 1.25rem;
-          grid-auto-flow: dense;
-          align-items: stretch;
-        }
-
-        .works-cta {
-          position: relative;
-          margin-top: 8rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 2rem;
-          text-align: center;
-          height: 30dvh;
-        }
-
-        .cta-glow {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 300px;
-          height: 300px;
-          background: var(--primary-glow);
-          filter: blur(80px);
-          z-index: -1;
-        }
-
-        .primary-text {
-          color: var(--primary-color);
-        }
-
-        .cta-btn {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          padding: 1.25rem 2.5rem;
-          background: white;
-          color: var(--color-primary);
-          border-radius: var(--border-radius-full);
-          font-weight: 700;
-          font-size: 1.125rem;
-          transition: all 0.3s;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-btn:hover {
-          transform: scale(1.05);
-          box-shadow: 0 20px 60px var(--primary-glow);
-        }
-
-        @media (max-width: 1024px) {
-          .works-header {
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-          }
-
-          .header-desc {
-            text-align: left;
-          }
-
-          .projects-grid {
-            grid-auto-rows: clamp(170px, 28vw, 220px);
-            gap: 1rem;
-          }
-        }
-
-        .header-left {
-          display: flex;
-          flex-direction: column;
-          gap: var(--space-lg);
-        }
-
-        @media (max-width: 640px) {
-          .header-left {
-            text-align: center;
-            font-size: 2.5rem;
-            display: grid;
-            gap: 2rem;
-            justify-content: center;
-            width: 100%;
-          }
-
-          .status-badge {
-            margin: 0 auto;
-          }
-
-          .works-section {
-            padding-top: 7.5rem;
-            padding-bottom: 5rem;
-          }
-
-          .header-desc {
-            font-size: 1rem;
-            max-width: 100%;
-            text-align: center;
-          }
-
-          .filter-chips {
-            gap: 0.65rem;
-            margin-bottom: 2.25rem;
-          }
-
-          .filter-chip {
-            padding: 0.68rem 1rem;
-            font-size: 0.82rem;
-          }
-
-          .projects-grid {
-            gap: 0.9rem;
-            grid-auto-rows: 210px;
-          }
-
-          .works-cta {
-            margin-top: 4.5rem;
-            gap: 1.4rem;
-          }
-
-          .cta-btn {
-            width: 100%;
-            justify-content: center;
-            padding: 1rem 1.25rem;
-            font-size: 1rem;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .filter-chip:hover,
-          .cta-btn:hover {
-            transform: none;
-            box-shadow: none;
-          }
-
-          .filter-chip:hover {
-            border-color: var(--border-color);
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text-muted);
-          }
-
-          .filter-chip.active:hover {
-            border-color: var(--primary-color);
-            background: var(--primary-color);
-            color: white;
-            box-shadow: 0 10px 20px var(--primary-glow);
-          }
-
-          .cta-btn:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-          }
-        }
-      `}</style>
     </section>
   );
 };

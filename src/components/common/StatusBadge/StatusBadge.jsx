@@ -1,11 +1,12 @@
 import React from 'react';
+import "./StatusBadge.css";
 
 // Reusable status badge used across pages (with optional ping animation).
-const StatusBadge = ({ text, showPing = false, style, className = '' }) => {
+const StatusBadge = ({ text, showPing = false, className = '' }) => {
   const badgeClassName = `status-badge ${className}`.trim();
 
   return (
-    <div className={badgeClassName} style={style}>
+    <div className={badgeClassName}>
       {showPing ? (
         <span className="ping-dot">
           <span className="ping-inner"></span>

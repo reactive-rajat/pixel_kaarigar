@@ -1,107 +1,4 @@
-import React from "react";
-import { getProjectCategories, isVideoPath } from "../../utils/projectMeta";
-
-const ProjectCard = ({ project, layout, onProjectOpen }) => {
-  const isCompact = layout?.rowSpan === 1;
-  const categories = getProjectCategories(project);
-  const mediaSrc = project.image || "";
-  const canPreviewVideo = categories.includes("Motion") && isVideoPath(mediaSrc);
-  const isInteractive = typeof onProjectOpen === "function";
-  const categoryLabel = categories.filter(Boolean).join(" + ");
-  const cardStyle = layout
-    ? {
-        gridColumn: `${layout.columnStart} / span ${layout.colSpan}`,
-        gridRow: `${layout.rowStart} / span ${layout.rowSpan}`,
-      }
-    : undefined;
-
-  const handleOpen = () => {
-    if (!isInteractive) {
-      return;
-    }
-
-    onProjectOpen(project);
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key !== "Enter" && event.key !== " ") {
-      return;
-    }
-
-    event.preventDefault();
-    handleOpen();
-  };
-
-  return (
-    <div
-      className={`project-card ${project.size || ""} ${isCompact ? "compact" : ""}`}
-      style={cardStyle}
-      role={isInteractive ? "button" : undefined}
-      tabIndex={isInteractive ? 0 : undefined}
-      onClick={handleOpen}
-      onKeyDown={handleKeyDown}
-    >
-      <div className="card-media">
-        {canPreviewVideo ? (
-          <video
-            src={mediaSrc}
-            className="card-image card-video"
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          />
-        ) : (
-          <img
-            src={project.image}
-            alt={project.title}
-            className="card-image"
-            referrerPolicy="no-referrer"
-          />
-        )}
-        <div className="card-gradient"></div>
-
-        {project.badge && <div className="card-badge">{project.badge}</div>}
-
-        <div className="card-default">
-          <div className="default-text">
-            <span className="default-category">{categoryLabel}</span>
-            <h3 className="default-title">{project.title.split("\n").map((line, i) => (
-  <span key={i}>
-    {line}
-    <br />
-  </span>
-))}</h3>
-          </div>
-        </div>
-
-        <div className="card-hover">
-          <div className="hover-content">
-            <div className="hover-top">
-              <div className="hover-heading">
-                <span className="hover-category">{categoryLabel}</span>
-                <h3 className="hover-title">{project.title}</h3>
-              </div>
-              <span className="hover-cta" aria-hidden="true">
-                <span className="material-symbols-outlined">arrow_outward</span>
-              </span>
-            </div>
-            <div className="hover-details">
-              <p className="hover-desc">{project.description}</p>
-              <div className="card-tags">
-                {(project.tags || []).map((tag) => (
-                  <span key={tag} className="card-tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <style jsx="true">{`
-        .project-card {
+.project-card {
           position: relative;
           height: 100%;
           min-height: 0;
@@ -111,6 +8,45 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
             box-shadow 0.35s ease;
           border-radius: 28px;
         }
+
+        .project-card--col-start-1 { grid-column-start: 1; }
+        .project-card--col-start-2 { grid-column-start: 2; }
+        .project-card--col-start-3 { grid-column-start: 3; }
+        .project-card--col-start-4 { grid-column-start: 4; }
+        .project-card--col-start-5 { grid-column-start: 5; }
+        .project-card--col-start-6 { grid-column-start: 6; }
+        .project-card--col-start-7 { grid-column-start: 7; }
+        .project-card--col-start-8 { grid-column-start: 8; }
+
+        .project-card--row-start-1 { grid-row-start: 1; }
+        .project-card--row-start-2 { grid-row-start: 2; }
+        .project-card--row-start-3 { grid-row-start: 3; }
+        .project-card--row-start-4 { grid-row-start: 4; }
+        .project-card--row-start-5 { grid-row-start: 5; }
+        .project-card--row-start-6 { grid-row-start: 6; }
+        .project-card--row-start-7 { grid-row-start: 7; }
+        .project-card--row-start-8 { grid-row-start: 8; }
+        .project-card--row-start-9 { grid-row-start: 9; }
+        .project-card--row-start-10 { grid-row-start: 10; }
+        .project-card--row-start-11 { grid-row-start: 11; }
+        .project-card--row-start-12 { grid-row-start: 12; }
+        .project-card--row-start-13 { grid-row-start: 13; }
+        .project-card--row-start-14 { grid-row-start: 14; }
+        .project-card--row-start-15 { grid-row-start: 15; }
+        .project-card--row-start-16 { grid-row-start: 16; }
+        .project-card--row-start-17 { grid-row-start: 17; }
+        .project-card--row-start-18 { grid-row-start: 18; }
+        .project-card--row-start-19 { grid-row-start: 19; }
+        .project-card--row-start-20 { grid-row-start: 20; }
+        .project-card--row-start-21 { grid-row-start: 21; }
+        .project-card--row-start-22 { grid-row-start: 22; }
+        .project-card--row-start-23 { grid-row-start: 23; }
+        .project-card--row-start-24 { grid-row-start: 24; }
+
+        .project-card--col-span-1 { grid-column-end: span 1; }
+        .project-card--col-span-2 { grid-column-end: span 2; }
+        .project-card--row-span-1 { grid-row-end: span 1; }
+        .project-card--row-span-2 { grid-row-end: span 2; }
 
         .project-card:hover {
           transform: translateY(-8px);
@@ -229,7 +165,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
           gap: 0.3rem;
           padding: 1.6rem 1.8rem 1.8rem;
           border-radius: 0 0 28px 28px;
-           color-mix(in srgb, var(--color-bg-main) 10%, transparent)
+          background: color-mix(in srgb, var(--color-bg-main) 10%, transparent);
           border: 1px solid rgba(255, 255, 255, 0.08);
           box-shadow: 0 -8px 40px color-mix(in srgb, var(--color-primary) 20%, transparent);
           backdrop-filter: blur(16px);
@@ -414,10 +350,3 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
             transform: none;
           }
         }
-
-      `}</style>
-    </div>
-  );
-};
-
-export default ProjectCard;

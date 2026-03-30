@@ -1,4 +1,5 @@
 import React from 'react';
+import "./SectionHeading.css";
 
 // Shared heading block for sections with label + title + description.
 const SectionHeading = ({ label, title, description }) => {

@@ -1,0 +1,636 @@
+.hero-section {
+            min-height: 100dvh;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            align-items: center;
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            gap: 2rem;
+          }
+
+          .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+            min-width: 0;
+          }
+
+          .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            min-width: 0;
+          }
+
+          .hero-description {
+            font-size: 1.1rem;
+            max-width: 500px;
+            line-height: 1.6;
+          }
+
+          .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+          }
+
+          .skill-item {
+            white-space: nowrap;
+          }
+
+          .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+          }
+
+          .hero-lower-sections {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(5rem, 8vw, 6.25rem);
+            margin-top: clamp(5rem, 8vw, 6rem);
+          }
+
+          .glass-surface {
+            position: relative;
+            overflow: hidden;
+            background:
+              linear-gradient(
+                180deg,
+                color-mix(
+                  in srgb,
+                  var(--color-bg-soft) 88%,
+                  rgba(255, 255, 255, 0.03)
+                ),
+                color-mix(in srgb, var(--color-bg-main) 90%, transparent)
+              ) padding-box,
+              linear-gradient(
+                140deg,
+                color-mix(in srgb, var(--primary-color) 62%, transparent),
+                rgba(255, 255, 255, 0.05),
+                transparent 72%
+              ) border-box;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+          }
+
+          .featured-work-section,
+          .snapshot-section,
+          .skills-section,
+          .testimonial-section {
+            width: 100%;
+          }
+
+          .showcase-shell {
+            padding: 1.5rem;
+          }
+
+          .showcase-shell-gradient-0 {
+            --showcase-gradient: 
+              radial-gradient(circle at top left, 
+                color-mix(in srgb, var(--color-primary) 18%, transparent), 
+                transparent 42%),
+              linear-gradient(135deg, 
+                rgba(from var(--color-bg-main) r g b / 0.96), 
+                rgba(from var(--color-card) r g b / 0.94));
+          }
+
+          .showcase-shell-gradient-1 {
+            --showcase-gradient: 
+              radial-gradient(circle at top right, 
+                color-mix(in srgb, var(--color-secondary) 16%, transparent), 
+                transparent 40%),
+              linear-gradient(135deg, 
+                rgba(from var(--color-card) r g b / 0.97), 
+                rgba(from var(--color-bg-main) r g b / 0.94));
+          }
+
+          .showcase-shell-gradient-2 {
+            --showcase-gradient: 
+              radial-gradient(circle at center left, 
+                color-mix(in srgb, var(--color-primary) 18%, transparent), 
+                transparent 44%),
+              linear-gradient(135deg, 
+                rgba(from var(--color-bg-soft) r g b / 0.97), 
+                rgba(from var(--color-card) r g b / 0.95));
+          }
+
+          .showcase-shell::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--showcase-gradient);
+            opacity: 0.96;
+          }
+
+          .showcase-shell > * {
+            position: relative;
+            z-index: 1;
+          }
+
+          .showcase-stage {
+            position: relative;
+            min-height: 26rem;
+          }
+
+          .showcase-slide {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr);
+            gap: 2rem;
+            align-items: stretch;
+          }
+
+          .showcase-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.25rem 0.5rem 1.25rem 0;
+            min-width: 0;
+          }
+
+          .showcase-category {
+            width: fit-content;
+            background: color-mix(in srgb, var(--primary-color) 18%, transparent);
+            border: 1px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
+            color: var(--color-text);
+          }
+
+          .showcase-title {
+            color: var(--color-text);
+            max-width: 11ch;
+          }
+
+          .showcase-description {
+            max-width: 40ch;
+            color: color-mix(in srgb, var(--color-text) 78%, transparent);
+          }
+
+          .showcase-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+          }
+
+          .showcase-tag {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: var(--color-text);
+          }
+
+          .showcase-link {
+            width: fit-content;
+            margin-top: 0.4rem;
+            color: var(--color-text);
+            font-weight: 700;
+            font-size: 0.96rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+          }
+
+          .showcase-link:hover {
+            color: var(--color-secondary);
+            transform: translateX(4px);
+          }
+
+          .showcase-media {
+            position: relative;
+            min-width: 0;
+            border-radius: 1.6rem;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+          }
+
+          .showcase-media::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              180deg,
+              rgba(14, 10, 24, 0.06) 0%,
+              rgba(14, 10, 24, 0.28) 100%
+            );
+          }
+
+          .showcase-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+          }
+
+          .showcase-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.65rem;
+            margin-top: 1.5rem;
+          }
+
+          .showcase-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            transition:
+              transform 0.25s ease,
+              background 0.25s ease,
+              box-shadow 0.25s ease;
+          }
+
+          .showcase-dot.active {
+            background: var(--primary-color);
+            transform: scale(1.08);
+            box-shadow: 0 0 18px var(--color-primary-glow);
+          }
+
+          .snapshot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.25rem;
+          }
+
+          .snapshot-card {
+            padding: 1.6rem;
+            min-height: 15rem;
+            transition:
+              transform 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+          }
+
+          .snapshot-card:hover {
+            transform: translateY(-4px);
+            box-shadow:
+              0 0 0 1px color-mix(in srgb, var(--primary-color) 28%, transparent),
+              0 26px 54px rgba(0, 0, 0, 0.2);
+          }
+
+          .snapshot-card-brands {
+            grid-column: 1 / -1;
+            padding: 0;
+            min-height: auto;
+          }
+
+          .snapshot-value {
+            font-size: clamp(2.8rem, 6vw, 4rem);
+            line-height: 1;
+            font-weight: 900;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+          }
+
+          .snapshot-label,
+          .snapshot-brand-heading {
+            color: var(--color-text);
+            margin-bottom: 0.75rem;
+          }
+
+          .snapshot-text {
+            max-width: 30ch;
+          }
+
+          .snapshot-brand-copy {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 1.5rem;
+          }
+
+          .snapshot-brand-marquee {
+            overflow: hidden;
+            padding: 0.25rem 0;
+            mask-image: linear-gradient(
+              to right,
+              transparent,
+              black 8%,
+              black 92%,
+              transparent
+            );
+            margin-top: 1rem;;
+          }
+
+          .snapshot-brand-track {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            width: max-content;
+            animation: brand-loop 26s linear infinite;
+          }
+
+          .snapshot-brand-pill {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            border-radius: 1.1rem;
+            padding: 1rem;
+            background-color: var(--color-bg-main);
+          }
+
+          .snapshot-brand-logo-frame {
+            height: 2.3rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .snapshot-brand-logo {
+            width: auto;
+            max-height: 2.85rem;
+            object-fit: contain;
+          }
+
+          .snapshot-brand-name {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+          }
+
+          .snapshot-brand-marquee:hover .snapshot-brand-track {
+            animation-play-state: paused;
+          }
+
+          .skills-section {
+            position: relative;
+            padding: 1rem 0;
+            display: grid;
+          }
+
+          .skills-glimpse-header {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 32rem;
+            margin-bottom: 1.5rem;
+          }
+
+          .skills-glimpse {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .skills-highlight-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            padding: 0.65rem 1rem;
+            animation: skill-float 5.8s ease-in-out infinite;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
+          }
+
+          .skills-highlight-pill-0 { animation-delay: 0s; }
+          .skills-highlight-pill-1 { animation-delay: 0.35s; }
+          .skills-highlight-pill-2 { animation-delay: 0.7s; }
+          .skills-highlight-pill-3 { animation-delay: 1.05s; }
+          .skills-highlight-pill-4 { animation-delay: 1.4s; }
+          .skills-highlight-pill-5 { animation-delay: 1.75s; }
+          .skills-highlight-pill-6 { animation-delay: 2.1s; }
+          .skills-highlight-pill-7 { animation-delay: 2.45s; }
+
+          .skills-highlight-icon {
+            color: var(--color-primary);
+          }
+
+          .section-kicker {
+            margin-bottom: 0.55rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+          }
+
+          .section-title {
+            color: var(--color-text);
+            max-width: 18ch;
+          }
+
+          .testimonial-shell {
+            padding: 1.1rem 0 0;
+            border-top: 1px solid var(--color-border);
+          }
+
+          .testimonial-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+          }
+
+          .testimonial-arrow {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            border: 1px solid var(--color-border);
+            background: color-mix(in srgb, var(--color-card) 86%, transparent);
+            color: var(--color-text);
+            transition:
+              transform 0.25s ease,
+              background 0.25s ease,
+              box-shadow 0.25s ease;
+          }
+
+          .testimonial-arrow:hover {
+            transform: translateY(-2px);
+            background: color-mix(in srgb, var(--primary-color) 16%, rgba(255, 255, 255, 0.04));
+            box-shadow: 0 12px 24px var(--color-primary-glow);
+          }
+
+          .testimonial-spotlight {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            align-items: center;
+            gap: 1rem;
+            max-width: 52rem;
+            padding: 0 0 0.25rem;
+          }
+
+          .testimonial-avatar {
+            width: 4.75rem;
+            height: 4.75rem;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid color-mix(in srgb, var(--color-primary) 25%, var(--color-border));
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+          }
+
+          .testimonial-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+          }
+
+          .testimonial-quote {
+            font-size: clamp(1.02rem, 2vw, 1.22rem);
+            line-height: 1.7;
+            color: var(--color-text);
+          }
+
+          .testimonial-name {
+            color: var(--color-text);
+          }
+
+          .testimonial-role {
+            color: var(--text-muted);
+          }
+
+          @keyframes brand-loop {
+            from {
+              transform: translateX(0);
+            }
+
+            to {
+              transform: translateX(-50%);
+            }
+          }
+
+          @keyframes skill-float {
+            0%, 100% {
+              transform: translateY(0);
+            }
+
+            50% {
+              transform: translateY(-8px);
+            }
+          }
+
+          @media (max-width: 1024px) {
+            .hero-grid {
+              grid-template-columns: 1fr;
+              text-align: center;
+              gap: 6rem;
+            }
+
+            .hero-content {
+              align-items: center;
+              order: 2;
+            }
+
+            .hero-visual {
+              order: 1;
+            }
+
+            .showcase-stage {
+              min-height: 35rem;
+            }
+
+            .showcase-slide {
+              grid-template-columns: 1fr;
+            }
+
+            .showcase-copy {
+              align-items: center;
+              text-align: center;
+              padding-right: 0;
+            }
+
+            .showcase-title {
+              max-width: 100%;
+            }
+
+            .showcase-description {
+              max-width: 42ch;
+            }
+
+            .showcase-media {
+              min-height: 16rem;
+            }
+
+            .snapshot-grid {
+              grid-template-columns: 1fr;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .hero-section {
+              min-height: auto;
+              padding-top: 7rem;
+              padding-bottom: 2.5rem;
+            }
+
+            .hero-grid {
+              gap: 2.8rem;
+            }
+
+            .hero-content {
+              gap: 1.5rem;
+            }
+
+            .hero-description {
+              font-size: 1rem;
+            }
+
+            .skills-list {
+              justify-content: center;
+            }
+
+            .hero-actions {
+              width: 100%;
+              flex-direction: column;
+              align-items: stretch;
+              gap: 0.8rem;
+            }
+
+            .hero-actions .primary-btn,
+            .hero-actions .secondary-btn {
+              justify-content: center;
+              width: 100%;
+            }
+
+            .showcase-shell,
+            .testimonial-shell {
+              padding: 1rem;
+            }
+
+            .showcase-stage {
+              min-height: 32rem;
+            }
+
+            .snapshot-brand-copy {
+              flex-direction: column;
+              align-items: flex-start;
+            }
+
+            .snapshot-card {
+              min-height: auto;
+            }
+
+            .snapshot-brand-pill {
+              min-width: 9rem;
+              min-height: 5rem;
+            }
+
+            .testimonial-shell {
+              padding: 1rem 0 0;
+            }
+
+            .testimonial-nav {
+              justify-content: flex-start;
+            }
+
+            .testimonial-spotlight {
+              grid-template-columns: 1fr;
+              justify-items: flex-start;
+            }
+
+            .testimonial-avatar {
+              width: 4rem;
+              height: 4rem;
+            }
+          }

@@ -41,7 +41,7 @@ const getProjectFolderPath = (project) => {
 
 const projectEntries = [
   {
-    title: "Rebuilding ResumeHelp's Design\nFoundation",
+    title: "Fixing What Broke at Scale.",
     projectType: "case-study",
     featuredOrder: 1,
     folder: "resume-help",

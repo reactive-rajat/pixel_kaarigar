@@ -153,6 +153,86 @@ h3 {
   letter-spacing: -0.02em;
 }
 
+h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.label-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  background: rgba(127, 19, 236, 0.12);
+  border: 1px solid var(--color-border);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  display: inline-block;
+  cursor: default;
+  user-select: none;
+}
+
+.skill-pill {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: rgba(127, 19, 236, 0.08);
+  border: 1px solid var(--color-border);
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: default;
+}
+
+.card-default {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.card-hover {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  background: var(--color-card-alt);
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px var(--color-primary-glow);
+}
+
+.card-glass {
+  background: var(--color-bg-soft);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.icon-sm  { width: 20px; height: 20px; }
+.icon-md  { width: 24px; height: 24px; }
+.icon-lg  { width: 32px; height: 32px; }
+
+.section-gap {
+  padding: 80px 0;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -180,7 +260,8 @@ ul {
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--space-lg);
+  padding: 8rem var(--space-lg) 0;
+  width: 100%;
 }
 
 .flex {
@@ -198,7 +279,7 @@ ul {
 }
 
 .gradient-text {
-  background: linear-gradient(to right, #ffffff, #7f13ec);
+  background: linear-gradient(to right, var(--color-text), var(--color-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -356,6 +437,12 @@ img,
 video {
   max-width: 100%;
   height: auto;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
