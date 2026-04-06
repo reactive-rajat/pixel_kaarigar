@@ -86,7 +86,6 @@ const CountUpNumber = ({ value, suffix = "", start }) => {
 const Hero = ({ setActivePage }) => {
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
   const [activeTestimonialIndex, setActiveTestimonialIndex] = useState(0);
-  const [activeSkillIndex, setActiveSkillIndex] = useState(0);
   const [isProjectPaused, setIsProjectPaused] = useState(false);
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
   const [startSnapshotCount, setStartSnapshotCount] = useState(false);
@@ -146,22 +145,7 @@ const Hero = ({ setActivePage }) => {
     return () => window.clearInterval(intervalId);
   }, [isTestimonialPaused]);
 
-  useEffect(() => {
-    if (skillHighlights.length <= 1) {
-      return;
-    }
-
-    const intervalId = window.setInterval(() => {
-      setActiveSkillIndex((currentIndex) => {
-        return (currentIndex + 1) % skillHighlights.length;
-      });
-    }, 3600);
-
-    return () => window.clearInterval(intervalId);
-  }, [skillHighlights]);
-
   const activeProject = showcaseProjects[activeProjectIndex];
-  const activeSkill = skillHighlights[activeSkillIndex];
   const activeTestimonial = testimonials[activeTestimonialIndex];
 
   return (
@@ -424,51 +408,30 @@ then bring them to life with code.
               </h3>
             </div>
 
-            <div className="skills-glimpse">
-              <div className="skills-orbit-glow" aria-hidden="true"></div>
-              <div className="skills-orbit-path skills-orbit-path-outer" aria-hidden="true"></div>
-              <div className="skills-orbit-path skills-orbit-path-inner" aria-hidden="true"></div>
-              <div className="skills-orbit-core" aria-hidden="true"></div>
-
-              <AnimatePresence initial={false} mode="wait">
-                <motion.div
-                  key={activeSkill.name}
-                  className="skills-center-spotlight"
-                  initial={{ opacity: 0, y: -32, x: -96, scale: 0.8 }}
-                  animate={{ opacity: 1, y: -48, x: -96, scale: 1.1 }}
-                  exit={{ opacity: 0, y: -16, scale: 0.92 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <span className="material-symbols-outlined skills-center-icon">
-                    {activeSkill.icon}
-                  </span>
-                  <h4 className="skills-center-label">{activeSkill.name}</h4>
-                </motion.div>
-              </AnimatePresence>
+            <div className="skills-bento-grid">
               {skillHighlights.map((skill, index) => (
-                <motion.span
+                <motion.div
                   key={skill.name}
-                  className={`skills-highlight-node skills-highlight-node-${index} ${
-                    index === activeSkillIndex ? "is-active" : ""
-                  }`}
+                  className="skill-bento-card"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{
-                    duration: 0.45,
-                    delay: index * 0.06,
+                    duration: 0.5,
+                    delay: index * 0.08,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  aria-current={index === activeSkillIndex ? "true" : undefined}
+                  whileHover={{ 
+                    y: -5, 
+                    transition: { duration: 0.2, ease: "easeOut" } 
+                  }}
                 >
-                  <span className="skills-highlight-shell">
-                    <span className="skills-highlight-pill">
-                      <span className="material-symbols-outlined icon-sm skills-highlight-icon">
-                        {skill.icon}
-                      </span>
-                    </span>
+                  <div className="skill-bento-glow" aria-hidden="true" />
+                  <span className="material-symbols-outlined skill-bento-icon">
+                    {skill.icon}
                   </span>
-                </motion.span>
+                  <p className="skill-bento-name">{skill.name}</p>
+                </motion.div>
               ))}
             </div>
           </motion.section>
