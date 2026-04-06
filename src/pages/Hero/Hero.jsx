@@ -6,12 +6,13 @@ import HeroVisual from "../../components/common/HeroVisual/HeroVisual";
 import projects, { featuredProjects } from "../../data/projects.js";
 import brands from "../../data/brands.js";
 import "./Hero.css";
+import IconQuotes from "@/public/assets/icons/IconQuotes.jsx";
+
 import {
   aboutSkills,
   aboutSnapshotCards,
   testimonials,
 } from "../../data/about.js";
-const SHOWCASE_GRADIENT_COUNT = 3;
 
 const sectionReveal = {
   hidden: { opacity: 0, y: 48 },
@@ -85,7 +86,9 @@ const CountUpNumber = ({ value, suffix = "", start }) => {
 const Hero = ({ setActivePage }) => {
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
   const [activeTestimonialIndex, setActiveTestimonialIndex] = useState(0);
+  const [activeSkillIndex, setActiveSkillIndex] = useState(0);
   const [isProjectPaused, setIsProjectPaused] = useState(false);
+  const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
   const [startSnapshotCount, setStartSnapshotCount] = useState(false);
 
   const handleHeroClick = () => {
@@ -130,7 +133,7 @@ const Hero = ({ setActivePage }) => {
   }, [isProjectPaused, showcaseProjects]);
 
   useEffect(() => {
-    if (testimonials.length <= 1) {
+    if (testimonials.length <= 1 || isTestimonialPaused) {
       return;
     }
 
@@ -141,25 +144,25 @@ const Hero = ({ setActivePage }) => {
     }, 5000);
 
     return () => window.clearInterval(intervalId);
-  }, []);
+  }, [isTestimonialPaused]);
+
+  useEffect(() => {
+    if (skillHighlights.length <= 1) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActiveSkillIndex((currentIndex) => {
+        return (currentIndex + 1) % skillHighlights.length;
+      });
+    }, 3600);
+
+    return () => window.clearInterval(intervalId);
+  }, [skillHighlights]);
 
   const activeProject = showcaseProjects[activeProjectIndex];
+  const activeSkill = skillHighlights[activeSkillIndex];
   const activeTestimonial = testimonials[activeTestimonialIndex];
-  const showcaseGradientClass = `showcase-shell-gradient-${
-    activeProjectIndex % SHOWCASE_GRADIENT_COUNT
-  }`;
-
-  const showPreviousTestimonial = () => {
-    setActiveTestimonialIndex((currentIndex) => {
-      return currentIndex === 0 ? testimonials.length - 1 : currentIndex - 1;
-    });
-  };
-
-  const showNextTestimonial = () => {
-    setActiveTestimonialIndex((currentIndex) => {
-      return (currentIndex + 1) % testimonials.length;
-    });
-  };
 
   return (
     <section className="hero-section container">
@@ -221,7 +224,7 @@ then bring them to life with code.
             viewport={{ once: true, amount: 0.2 }}
           >
             <div
-              className={`showcase-shell card-lg card-3 ${showcaseGradientClass}`}
+              className="showcase-shell card-lg card-1"
               onMouseEnter={() => setIsProjectPaused(true)}
               onMouseLeave={() => setIsProjectPaused(false)}
             >
@@ -320,7 +323,7 @@ then bring them to life with code.
               {aboutSnapshotCards.map((card) => (
                 <motion.article
                   key={card.id}
-                  className="snapshot-card card-3 card-md"
+                  className={`snapshot-card snapshot-card-${card.id} card-3 card-md`}
                   variants={staggerItem}
                 >
                   {card.type === "stat" ? (
@@ -368,6 +371,43 @@ then bring them to life with code.
                 </motion.article>
               ))}
             </motion.div>
+            <div className="testimonial-shell card-md">
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  key={activeTestimonial.name}
+                  className="testimonial-spotlight"
+                  onMouseEnter={() => setIsTestimonialPaused(true)}
+                  onMouseLeave={() => setIsTestimonialPaused(false)}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -14 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="testimonial-accent" aria-hidden="true">
+                    <span className="icon left"><IconQuotes /></span>
+                    <span className="icon right"><IconQuotes /></span>
+                  </div>
+                  <div className="testimonial-copy">
+                    <h4 className="testimonial-quote">
+                      &ldquo;{activeTestimonial.quote}&rdquo;
+                    </h4>
+
+                    <div className="testimonial-meta">
+                      <img
+                        className="testimonial-avatar"
+                        src={activeTestimonial.image}
+                        alt={activeTestimonial.name}
+                        loading="lazy"
+                      />
+                      <div>
+                        <p className="testimonial-name">{activeTestimonial.name}</p>
+                        <p className="testimonial-role">{activeTestimonial.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </motion.section>
 
           <motion.section
@@ -385,10 +425,32 @@ then bring them to life with code.
             </div>
 
             <div className="skills-glimpse">
+              <div className="skills-orbit-glow" aria-hidden="true"></div>
+              <div className="skills-orbit-path skills-orbit-path-outer" aria-hidden="true"></div>
+              <div className="skills-orbit-path skills-orbit-path-inner" aria-hidden="true"></div>
+              <div className="skills-orbit-core" aria-hidden="true"></div>
+
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  key={activeSkill.name}
+                  className="skills-center-spotlight"
+                  initial={{ opacity: 0, y: -32, x: -96, scale: 0.8 }}
+                  animate={{ opacity: 1, y: -48, x: -96, scale: 1.1 }}
+                  exit={{ opacity: 0, y: -16, scale: 0.92 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <span className="material-symbols-outlined skills-center-icon">
+                    {activeSkill.icon}
+                  </span>
+                  <h4 className="skills-center-label">{activeSkill.name}</h4>
+                </motion.div>
+              </AnimatePresence>
               {skillHighlights.map((skill, index) => (
                 <motion.span
                   key={skill.name}
-                  className={`skill-pill skills-highlight-pill skills-highlight-pill-${index}`}
+                  className={`skills-highlight-node skills-highlight-node-${index} ${
+                    index === activeSkillIndex ? "is-active" : ""
+                  }`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
@@ -397,72 +459,17 @@ then bring them to life with code.
                     delay: index * 0.06,
                     ease: [0.22, 1, 0.36, 1],
                   }}
+                  aria-current={index === activeSkillIndex ? "true" : undefined}
                 >
-                  <span className="material-symbols-outlined icon-sm skills-highlight-icon">
-                    {skill.icon}
+                  <span className="skills-highlight-shell">
+                    <span className="skills-highlight-pill">
+                      <span className="material-symbols-outlined icon-sm skills-highlight-icon">
+                        {skill.icon}
+                      </span>
+                    </span>
                   </span>
-                  {skill.name}
                 </motion.span>
               ))}
-            </div>
-          </motion.section>
-
-          <motion.section
-            className="testimonial-section"
-            variants={sectionReveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-          >
-            <div className="testimonial-shell">
-              <div className="testimonial-nav">
-                <button
-                  type="button"
-                  className="testimonial-arrow"
-                  aria-label="Previous testimonial"
-                  onClick={showPreviousTestimonial}
-                >
-                  <span className="material-symbols-outlined">arrow_back</span>
-                </button>
-                <button
-                  type="button"
-                  className="testimonial-arrow"
-                  aria-label="Next testimonial"
-                  onClick={showNextTestimonial}
-                >
-                  <span className="material-symbols-outlined">arrow_forward</span>
-                </button>
-              </div>
-
-              <AnimatePresence initial={false} mode="wait">
-                <motion.div
-                  key={activeTestimonial.name}
-                  className="testimonial-spotlight card-2 card-lg"
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -14 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <div className="testimonial-copy">
-                    <h3 className="testimonial-quote">
-                      &ldquo;{activeTestimonial.quote}&rdquo;
-                    </h3>
-
-                    <div className="testimonial-meta">
-                      <img
-                    className="testimonial-avatar"
-                    src={activeTestimonial.image}
-                    alt={activeTestimonial.name}
-                    loading="lazy"
-                  />
-                      <div>
-                        <h4 className="testimonial-name">{activeTestimonial.name}</h4>
-                      <p className="testimonial-role">{activeTestimonial.role}</p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
             </div>
           </motion.section>
         </div>
