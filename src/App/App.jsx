@@ -25,7 +25,7 @@ const pageToRoute = {
 
 const AppShell = () => {
   const [activePage, setActivePage] = useState('home');
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();

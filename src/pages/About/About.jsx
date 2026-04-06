@@ -50,7 +50,7 @@ const About = () => {
       </div>
 
       {/* Timeline */}
-      <div className="timeline-section content-section card-1">
+      <div className="timeline-section content-section">
         <SectionHeading
           label="Journey"
           title={
@@ -155,17 +155,17 @@ const About = () => {
           description="Strategy, design, and development tailored to your product goals."
         />
         <div className="deliver-grid">
-          <div className="deliver-card card-1">
+          <div className="deliver-card">
             <span className="material-symbols-outlined">strategy</span>
             <h3>Strategy</h3>
             <p>Define the purpose and map the journey for maximum impact.</p>
           </div>
-          <div className="deliver-card card-1">
+          <div className="deliver-card">
             <span className="material-symbols-outlined">brush</span>
             <h3>Design</h3>
             <p>Craft crisp, intuitive interfaces with clear hierarchy.</p>
           </div>
-          <div className="deliver-card card-1">
+          <div className="deliver-card">
             <span className="material-symbols-outlined">code</span>
             <h3>Development</h3>
             <p>Build scalable products with clean code and smooth UX.</p>
@@ -185,7 +185,7 @@ const About = () => {
           description="The tools I reach for to design, build, and ship polished experiences."
         />
         <div className="toolkit-grid">
-          <div className="toolkit-card card-2">
+          <div className="toolkit-card">
             <div className="toolkit-header">
               <span className="material-symbols-outlined">auto_awesome</span>
               <div>
@@ -203,7 +203,7 @@ const About = () => {
             </div>
             <p className="toolkit-more">and many more...</p>
           </div>
-          <div className="toolkit-card card-2">
+          <div className="toolkit-card">
             <div className="toolkit-header">
               <span className="material-symbols-outlined">workspace_premium</span>
               <div>
@@ -249,7 +249,7 @@ const About = () => {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.name}
-              className={`testimonial-card ${testimonial.highlighted ? 'card-2 highlighted' : 'card-1'}`}
+              className={`testimonial-card ${testimonial.highlighted ? 'highlighted' : ''}`}
             >
               <p className="testimonial-text">
                 &ldquo;{testimonial.quote}&rdquo;
@@ -287,12 +287,12 @@ const About = () => {
           description="Balancing expressive visuals with systems that scale gracefully."
         />
         <div className="dual-grid">
-          <div className="dual-card visualist card-1">
+          <div className="dual-card visualist">
             <span className="label-tag card-tag">THE VISUALIST</span>
             <h3>I craft stories through visuals.</h3>
             <p>Every pixel has a purpose. I focus on hierarchy and emotion.</p>
           </div>
-          <div className="dual-card architect card-1">
+          <div className="dual-card architect">
             <span className="label-tag card-tag">THE ARCHITECT</span>
             <h3>I build systems that scale.</h3>
             <p>Robust, maintainable systems that evolve with the product.</p>

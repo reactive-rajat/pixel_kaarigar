@@ -43,7 +43,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
       onClick={handleOpen}
       onKeyDown={handleKeyDown}
     >
-      <div className="card-media card-1 card-hoverable">
+      <div className="card-media card-hoverable">
         {canPreviewVideo ? (
           <video
             src={mediaSrc}
@@ -78,7 +78,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         </div>
 
         <div className="card-hover">
-          <div className="hover-content card-2">
+          <div className="hover-content">
             <div className="hover-top">
               <div className="hover-heading">
                 <span className="hover-category label-tag">{categoryLabel}</span>

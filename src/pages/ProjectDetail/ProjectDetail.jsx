@@ -44,8 +44,8 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <section className="project-detail-section container">
-        <div className="project-not-found card-2">
+      <main className="project-detail-page container">
+        <div className="project-not-found">
           <StatusBadge text="Not Found" />
           <h1>Project not found</h1>
           <p>
@@ -60,7 +60,7 @@ const ProjectDetail = () => {
             Back to work
           </button>
         </div>
-      </section>
+      </main>
     );
   }
 
@@ -68,7 +68,7 @@ const ProjectDetail = () => {
   const contentHeading = getContentHeading(project.projectType);
 
   return (
-    <section className="project-detail-section container">
+    <main className="project-detail-page container">
       <div className="project-detail-shell">
         <div className="project-nav-row">
           <Link to="/work" className="project-back-link project-nav-pill">
@@ -102,7 +102,7 @@ const ProjectDetail = () => {
           )}
         </div>
 
-        <header className="project-hero card-3">
+        <header className="project-hero">
           <div className="project-hero-copy">
             <span className="label-tag project-category">{categoryLabel}</span>
             <h2 className="project-title">{project.title}</h2>
@@ -185,7 +185,7 @@ const ProjectDetail = () => {
           />
         </section>
       </div>
-    </section>
+    </main>
   );
 };
 

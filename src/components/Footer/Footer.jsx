@@ -84,7 +84,7 @@ const Footer = () => {
       {/* CTA Section before footer */}
       <section className="pre-footer-cta">
         <div className="container">
-          <div className="cta-card card-3 card-lg">
+          <div className="cta-card card-lg">
             <div className="cta-content">
               <div className="status-badge">
                 <div className="ping-dot">
@@ -179,7 +179,7 @@ const Footer = () => {
                   <a
                     key={label}
                     href={href}
-                    className="contact-method card-1 card-hoverable"
+                    className="contact-method card-hoverable"
                     {...(external
                       ? {
                           target: '_blank',

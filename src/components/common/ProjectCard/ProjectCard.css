@@ -2,6 +2,8 @@
           position: relative;
           height: 100%;
           min-height: 0;
+          border-radius: var(--radius-lg);
+          overflow: hidden;
         }
 
         .project-card--col-start-1 { grid-column-start: 1; }

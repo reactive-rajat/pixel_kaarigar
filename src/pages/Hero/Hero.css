@@ -28,10 +28,34 @@
             line-height: 1.6;
           }
 
+          .skills-marquee-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            padding: 0.5rem 0;
+            margin: 0.5rem 0;
+          }
+
           .skills-list {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            width: max-content;
+            animation: scroll-skills 25s linear infinite;
+          }
+
+          .skills-list:hover {
+            animation-play-state: paused;
+          }
+
+          @keyframes scroll-skills {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(calc(-50% - 0.5rem));
+            }
           }
 
           .skill-item {
@@ -528,10 +552,6 @@
 
             .hero-content {
               gap: 1.5rem;
-            }
-
-            .skills-list {
-              justify-content: center;
             }
 
             .hero-actions {

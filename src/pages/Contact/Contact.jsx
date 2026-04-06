@@ -25,8 +25,8 @@ const Contact = () => {
         </div>
 
         {/* Right Column: Quick Contact */}
-        <div className="contact-form-container">
-          <div className="contact-form-card card-3">
+        <div className="contact-content">
+          <div className="contact-form-card">
             <div className="form-header">
               <div className="hud-dots">
                 <span className="dot red"></span>

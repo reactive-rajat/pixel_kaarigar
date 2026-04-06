@@ -202,7 +202,7 @@ const ProjectHtmlContent = ({ contentPath, title, omitPrimaryHeading = false }) 
 
   if (status === "loading") {
     return (
-      <div className="project-html-state card-2">
+      <div className="project-html-state">
         <p>Loading project content...</p>
       </div>
     );
@@ -210,7 +210,7 @@ const ProjectHtmlContent = ({ contentPath, title, omitPrimaryHeading = false }) 
 
   if (status === "error") {
     return (
-      <div className="project-html-state card-2">
+      <div className="project-html-state">
         <p>{`Content for ${title} is not available yet.`}</p>
       </div>
     );

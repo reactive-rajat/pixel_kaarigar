@@ -165,13 +165,15 @@ const Hero = ({ setActivePage }) => {
 then bring them to life with code.
             </p>
 
-            <ul className="skills-list">
-              {skills.map((skill, index) => (
-                <li key={index} className="skill-item skill-pill">
-                  {skill}
-                </li>
-              ))}
-            </ul>
+            <div className="skills-marquee-container">
+              <ul className="skills-list">
+                {[...skills, ...skills].map((skill, index) => (
+                  <li key={index} className="skill-item skill-pill">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <div className="hero-actions">
               <button
@@ -208,7 +210,7 @@ then bring them to life with code.
             viewport={{ once: true, amount: 0.2 }}
           >
             <div
-              className="showcase-shell card-lg card-1"
+              className="showcase-shell card-lg"
               onMouseEnter={() => setIsProjectPaused(true)}
               onMouseLeave={() => setIsProjectPaused(false)}
             >
@@ -307,7 +309,7 @@ then bring them to life with code.
               {aboutSnapshotCards.map((card) => (
                 <motion.article
                   key={card.id}
-                  className={`snapshot-card snapshot-card-${card.id} card-3 card-md`}
+                  className={`snapshot-card snapshot-card-${card.id} card-md`}
                   variants={staggerItem}
                 >
                   {card.type === "stat" ? (
