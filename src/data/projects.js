@@ -51,7 +51,7 @@ const projectEntries = [
     image: "/assets/projects/thumbnails/resumehelp_thumbnail.png",
     tags: ["UX", "DESIGN SYSTEM", "FIGMA"],
     size: "large",
-    category: ["Case Studies"],
+    category: ["Case Study"],
   },
   {
     title: "Portfolio v1",

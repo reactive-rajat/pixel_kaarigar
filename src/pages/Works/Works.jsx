@@ -324,7 +324,7 @@ const Works = () => {
 
       <div className="filter-container">
         <div className="filter-chips">
-        {["All", "Case Studies", "UI & Dev", "Creative"].map((cat) => (
+        {["All", "Case Study", "UI & Dev", "Creative"].map((cat) => (
           <button
             key={cat}
             className={filter === cat ? "primary-btn filter-chip" : "secondary-btn filter-chip"}

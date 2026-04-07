@@ -1,12 +1,16 @@
 import React from "react";
-import { getProjectCategories, isVideoPath } from "../../../utils/projectMeta.js";
+import {
+  getProjectCategories,
+  isVideoPath,
+} from "../../../utils/projectMeta.js";
 import "./ProjectCard.css";
 
 const ProjectCard = ({ project, layout, onProjectOpen }) => {
   const isCompact = layout?.rowSpan === 1;
   const categories = getProjectCategories(project);
   const mediaSrc = project.image || "";
-  const canPreviewVideo = categories.includes("Motion") && isVideoPath(mediaSrc);
+  const canPreviewVideo =
+    categories.includes("Motion") && isVideoPath(mediaSrc);
   const isInteractive = typeof onProjectOpen === "function";
   const categoryLabel = categories.filter(Boolean).join(" + ");
   const layoutClassName = layout
@@ -63,39 +67,40 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
         )}
         <div className="card-gradient"></div>
 
-        {project.badge && <div className="card-badge label-tag">{project.badge}</div>}
+        {project.badge && (
+          <div className="card-badge label-tag">{project.badge}</div>
+        )}
 
-        <div className="card-default">
-          <div className="default-text">
-            <span className="default-category label-tag">{categoryLabel}</span>
-            <h3 className="default-title">{project.title.split("\n").map((line, i) => (
-  <span key={i}>
-    {line}
-    <br />
-  </span>
-))}</h3>
-          </div>
-        </div>
-
-        <div className="card-hover">
-          <div className="hover-content">
-            <div className="hover-top">
-              <div className="hover-heading">
-                <span className="hover-category label-tag">{categoryLabel}</span>
-                <h3 className="hover-title">{project.title}</h3>
+        <div className="card-content">
+          <div className="content-inner">
+            <div className="content-top">
+              <div className="content-heading">
+                <span className="card-category label-tag">
+                  {categoryLabel}
+                </span>
+                <h3 className="card-title">
+                  {project.title.split("\n").map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </h3>
               </div>
-              <span className="hover-cta" aria-hidden="true">
+              <span className="card-cta" aria-hidden="true">
                 <span className="material-symbols-outlined">arrow_outward</span>
               </span>
             </div>
-            <div className="hover-details">
-              <p className="hover-desc">{project.description}</p>
-              <div className="card-tags">
-                {(project.tags || []).map((tag) => (
-                  <span key={tag} className="card-tag label-tag">
-                    {tag}
-                  </span>
-                ))}
+            <div className="content-details">
+              <div className="details-inner">
+                <p className="card-desc">{project.description}</p>
+                <div className="card-tags">
+                  {(project.tags || []).map((tag) => (
+                    <span key={tag} className="card-tag label-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

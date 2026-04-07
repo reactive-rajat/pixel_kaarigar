@@ -156,13 +156,15 @@ const Hero = ({ setActivePage }) => {
             <StatusBadge text="Open to work" showPing />
 
             <h1 className="hero-title">
-              <span className="gradient-text">UX Designer <br /></span>
+              <span className="gradient-text">
+                UX Designer <br />
+              </span>
               with an unfair advantage.
             </h1>
 
             <p className="hero-description">
-              I design experiences that solve real problems —
-then bring them to life with code.
+              I design experiences that solve real problems — then bring them to
+              life with code.
             </p>
 
             <div className="skills-marquee-container">
@@ -192,7 +194,10 @@ then bring them to life with code.
             </div>
           </div>
 
-          <HeroVisual defaultMood="focused" onCharacterClick={handleHeroClick} />
+          <HeroVisual
+            defaultMood="focused"
+            onCharacterClick={handleHeroClick}
+          />
         </div>
 
         <div className="hero-lower-sections">
@@ -210,7 +215,7 @@ then bring them to life with code.
             viewport={{ once: true, amount: 0.2 }}
           >
             <div
-              className="showcase-shell card-lg"
+              className="showcase-shell"
               onMouseEnter={() => setIsProjectPaused(true)}
               onMouseLeave={() => setIsProjectPaused(false)}
             >
@@ -226,7 +231,8 @@ then bring them to life with code.
                   >
                     <div className="showcase-copy">
                       <span className="showcase-category label-tag">
-                        {activeProject.category?.[0] || activeProject.projectType}
+                        {activeProject.category?.[0] ||
+                          activeProject.projectType}
                       </span>
 
                       <h2 className="showcase-title">
@@ -246,7 +252,7 @@ then bring them to life with code.
                       </div>
 
                       <Link
-                        className="showcase-link"
+                        className="showcase-link primary-btn"
                         to={`/project/${activeProject.slug}`}
                       >
                         View Case Study →
@@ -309,7 +315,7 @@ then bring them to life with code.
               {aboutSnapshotCards.map((card) => (
                 <motion.article
                   key={card.id}
-                  className={`snapshot-card snapshot-card-${card.id} card-md`}
+                  className={`card snapshot-card snapshot-card-${card.id} card-md`}
                   variants={staggerItem}
                 >
                   {card.type === "stat" ? (
@@ -321,19 +327,13 @@ then bring them to life with code.
                           start={startSnapshotCount}
                         />
                       </h2>
-                      <h3 className="snapshot-label">{card.label}</h3>
+                      <h4 className="snapshot-label">{card.label}</h4>
                       <p className="snapshot-text">{card.description}</p>
                     </>
                   ) : (
                     <>
-                      <div className="snapshot-brand-copy">
-                        <div>
-                          <h2 className="snapshot-value">
-                            20+
-                          </h2>
-                          <h3 className="snapshot-brand-heading">{card.label}</h3>
-                        </div>
-                      </div>
+                      <h2 className="snapshot-value">20+</h2>
+                      <h4 className="snapshot-brand-heading">{card.label}</h4>
                       <div className="snapshot-brand-marquee">
                         <div className="snapshot-brand-track">
                           {movingBrands.map((brand, index) => (
@@ -357,7 +357,17 @@ then bring them to life with code.
                 </motion.article>
               ))}
             </motion.div>
-            <div className="testimonial-shell card-md">
+          </motion.section>
+
+          <motion.section
+            className="snapshot-section"
+            variants={sectionReveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+            onViewportEnter={() => setStartSnapshotCount(true)}
+          >
+            <div className="testimonial-shell">
               <AnimatePresence initial={false} mode="wait">
                 <motion.div
                   key={activeTestimonial.name}
@@ -370,13 +380,17 @@ then bring them to life with code.
                   transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div className="testimonial-accent" aria-hidden="true">
-                    <span className="icon left"><IconQuotes /></span>
-                    <span className="icon right"><IconQuotes /></span>
+                    <span className="icon left">
+                      <IconQuotes />
+                    </span>
+                    <span className="icon right">
+                      <IconQuotes />
+                    </span>
                   </div>
                   <div className="testimonial-copy">
-                    <h4 className="testimonial-quote">
+                    <h3 className="testimonial-quote">
                       &ldquo;{activeTestimonial.quote}&rdquo;
-                    </h4>
+                    </h3>
 
                     <div className="testimonial-meta">
                       <img
@@ -386,8 +400,12 @@ then bring them to life with code.
                         loading="lazy"
                       />
                       <div>
-                        <p className="testimonial-name">{activeTestimonial.name}</p>
-                        <p className="testimonial-role">{activeTestimonial.role}</p>
+                        <h4 className="testimonial-name">
+                          {activeTestimonial.name}
+                        </h4>
+                        <p className="testimonial-role">
+                          {activeTestimonial.role}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -423,9 +441,9 @@ then bring them to life with code.
                     delay: index * 0.08,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  whileHover={{ 
-                    y: -5, 
-                    transition: { duration: 0.2, ease: "easeOut" } 
+                  whileHover={{
+                    y: -5,
+                    transition: { duration: 0.2, ease: "easeOut" },
                   }}
                 >
                   <div className="skill-bento-glow" aria-hidden="true" />

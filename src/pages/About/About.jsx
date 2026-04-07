@@ -188,10 +188,8 @@ const About = () => {
           <div className="toolkit-card">
             <div className="toolkit-header">
               <span className="material-symbols-outlined">auto_awesome</span>
-              <div>
-                <span className="label-tag toolkit-eyebrow">Core Expertise</span>
+              <span className="label-tag toolkit-eyebrow">Core Expertise</span>
                 <h3>Tools I use daily</h3>
-              </div>
             </div>
             <div className="toolkit-pills">
               {aboutSkills.map((skill) => (

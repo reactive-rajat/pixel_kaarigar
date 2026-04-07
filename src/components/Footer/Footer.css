@@ -1,7 +1,11 @@
 /* Pre-Footer CTA Section */
 
 footer .container{
-  padding: 0;
+  padding: 0 var(--space-lg) 0;
+}
+
+.pre-footer-cta.container{
+  padding: 6rem var(--space-lg) 0;
 }
 
 .cta-card {
@@ -32,7 +36,7 @@ footer .container{
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   position: relative;
   z-index: 1;
 }
@@ -62,7 +66,7 @@ footer .container{
   border-top: 1px solid var(--border-color);
   padding: var(--space-2xl) 0 0;
   position: relative;
-  margin-top: var(--space-2xl);
+  margin-top: 6rem;
 }
 
 .site-footer::before {
@@ -80,8 +84,8 @@ footer .container{
 
 .footer-main {
   display: grid;
-  grid-template-columns: 1.2fr 0.6fr 1.2fr;
-  gap: 4rem;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  gap: 8rem;
   padding-bottom: 3rem;
   align-items: start;
 }
@@ -98,27 +102,30 @@ footer .container{
 }
 
 .footer-logo {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.footer-logo-img{
   display: flex;
-  align-items: center;
+  position: relative;
+  padding-left: 3.5em;
+  align-items: flex-start;
   gap: 1rem;
 }
 
-footer .logo-avatar {
-  width: 3rem;
-  height: 3rem;
-  border-radius: var(--radius-md);
-  background: var(--color-bg-soft);
-  border: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  font-size: 1.25rem;
-  flex-shrink: 0;
+.footer-logo .logo-avatar{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.5rem;
+  height: auto;
 }
 
-.brand-name {
+.footer-logo .brand-name {
+  letter-spacing: 0.15rem;
   margin: 0;
+  font-size: 2.4rem;
   line-height: 1.2;
 }
 
@@ -220,6 +227,7 @@ footer .logo-avatar {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding-top: 0.5rem;
 }
 
 .contact-method {
@@ -229,8 +237,8 @@ footer .logo-avatar {
 }
 
 .contact-icon {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: var(--radius-sm);
   background: var(--color-bg-soft);
   border: 1px solid var(--border-color);
@@ -238,6 +246,7 @@ footer .logo-avatar {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: all 0.3s ease;
 }
 
 .contact-icon .material-symbols-outlined,
@@ -245,24 +254,43 @@ footer .logo-avatar {
   font-size: 1.15rem;
   width: 1.15rem;
   height: 1.15rem;
+  color: var(--color-text-muted);
+  transition: all 0.3s ease;
+}
+
+.contact-method:hover .contact-value{
+  color: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.contact-method:hover .contact-icon{
+  border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  transition: all 0.3s ease;
+}
+
+.contact-method:hover .contact-icon .material-symbols-outlined,
+.contact-method:hover .contact-icon .footer-icon{
   color: var(--color-primary);
 }
 
 footer .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0rem;
 }
 
 .contact-label {
-  color: var(--color-primary);
   width: fit-content;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
 }
 
 .contact-value {
-  font-size: 0.9rem;
-  font-weight: 600;
   color: var(--color-text);
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 /* Newsletter */
@@ -342,13 +370,9 @@ footer .contact-info {
 
 /* Footer Bottom */
 .footer-bottom {
-  padding: 1.75rem 0;
-}
-
-.footer-divider {
-  height: 1px;
-  background: var(--border-color);
-  margin-bottom: 1.75rem;
+  padding: 2rem var(--space-lg) 0;
+  border-top: 1px solid var(--border-color);
+  margin: 4rem 0 2rem 0;
 }
 
 .footer-meta {

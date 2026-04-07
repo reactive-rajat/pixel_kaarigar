@@ -1,74 +1,74 @@
-import React, { useState } from 'react';
-import WhatsAppIcon from '../common/WhatsAppIcon/WhatsAppIcon';
+import React, { useState } from "react";
+import WhatsAppIcon from "../common/WhatsAppIcon/WhatsAppIcon";
 import "./Footer.css";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const [email, setEmail] = useState('');
-  const [subscribeStatus, setSubscribeStatus] = useState('');
+  const [email, setEmail] = useState("");
+  const [subscribeStatus, setSubscribeStatus] = useState("");
 
   const handleSubscribe = (e) => {
     e.preventDefault();
     if (email) {
-      setSubscribeStatus('success');
+      setSubscribeStatus("success");
       setTimeout(() => {
-        setSubscribeStatus('');
-        setEmail('');
+        setSubscribeStatus("");
+        setEmail("");
       }, 3000);
     }
   };
 
   const quickLinks = [
-    { label: 'Work', href: '#work' },
-    { label: 'About', href: '#about' },
-    { label: 'Contact', href: '#contact' },
-    { label: 'Resume', href: '/resume.pdf' },
+    { label: "Work", href: "#work" },
+    { label: "About", href: "#about" },
+    { label: "Contact", href: "#contact" },
+    { label: "Resume", href: "/resume.pdf" },
   ];
 
   const socialLinks = [
     {
-      label: 'LinkedIn',
-      href: 'https://linkedin.com/in/rajatgulati',
-      icon: 'link',
+      label: "LinkedIn",
+      href: "https://linkedin.com/in/rajatgulati",
+      icon: "link",
     },
     {
-      label: 'GitHub',
-      href: 'https://github.com/rajatgulati',
-      icon: 'code',
+      label: "GitHub",
+      href: "https://github.com/rajatgulati",
+      icon: "code",
     },
     {
-      label: 'Dribbble',
-      href: 'https://dribbble.com/rajatgulati',
-      icon: 'palette',
+      label: "Dribbble",
+      href: "https://dribbble.com/rajatgulati",
+      icon: "palette",
     },
     {
-      label: 'Twitter',
-      href: 'https://twitter.com/rajatgulati',
-      icon: 'tag',
+      label: "Twitter",
+      href: "https://twitter.com/rajatgulati",
+      icon: "tag",
     },
   ];
 
   const contactMethods = [
     {
-      label: 'WhatsApp',
-      href: 'https://wa.me/919899321639?text=Hi%20Rajat%2C%20I%20want%20to%20connect%20with%20you%20about%20a%20project.',
-      icon: 'whatsapp',
+      label: "WhatsApp",
+      href: "https://wa.me/919899321639?text=Hi%20Rajat%2C%20I%20want%20to%20connect%20with%20you%20about%20a%20project.",
+      icon: "whatsapp",
       external: true,
     },
     {
-      label: 'Call',
-      href: 'tel:+919899321639',
-      icon: 'call',
+      label: "Call",
+      href: "tel:+919899321639",
+      icon: "call",
     },
     {
-      label: 'Email',
-      href: 'mailto:hello@rajatgulati.com',
-      icon: 'mail',
+      label: "Email",
+      href: "mailto:hello@rajatgulati.com",
+      icon: "mail",
     },
   ];
 
   const renderIcon = (icon) => {
-    if (icon === 'whatsapp') {
+    if (icon === "whatsapp") {
       return <WhatsAppIcon className="footer-icon" />;
     }
 
@@ -82,9 +82,8 @@ const Footer = () => {
   return (
     <>
       {/* CTA Section before footer */}
-      <section className="pre-footer-cta">
-        <div className="container">
-          <div className="cta-card card-lg">
+      <section className="pre-footer-cta container">
+        <div className="cta-card card-lg">
             <div className="cta-content">
               <div className="status-badge">
                 <div className="ping-dot">
@@ -94,11 +93,12 @@ const Footer = () => {
                 <span className="status-text">Available for work</span>
               </div>
               <h2 className="cta-title">
-                Let's create something <span className="gradient-text">amazing</span> together
+                Let's create something{" "}
+                <span className="gradient-text">amazing</span> together
               </h2>
               <p className="cta-description">
-                I'm always excited to work on innovative projects that make a difference.
-                Let's turn your vision into reality.
+                I'm always excited to work on innovative projects that make a
+                difference. Let's turn your vision into reality.
               </p>
             </div>
             <div className="cta-actions">
@@ -111,22 +111,24 @@ const Footer = () => {
               </a>
             </div>
           </div>
-        </div>
       </section>
 
       {/* Main Footer */}
       <footer className="site-footer" aria-label="Site footer">
-        <div className="container">
-          <div className="footer-main">
+        <div className="footer-main container">
             {/* Column 1: Brand & Social */}
             <div className="footer-col footer-brand">
               <div className="footer-logo">
-                <div className="logo-avatar">
-                  <span className="gradient-text">RG</span>
-                </div>
-                <div>
-                  <h3 className="brand-name">Rajat Gulati</h3>
+                <div className="footer-logo-img"> 
+                  <img
+                    src="/assets/brand/avatar.png"
+                    alt="Avatar"
+                    className="logo-avatar"
+                  />
+                  <div>
+                    <h3 className="brand-name">Rajat Gulati</h3>
                   <p className="brand-tagline">UX Designer & Developer</p>
+                  </div>
                 </div>
               </div>
               <div className="footer-badges">
@@ -135,7 +137,9 @@ const Footer = () => {
                   <span>5+ Years</span>
                 </div>
                 <div className="skill-pill footer-badge">
-                  <span className="material-symbols-outlined">workspace_premium</span>
+                  <span className="material-symbols-outlined">
+                    workspace_premium
+                  </span>
                   <span>50+ Projects</span>
                 </div>
               </div>
@@ -164,7 +168,9 @@ const Footer = () => {
               <nav className="footer-nav">
                 {quickLinks.map(({ label, href }) => (
                   <a key={label} href={href} className="footer-nav-link">
-                    <span className="material-symbols-outlined">arrow_forward</span>
+                    <span className="material-symbols-outlined">
+                      arrow_forward
+                    </span>
                     <span className="quick-link-label">{label}</span>
                   </a>
                 ))}
@@ -179,33 +185,31 @@ const Footer = () => {
                   <a
                     key={label}
                     href={href}
-                    className="contact-method card-hoverable"
+                    className="contact-method"
                     {...(external
                       ? {
-                          target: '_blank',
-                          rel: 'noopener noreferrer',
+                          target: "_blank",
+                          rel: "noopener noreferrer",
                         }
                       : {})}
                   >
                     <div className="contact-icon">{renderIcon(icon)}</div>
                     <div className="contact-info">
                       <span className="contact-label">{label}</span>
-                      <span className="contact-value">
-                        {icon === 'mail' && 'hello@rajatgulati.com'}
-                        {icon === 'call' && '+91 98993 21639'}
-                        {icon === 'whatsapp' && 'Chat on WhatsApp'}
-                      </span>
+                      <p className="contact-value">
+                        {icon === "mail" && "pixelkaarigar@gmail.com"}
+                        {icon === "call" && "+91 98993 21639"}
+                        {icon === "whatsapp" && "Say 'Hi' to me"}
+                      </p>
                     </div>
                   </a>
                 ))}
               </div>
             </div>
-
           </div>
 
           {/* Footer Bottom */}
           <div className="footer-bottom">
-            <div className="footer-divider"></div>
             <div className="footer-meta">
               <p className="copyright">
                 © {currentYear} Rajat Gulati. All rights reserved.
@@ -221,7 +225,6 @@ const Footer = () => {
               </div>
             </div>
           </div>
-        </div>
       </footer>
     </>
   );

@@ -54,7 +54,7 @@ export const testimonials = [
     quote:
       "Rajat could understand complex briefs and translate them into clean, effective, and visually engaging designs.",
     name: "Jeeveeta Soobarah Agnihotri",
-    role: "Chief Programme Officer",
+    role: "Chief Programme Officer @ Avalon",
     image: "/assets/testimonials/jeeveeta_agnihotri_thumbnail.jpeg",
   },
 ];
