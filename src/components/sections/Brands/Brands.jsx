@@ -31,7 +31,7 @@ function Brands() {
               {displayLogos.map((brand, index) => (
                 <a
                   key={`${brand.brandName}-${index}`}
-                  className="brand-card card-hoverable"
+                  className="brand-card"
                   href={brand.brandUrl}
                   aria-label={brand.brandName}
                 >
@@ -51,7 +51,7 @@ function Brands() {
               {reverseLogos.map((brand, index) => (
                 <a
                   key={`${brand.brandName}-reverse-${index}`}
-                  className="brand-card card-1 card-hoverable"
+                  className="brand-card"
                   href={brand.brandUrl}
                   aria-label={brand.brandName}
                 >

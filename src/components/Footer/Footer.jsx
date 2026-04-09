@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import WhatsAppIcon from "../common/WhatsAppIcon/WhatsAppIcon";
 import "./Footer.css";
 
 const Footer = () => {
+  const location = useLocation();
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [subscribeStatus, setSubscribeStatus] = useState("");
@@ -82,36 +84,38 @@ const Footer = () => {
   return (
     <>
       {/* CTA Section before footer */}
-      <section className="pre-footer-cta container">
-        <div className="cta-card card-lg">
-            <div className="cta-content">
-              <div className="status-badge">
-                <div className="ping-dot">
-                  <span className="ping-inner"></span>
-                  <span className="ping-outer"></span>
+      {location.pathname !== '/contact' && (
+        <section className="pre-footer-cta container">
+          <div className="cta-card card-lg">
+              <div className="cta-content">
+                <div className="status-badge">
+                  <div className="ping-dot">
+                    <span className="ping-inner"></span>
+                    <span className="ping-outer"></span>
+                  </div>
+                  <span className="status-text">Available for work</span>
                 </div>
-                <span className="status-text">Available for work</span>
+                <h2 className="cta-title">
+                  Let's create something{" "}
+                  <span className="gradient-text">amazing</span> together
+                </h2>
+                <p className="cta-description">
+                  I'm always excited to work on innovative projects that make a
+                  difference. Let's turn your vision into reality.
+                </p>
               </div>
-              <h2 className="cta-title">
-                Let's create something{" "}
-                <span className="gradient-text">amazing</span> together
-              </h2>
-              <p className="cta-description">
-                I'm always excited to work on innovative projects that make a
-                difference. Let's turn your vision into reality.
-              </p>
+              <div className="cta-actions">
+                <a href="#contact" className="primary-btn">
+                  <span>Start a Project</span>
+                  <span className="material-symbols-outlined">arrow_forward</span>
+                </a>
+                <a href="#work" className="secondary-btn">
+                  View My Work
+                </a>
+              </div>
             </div>
-            <div className="cta-actions">
-              <a href="#contact" className="primary-btn">
-                <span>Start a Project</span>
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </a>
-              <a href="#work" className="secondary-btn">
-                View My Work
-              </a>
-            </div>
-          </div>
-      </section>
+        </section>
+      )}
 
       {/* Main Footer */}
       <footer className="site-footer" aria-label="Site footer">

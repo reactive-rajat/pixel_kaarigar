@@ -18,7 +18,7 @@ const Contact = () => {
             <span className="primary-text">Something Weird.</span>
           </h1>
           <p className="contact-description">
-            I design and build digital experiences that look sharp and work flawlessly. <span className="label-tag">Got an idea? Let’s bring it to life.</span>
+            I design and build digital experiences that look sharp and work flawlessly. <span style={{fontWeight: '600', color: 'var(--color-text)'}}>Got an idea? Let’s bring it to life.</span>
           </p>
 
  
@@ -26,7 +26,7 @@ const Contact = () => {
 
         {/* Right Column: Quick Contact */}
         <div className="contact-content">
-          <div className="contact-form-card">
+          <div className="contact-form-card card card-md">
             <div className="form-header">
               <div className="hud-dots">
                 <span className="dot red"></span>
@@ -48,10 +48,11 @@ const Contact = () => {
                 <a
                 href={whatsappLink}
                 className="primary-btn"
+                style = {{width: "fit-content"}}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span>Chat on WhatsApp</span>
+                <span>Say 'Hi' on WhatsApp</span>
                 <WhatsAppIcon />
               </a>
               </div>
@@ -59,7 +60,7 @@ const Contact = () => {
               <div className="quick-divider" aria-hidden="true"></div>
 
               <div className="quick-links">
-                <a href="mailto:hello@example.com" className="secondary-btn">
+                <a href="mailto:rajat.gulati27@example.com" className="secondary-btn">
                   Email
                 </a>
                 <a href="tel:+919899321639" className="secondary-btn">

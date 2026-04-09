@@ -198,7 +198,6 @@ footer .container{
   transition: all 0.3s ease;
   width: fit-content;
   position: relative;
-  left: -0.5rem;
 }
 
 .footer-nav-link .material-symbols-outlined {
@@ -206,16 +205,21 @@ footer .container{
   transition: all 0.3s ease;
   opacity: 0;
   width: 0;
+  position: absolute;
+  left: -2.5rem;
+  transition: all 0.3s ease;
 }
 
 .footer-nav-link:hover {
   color: var(--color-primary);
-  transform: translateX(4px);
+  transition: color 0.3s ease;
 }
 
 .footer-nav-link:hover .material-symbols-outlined {
   opacity: 1;
   width: 1rem;
+  left: -1.25rem;
+  transition: all 0.3s ease;
 }
 
 .quick-link-label{
@@ -233,7 +237,7 @@ footer .container{
 .contact-method {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 1rem;
 }
 
 .contact-icon {
@@ -266,6 +270,7 @@ footer .container{
 .contact-method:hover .contact-icon{
   border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
   background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  transform: translateX(-2px);
   transition: all 0.3s ease;
 }
 

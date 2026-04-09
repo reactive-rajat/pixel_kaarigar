@@ -6,13 +6,11 @@ import HeroVisual from "../../components/common/HeroVisual/HeroVisual";
 import projects, { featuredProjects } from "../../data/projects.js";
 import brands from "../../data/brands.js";
 import "./Hero.css";
-import IconQuotes from "@/public/assets/icons/IconQuotes.jsx";
-
 import {
   aboutSkills,
   aboutSnapshotCards,
-  testimonials,
 } from "../../data/about.js";
+import Testimonials from "../../components/sections/Testimonials/Testimonials";
 
 const sectionReveal = {
   hidden: { opacity: 0, y: 48 },
@@ -85,9 +83,7 @@ const CountUpNumber = ({ value, suffix = "", start }) => {
 
 const Hero = ({ setActivePage }) => {
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-  const [activeTestimonialIndex, setActiveTestimonialIndex] = useState(0);
   const [isProjectPaused, setIsProjectPaused] = useState(false);
-  const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
   const [startSnapshotCount, setStartSnapshotCount] = useState(false);
 
   const handleHeroClick = () => {
@@ -131,22 +127,7 @@ const Hero = ({ setActivePage }) => {
     return () => window.clearInterval(intervalId);
   }, [isProjectPaused, showcaseProjects]);
 
-  useEffect(() => {
-    if (testimonials.length <= 1 || isTestimonialPaused) {
-      return;
-    }
-
-    const intervalId = window.setInterval(() => {
-      setActiveTestimonialIndex((currentIndex) => {
-        return (currentIndex + 1) % testimonials.length;
-      });
-    }, 5000);
-
-    return () => window.clearInterval(intervalId);
-  }, [isTestimonialPaused]);
-
   const activeProject = showcaseProjects[activeProjectIndex];
-  const activeTestimonial = testimonials[activeTestimonialIndex];
 
   return (
     <section className="hero-section container">
@@ -359,60 +340,14 @@ const Hero = ({ setActivePage }) => {
             </motion.div>
           </motion.section>
 
-          <motion.section
-            className="snapshot-section"
+          <motion.div
             variants={sectionReveal}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
-            onViewportEnter={() => setStartSnapshotCount(true)}
           >
-            <div className="testimonial-shell">
-              <AnimatePresence initial={false} mode="wait">
-                <motion.div
-                  key={activeTestimonial.name}
-                  className="testimonial-spotlight"
-                  onMouseEnter={() => setIsTestimonialPaused(true)}
-                  onMouseLeave={() => setIsTestimonialPaused(false)}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -14 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <div className="testimonial-accent" aria-hidden="true">
-                    <span className="icon left">
-                      <IconQuotes />
-                    </span>
-                    <span className="icon right">
-                      <IconQuotes />
-                    </span>
-                  </div>
-                  <div className="testimonial-copy">
-                    <h3 className="testimonial-quote">
-                      &ldquo;{activeTestimonial.quote}&rdquo;
-                    </h3>
-
-                    <div className="testimonial-meta">
-                      <img
-                        className="testimonial-avatar"
-                        src={activeTestimonial.image}
-                        alt={activeTestimonial.name}
-                        loading="lazy"
-                      />
-                      <div>
-                        <h4 className="testimonial-name">
-                          {activeTestimonial.name}
-                        </h4>
-                        <p className="testimonial-role">
-                          {activeTestimonial.role}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </motion.section>
+            <Testimonials />
+          </motion.div>
 
           <motion.section
             className="skills-section"

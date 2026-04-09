@@ -4,23 +4,13 @@ import Brands from '../../components/sections/Brands/Brands';
 import HeroVisual from '../../components/common/HeroVisual/HeroVisual';
 import StatusBadge from '../../components/common/StatusBadge/StatusBadge';
 import SectionHeading from '../../components/common/SectionHeading/SectionHeading';
-import { aboutSkills, testimonials } from '../../data/about.js';
+import { aboutSkills } from '../../data/about.js';
+import Testimonials from '../../components/sections/Testimonials/Testimonials';
 import "./About.css";
 
 const About = () => {
   const navigate = useNavigate();
-  const [expandedTimelineItems, setExpandedTimelineItems] = useState({
-    freelance: false,
-    bold: false,
-    avalon: false,
-  });
-
-  const toggleTimelineDetails = (itemKey) => {
-    setExpandedTimelineItems((prev) => ({
-      ...prev,
-      [itemKey]: !prev[itemKey],
-    }));
-  };
+  const [isTimelineExpanded, setIsTimelineExpanded] = useState(false);
 
   return (
     <section className="about-page container">
@@ -60,7 +50,9 @@ const About = () => {
           }
           description="The short version of how I got here and what I'm building next."
         />
-        <div className="timeline-list">
+        <div className={`timeline-container card ${isTimelineExpanded ? 'expanded' : ''}`}>
+          <div className="timeline-wrapper card-md">
+            <div className="timeline-list">
           <div className="timeline-item">
             <div className="timeline-dot">
               <span className="material-symbols-outlined timeline-dot-icon">rocket_launch</span>
@@ -69,21 +61,12 @@ const About = () => {
               <span className="timeline-year start label-tag">Now</span>
               <span className="timeline-year end label-tag">May 2025</span>
               <h4>Independent UI/UX & Frontend Developer | Freelance </h4>
-              <div id="timeline-details-freelance" className={expandedTimelineItems.freelance ? 'timeline-details expanded' : 'timeline-details'}>
+              <div className="timeline-details">
                 <ul>
                   <li className="timeline-list-item"><p><span className="main-text">Product Development:</span> Designing and building responsive web applications and a personal portfolio using React, Tailwind CSS, and AI-assisted workflows.</p></li>
                   <li className="timeline-list-item"><p><span className="main-text">Client Consulting: </span> Transforming complex requirements into high-fidelity Figma designs and production-ready UI code with 100% design fidelity.</p></li>
                 </ul>
               </div>
-              <button
-                type="button"
-                className="secondary-btn timeline-toggle"
-                onClick={() => toggleTimelineDetails('freelance')}
-                aria-expanded={expandedTimelineItems.freelance}
-                aria-controls="timeline-details-freelance"
-              >
-                {expandedTimelineItems.freelance ? 'Show less' : 'Read more'}
-              </button>
             </div>
           </div>
           <div className="timeline-item">
@@ -94,7 +77,7 @@ const About = () => {
               <span className="timeline-year start label-tag">Sep 2021</span>
               <span className="timeline-year end label-tag">May 2025</span>
               <h4>Senior Web Designer / UI Developer | BOLD </h4>
-              <div id="timeline-details-bold" className={expandedTimelineItems.bold ? 'timeline-details expanded' : 'timeline-details'}>
+              <div className="timeline-details">
                 <ul>
                   <li className="timeline-list-item"><p>Led the UI/UX migration for 'ResumeHelp', creating a modern app interface that significantly improved user metrics.</p></li>
                   <li className="timeline-list-item"><p>Acted as the technical bridge between Creative & Dev teams to ensure 100% pixel-perfect implementation of design systems.</p></li>
@@ -102,15 +85,6 @@ const About = () => {
                   <li className="timeline-list-item"><p>Managed design reviews for internal teams and external agencies to maintain brand consistency across products.</p></li>
                 </ul>
               </div>
-              <button
-                type="button"
-                className="secondary-btn timeline-toggle"
-                onClick={() => toggleTimelineDetails('bold')}
-                aria-expanded={expandedTimelineItems.bold}
-                aria-controls="timeline-details-bold"
-              >
-                {expandedTimelineItems.bold ? 'Show less' : 'Read more'}
-              </button>
             </div>
           </div>
           <div className="timeline-item">
@@ -121,7 +95,7 @@ const About = () => {
               <span className="timeline-year start label-tag">Jan 2019</span>
               <span className="timeline-year end label-tag">Sep 2021</span>
               <h4>UI Designer / Developer | Avalon Infosys</h4>
-              <div id="timeline-details-avalon" className={expandedTimelineItems.avalon ? 'timeline-details expanded' : 'timeline-details'}>
+              <div className="timeline-details">
                 <ul>
                   <li className="timeline-list-item"><p>Designed data-driven web platforms for international NGOs and UN agencies across 130+ countries.</p></li>
                   <li className="timeline-list-item"><p>Engineered reusable HTML/SCSS markups, significantly reducing development cycles and UI regressions.</p></li>
@@ -129,17 +103,18 @@ const About = () => {
                   <li className="timeline-list-item"><p>Created visual branding assets, including iconography and digital illustrations for diverse project needs.</p></li>
                 </ul>
               </div>
-              <button
-                type="button"
-                className="secondary-btn timeline-toggle"
-                onClick={() => toggleTimelineDetails('avalon')}
-                aria-expanded={expandedTimelineItems.avalon}
-                aria-controls="timeline-details-avalon"
-              >
-                {expandedTimelineItems.avalon ? 'Show less' : 'Read more'}
-              </button>
             </div>
           </div>
+            </div>
+            <div className="timeline-fade"></div>
+          </div>
+          <button
+            type="button"
+            className="secondary-btn timeline-global-toggle"
+            onClick={() => setIsTimelineExpanded(!isTimelineExpanded)}
+          >
+            {isTimelineExpanded ? 'Show less' : 'Read more'}
+          </button>
         </div>
       </div>
 
@@ -185,93 +160,63 @@ const About = () => {
           description="The tools I reach for to design, build, and ship polished experiences."
         />
         <div className="toolkit-grid">
-          <div className="toolkit-card">
+          <div className="toolkit-card card card-1 card-md">
             <div className="toolkit-header">
-              <span className="material-symbols-outlined">auto_awesome</span>
-              <span className="label-tag toolkit-eyebrow">Core Expertise</span>
+              <div className="toolkit-icon">
+                <span className="material-symbols-outlined">auto_awesome</span>
+              </div>
+              <div className="toolkit-heading-text">
+                <span className="label-tag toolkit-eyebrow">Core Expertise</span>
                 <h3>Tools I use daily</h3>
+              </div>
             </div>
             <div className="toolkit-pills">
               {aboutSkills.map((skill) => (
-                <span key={skill.name} className="skill-pill tool-pill">
+                <span key={skill.name} className="tool-chip">
                   <span className="material-symbols-outlined">{skill.icon}</span>
                   {skill.name}
                 </span>
               ))}
             </div>
-            <p className="toolkit-more">and many more...</p>
           </div>
-          <div className="toolkit-card">
+
+          <div className="toolkit-card card card-1 card-md">
             <div className="toolkit-header">
-              <span className="material-symbols-outlined">workspace_premium</span>
-              <div>
+              <div className="toolkit-icon">
+                <span className="material-symbols-outlined">workspace_premium</span>
+              </div>
+              <div className="toolkit-heading-text">
                 <span className="label-tag toolkit-eyebrow">Certifications</span>
-                <h3>Courses &amp; Certifications</h3>
+                <h3>Courses &amp; Credentials</h3>
               </div>
             </div>
             <ul className="toolkit-list">
-              <li className="skill-pill">
+              <li className="cert-item">
                 <span className="material-symbols-outlined">verified</span>
                 Meta - React
               </li>
-              <li className="skill-pill">
+              <li className="cert-item">
                 <span className="material-symbols-outlined">verified</span>
                 Meta - Programming with Javascript
               </li>
-              <li className="skill-pill">
+              <li className="cert-item">
                 <span className="material-symbols-outlined">verified</span>
                 Uxcel - UX Design Foundation + Typography
               </li>
-              <li className="skill-pill">
+              <li className="cert-item">
                 <span className="material-symbols-outlined">verified</span>
-                Uxcel - Color Psychology + Wireframing + Accessibility
+                Uxcel - Color Psychology + Accessibility
               </li>
             </ul>
-            <p className="toolkit-more">and many more...</p>
           </div>
         </div>
       </div>
 
       {/* Testimonials */}
-      <div className="testimonials-section content-section">
-        <SectionHeading
-          label="Testimonials"
-          title={
-            <>
-              What People Say<span className="primary-text"> About Me</span>
-            </>
-          }
-          description="A few kind words from people I've worked with."
-        />
-        <div className="testimonials-grid">
-          {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.name}
-              className={`testimonial-card ${testimonial.highlighted ? 'highlighted' : ''}`}
-            >
-              <p className="testimonial-text">
-                &ldquo;{testimonial.quote}&rdquo;
-              </p>
-              <div className="testimonial-author">
-                <img
-                  className="author-avatar"
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  loading="lazy"
-                />
-                <div>
-                  <h4 className="author-name">{testimonial.name}</h4>
-                  <p className="author-role">{testimonial.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <Testimonials />
 
-        {/* Brands */}
+      {/* Brands */}
       <Brands />
-
-      </div>
 
       {/* Dual Cards */}
       <div className="dual-cards-section content-section">
@@ -298,19 +243,6 @@ const About = () => {
         </div>
       </div>
 
-      {/* Final CTA */}
-      <div className="works-cta about-cta content-section">
-        <div className="cta-glow"></div>
-        <h3 className="cta-title">
-          Have a crazy idea?
-          <br />
-          <span className="primary-text">Let&apos;s build it.</span>
-        </h3>
-        <button className="primary-btn" type="button" onClick={() => navigate('/contact')}>
-          <span className="material-symbols-outlined">handshake</span>
-          <span>Let&apos;s work together</span>
-        </button>
-      </div>
     </section>
   );
 };
