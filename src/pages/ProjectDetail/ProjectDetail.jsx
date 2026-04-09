@@ -64,11 +64,13 @@ const ProjectDetail = () => {
     );
   }
 
-  const categoryLabel = getProjectCategories(project).filter(Boolean).join(" + ");
+  const categoryLabel = getProjectCategories(project)
+    .filter(Boolean)
+    .join(" + ");
   const contentHeading = getContentHeading(project.projectType);
 
   return (
-    <main className="project-detail-page container">
+    <main className="project-detail-page">
       <div className="project-detail-shell">
         <div className="project-nav-row">
           <Link to="/work" className="project-back-link project-nav-pill">
@@ -103,9 +105,9 @@ const ProjectDetail = () => {
         </div>
 
         <header className="project-hero">
-          <div className="project-hero-copy">
+          <div className="container project-hero-copy">
             <span className="label-tag project-category">{categoryLabel}</span>
-            <h2 className="project-title">{project.title}</h2>
+            <h1 className="project-title">{project.title}</h1>
             <p className="project-description">{project.description}</p>
 
             <div className="project-actions">
@@ -116,7 +118,9 @@ const ProjectDetail = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="material-symbols-outlined">rocket_launch</span>
+                  <span className="material-symbols-outlined">
+                    rocket_launch
+                  </span>
                   <span>Live Preview</span>
                 </a>
               )}
@@ -147,7 +151,7 @@ const ProjectDetail = () => {
             )}
           </div>
 
-          <div className="project-hero-media">
+          <div className="project-hero-media container">
             {project.projectType === "motion" ? (
               <video
                 src={project.image}
@@ -166,18 +170,23 @@ const ProjectDetail = () => {
           </div>
         </header>
 
-        <section className="project-content">
-          <div className="project-section-head">
-            <div>
-              <span className="label-tag project-section-kicker">{contentHeading}</span>
-              <h2>
-                {project.projectType === "case-study"
-                  ? "Detailed walkthrough"
-                  : "Detailed content"}
-              </h2>
-            </div>
+        <div className="project-content-divider container" style={{paddingTop: '3rem'}}>
+          <div className="project-content-divider-label">
+            <span className="label-tag">{contentHeading}</span>
+            <h2 className="project-content-divider-heading">
+              {project.projectType === "case-study"
+                ? "Full walkthrough"
+                : "Detailed breakdown"}
+            </h2>
+            <p className="project-content-divider-sub">
+              {project.projectType === "case-study"
+                ? "A deep-dive into the problem, process, and outcome."
+                : "Everything behind the build — decisions, approach, and results."}
+            </p>
           </div>
+        </div>
 
+        <section className="project-content container" style={{paddingTop: '4rem'}}>
           <ProjectHtmlContent
             contentPath={project.contentPath}
             title={project.title}

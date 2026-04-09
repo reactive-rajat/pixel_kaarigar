@@ -55,7 +55,22 @@ const sanitizeUri = (value, assetBaseUrl) => {
   }
 };
 
-const sanitizeProjectHtml = (html, assetBaseUrl, omitPrimaryHeading = false) => {
+const extractStylesheetUrls = (html, assetBaseUrl) => {
+  const parser = new DOMParser();
+  const parsedDocument = parser.parseFromString(html, "text/html");
+  const urls = [];
+
+  parsedDocument.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
+    const href = link.getAttribute("href");
+    if (!href) return;
+    const resolved = sanitizeUri(href, assetBaseUrl);
+    if (resolved) urls.push(resolved);
+  });
+
+  return urls;
+};
+
+const sanitizeProjectHtml = (html, assetBaseUrl, omitPrimaryHeading = false, injectedCss = "") => {
   const parser = new DOMParser();
   const parsedDocument = parser.parseFromString(html, "text/html");
   const { body } = parsedDocument;
@@ -134,7 +149,11 @@ const sanitizeProjectHtml = (html, assetBaseUrl, omitPrimaryHeading = false) => 
     }
   });
 
-  return body.innerHTML;
+  const styleBlock = injectedCss
+    ? `<style data-project-css="true">${injectedCss}</style>`
+    : "";
+
+  return styleBlock + body.innerHTML;
 };
 
 const ProjectHtmlContent = ({ contentPath, title, omitPrimaryHeading = false }) => {
@@ -171,10 +190,22 @@ const ProjectHtmlContent = ({ contentPath, title, omitPrimaryHeading = false }) 
 
         const rawHtml = await response.text();
         const assetBaseUrl = new URL("./", requestUrl).toString();
+
+        const cssUrls = extractStylesheetUrls(rawHtml, assetBaseUrl);
+        const cssTexts = await Promise.all(
+          cssUrls.map((url) =>
+            fetch(url)
+              .then((r) => (r.ok ? r.text() : ""))
+              .catch(() => ""),
+          ),
+        );
+        const injectedCss = cssTexts.join("\n");
+
         const safeHtml = sanitizeProjectHtml(
           rawHtml,
           assetBaseUrl,
           omitPrimaryHeading,
+          injectedCss,
         );
 
         if (!isMounted) {
