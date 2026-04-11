@@ -200,7 +200,7 @@ const Hero = ({ setActivePage }) => {
               {aboutSnapshotCards.map((card) => (
                 <motion.article
                   key={card.id}
-                  className={`card snapshot-card snapshot-card-${card.id} card-md`}
+                  className={`card card-3 snapshot-card snapshot-card-${card.id} card-md`}
                   variants={staggerItem}
                 >
                   {card.type === "stat" ? (

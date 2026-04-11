@@ -1,12 +1,12 @@
 export const aboutSkills = [
-  { name: "React.js", icon: "code_blocks" },
-  { name: "Tailwind", icon: "style" },
-  { name: "Javascript", icon: "data_object" },
-  { name: "HTML/CSS", icon: "code" },
   { name: "UX/UI Design", icon: "design_services" },
   { name: "Prototyping", icon: "architecture" },
   { name: "Design Systems", icon: "layers" },
   { name: "Visual Design", icon: "palette" },
+  { name: "React.js", icon: "code_blocks" },
+  { name: "Tailwind", icon: "style" },
+  { name: "Javascript", icon: "data_object" },
+  { name: "HTML/CSS", icon: "code" },
 ];
 
 export const aboutSnapshotCards = [

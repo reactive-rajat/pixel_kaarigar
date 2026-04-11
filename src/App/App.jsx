@@ -7,6 +7,7 @@ import Works from '../pages/Works/Works';
 import About from '../pages/About/About';
 import Contact from '../pages/Contact/Contact';
 import ProjectDetail from '../pages/ProjectDetail/ProjectDetail';
+import ComponentsPreview from '../pages/ComponentsPreview/ComponentsPreview';
 import "./App.css";
 
 const routeToPage = {
@@ -65,9 +66,9 @@ const AppShell = () => {
 
   return (
     <div className="app-wrapper">
-      <Navbar 
-        activePage={activePage} 
-        setActivePage={handlePageChange} 
+      <Navbar
+        activePage={activePage}
+        setActivePage={handlePageChange}
         toggleDarkMode={toggleDarkMode}
         darkMode={darkMode}
       />
@@ -90,7 +91,12 @@ const AppShell = () => {
 const App = () => {
   return (
     <BrowserRouter>
-      <AppShell />
+      <Routes>
+        {/* Hidden dev-only design preview — not linked from anywhere */}
+        <Route path="/components" element={<ComponentsPreview />} />
+        {/* All other routes go through AppShell (Navbar + Footer) */}
+        <Route path="/*" element={<AppShell />} />
+      </Routes>
     </BrowserRouter>
   );
 };

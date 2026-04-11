@@ -130,17 +130,17 @@ const About = () => {
           description="Strategy, design, and development tailored to your product goals."
         />
         <div className="deliver-grid">
-          <div className="deliver-card">
+          <div className="deliver-card card-md card-2">
             <span className="material-symbols-outlined">strategy</span>
             <h3>Strategy</h3>
             <p>Define the purpose and map the journey for maximum impact.</p>
           </div>
-          <div className="deliver-card">
+          <div className="deliver-card card-md card-2">
             <span className="material-symbols-outlined">brush</span>
             <h3>Design</h3>
             <p>Craft crisp, intuitive interfaces with clear hierarchy.</p>
           </div>
-          <div className="deliver-card">
+          <div className="deliver-card card-md card-2">
             <span className="material-symbols-outlined">code</span>
             <h3>Development</h3>
             <p>Build scalable products with clean code and smooth UX.</p>
@@ -160,14 +160,14 @@ const About = () => {
           description="The tools I reach for to design, build, and ship polished experiences."
         />
         <div className="toolkit-grid">
-          <div className="toolkit-card card card-1 card-md">
+          <div className="toolkit-card card card-2 card-md">
             <div className="toolkit-header">
-              <div className="toolkit-icon">
-                <span className="material-symbols-outlined">auto_awesome</span>
-              </div>
               <div className="toolkit-heading-text">
                 <span className="pill toolkit-eyebrow">Core Expertise</span>
                 <h3>Tools I use daily</h3>
+              </div>
+              <div className="toolkit-icon">
+                <span className="material-symbols-outlined">auto_awesome</span>
               </div>
             </div>
             <div className="toolkit-pills">
@@ -180,25 +180,17 @@ const About = () => {
             </div>
           </div>
 
-          <div className="toolkit-card card card-1 card-md">
+          <div className="toolkit-card card card-2 card-md">
             <div className="toolkit-header">
-              <div className="toolkit-icon">
-                <span className="material-symbols-outlined">workspace_premium</span>
-              </div>
               <div className="toolkit-heading-text">
                 <span className="pill toolkit-eyebrow">Certifications</span>
                 <h3>Courses &amp; Credentials</h3>
               </div>
+              <div className="toolkit-icon">
+                <span className="material-symbols-outlined">workspace_premium</span>
+              </div>
             </div>
             <ul className="toolkit-list">
-              <li className="cert-item">
-                <span className="material-symbols-outlined">verified</span>
-                Meta - React
-              </li>
-              <li className="cert-item">
-                <span className="material-symbols-outlined">verified</span>
-                Meta - Programming with Javascript
-              </li>
               <li className="cert-item">
                 <span className="material-symbols-outlined">verified</span>
                 Uxcel - UX Design Foundation + Typography
@@ -206,6 +198,14 @@ const About = () => {
               <li className="cert-item">
                 <span className="material-symbols-outlined">verified</span>
                 Uxcel - Color Psychology + Accessibility
+              </li>
+              <li className="cert-item">
+                <span className="material-symbols-outlined">verified</span>
+                Meta - React
+              </li>
+              <li className="cert-item">
+                <span className="material-symbols-outlined">verified</span>
+                Meta - Programming with Javascript
               </li>
             </ul>
           </div>
