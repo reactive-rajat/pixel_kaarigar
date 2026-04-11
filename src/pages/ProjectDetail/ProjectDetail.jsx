@@ -54,7 +54,7 @@ const ProjectDetail = () => {
           </p>
           <button
             type="button"
-            className="primary-btn"
+            className="btn btn-primary"
             onClick={() => navigate("/work")}
           >
             Back to work
@@ -74,19 +74,19 @@ const ProjectDetail = () => {
       <div className="project-detail-shell">
         <header className="project-hero">
           <div className="container project-hero-copy">
-            <span className="label-tag project-category">{categoryLabel}</span>
+            <span className="pill project-category">{categoryLabel}</span>
             <h1 className="project-title">{project.title}</h1>
             <p className="project-description">{project.description}</p>
 
             <div className="project-actions">
-              <Link to="/work" className="secondary-btn">
+              <Link to="/work" className="btn btn-secondary">
                 <span className="material-symbols-outlined left-fix">arrow_back</span>
                 <span>Go Back</span>
               </Link>
 
               {project.liveUrl && (
                 <a
-                  className="primary-btn"
+                  className="btn btn-primary"
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -100,7 +100,7 @@ const ProjectDetail = () => {
 
               {project.repoUrl && (
                 <a
-                  className="secondary-btn"
+                  className="btn btn-secondary"
                   href={project.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -115,7 +115,7 @@ const ProjectDetail = () => {
               <div className="project-meta-footer">
                 <div className="project-tags">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="label-tag project-tag">
+                    <span key={tag} className="pill project-tag">
                       {tag}
                     </span>
                   ))}

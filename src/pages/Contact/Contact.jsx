@@ -15,7 +15,7 @@ const Contact = () => {
           <StatusBadge text="Open to work" showPing />
           <h1 className="contact-title">
             Let's Build <br />
-            <span className="primary-text">Something Weird.</span>
+            <span className="text-primary">Something Weird.</span>
           </h1>
           <p className="contact-description">
             I design and build digital experiences that look sharp and work flawlessly. <span style={{fontWeight: '600', color: 'var(--color-text)'}}>Got an idea? Let’s bring it to life.</span>
@@ -37,7 +37,7 @@ const Contact = () => {
 
             <div className="contact-form quick-connect">
               <div className="head-group">
-                <span className="label-tag">PRIMARY CHAT</span>
+                <span className="pill">PRIMARY CHAT</span>
                 <h3>WhatsApp Connect</h3>
                 <p className="connect-note">
                   Fastest way to reach me. Tap once and chat directly on WhatsApp.
@@ -47,7 +47,7 @@ const Contact = () => {
               <div>
                 <a
                 href={whatsappLink}
-                className="primary-btn"
+                className="btn btn-primary"
                 style = {{width: "fit-content"}}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -60,13 +60,13 @@ const Contact = () => {
               <div className="quick-divider" aria-hidden="true"></div>
 
               <div className="quick-links">
-                <a href="mailto:rajat.gulati27@example.com" className="secondary-btn">
+                <a href="mailto:rajat.gulati27@example.com" className="btn btn-secondary">
                   Email
                 </a>
-                <a href="tel:+919899321639" className="secondary-btn">
+                <a href="tel:+919899321639" className="btn btn-secondary">
                   Call
                 </a>
-                <a href="sms:+919899321639" className="secondary-btn">
+                <a href="sms:+919899321639" className="btn btn-secondary">
                   SMS
                 </a>
               </div>

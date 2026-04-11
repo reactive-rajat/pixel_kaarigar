@@ -1,162 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+@import './theme.css';
 @import './components.css';
 
-/* =========================
-   DEFAULT THEME (LIGHT)
-========================= */
+/* ================================================================
+   BASE STYLES  (resets + element defaults only)
+   All tokens live in theme.css.
+   ================================================================ */
 
-:root {
-  /* Theme Colors */
-  /* RGB component definitions (for flexible rgba() usage) */
-  --color-bg-main-rgb: 252, 252, 253;
-  --color-bg-soft-rgb: 53, 56, 255;
-  --color-card-rgb: 255, 255, 255;
-  --color-card-alt-rgb: 243, 244, 246;
-  --color-primary-rgb: 79, 70, 229; /* Already in desired format */
-  --color-secondary-rgb: 236, 72, 153;
-  --color-text-rgb: 17, 24, 39; /* Already in desired format */
-  --color-text-label-rgb: 0, 52, 136;
-  --color-border-rgb: 0, 59, 185;
-  --color-border-light-rgb: 17, 24, 39;
-  --color-success-rgb: 16, 185, 129;
-  --color-danger-rgb: 239, 68, 68;
-
-  /* Alpha component definitions (for colors that originally had an alpha) */
-  --color-bg-soft-alpha: 0.117;
-  --color-primary-glow-alpha: 0.2;
-  --color-text-label-alpha: 0.824; /* Original #d2 converted to ~0.824 */
-  --color-text-muted-alpha: 0.65;
-  --color-border-alpha: 0.2;
-  --color-border-light-alpha: 0.05;
-
-  /* Original variable definitions, now referencing the RGB/Alpha components */
-  --color-bg-main: rgb(var(--color-bg-main-rgb));
-  --color-bg-soft: rgba(var(--color-bg-soft-rgb), var(--color-bg-soft-alpha));
-  --color-card: rgb(var(--color-card-rgb));
-  --color-card-alt: rgb(var(--color-card-alt-rgb));
-  --color-primary: rgb(var(--color-primary-rgb));
-  --color-primary-glow: rgba(var(--color-primary-rgb), var(--color-primary-glow-alpha));
-  --color-secondary: rgb(var(--color-secondary-rgb));
-  --color-text: rgb(var(--color-text-rgb));
-  --color-text-label: rgba(var(--color-text-label-rgb), var(--color-text-label-alpha));
-  --color-text-muted: rgba(var(--color-text-rgb), var(--color-text-muted-alpha));
-  --color-border: rgba(var(--color-border-rgb), var(--color-border-alpha));
-  --color-border-light: rgba(var(--color-border-light-rgb), var(--color-border-light-alpha));
-  --color-success: rgb(var(--color-success-rgb));
-  --color-danger: rgb(var(--color-danger-rgb));
-  
-  --color-bg-gradient: linear-gradient(-120deg, #eaecf6 50%, #deeaf6 100%);            
-
-  /* Typography */
-  --font-heading: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
-
-  /* Spacing */
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1.25rem;
-  --space-lg: 2rem;
-  --space-xl: 3rem;
-  --space-2xl: 4.5rem;
-
-  /* Radius */
-  --radius-sm: 0.6rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.6rem;
-  --radius-xl: 2.5rem;
-  --radius-pill: 9999px;
-
-  /* Card Backgrounds — only these 3 */
-  --card-bg-1: var(--color-card);
-  --card-bg-2: var(--color-card-alt);
-  --card-bg-3: var(--color-bg-soft);
-
-  /* Card Border — only these 2 */
-  --card-border-1: var(--color-border);
-  --card-border-2: var(--color-primary-glow);
-
-  /* Card Border Radius — only these 3 */
-  --card-radius-sm: var(--radius-md);
-  --card-radius-md: var(--radius-lg);
-  --card-radius-lg: var(--radius-xl);
-
-  /* Card Padding — only these 3 */
-  --card-padding-sm: var(--space-md);
-  --card-padding-md: var(--space-lg);
-  --card-padding-lg: var(--space-xl);
-
-  /* Layout */
-  --container-width: 1200px;
-  --container-width-lg: 900px;
-
-  /* Shadows */
-  --shadow-sm: 0 4px 6px -1px rgba(17, 24, 39, 0.05), 0 2px 4px -1px rgba(17, 24, 39, 0.03);
-  --shadow-md: 0 10px 15px -3px rgba(17, 24, 39, 0.05), 0 4px 6px -2px rgba(17, 24, 39, 0.03);
-  --shadow-lg: 0 20px 25px -5px rgba(17, 24, 39, 0.05), 0 10px 10px -5px rgba(17, 24, 39, 0.02);
-  --shadow-glow: 0 0 20px var(--color-primary-glow);
-
-  /* Backward-compatible aliases */
-  --primary-color: var(--color-primary);
-  --primary-glow: var(--color-primary-glow);
-  --background-dark: var(--color-bg-main);
-  --background-light: #f7f6f8;
-  --surface-dark: var(--color-card);
-  --surface-light: #ffffff;
-  --text-dark: var(--color-text);
-  --text-light: #1a1122;
-  --text-muted: var(--color-text-muted);
-  --border-color: var(--color-border);
-  --border-color-light: var(--color-border-light);
-  --spacing-small: var(--space-xs);
-  --spacing-medium: var(--space-md);
-  --spacing-large: var(--space-lg);
-  --spacing-xl: var(--space-2xl);
-  --border-radius: var(--radius-sm);
-  --border-radius-lg: var(--radius-lg);
-  --border-radius-xl: var(--radius-xl);
-  --border-radius-full: var(--radius-pill);
-  --font-family: var(--font-body);
-}
-
-
-/* =========================
-   DARK THEME
-========================= */
-
-[data-theme="dark"] {
-  --color-bg-main: #09090b;
-  --color-bg-soft: #1322a344;
-  --color-card: #18181b;
-  --color-card-alt: #27272a;
-  --color-primary: #818cf8;
-  --color-primary-glow: rgba(0, 21, 209, 0.254);
-  --color-secondary: #f472b6;
-  --color-text-rgb: 250, 250, 250;
-  --color-text: rgb(var(--color-text-rgb));
-  --color-text-muted: rgba(var(--color-text-rgb), 0.65);
-  --color-text-label: #90bbffa0;
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-light: rgba(255, 255, 255, 0.05);
-  --color-success: #34d399;
-  --color-danger: #f87171;
-
-  /* Dark Theme Shadows */
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 20px 40px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 30px var(--color-primary-glow);
-
-  --background-dark: var(--color-bg-main);
-  --surface-dark: var(--color-card);
-  --text-dark: var(--color-text);
-
-  --color-bg-gradient: radial-gradient(circle at 15% 15%, rgba(129, 140, 248, 0.08) 0%, transparent 50%), 
-                       radial-gradient(circle at 85% 85%, rgba(244, 114, 182, 0.06) 0%, transparent 50%), 
-                       var(--color-bg-main);
-}
-
-/* Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -169,19 +20,12 @@ body {
   background-attachment: fixed;
   min-height: 100vh;
   color: var(--color-text);
-  line-height: 1.5;
+  line-height: var(--leading-normal);
   overflow-x: hidden;
   transition: background 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
-body.light {
-  background-color: var(--background-light);
-  color: var(--text-light);
-}
-
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   margin: 0;
   padding: 0;
   font-family: var(--font-heading);
@@ -191,33 +35,33 @@ h3 {
 h1 {
   font-size: clamp(2.8rem, 7vw, 4.25rem);
   line-height: 1.05em;
-  font-weight: 900;
+  font-weight: var(--weight-black);
   letter-spacing: -0.025em;
 }
 
 h2 {
   font-size: clamp(2.15rem, 4.8vw, 3.25rem);
   line-height: 1;
-  font-weight: 900;
+  font-weight: var(--weight-black);
   letter-spacing: -0.035em;
 }
 
 h3 {
   font-size: clamp(1rem, 2vw, 2.5rem);
-  font-weight: 700;
-  line-height: 1.5;
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-normal);
 }
 
-h4, h5, h6{
+h4, h5, h6 {
   font-size: clamp(1rem, 1.4vw, 1.6rem);
-  font-weight: 600;
+  font-weight: var(--weight-semi);
   line-height: 1;
   margin-bottom: 0.4rem;
 }
 
 p {
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
   color: var(--color-text-muted);
 }
 

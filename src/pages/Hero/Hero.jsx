@@ -137,7 +137,7 @@ const Hero = ({ setActivePage }) => {
             <StatusBadge text="Open to work" showPing />
 
             <h1 className="hero-title">
-              <span className="gradient-text">
+              <span className="text-gradient">
                 UX Designer <br />
               </span>
               with an unfair advantage.
@@ -151,7 +151,7 @@ const Hero = ({ setActivePage }) => {
             <div className="skills-marquee-container">
               <ul className="skills-list">
                 {[...skills, ...skills].map((skill, index) => (
-                  <li key={index} className="skill-item skill-pill">
+                  <li key={index} className="skill-item pill">
                     {skill}
                   </li>
                 ))}
@@ -160,14 +160,14 @@ const Hero = ({ setActivePage }) => {
 
             <div className="hero-actions">
               <button
-                className="primary-btn"
+                className="btn btn-primary"
                 onClick={() => setActivePage("works")}
               >
                 <span>See My Work</span>
                 <span className="material-symbols-outlined right-fix">arrow_forward</span>
               </button>
               <button
-                className="secondary-btn"
+                className="btn btn-secondary"
                 onClick={() => setActivePage("contact")}
               >
                 Let&apos;s Talk
@@ -273,7 +273,7 @@ const Hero = ({ setActivePage }) => {
                     transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <div className="showcase-copy">
-                      <span className="showcase-category label-tag">
+                      <span className="showcase-category pill">
                         {activeProject.category?.[0] ||
                           activeProject.projectType}
                       </span>
@@ -288,14 +288,14 @@ const Hero = ({ setActivePage }) => {
 
                       <div className="showcase-tags">
                         {activeProject.tags?.map((tag) => (
-                          <span key={tag} className="showcase-tag label-tag">
+                          <span key={tag} className="showcase-tag pill">
                             {tag}
                           </span>
                         ))}
                       </div>
 
                       <Link
-                        className="showcase-link primary-btn"
+                        className="showcase-link btn btn-primary"
                         to={`/project/${activeProject.slug}`}
                       >
                         View Case Study →
@@ -357,7 +357,7 @@ const Hero = ({ setActivePage }) => {
             viewport={{ once: true, amount: 0.25 }}
           >
             <div className="head-group skills-glimpse-header">
-              <span className="label-tag section-kicker">Skills & tools</span>
+              <span className="pill section-kicker">Skills & tools</span>
               <h3 className="section-title">
                 A quick glimpse of the tools behind the work.
               </h3>

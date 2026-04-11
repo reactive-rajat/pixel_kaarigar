@@ -9,8 +9,8 @@
 }
 
 .project-not-found p {
-  color: var(--text-muted);
-  line-height: 1.7;
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
 }
 
 .project-detail-shell {
@@ -217,9 +217,9 @@
 }
 
 .project-content-divider-sub {
-  color: var(--text-muted);
-  line-height: 1.7;
-  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  font-size: var(--text-base);
 }
 
 /* ── HTML content panel ── */
@@ -228,8 +228,8 @@
   margin: 0 calc(var(--space-lg) * -1);
   padding: 3rem var(--space-lg) 4rem;
   background: color-mix(in srgb, var(--color-bg-soft) 60%, transparent);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   border-radius: 0;
 }
 
@@ -246,8 +246,8 @@
 }
 
 .project-description {
-  color: var(--text-muted);
-  line-height: 1.8;
+  color: var(--color-text-muted);
+  line-height: var(--leading-loose);
 }
 
 .project-tags {
@@ -268,9 +268,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  margin-top: 1rem;
+  margin-top: var(--space-4);
   padding-top: 1.75rem;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--color-border);
 }
 
 .project-actions .primary-btn .material-symbols-outlined,
@@ -287,8 +287,8 @@
   width: 100%;
   height: 100%;
   min-height: 320px;
-  border-radius: 1.4rem;
-  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
   object-fit: cover;
   background: color-mix(in srgb, var(--color-bg-main) 24%, transparent);
 }

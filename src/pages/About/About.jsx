@@ -21,18 +21,18 @@ const About = () => {
 
           <h1 className="about-title">
             I design experiences
-          <span className="primary-text"> people actually enjoy.</span>
+          <span className="text-primary"> people actually enjoy.</span>
           </h1>
           <p className="about-lead">
             Hi, I'm Rajat — a Senior UX Designer with 7+ years of experience. I design digital products, and I also code. Which means I know exactly what's buildable, and why it matters.
           </p>
 
           <div className="about-actions">
-            <button className="primary-btn">
+            <button className="btn btn-primary">
               <span>Download Resume</span>
               <span className="material-symbols-outlined right-fix">download</span>
             </button>
-            <button className="secondary-btn">Let&apos;s Talk</button>
+            <button className="btn btn-secondary">Let&apos;s Talk</button>
           </div>
         </div>
 
@@ -45,7 +45,7 @@ const About = () => {
           label="Journey"
           title={
             <>
-              How it started vs How it&apos;s <span className="primary-text">going</span>
+              How it started vs How it&apos;s <span className="text-primary">going</span>
             </>
           }
           description="The short version of how I got here and what I'm building next."
@@ -58,8 +58,8 @@ const About = () => {
               <span className="material-symbols-outlined timeline-dot-icon">rocket_launch</span>
             </div>
             <div className="timeline-content">
-              <span className="timeline-year start label-tag">Now</span>
-              <span className="timeline-year end label-tag">May 2025</span>
+              <span className="timeline-year start pill">Now</span>
+              <span className="timeline-year end pill">May 2025</span>
               <h4>Independent UI/UX & Frontend Developer | Freelance </h4>
               <div className="timeline-details">
                 <ul>
@@ -74,8 +74,8 @@ const About = () => {
               <span className="material-symbols-outlined timeline-dot-icon">grid_view</span>
             </div>
             <div className="timeline-content">
-              <span className="timeline-year start label-tag">Sep 2021</span>
-              <span className="timeline-year end label-tag">May 2025</span>
+              <span className="timeline-year start pill">Sep 2021</span>
+              <span className="timeline-year end pill">May 2025</span>
               <h4>Senior Web Designer / UI Developer | BOLD </h4>
               <div className="timeline-details">
                 <ul>
@@ -92,8 +92,8 @@ const About = () => {
               <span className="material-symbols-outlined timeline-dot-icon">code</span>
             </div>
             <div className="timeline-content">
-              <span className="timeline-year start label-tag">Jan 2019</span>
-              <span className="timeline-year end label-tag">Sep 2021</span>
+              <span className="timeline-year start pill">Jan 2019</span>
+              <span className="timeline-year end pill">Sep 2021</span>
               <h4>UI Designer / Developer | Avalon Infosys</h4>
               <div className="timeline-details">
                 <ul>
@@ -110,7 +110,7 @@ const About = () => {
           </div>
           <button
             type="button"
-            className="secondary-btn timeline-global-toggle"
+            className="btn btn-secondary timeline-global-toggle"
             onClick={() => setIsTimelineExpanded(!isTimelineExpanded)}
           >
             {isTimelineExpanded ? 'Show less' : 'Read more'}
@@ -124,7 +124,7 @@ const About = () => {
           label="Services"
           title={
             <>
-              What I <span className="primary-text">Deliver</span>
+              What I <span className="text-primary">Deliver</span>
             </>
           }
           description="Strategy, design, and development tailored to your product goals."
@@ -154,7 +154,7 @@ const About = () => {
           label="Toolkit"
           title={
             <>
-              Digital Toolkit &amp; <span className="primary-text">Power-ups</span>
+              Digital Toolkit &amp; <span className="text-primary">Power-ups</span>
             </>
           }
           description="The tools I reach for to design, build, and ship polished experiences."
@@ -166,7 +166,7 @@ const About = () => {
                 <span className="material-symbols-outlined">auto_awesome</span>
               </div>
               <div className="toolkit-heading-text">
-                <span className="label-tag toolkit-eyebrow">Core Expertise</span>
+                <span className="pill toolkit-eyebrow">Core Expertise</span>
                 <h3>Tools I use daily</h3>
               </div>
             </div>
@@ -186,7 +186,7 @@ const About = () => {
                 <span className="material-symbols-outlined">workspace_premium</span>
               </div>
               <div className="toolkit-heading-text">
-                <span className="label-tag toolkit-eyebrow">Certifications</span>
+                <span className="pill toolkit-eyebrow">Certifications</span>
                 <h3>Courses &amp; Credentials</h3>
               </div>
             </div>
@@ -224,19 +224,19 @@ const About = () => {
           label="Approach"
           title={
             <>
-              I&apos;m not just an average <span className="primary-text">pixel pusher</span>
+              I&apos;m not just an average <span className="text-primary">pixel pusher</span>
             </>
           }
           description="Balancing expressive visuals with systems that scale gracefully."
         />
         <div className="dual-grid">
           <div className="dual-card visualist">
-            <span className="label-tag card-tag">THE VISUALIST</span>
+            <span className="pill card-tag">THE VISUALIST</span>
             <h3>I craft stories through visuals.</h3>
             <p>Every pixel has a purpose. I focus on hierarchy and emotion.</p>
           </div>
           <div className="dual-card architect">
-            <span className="label-tag card-tag">THE ARCHITECT</span>
+            <span className="pill card-tag">THE ARCHITECT</span>
             <h3>I build systems that scale.</h3>
             <p>Robust, maintainable systems that evolve with the product.</p>
           </div>

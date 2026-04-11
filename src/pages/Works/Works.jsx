@@ -314,7 +314,7 @@ const Works = () => {
         <div className="header-left">
           <StatusBadge text="SELECTED WORK" />
           <h1 className="section-title">
-            Work <br />That Solved<br/><span className="primary-text">Problems.</span>
+            Work <br />That Solved<br/><span className="text-primary">Problems.</span>
           </h1>
           <p className="header-desc">
           Real problems, real decisions, real outcomes — this is how I think and what I make.
@@ -327,7 +327,7 @@ const Works = () => {
         {["All", "Case Study", "UI & Dev", "Creative"].map((cat) => (
           <button
             key={cat}
-            className={filter === cat ? "primary-btn filter-chip" : "secondary-btn filter-chip"}
+            className={filter === cat ? "btn btn-primary filter-chip" : "btn btn-secondary filter-chip"}
             onClick={() => setFilter(cat)}
           >
             <span>{cat}</span>
@@ -356,7 +356,7 @@ const Works = () => {
           Have a problem worth solving?
         </h2>
         <button
-          className="primary-btn"
+          className="btn btn-primary"
           type="button"
           onClick={() => navigate("/contact")}
         >

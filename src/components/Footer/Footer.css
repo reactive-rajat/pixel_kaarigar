@@ -63,7 +63,7 @@ footer .container{
 /* Main Footer */
 .site-footer {
   background: var(--color-card);
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--color-border);
   padding: var(--space-2xl) 0 0;
   position: relative;
   margin-top: 6rem;
@@ -130,13 +130,13 @@ footer .container{
 }
 
 .brand-tagline {
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   margin-top: 0.15rem;
 }
 
 .footer-bio {
   line-height: 1.6;
-  color: var(--text-muted);
+  color: var(--color-text-muted);
 }
 
 .social-links {
@@ -150,7 +150,7 @@ footer .container{
   height: 2.5rem;
   border-radius: var(--radius-sm);
   background: var(--color-bg-soft);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -159,7 +159,7 @@ footer .container{
 
 .social-link .material-symbols-outlined {
   font-size: 1.15rem;
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   transition: color 0.3s ease;
 }
 
@@ -192,7 +192,7 @@ footer .container{
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   font-size: 0.95rem;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -245,7 +245,7 @@ footer .container{
   height: 2.5rem;
   border-radius: var(--radius-sm);
   background: var(--color-bg-soft);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -301,7 +301,7 @@ footer .contact-info {
 /* Newsletter */
 .newsletter-description {
   line-height: 1.5;
-  color: var(--text-muted);
+  color: var(--color-text-muted);
 }
 
 .newsletter-form {
@@ -317,12 +317,12 @@ footer .contact-info {
 
 .newsletter-input {
   flex: 1;
-  padding: 0.75rem 1rem;
+  padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-border);
   background: var(--color-bg-soft);
   color: var(--color-text);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   font-family: var(--font-body);
   transition: all 0.3s ease;
 }
@@ -334,7 +334,7 @@ footer .contact-info {
 }
 
 .newsletter-input::placeholder {
-  color: var(--text-muted);
+  color: var(--color-text-muted);
 }
 
 .newsletter-btn {
@@ -375,9 +375,9 @@ footer .contact-info {
 
 /* Footer Bottom */
 .footer-bottom {
-  padding: 2rem var(--space-lg) 0;
-  border-top: 1px solid var(--border-color);
-  margin: 4rem 0 2rem 0;
+  padding: var(--space-8) var(--space-lg) 0;
+  border-top: 1px solid var(--color-border);
+  margin: 4rem 0 var(--space-8) 0;
 }
 
 .footer-meta {
@@ -389,7 +389,7 @@ footer .contact-info {
 }
 
 .copyright {
-  color: var(--text-muted);
+  color: var(--color-text-muted);
 }
 
 .footer-links-secondary {
@@ -400,7 +400,7 @@ footer .contact-info {
 
 .footer-link-secondary {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   font-weight: 500;
   transition: color 0.3s ease;
 }
@@ -410,7 +410,7 @@ footer .contact-info {
 }
 
 .separator {
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   font-size: 0.9rem;
 }
 
@@ -451,8 +451,8 @@ footer .contact-info {
   }
 
   .footer-brand {
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .footer-meta {

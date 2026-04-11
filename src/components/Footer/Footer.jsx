@@ -97,7 +97,7 @@ const Footer = () => {
                 </div>
                 <h2 className="cta-title">
                   Let's create something{" "}
-                  <span className="gradient-text">amazing</span> together
+                  <span className="text-gradient">amazing</span> together
                 </h2>
                 <p className="cta-description">
                   I'm always excited to work on innovative projects that make a
@@ -105,11 +105,11 @@ const Footer = () => {
                 </p>
               </div>
               <div className="cta-actions">
-                <a href="#contact" className="primary-btn">
+                <a href="#contact" className="btn btn-primary">
                   <span>Start a Project</span>
                   <span className="material-symbols-outlined right-fix">arrow_forward</span>
                 </a>
-                <a href="#work" className="secondary-btn">
+                <a href="#work" className="btn btn-secondary">
                   View My Work
                 </a>
               </div>
@@ -136,11 +136,11 @@ const Footer = () => {
                 </div>
               </div>
               <div className="footer-badges">
-                <div className="skill-pill footer-badge">
+                <div className="pill footer-badge">
                   <span className="material-symbols-outlined">verified</span>
                   <span>5+ Years</span>
                 </div>
-                <div className="skill-pill footer-badge">
+                <div className="pill footer-badge">
                   <span className="material-symbols-outlined">
                     workspace_premium
                   </span>
