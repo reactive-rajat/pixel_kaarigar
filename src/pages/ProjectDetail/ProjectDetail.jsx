@@ -92,7 +92,7 @@ const ProjectDetail = () => {
                   <span>Live Preview</span>
                 </a>
               )}
-               <Link to="/work" className="btn btn-secondary">
+              <Link to="/work" className="btn btn-secondary">
                 <span>Go Back</span>
               </Link>
 
@@ -103,7 +103,9 @@ const ProjectDetail = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="material-symbols-outlined left-fix">code</span>
+                  <span className="material-symbols-outlined left-fix">
+                    code
+                  </span>
                   <span>Repository</span>
                 </a>
               )}
@@ -141,26 +143,37 @@ const ProjectDetail = () => {
           </div>
         </header>
 
-        <div className="project-content-divider container" style={{paddingTop: '3rem'}}>
-          <div className="project-content-divider-label">
-            <h2 className="project-content-divider-heading" style={{marginBottom: '0.65rem'}}>
-              {contentHeading}
-            </h2>
-            <p className="project-content-divider-sub">
-              {project.projectType === "case-study"
-                ? "A deep-dive into the problem, process, and outcome."
-                : "Everything behind the build — decisions, approach, and results."}
-            </p>
+        <main className="container" style={{paddingTop: 0}}>
+          <div
+            className="project-content-divider container"
+            style={{ paddingTop: "3rem" }}
+          >
+            <div className="project-content-divider-label">
+              <h2
+                className="project-content-divider-heading"
+                style={{ marginBottom: "0.65rem" }}
+              >
+                {contentHeading}
+              </h2>
+              <p className="project-content-divider-sub">
+                {project.projectType === "case-study"
+                  ? "A deep-dive into the problem, process, and outcome."
+                  : "Everything behind the build — decisions, approach, and results."}
+              </p>
+            </div>
           </div>
-        </div>
 
-        <section className="project-content container" style={{paddingTop: '2rem'}}>
-          <ProjectHtmlContent
-            contentPath={project.contentPath}
-            title={project.title}
-            omitPrimaryHeading
-          />
-        </section>
+          <section
+            className="project-content container"
+            style={{ paddingTop: "2rem" }}
+          >
+            <ProjectHtmlContent
+              contentPath={project.contentPath}
+              title={project.title}
+              omitPrimaryHeading
+            />
+          </section>
+        </main>
 
         <div className="project-nav-row project-nav-bottom container">
           <Link to="/work" className="project-back-link project-nav-pill">

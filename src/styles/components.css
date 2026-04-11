@@ -11,10 +11,6 @@
 .primary-btn:hover   { transform: scale(1.05); box-shadow: 0 0 40px var(--color-primary-glow); }
 .secondary-btn:hover { transform: scale(1.05); background: color-mix(in srgb, var(--color-primary) 30%, transparent); }
 
-/* Legacy pill aliases */
-.skill-pill,
-.label-tag { font-size: var(--text-xs); font-weight: var(--weight-medium); text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-text-label); background: var(--color-bg-soft); border: 1px solid var(--color-border); padding: 0.3rem 0.9rem; padding-top: 0.38rem; border-radius: var(--radius-pill); display: inline-flex; width: fit-content; align-items: center; gap: 0.4rem; cursor: default; }
-
 /* Legacy text utilities */
 .gradient-text  { background: linear-gradient(to right, var(--color-text), var(--color-primary)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .purple-text,
@@ -56,6 +52,19 @@
   gap: var(--space-3);
   margin-bottom: var(--space-4);
   align-items: flex-start;
+}
+
+.group {
+  display: grid;
+  gap: var(--space-5);
+  justify-content: center;
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.group .pill {
+  margin: 0 auto;
+  margin-bottom: var(--space-2);
 }
 
 /* ── Icons ── */

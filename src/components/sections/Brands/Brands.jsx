@@ -14,13 +14,10 @@ function Brands() {
   return (
     <section className="brands-wrapper">
       <div className="brands-shell">
-        <div className="brands-header">
-          <span className="label-tag">Brands I&apos;ve worked with</span>
-          <h3>Products and teams I&apos;ve helped shape along the way.</h3>
-          <p>
-            The logo motion lives here now, where it belongs: with the teams,
-            products, and organisations behind the work.
-          </p>
+        <div className="brands-header group" style={{marginBottom: "var(--space-6)" }}>
+          <span className="pill">Brands I&apos;ve worked with</span>
+          <h2><span className="text-primary">Brands</span> I&apos;ve designed and built for.</h2>
+          <p>From early wireframes to shipped interfaces — these are the teams I&apos;ve collaborated with as a UI/UX designer who codes.</p>
         </div>
 
         <div className="brands-stage" aria-label="Brand logos">

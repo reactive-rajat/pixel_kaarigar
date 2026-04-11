@@ -12,7 +12,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-5);
-  margin-top: var(--space-8);
 }
 
 /* ── Individual card ── */
@@ -125,7 +124,6 @@
   display: flex;
   justify-content: center;
   gap: 0.65rem;
-  margin-top: var(--space-6);
 }
 
 .testimonial-dot {

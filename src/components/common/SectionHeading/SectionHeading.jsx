@@ -5,7 +5,7 @@ import "./SectionHeading.css";
 const SectionHeading = ({ label, title, description }) => {
   return (
     <div>
-      {label ? <span className="label-tag section-label">{label}</span> : null}
+      {label ? <span className="pill">{label}</span> : null}
       {title ? <h2 className="section-title">{title}</h2> : null}
       {description ? <p className="section-description">{description}</p> : null}
     </div>

@@ -50,8 +50,8 @@ const About = () => {
           }
           description="The short version of how I got here and what I'm building next."
         />
-        <div className={`timeline-container card ${isTimelineExpanded ? 'expanded' : ''}`}>
-          <div className="timeline-wrapper card-md">
+        <div className={`timeline-container card card-lg ${isTimelineExpanded ? 'expanded' : ''}`}>
+          <div className="timeline-wrapper">
             <div className="timeline-list">
           <div className="timeline-item">
             <div className="timeline-dot">

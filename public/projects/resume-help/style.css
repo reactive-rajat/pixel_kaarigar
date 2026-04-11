@@ -1,18 +1,9 @@
-:root {
-  --ink: #111827;
-  --ink2: #374151;
-  --ink3: #6b7280;
-  --bg: #efefef;
-  --bg2: #f9fafb;
-  --bg3: #f3f4f6;
-  --border: #c9cfda;
-  --blue: #3d50ff;
-  --blue-light: #eef0ff;
-  --red: #e74c3c;
-  --green: #16a34a;
-  --dark: #0d0f1e;
-  --r: 12px;
-}
+/*
+  resume-help case study styles
+  All color/spacing tokens come from the host app's theme.css,
+  injected when this file is loaded by ProjectHtmlContent.
+  No standalone :root declarations here.
+*/
 
 #rh-case {
   -webkit-font-smoothing: antialiased;
@@ -22,9 +13,9 @@
   position: sticky;
   top: 0;
   z-index: 99;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(var(--rgb-bg-main), 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,14 +26,14 @@
 #rh-case .nav-brand {
   font-size: 13px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--color-text);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 #rh-case .nav-brand span {
-  background: var(--blue);
+  background: var(--color-primary);
   color: #fff;
   font-size: 10px;
   font-weight: 700;
@@ -60,14 +51,14 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--border);
+  background: var(--color-border);
   cursor: pointer;
   transition: background 0.2s;
 }
 
 #rh-case .nav-dot.active,
 #rh-case .nav-dot:hover {
-  background: var(--blue);
+  background: var(--color-primary);
 }
 
 #rh-case .slide {
@@ -96,8 +87,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 14px;
+  color: var(--color-primary);
 }
 
 #rh-case .label::before {
@@ -105,7 +95,7 @@
   display: block;
   width: 16px;
   height: 2px;
-  background: var(--blue);
+  background: var(--color-primary);
   border-radius: 2px;
 }
 
@@ -115,12 +105,12 @@
 }
 
 #rh-case .hero-slide {
-  background: var(--dark);
+  background: color-mix(in srgb, var(--color-bg-main) 10%, #0d0f1e);
   color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 64px 0;
+  padding: 64px;
   position: relative;
   overflow: hidden;
 }
@@ -133,7 +123,7 @@
   width: 700px;
   height: 700px;
   background: radial-gradient(circle,
-      rgba(61, 80, 255, 0.2) 0%,
+      rgba(var(--rgb-primary), 0.2) 0%,
       transparent 65%);
   pointer-events: none;
 }
@@ -146,13 +136,9 @@
   width: 500px;
   height: 500px;
   background: radial-gradient(circle,
-      rgba(208, 17, 118, 0.12) 0%,
+      rgba(var(--rgb-secondary), 0.12) 0%,
       transparent 65%);
   pointer-events: none;
-}
-
-#rh-case #s1 {
-  padding-top: 0;
 }
 
 #rh-case .hero-slide .label {
@@ -221,16 +207,16 @@
 }
 
 #rh-case .prob-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
+  background: var(--color-card-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   padding: 20px;
 }
 
 #rh-case .prob-num {
   font-size: 11px;
   font-weight: 700;
-  color: var(--ink3);
+  color: var(--color-text-muted);
   letter-spacing: 0.08em;
   margin-bottom: 8px;
 }
@@ -239,22 +225,22 @@
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 6px;
-  color: var(--ink);
+  color: var(--color-text);
 }
 
 #rh-case .prob-card p {
   font-size: 13px;
-  color: var(--ink3);
+  color: var(--color-text-muted);
   line-height: 1.5;
 }
 
 #rh-case .prob-card.highlight {
-  border-color: var(--blue);
-  background: var(--blue-light);
+  border-color: var(--color-primary);
+  background: var(--color-primary-10);
 }
 
 #rh-case .prob-card.highlight h3 {
-  color: var(--blue);
+  color: var(--color-primary);
 }
 
 #rh-case .ba-grid {
@@ -265,8 +251,8 @@
 }
 
 #rh-case .ba-card {
-  border: 1px solid var(--border);
-  border-radius: var(--r);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   overflow: hidden;
 }
 
@@ -282,13 +268,13 @@
 }
 
 #rh-case .ba-tag.old {
-  background: #fef2f2;
-  color: var(--red);
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
 }
 
 #rh-case .ba-tag.new {
-  background: var(--blue-light);
-  color: var(--blue);
+  background: var(--color-primary-10);
+  color: var(--color-primary);
 }
 
 #rh-case .ba-tag .dot {
@@ -298,19 +284,19 @@
 }
 
 #rh-case .ba-tag.old .dot {
-  background: var(--red);
+  background: var(--color-danger);
 }
 
 #rh-case .ba-tag.new .dot {
-  background: var(--blue);
+  background: var(--color-primary);
 }
 
 #rh-case .ba-note {
   padding: 10px 14px;
   font-size: 12px;
-  color: var(--ink3);
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
+  color: var(--color-text-muted);
+  background: var(--color-card-alt);
+  border-top: 1px solid var(--color-border);
 }
 
 #rh-case .color-row {
@@ -323,7 +309,7 @@
 #rh-case .chip {
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid var(--color-border);
   min-width: 110px;
 }
 
@@ -333,18 +319,18 @@
 
 #rh-case .chip-info {
   padding: 8px 10px;
-  background: #fff;
+  background: var(--color-card);
 }
 
 #rh-case .chip-name {
   font-size: 12px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--color-text);
 }
 
 #rh-case .chip-hex {
   font-size: 11px;
-  color: var(--ink3);
+  color: var(--color-text-muted);
   font-family: monospace;
 }
 
@@ -358,13 +344,13 @@
 }
 
 #rh-case .badge.fail {
-  background: #fee2e2;
-  color: var(--red);
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
 }
 
 #rh-case .badge.pass {
-  background: #dcfce7;
-  color: var(--green);
+  background: var(--color-success-bg);
+  color: var(--color-success);
 }
 
 #rh-case .d-list {
@@ -378,9 +364,9 @@
   display: flex;
   gap: 16px;
   align-items: flex-start;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
+  background: var(--color-card-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   padding: 16px 20px;
 }
 
@@ -389,8 +375,8 @@
   flex-shrink: 0;
   width: 40px;
   height: 40px;
-  background: #fff;
-  border: 1px solid var(--border);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -405,7 +391,7 @@
 
 #rh-case .d-body p {
   font-size: 13px;
-  color: var(--ink3);
+  color: var(--color-text-muted);
   line-height: 1.5;
   margin: 0;
 }
@@ -422,16 +408,16 @@
   gap: 12px;
   align-items: flex-start;
   padding: 14px 18px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
+  background: var(--color-card-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
 }
 
 #rh-case .out-check {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--blue);
+  background: var(--color-primary);
   color: #fff;
   font-size: 11px;
   display: flex;
@@ -443,14 +429,14 @@
 
 #rh-case .out-item p {
   font-size: 14px;
-  color: var(--ink2);
+  color: var(--color-text-muted);
   margin: 0;
 }
 
 #rh-case .quote-block {
-  background: var(--dark);
+  background: color-mix(in srgb, var(--color-bg-main) 10%, #0d0f1e);
   color: #fff;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 40px 44px;
   margin-top: 36px;
 }
@@ -481,9 +467,9 @@
 #rh-case .tag {
   font-size: 12px;
   font-weight: 500;
-  background: var(--bg3);
-  color: var(--ink2);
-  border: 1px solid var(--border);
+  background: var(--color-card-alt);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
   border-radius: 100px;
   padding: 4px 12px;
 }
@@ -493,46 +479,23 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
   margin-top: 32px;
-  border: 1px solid var(--border);
-  border-radius: var(--r);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   overflow: hidden;
 }
 
 #rh-case .step {
   padding: 20px;
-  border-right: 1px solid var(--border);
-  background: #fff;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-card);
 }
 
 #rh-case .step:last-child {
   border-right: none;
 }
 
-#rh-case .step-n {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--blue);
-  letter-spacing: 0.08em;
-  margin-bottom: 8px;
-}
-
-#rh-case .step h3 {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-#rh-case .step p {
-  font-size: 12px;
-  color: var(--ink3);
-  line-height: 1.5;
-  margin: 0;
-}
-
-#rh-case
-
 /* TYPOGRAPHY COMPARISON */
-.typo-compare {
+#rh-case .typo-compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
@@ -540,8 +503,8 @@
 }
 
 #rh-case .typo-card {
-  border: 1px solid var(--border);
-  border-radius: var(--r);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   overflow: hidden;
 }
 
@@ -557,13 +520,13 @@
 }
 
 #rh-case .typo-card-header.old {
-  background: #fef2f2;
-  color: var(--red);
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
 }
 
 #rh-case .typo-card-header.new {
-  background: var(--blue-light);
-  color: var(--blue);
+  background: var(--color-primary-10);
+  color: var(--color-primary);
 }
 
 #rh-case .typo-card-header .dot {
@@ -573,25 +536,25 @@
 }
 
 #rh-case .typo-card-header.old .dot {
-  background: var(--red);
+  background: var(--color-danger);
 }
 
 #rh-case .typo-card-header.new .dot {
-  background: var(--blue);
+  background: var(--color-primary);
 }
 
 #rh-case .typo-card img {
   width: 100%;
   display: block;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--color-border);
 }
 
 #rh-case .typo-card-note {
   padding: 10px 14px;
   font-size: 12px;
-  color: var(--ink3);
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
+  color: var(--color-text-muted);
+  background: var(--color-card-alt);
+  border-top: 1px solid var(--color-border);
 }
 
 #rh-case .font-pill-row {
@@ -602,8 +565,8 @@
 }
 
 #rh-case .font-pill {
-  background: var(--bg2);
-  border: 1px solid var(--border);
+  background: var(--color-card-alt);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   padding: 14px 20px;
   flex: 1;
@@ -615,37 +578,37 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink3);
+  color: var(--color-text-muted);
   margin-bottom: 6px;
 }
 
 #rh-case .font-pill .fp-name {
   font-size: 17px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--color-text);
 }
 
 #rh-case .font-pill .fp-use {
   font-size: 12px;
-  color: var(--ink3);
+  color: var(--color-text-muted);
   margin-top: 3px;
 }
 
 #rh-case .font-pill.changed {
-  border-color: var(--blue);
-  background: var(--blue-light);
+  border-color: var(--color-primary);
+  background: var(--color-primary-10);
 }
 
 #rh-case .font-pill.changed .fp-name {
-  color: var(--blue);
+  color: var(--color-primary);
 }
 
 #rh-case footer {
   text-align: center;
   padding: 40px 24px;
   font-size: 13px;
-  color: var(--ink3);
-  border-top: 1px solid var(--border);
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
 }
 
 #rh-case .image-card {
@@ -672,7 +635,7 @@
 
   #rh-case .step {
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--color-border);
   }
 
   #rh-case nav {
