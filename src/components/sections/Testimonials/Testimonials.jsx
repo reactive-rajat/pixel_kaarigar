@@ -25,7 +25,7 @@ const Testimonials = () => {
   }, [isPaused]);
 
   return (
-    <div className="testimonials-section content-section">
+    <section className="testimonials-section content-section">
       <SectionHeading
         label="Testimonials"
         title={
@@ -104,7 +104,7 @@ const Testimonials = () => {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

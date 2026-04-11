@@ -12,7 +12,7 @@ function Brands() {
     : [...brandLogos].reverse();
 
   return (
-    <section className="brands-wrapper">
+    <section className="brands-wrapper card-3">
       <div className="brands-shell">
         <div className="brands-header group" style={{marginBottom: "var(--space-6)" }}>
           <span className="pill">Brands I&apos;ve worked with</span>
@@ -35,27 +35,7 @@ function Brands() {
                   <div className="brand-logo">
                     <img src={brand.logoImage} alt={brand.brandName} />
                   </div>
-                  <p className="brand-name">{brand.brandName}</p>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div
-            className={`brands-marquee brands-marquee-reverse ${shouldScroll ? "is-scrolling" : "is-static"}`}
-          >
-            <div className="brands-track">
-              {reverseLogos.map((brand, index) => (
-                <a
-                  key={`${brand.brandName}-reverse-${index}`}
-                  className="brand-card"
-                  href={brand.brandUrl}
-                  aria-label={brand.brandName}
-                >
-                  <div className="brand-logo">
-                    <img src={brand.logoImage} alt={brand.brandName} />
-                  </div>
-                  <p className="brand-name">{brand.brandName}</p>
+                  {/* <p className="brand-name">{brand.brandName}</p> */}
                 </a>
               ))}
             </div>

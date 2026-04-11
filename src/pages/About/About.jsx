@@ -13,9 +13,9 @@ const About = () => {
   const [isTimelineExpanded, setIsTimelineExpanded] = useState(false);
 
   return (
-    <section className="about-page container">
+    <div className="about-page">
       {/* Hero */}
-      <div className="about-hero">
+      <header className="about-hero container">
         <div className="about-hero-text">
           <StatusBadge text="My Story" className="about-story-badge" />
 
@@ -37,10 +37,13 @@ const About = () => {
         </div>
 
         <HeroVisual defaultMood="relaxed" />
-      </div>
+      </header>
+
+      {/* Brands */}
+      <Brands />
 
       {/* Timeline */}
-      <div className="timeline-section content-section">
+      <section className="timeline-section content-section card-2">
         <SectionHeading
           label="Journey"
           title={
@@ -50,7 +53,7 @@ const About = () => {
           }
           description="The short version of how I got here and what I'm building next."
         />
-        <div className={`timeline-container card card-lg ${isTimelineExpanded ? 'expanded' : ''}`}>
+        <div className={`timeline-container ${isTimelineExpanded ? 'expanded' : ''}`}>
           <div className="timeline-wrapper">
             <div className="timeline-list">
           <div className="timeline-item">
@@ -116,10 +119,10 @@ const About = () => {
             {isTimelineExpanded ? 'Show less' : 'Read more'}
           </button>
         </div>
-      </div>
+      </section>
 
       {/* What I Deliver */}
-      <div className="deliver-section content-section">
+      <section className="deliver-section content-section">
         <SectionHeading
           label="Services"
           title={
@@ -146,10 +149,10 @@ const About = () => {
             <p>Build scalable products with clean code and smooth UX.</p>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Toolkit */}
-      <div className="toolkit-section content-section">
+      <section className="toolkit-section content-section">
         <SectionHeading
           label="Toolkit"
           title={
@@ -208,16 +211,12 @@ const About = () => {
             </ul>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Testimonials */}
       <Testimonials />
 
-      {/* Brands */}
-      <Brands />
-
-      {/* Dual Cards */}
-      <div className="dual-cards-section content-section">
+      <section className="dual-cards-section content-section">
         <SectionHeading
           label="Approach"
           title={
@@ -239,9 +238,9 @@ const About = () => {
             <p>Robust, maintainable systems that evolve with the product.</p>
           </div>
         </div>
-      </div>
+      </section>
 
-    </section>
+    </div>
   );
 };
 
