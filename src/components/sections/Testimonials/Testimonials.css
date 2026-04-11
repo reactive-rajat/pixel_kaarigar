@@ -1,150 +1,162 @@
+/* ================================================================
+   Testimonials — redesigned card grid layout
+   Uses only design tokens from theme.css + components.css classes.
+   ================================================================ */
+
 .testimonials-section {
   width: 100%;
 }
 
-.testimonial-shell {
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  margin-top: var(--space-lg);
-}
-
-.testimonial-spotlight {
+/* ── Card grid ── */
+.t-grid {
   display: grid;
-  width: 100%;
-  align-items: start;
-  gap: 1.5rem;
-  position: relative;
-  min-height: 15rem;
-  cursor: default;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-8);
 }
 
-.testimonial-accent {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+/* ── Individual card ── */
+.t-card {
+  background: var(--card-bg-1);
+  border: 1px solid var(--card-border-1);
+  border-radius: var(--card-radius-md);
+  padding: var(--card-padding-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  cursor: pointer;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
 }
 
-.testimonial-accent .icon {
-  position: absolute;
-  top: -2rem;
+.t-card--active {
+  background: var(--card-bg-1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary-20), var(--shadow-md), 0 0 28px var(--color-primary-glow);
 }
 
-.testimonial-accent .icon.left {
-  left: 0;
-  transform: rotate(180deg);
+/* ── Header row: avatar + identity + quote icon ── */
+.t-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
 }
 
-.testimonial-accent .icon.right {
-  right: 0;
-}
-
-.testimonial-accent .icon > svg {
-  width: 8rem;
-  height: 8rem;
-  opacity: 25%;
-}
-
-.testimonial-avatar {
-  width: 3.5rem;
-  height: 3.5rem;
+.t-avatar {
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid color-mix(in srgb, var(--color-primary) 25%, var(--color-border));
+  flex-shrink: 0;
+  border: 2px solid color-mix(in srgb, var(--color-primary) 30%, var(--color-border));
   box-shadow: var(--shadow-sm);
 }
 
-.testimonial-copy {
+.t-identity {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 2.5rem;
-  width: 70%;
-  margin: 0 auto;
-}
-
-.testimonial-quote {
-  line-height: 1.4;
-  color: var(--color-text);
-  text-align: center;
-  margin: 0;
-}
-
-.testimonial-meta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 0.15rem;
+  min-width: 0;
   text-align: left;
-  gap: 1.5rem;
-  margin-top: 2rem;
 }
 
-.testimonial-name {
+.t-name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
   color: var(--color-text);
-  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.testimonial-role {
+.t-role {
+  font-size: var(--text-xs);
   color: var(--color-text-muted);
-  font-size: 0.85rem;
-  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+.t-quote-mark {
+  font-size: 1.75rem;
+  color: var(--color-primary-20);
+  flex-shrink: 0;
+  margin-left: auto;
+  transition: color 0.3s ease;
+  line-height: 1;
+}
+
+.t-card--active .t-quote-mark {
+  color: var(--color-primary);
+}
+
+/* ── Star row ── */
+.t-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.t-star {
+  font-size: 1rem;
+  color: #f59e0b; /* amber — intentional fixed colour for star ratings */
+  font-variation-settings: 'FILL' 1;
+}
+
+/* ── Quote text ── */
+.t-quote {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-muted);
+  text-align: left;
+  margin: 0;
+  flex: 1;
+  quotes: none;
+}
+
+.t-card--active .t-quote {
+  color: var(--color-text);
+}
+
+/* ── Navigation dots ── */
 .testimonial-dots {
   display: flex;
   justify-content: center;
   gap: 0.65rem;
-  margin-top: 1.5rem;
+  margin-top: var(--space-6);
 }
 
 .testimonial-dot {
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 0.55rem;
+  height: 0.55rem;
   border-radius: 999px;
   background: color-mix(in srgb, var(--color-text) 18%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-text) 16%, transparent);
   transition:
     transform 0.25s ease,
+    width 0.25s ease,
     background 0.25s ease,
     box-shadow 0.25s ease;
 }
 
 .testimonial-dot.active {
   background: var(--color-primary);
-  transform: scale(1.08);
-  box-shadow: 0 0 18px var(--color-primary-glow);
+  width: 1.5rem;
+  box-shadow: 0 0 10px var(--color-primary-glow);
 }
 
-@media (max-width: 1024px) {
-  .testimonial-shell {
-    padding: 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .testimonial-shell {
-    padding: 1rem 0 0;
-  }
-
-  .testimonial-spotlight {
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .t-grid {
     grid-template-columns: 1fr;
-    justify-items: flex-start;
-    gap: 1rem;
+    gap: var(--space-4);
   }
+}
 
-  .testimonial-avatar {
-    width: 4rem;
-    height: 4rem;
-  }
-
-  .testimonial-accent .icon > svg {
-    width: 6rem;
-    height: 6rem;
-  }
-
-  .testimonial-copy {
-    width: 100%;
+@media (max-width: 600px) {
+  .t-grid {
+    margin-top: var(--space-6);
   }
 }

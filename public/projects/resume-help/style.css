@@ -15,7 +15,6 @@
 }
 
 #rh-case {
-  background: var(--bg);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -72,23 +71,14 @@
 }
 
 #rh-case .slide {
-  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 64px 0;
-  border-bottom: 1px solid var(--border);
 }
 
 #rh-case .slide:last-child {
   border-bottom: none;
-}
-
-#rh-case .wrap {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 32px;
-  width: 100%;
 }
 
 #rh-case .wrap-wide {
@@ -539,7 +529,9 @@
   margin: 0;
 }
 
-#rh-case /* TYPOGRAPHY COMPARISON */
+#rh-case
+
+/* TYPOGRAPHY COMPARISON */
 .typo-compare {
   display: grid;
   grid-template-columns: 1fr 1fr;

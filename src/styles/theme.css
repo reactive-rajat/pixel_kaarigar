@@ -434,7 +434,7 @@
 
 .btn-secondary:hover {
   transform: scale(1.05);
-  background: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 20%, transparent);
 }
 
 .btn-outline {

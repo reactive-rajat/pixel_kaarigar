@@ -27,14 +27,14 @@ const HeroVisual = ({ defaultMood = 'focused', onCharacterClick }) => {
             onClick={() => setCurrentMood('relaxed')}
           >
             <span className="material-symbols-outlined">sentiment_satisfied</span>
-            <span>Relaxed</span>
+            <span className="font-medium">Relaxed</span>
           </div>
           <div
             className={currentMood === 'focused' ? 'mood-option active' : 'mood-option'}
             onClick={() => setCurrentMood('focused')}
           >
             <span className="material-symbols-outlined">bolt</span>
-            <span>Focused</span>
+            <span className="font-medium">Focused</span>
           </div>
         </div>
       </div>
@@ -43,9 +43,9 @@ const HeroVisual = ({ defaultMood = 'focused', onCharacterClick }) => {
         <div className="energy-header">
           <div className="energy-label">
             <span className="material-symbols-outlined">battery_charging_full</span>
-            <span>Energy Level</span>
+            <span className="font-medium">Energy Level</span>
           </div>
-          <span className="energy-value">94%</span>
+          <span className="energy-value font-medium">94%</span>
         </div>
         <div className="energy-bar-bg">
           <div className="energy-bar-fill"></div>

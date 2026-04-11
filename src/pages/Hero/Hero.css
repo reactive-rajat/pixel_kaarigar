@@ -152,18 +152,22 @@
 }
 
 .showcase-dot {
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 0.55rem;
+  height: 0.55rem;
   border-radius: var(--radius-full);
   background: color-mix(in srgb, var(--color-text) 18%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-text) 16%, transparent);
-  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    width 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .showcase-dot.active {
   background: var(--color-primary);
-  transform: scale(1.08);
-  box-shadow: 0 0 18px var(--color-primary-glow);
+  width: 1.5rem;
+  box-shadow: 0 0 10px var(--color-primary-glow);
 }
 
 /* ── Snapshot grid ── */

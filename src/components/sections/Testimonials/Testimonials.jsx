@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from "motion/react";
 import SectionHeading from '../../common/SectionHeading/SectionHeading';
-import IconQuotes from "@/public/assets/icons/IconQuotes.jsx";
 import { testimonials } from "../../../data/about.js";
 import './Testimonials.css';
 
+const StarRating = ({ count = 5 }) => (
+  <div className="t-stars" aria-label={`${count} star rating`}>
+    {Array.from({ length: count }).map((_, i) => (
+      <span key={i} className="material-symbols-outlined t-star">star</span>
+    ))}
+  </div>
+);
+
 const Testimonials = () => {
-  const [activeTestimonialIndex, setActiveTestimonialIndex] = useState(0);
-  const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (testimonials.length <= 1 || isTestimonialPaused) {
-      return;
-    }
-
-    const intervalId = window.setInterval(() => {
-      setActiveTestimonialIndex((currentIndex) => {
-        return (currentIndex + 1) % testimonials.length;
-      });
+    if (testimonials.length <= 1 || isPaused) return;
+    const id = window.setInterval(() => {
+      setActiveIndex(i => (i + 1) % testimonials.length);
     }, 5000);
-
-    return () => window.clearInterval(intervalId);
-  }, [isTestimonialPaused]);
-
-  const activeTestimonial = testimonials[activeTestimonialIndex];
+    return () => window.clearInterval(id);
+  }, [isPaused]);
 
   return (
     <div className="testimonials-section content-section">
@@ -36,65 +35,74 @@ const Testimonials = () => {
         }
         description="A few kind words from people I've worked with."
       />
-      
-      <div className="testimonial-shell">
-        <AnimatePresence initial={false} mode="wait">
-          <motion.div
-            key={activeTestimonial.name}
-            className="testimonial-spotlight"
-            onMouseEnter={() => setIsTestimonialPaused(true)}
-            onMouseLeave={() => setIsTestimonialPaused(false)}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -14 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="testimonial-accent" aria-hidden="true">
-              <span className="icon left">
-                <IconQuotes />
-              </span>
-              <span className="icon right">
-                <IconQuotes />
-              </span>
-            </div>
-            <div className="testimonial-copy">
-              <h3 className="testimonial-quote">
-                &ldquo;{activeTestimonial.quote}&rdquo;
-              </h3>
 
-              <div className="testimonial-meta">
+      <div
+        className="t-grid"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {testimonials.map((t, index) => {
+          const isActive = index === activeIndex;
+          return (
+            <motion.div
+              key={t.name}
+              className={`t-card card-md card-hover${isActive ? ' t-card--active' : ''}`}
+              onClick={() => setActiveIndex(index)}
+              animate={{
+                opacity: isActive ? 1 : 0.55,
+                y: isActive ? -4 : 0,
+              }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Top: avatar + name + stars */}
+              <div className="t-card-header">
                 <img
-                  className="testimonial-avatar"
-                  src={activeTestimonial.image}
-                  alt={activeTestimonial.name}
+                  className="t-avatar"
+                  src={t.image}
+                  alt={t.name}
                   loading="lazy"
                 />
-                <div>
-                  <h4 className="testimonial-name">
-                    {activeTestimonial.name}
-                  </h4>
-                  <p className="testimonial-role">
-                    {activeTestimonial.role}
-                  </p>
+                <div className="t-identity">
+                  <span className="t-name">{t.name}</span>
+                  <span className="t-role">{t.role}</span>
                 </div>
+                <span className="t-quote-mark material-symbols-outlined" aria-hidden="true">
+                  format_quote
+                </span>
               </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
 
-        <div className="testimonial-dots" aria-label="Testimonials">
-          {testimonials.map((testimonial, index) => (
-            <button
-              key={testimonial.name}
-              type="button"
-              className={`testimonial-dot ${
-                activeTestimonialIndex === index ? "active" : ""
-              }`}
-              aria-label={`Show testimonial by ${testimonial.name}`}
-              onClick={() => setActiveTestimonialIndex(index)}
-            />
-          ))}
-        </div>
+              {/* Stars */}
+              <StarRating />
+
+              {/* Quote */}
+              <AnimatePresence mode="wait">
+                <motion.blockquote
+                  key={t.name + isActive}
+                  className="t-quote"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  &ldquo;{t.quote}&rdquo;
+                </motion.blockquote>
+              </AnimatePresence>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Dots */}
+      <div className="testimonial-dots" aria-label="Testimonials navigation">
+        {testimonials.map((t, index) => (
+          <button
+            key={t.name}
+            type="button"
+            className={`testimonial-dot${activeIndex === index ? ' active' : ''}`}
+            aria-label={`Show testimonial by ${t.name}`}
+            onClick={() => setActiveIndex(index)}
+          />
+        ))}
       </div>
     </div>
   );

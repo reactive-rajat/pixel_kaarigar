@@ -163,7 +163,6 @@ const About = () => {
           <div className="toolkit-card card card-2 card-md">
             <div className="toolkit-header">
               <div className="toolkit-heading-text">
-                <span className="pill toolkit-eyebrow">Core Expertise</span>
                 <h3>Tools I use daily</h3>
               </div>
               <div className="toolkit-icon">
@@ -172,7 +171,7 @@ const About = () => {
             </div>
             <div className="toolkit-pills">
               {aboutSkills.map((skill) => (
-                <span key={skill.name} className="tool-chip">
+                <span key={skill.name} className="tool-chip body-sm">
                   <span className="material-symbols-outlined">{skill.icon}</span>
                   {skill.name}
                 </span>
@@ -183,7 +182,6 @@ const About = () => {
           <div className="toolkit-card card card-2 card-md">
             <div className="toolkit-header">
               <div className="toolkit-heading-text">
-                <span className="pill toolkit-eyebrow">Certifications</span>
                 <h3>Courses &amp; Credentials</h3>
               </div>
               <div className="toolkit-icon">
@@ -193,19 +191,19 @@ const About = () => {
             <ul className="toolkit-list">
               <li className="cert-item">
                 <span className="material-symbols-outlined">verified</span>
-                Uxcel - UX Design Foundation + Typography
+                <span className="body-sm">Uxcel - UX Design Foundation + Typography</span>
               </li>
               <li className="cert-item">
                 <span className="material-symbols-outlined">verified</span>
-                Uxcel - Color Psychology + Accessibility
+                <span className="body-sm">Uxcel - Color Psychology + Accessibility</span>
               </li>
               <li className="cert-item">
                 <span className="material-symbols-outlined">verified</span>
-                Meta - React
+                <span className="body-sm">Meta - React Basics</span>
               </li>
               <li className="cert-item">
                 <span className="material-symbols-outlined">verified</span>
-                Meta - Programming with Javascript
+                <span className="body-sm">Meta - Programming with Javascript</span>
               </li>
             </ul>
           </div>

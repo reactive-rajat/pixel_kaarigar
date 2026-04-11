@@ -53,7 +53,7 @@
 .deliver-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
+  gap: var(--space-6);
   width: 100%;
   align-items: stretch;
   margin-top: var(--space-4);
@@ -99,13 +99,13 @@
   width: 100%;
 }
 
-.toolkit-card { text-align: left; position: relative; }
+.toolkit-card { text-align: left; position: relative; align-content: start; }
 
 .toolkit-header {
   display: flex;
   gap: var(--space-5);
   align-items: center;
-  margin-bottom: var(--space-6);
+  margin: var(--space-2) 0 var(--space-6);
 }
 
 .toolkit-icon { 
@@ -147,7 +147,6 @@
   background: color-mix(in srgb, var(--color-bg-soft) 60%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
   border-radius: var(--radius-full);
-  font-size: 0.9rem;
   color: var(--color-text);
   font-weight: var(--weight-medium);
   transition: all 0.3s ease;
@@ -187,6 +186,7 @@
   border: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
   border-radius: var(--card-radius-md);
   font-size: var(--text-base);
+  font-weight: var(--weight-medium);
   color: var(--color-text);
   transition: all 0.3s ease;
 }
@@ -195,6 +195,7 @@
   background: color-mix(in srgb, var(--color-bg-soft) 80%, transparent);
   border-color: var(--color-border);
   transform: translateX(4px);
+  color: var(--color-primary);
 }
 
 .cert-item .material-symbols-outlined {

@@ -79,11 +79,6 @@ const ProjectDetail = () => {
             <p className="project-description">{project.description}</p>
 
             <div className="project-actions">
-              <Link to="/work" className="btn btn-secondary">
-                <span className="material-symbols-outlined left-fix">arrow_back</span>
-                <span>Go Back</span>
-              </Link>
-
               {project.liveUrl && (
                 <a
                   className="btn btn-primary"
@@ -97,6 +92,9 @@ const ProjectDetail = () => {
                   <span>Live Preview</span>
                 </a>
               )}
+               <Link to="/work" className="btn btn-secondary">
+                <span>Go Back</span>
+              </Link>
 
               {project.repoUrl && (
                 <a
@@ -156,7 +154,7 @@ const ProjectDetail = () => {
           </div>
         </div>
 
-        <section className="project-content container" style={{paddingTop: '4rem'}}>
+        <section className="project-content container" style={{paddingTop: '2rem'}}>
           <ProjectHtmlContent
             contentPath={project.contentPath}
             title={project.title}
