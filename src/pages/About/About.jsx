@@ -43,8 +43,9 @@ const About = () => {
       <Brands />
 
       {/* Timeline */}
-      <section className="timeline-section content-section card-2">
-        <SectionHeading
+      <section className="timeline-section  card-2">
+        <div className="container">
+          <SectionHeading
           label="Journey"
           title={
             <>
@@ -53,7 +54,8 @@ const About = () => {
           }
           description="The short version of how I got here and what I'm building next."
         />
-        <div className={`timeline-container ${isTimelineExpanded ? 'expanded' : ''}`}>
+        </div>
+        <div className={`container timeline-container ${isTimelineExpanded ? 'expanded' : ''}`}>
           <div className="timeline-wrapper">
             <div className="timeline-list">
           <div className="timeline-item">
@@ -122,8 +124,9 @@ const About = () => {
       </section>
 
       {/* What I Deliver */}
-      <section className="deliver-section content-section">
-        <SectionHeading
+      <section className="deliver-section ">
+        <div className="container">
+          <SectionHeading
           label="Services"
           title={
             <>
@@ -149,10 +152,11 @@ const About = () => {
             <p>Build scalable products with clean code and smooth UX.</p>
           </div>
         </div>
+        </div>
       </section>
 
       {/* Toolkit */}
-      <section className="toolkit-section content-section">
+      <section className="toolkit-section ">
         <SectionHeading
           label="Toolkit"
           title={
@@ -216,7 +220,7 @@ const About = () => {
       {/* Testimonials */}
       <Testimonials />
 
-      <section className="dual-cards-section content-section">
+      <section className="dual-cards-section ">
         <SectionHeading
           label="Approach"
           title={

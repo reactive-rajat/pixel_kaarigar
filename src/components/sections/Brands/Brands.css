@@ -1,144 +1,223 @@
 .brands-wrapper {
-          width: 100%;
-        }
+  width: 100%;
+  padding-bottom: 0;
+}
 
-        .brands-shell {
-          display: flex;
-          flex-direction: column;
-          gap: 2rem;
-          overflow: hidden;
-        }
+.brands-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow: hidden;
+}
 
-        .brands-header {
-          text-align: center;
-        }
+.brands-header {
+  text-align: center;
+}
 
-        .brands-header h3 {
-          margin-top: 1rem;
-          margin-bottom: 0.75rem;
-          color: var(--color-text);
-        }
+.brands-scanner-area {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -1rem;
+}
 
-        .brands-stage {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
+.brands-stage-composer {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  aspect-ratio: 708 / 250;
+  overflow: visible;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
 
-        .brands-marquee {
-          position: relative;
-          overflow: hidden;
-          display: flex;
-          padding: 0.25rem 0;
-          width: 100%;
-          mask-image: linear-gradient(
-            to right,
-            transparent,
-            black 10%,
-            black 90%,
-            transparent
-          );
-        }
+.stage-bg,
+.stage-laptop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
 
-        .brands-track {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          flex-wrap: nowrap;
-          width: max-content;
-          min-width: max-content;
-        }
+.stage-bg > svg,
+.stage-laptop > svg {
+  width: 90%;
+  height: 90%;
+}
 
-        .brands-marquee.is-scrolling .brands-track {
-          animation: marquee-left 30s linear infinite;
-          will-change: transform;
-        }
+.stage-laptop > svg {
+  width: 100%;
+  height: 100%;
+}
 
-        .brands-marquee-reverse.is-scrolling .brands-track {
-          animation-name: marquee-right;
-          animation-duration: 34s;
-        }
+.stage-bg {
+  z-index: 1;
+}
 
-        .brand-card {
-          min-width: clamp(9rem, 18vw, 12rem);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 0.85rem;
-          text-decoration: none;
-        }
+.stage-laptop {
+  z-index: 5;
+}
 
-        .brand-logo {
-          height: 72px;
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-        }
+.stage-marquee-layer {
+  position: absolute;
+  top: 15%;
+  /* Map to top of laptop screen roughly */
+  height: 51%;
+  /* Map to height of laptop screen roughly */
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  isolation: isolate;
+  /* Localizes backdrop-filter blurring strictly to this layer's children */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* Fade out marquee smoothly at edges of canvas to prevent harsh cutoff */
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
 
-        .brand-logo img {
-          max-height: 100%;
-          width: auto;
-          max-width: 100%;
-          object-fit: contain;
-          filter: saturate(0) brightness(1.15);
-          opacity: 0.9;
-          transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
-        }
+.brands-marquee {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 
-        .brand-card:hover .brand-logo img {
-          transform: scale(1.04);
-          filter: saturate(1) brightness(1.05);
-          opacity: 1;
-        }
+.scanner-glass {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
 
-        .brand-name {
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          line-height: 1.4;
-          text-align: center;
-        }
+.scanner-glass.left {
+  left: 0;
+  width: 32%;
+}
 
-        .brands-marquee.is-scrolling:hover .brands-track {
-          animation-play-state: paused;
-        }
+.scanner-glass.right {
+  right: 0;
+  width: 32%;
+  opacity: 85%;
+  background-color: #d7daf7;
+}
 
-        @keyframes marquee-left {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
+[data-theme="dark"] .scanner-glass.right {
+  opacity: 85%;
+  background-color: #11143d;
+}
 
-        @keyframes marquee-right {
-          0% {
-            transform: translateX(-50%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
+.brands-track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  width: max-content;
+  min-width: max-content;
+}
 
-        @media (max-width: 1024px) {
-          .brands-track {
-            gap: 0.85rem;
-          }
+.brands-marquee.is-scrolling .brands-track {
+  animation: marquee-left 30s linear infinite;
+  will-change: transform;
+}
 
-          .brand-logo {
-            height: 72px;
-          }
-        }
+.brands-marquee-reverse.is-scrolling .brands-track {
+  animation-name: marquee-right;
+  animation-duration: 34s;
+}
 
-        @media (max-width: 640px) {
-          .brand-logo {
-            height: 58px;
-          }
+.brand-card {
+  min-width: clamp(9rem, 18vw, 12rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
 
-          .brand-card {
-            min-width: 8.5rem;
-          }
-        }
+.brand-logo {
+  height: 72px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.brand-logo img {
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: saturate(1) brightness(1);
+  /* Ensure it is fully colored in the center */
+  opacity: 1;
+  /* Fully opaque so glass effect works properly */
+  transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+}
+
+.brand-card:hover .brand-logo img {
+  transform: scale(1.05);
+}
+
+.brand-name {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.brands-marquee.is-scrolling:hover .brands-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .brands-track {
+    gap: 0.85rem;
+  }
+
+  .brand-logo {
+    height: 72px;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-logo {
+    height: 58px;
+  }
+
+  .brand-card {
+    min-width: 8.5rem;
+  }
+}

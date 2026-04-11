@@ -617,19 +617,6 @@
   color: var(--color-text-muted);
 }
 
-/* ── Layout ── */
-.container {
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 9rem var(--space-lg) 0;
-  width: 100%;
-}
-
-.container-md {
-  max-width: var(--container-width-lg);
-  margin: 0 auto;
-}
-
 .section {
   padding: var(--space-2xl) 0;
 }

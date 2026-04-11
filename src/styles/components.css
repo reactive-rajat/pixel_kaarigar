@@ -97,11 +97,21 @@
 /* ── Layout ── */
 
 /* Container keeps original padding-top for nav offset */
+/* ── Layout ── */
+
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 9rem var(--space-lg) 0;
   width: 100%;
+}
+
+header.container {
+  padding: 9rem var(--space-lg) 0;
+}
+
+.container-md {
+  max-width: var(--container-width-lg);
+  margin: 0 auto;
 }
 
 /* ── Dark-theme secondary btn: border white ── */
