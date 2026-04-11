@@ -153,7 +153,10 @@ const sanitizeProjectHtml = (html, assetBaseUrl, omitPrimaryHeading = false, inj
     ? `<style data-project-css="true">${injectedCss}</style>`
     : "";
 
-  return styleBlock + body.innerHTML;
+  const containerId = body.id ? ` id="${body.id}"` : "";
+  const containerClass = body.className ? ` class="${body.className}"` : "";
+
+  return styleBlock + `<div${containerId}${containerClass}>` + body.innerHTML + `</div>`;
 };
 
 const ProjectHtmlContent = ({ contentPath, title, omitPrimaryHeading = false }) => {

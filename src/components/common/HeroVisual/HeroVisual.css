@@ -51,8 +51,9 @@
         }
 
         .mood-panel {
+          
           top: 0rem;
-          right: -1rem;
+          right: 0rem;
           transform: rotate(3deg);
           transition: all 0.3s;
         }

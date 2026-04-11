@@ -107,7 +107,7 @@ const Footer = () => {
               <div className="cta-actions">
                 <a href="#contact" className="primary-btn">
                   <span>Start a Project</span>
-                  <span className="material-symbols-outlined">arrow_forward</span>
+                  <span className="material-symbols-outlined right-fix">arrow_forward</span>
                 </a>
                 <a href="#work" className="secondary-btn">
                   View My Work

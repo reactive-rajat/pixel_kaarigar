@@ -22,10 +22,11 @@
 
 .project-nav-row {
   display: flex;
-  position: absolute;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  margin: 0 auto 3rem;
 }
 
 .project-nav-pill {

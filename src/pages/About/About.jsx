@@ -30,7 +30,7 @@ const About = () => {
           <div className="about-actions">
             <button className="primary-btn">
               <span>Download Resume</span>
-              <span className="material-symbols-outlined">download</span>
+              <span className="material-symbols-outlined right-fix">download</span>
             </button>
             <button className="secondary-btn">Let&apos;s Talk</button>
           </div>

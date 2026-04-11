@@ -53,7 +53,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
               >
                 <span>Say 'Hi' on WhatsApp</span>
-                <WhatsAppIcon />
+                <WhatsAppIcon className="right-fix" />
               </a>
               </div>
 

@@ -12,9 +12,6 @@
           flex-direction: column;
           gap: 1.5rem;
           color: var(--color-text);
-          border-radius: var(--card-radius-md);
-          overflow: hidden;
-          border: 1px solid var(--border-color);
         }
 
         .project-html-content section,

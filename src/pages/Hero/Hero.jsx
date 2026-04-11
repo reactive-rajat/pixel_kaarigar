@@ -164,7 +164,7 @@ const Hero = ({ setActivePage }) => {
                 onClick={() => setActivePage("works")}
               >
                 <span>See My Work</span>
-                <span className="material-symbols-outlined">arrow_forward</span>
+                <span className="material-symbols-outlined right-fix">arrow_forward</span>
               </button>
               <button
                 className="secondary-btn"
@@ -182,6 +182,68 @@ const Hero = ({ setActivePage }) => {
         </div>
 
         <div className="hero-lower-sections">
+          <motion.section
+            className="snapshot-section"
+            variants={sectionReveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+            onViewportEnter={() => setStartSnapshotCount(true)}
+          >
+            <motion.div
+              className="snapshot-grid"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+            >
+              {aboutSnapshotCards.map((card) => (
+                <motion.article
+                  key={card.id}
+                  className={`card snapshot-card snapshot-card-${card.id} card-md`}
+                  variants={staggerItem}
+                >
+                  {card.type === "stat" ? (
+                    <>
+                      <h2 className="snapshot-value">
+                        <CountUpNumber
+                          value={card.value}
+                          suffix={card.suffix}
+                          start={startSnapshotCount}
+                        />
+                      </h2>
+                      <h4 className="snapshot-label">{card.label}</h4>
+                      <p className="snapshot-text">{card.description}</p>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="snapshot-value">20+</h2>
+                      <h4 className="snapshot-brand-heading">{card.label}</h4>
+                      <div className="snapshot-brand-marquee">
+                        <div className="snapshot-brand-track">
+                          {movingBrands.map((brand, index) => (
+                            <div
+                              key={`${brand.brandName}-${index}`}
+                              className="snapshot-brand-pill"
+                            >
+                              <span className="snapshot-brand-logo-frame">
+                                <img
+                                  src={brand.logoImage}
+                                  alt={brand.brandName}
+                                  className="snapshot-brand-logo"
+                                />
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </motion.article>
+              ))}
+            </motion.div>
+          </motion.section>
+          
           <motion.section
             className="featured-work-section"
             initial={{ opacity: 0, x: 64 }}
@@ -276,68 +338,6 @@ const Hero = ({ setActivePage }) => {
                 ))}
               </div>
             </div>
-          </motion.section>
-
-          <motion.section
-            className="snapshot-section"
-            variants={sectionReveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            onViewportEnter={() => setStartSnapshotCount(true)}
-          >
-            <motion.div
-              className="snapshot-grid"
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
-            >
-              {aboutSnapshotCards.map((card) => (
-                <motion.article
-                  key={card.id}
-                  className={`card snapshot-card snapshot-card-${card.id} card-md`}
-                  variants={staggerItem}
-                >
-                  {card.type === "stat" ? (
-                    <>
-                      <h2 className="snapshot-value">
-                        <CountUpNumber
-                          value={card.value}
-                          suffix={card.suffix}
-                          start={startSnapshotCount}
-                        />
-                      </h2>
-                      <h4 className="snapshot-label">{card.label}</h4>
-                      <p className="snapshot-text">{card.description}</p>
-                    </>
-                  ) : (
-                    <>
-                      <h2 className="snapshot-value">20+</h2>
-                      <h4 className="snapshot-brand-heading">{card.label}</h4>
-                      <div className="snapshot-brand-marquee">
-                        <div className="snapshot-brand-track">
-                          {movingBrands.map((brand, index) => (
-                            <div
-                              key={`${brand.brandName}-${index}`}
-                              className="snapshot-brand-pill"
-                            >
-                              <span className="snapshot-brand-logo-frame">
-                                <img
-                                  src={brand.logoImage}
-                                  alt={brand.brandName}
-                                  className="snapshot-brand-logo"
-                                />
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </motion.article>
-              ))}
-            </motion.div>
           </motion.section>
 
           <motion.div

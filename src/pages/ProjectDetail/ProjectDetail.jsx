@@ -72,38 +72,6 @@ const ProjectDetail = () => {
   return (
     <main className="project-detail-page">
       <div className="project-detail-shell">
-        <div className="project-nav-row">
-          <Link to="/work" className="project-back-link project-nav-pill">
-            <span
-              className="project-back-icon-wrap project-nav-icon-wrap"
-              aria-hidden="true"
-            >
-              <span className="material-symbols-outlined">arrow_back</span>
-            </span>
-            <span className="project-back-link-label project-nav-pill-label">
-              Back to work
-            </span>
-          </Link>
-
-          {nextProject && (
-            <Link
-              to={`/project/${nextProject.slug}`}
-              className="project-next-link project-nav-pill"
-              aria-label={`Go to next project: ${nextProject.title}`}
-            >
-              <span className="project-next-link-label project-nav-pill-label">
-                Next Project
-              </span>
-              <span
-                className="project-next-icon-wrap project-nav-icon-wrap"
-                aria-hidden="true"
-              >
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </span>
-            </Link>
-          )}
-        </div>
-
         <header className="project-hero">
           <div className="container project-hero-copy">
             <span className="label-tag project-category">{categoryLabel}</span>
@@ -111,6 +79,11 @@ const ProjectDetail = () => {
             <p className="project-description">{project.description}</p>
 
             <div className="project-actions">
+              <Link to="/work" className="secondary-btn">
+                <span className="material-symbols-outlined left-fix">arrow_back</span>
+                <span>Go Back</span>
+              </Link>
+
               {project.liveUrl && (
                 <a
                   className="primary-btn"
@@ -118,7 +91,7 @@ const ProjectDetail = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="material-symbols-outlined">
+                  <span className="material-symbols-outlined left-fix">
                     rocket_launch
                   </span>
                   <span>Live Preview</span>
@@ -132,7 +105,7 @@ const ProjectDetail = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="material-symbols-outlined">code</span>
+                  <span className="material-symbols-outlined left-fix">code</span>
                   <span>Repository</span>
                 </a>
               )}
@@ -172,11 +145,8 @@ const ProjectDetail = () => {
 
         <div className="project-content-divider container" style={{paddingTop: '3rem'}}>
           <div className="project-content-divider-label">
-            <span className="label-tag">{contentHeading}</span>
-            <h2 className="project-content-divider-heading">
-              {project.projectType === "case-study"
-                ? "Full walkthrough"
-                : "Detailed breakdown"}
+            <h2 className="project-content-divider-heading" style={{marginBottom: '0.65rem'}}>
+              {contentHeading}
             </h2>
             <p className="project-content-divider-sub">
               {project.projectType === "case-study"
@@ -193,6 +163,38 @@ const ProjectDetail = () => {
             omitPrimaryHeading
           />
         </section>
+
+        <div className="project-nav-row project-nav-bottom container">
+          <Link to="/work" className="project-back-link project-nav-pill">
+            <span
+              className="project-back-icon-wrap project-nav-icon-wrap"
+              aria-hidden="true"
+            >
+              <span className="material-symbols-outlined">arrow_back</span>
+            </span>
+            <span className="project-back-link-label project-nav-pill-label">
+              Back to work
+            </span>
+          </Link>
+
+          {nextProject && (
+            <Link
+              to={`/project/${nextProject.slug}`}
+              className="project-next-link project-nav-pill"
+              aria-label={`Go to next project: ${nextProject.title}`}
+            >
+              <span className="project-next-link-label project-nav-pill-label">
+                Next Project
+              </span>
+              <span
+                className="project-next-icon-wrap project-nav-icon-wrap"
+                aria-hidden="true"
+              >
+                <span className="material-symbols-outlined">arrow_forward</span>
+              </span>
+            </Link>
+          )}
+        </div>
       </div>
     </main>
   );

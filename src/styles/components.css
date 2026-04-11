@@ -42,12 +42,15 @@
 
 /* Pills & Tags */
 .skill-pill, .label-tag {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-label);
   background: var(--color-bg-soft);
   border: 1px solid var(--color-border);
   padding: 0.3rem 0.9rem;
+  padding-top: 0.38rem;
   border-radius: var(--radius-pill);
   display: inline-flex;
   width: fit-content;
@@ -100,6 +103,14 @@
   border-color: var(--color-primary);
   transform: translateY(-4px);
   box-shadow: 0 12px 32px var(--color-primary-glow);
+}
+
+.card-shadow-md {
+  box-shadow: 0 8px 36px var(--color-primary-glow);
+}
+
+.card-shadow-lg {
+  box-shadow: 0 20px 60px var(--color-primary-glow);
 }
 
 .head-group{
@@ -228,11 +239,11 @@
 }
 
 /* Buttons */
-.primary-btn {
+.primary-btn, .secondary-btn {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.8rem 1.8rem;
+  padding: 1rem 1.8rem;
   background: var(--color-primary);
   color: white;
   border-radius: var(--border-radius-full);
@@ -242,15 +253,9 @@
 }
 
 .secondary-btn {
-  padding: 0.8rem 1.8rem;
   background: var(--color-bg-main);
   border: 1px solid var(--color-primary);
   color: var(--color-primary);
-  border-radius: var(--border-radius-full);
-  font-weight: 700;
-  font-size: 0.95rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-align: center;
 }
 
 .primary-btn:hover {

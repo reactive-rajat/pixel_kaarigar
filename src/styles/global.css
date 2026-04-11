@@ -8,24 +8,45 @@
 
 :root {
   /* Theme Colors */
-  --color-bg-main: #fcfcfd;
-  --color-bg-soft: rgba(79, 70, 229, 0.04);
-  --color-card: #ffffff;
-  --color-card-alt: #f3f4f6;
-  --color-primary: #4f46e5;
-  --color-primary-glow: rgba(79, 70, 229, 0.2);
-  --color-secondary: #ec4899;
-  --color-text-rgb: 17, 24, 39;
+  /* RGB component definitions (for flexible rgba() usage) */
+  --color-bg-main-rgb: 252, 252, 253;
+  --color-bg-soft-rgb: 53, 56, 255;
+  --color-card-rgb: 255, 255, 255;
+  --color-card-alt-rgb: 243, 244, 246;
+  --color-primary-rgb: 79, 70, 229; /* Already in desired format */
+  --color-secondary-rgb: 236, 72, 153;
+  --color-text-rgb: 17, 24, 39; /* Already in desired format */
+  --color-text-label-rgb: 0, 52, 136;
+  --color-border-rgb: 0, 59, 185;
+  --color-border-light-rgb: 17, 24, 39;
+  --color-success-rgb: 16, 185, 129;
+  --color-danger-rgb: 239, 68, 68;
+
+  /* Alpha component definitions (for colors that originally had an alpha) */
+  --color-bg-soft-alpha: 0.117;
+  --color-primary-glow-alpha: 0.2;
+  --color-text-label-alpha: 0.824; /* Original #d2 converted to ~0.824 */
+  --color-text-muted-alpha: 0.65;
+  --color-border-alpha: 0.2;
+  --color-border-light-alpha: 0.05;
+
+  /* Original variable definitions, now referencing the RGB/Alpha components */
+  --color-bg-main: rgb(var(--color-bg-main-rgb));
+  --color-bg-soft: rgba(var(--color-bg-soft-rgb), var(--color-bg-soft-alpha));
+  --color-card: rgb(var(--color-card-rgb));
+  --color-card-alt: rgb(var(--color-card-alt-rgb));
+  --color-primary: rgb(var(--color-primary-rgb));
+  --color-primary-glow: rgba(var(--color-primary-rgb), var(--color-primary-glow-alpha));
+  --color-secondary: rgb(var(--color-secondary-rgb));
   --color-text: rgb(var(--color-text-rgb));
-  --color-text-muted: rgba(var(--color-text-rgb), 0.65);
-  --color-border: rgba(17, 24, 39, 0.1);
-  --color-border-light: rgba(17, 24, 39, 0.05);
-  --color-success: #10b981;
-  --color-danger: #ef4444;
+  --color-text-label: rgba(var(--color-text-label-rgb), var(--color-text-label-alpha));
+  --color-text-muted: rgba(var(--color-text-rgb), var(--color-text-muted-alpha));
+  --color-border: rgba(var(--color-border-rgb), var(--color-border-alpha));
+  --color-border-light: rgba(var(--color-border-light-rgb), var(--color-border-light-alpha));
+  --color-success: rgb(var(--color-success-rgb));
+  --color-danger: rgb(var(--color-danger-rgb));
   
-  --color-bg-gradient: radial-gradient(circle at 10% 0%, rgba(79, 70, 229, 0.05) 0%, transparent 40%), 
-                       radial-gradient(circle at 90% 100%, rgba(236, 72, 153, 0.05) 0%, transparent 40%), 
-                       var(--color-bg-main);
+  --color-bg-gradient: linear-gradient(-120deg, #eaecf6 50%, #deeaf6 100%);            
 
   /* Typography */
   --font-heading: 'Inter', sans-serif;
@@ -105,15 +126,16 @@
 
 [data-theme="dark"] {
   --color-bg-main: #09090b;
-  --color-bg-soft: rgba(255, 255, 255, 0.03);
+  --color-bg-soft: #1322a344;
   --color-card: #18181b;
   --color-card-alt: #27272a;
   --color-primary: #818cf8;
-  --color-primary-glow: rgba(129, 140, 248, 0.25);
+  --color-primary-glow: rgba(0, 21, 209, 0.254);
   --color-secondary: #f472b6;
   --color-text-rgb: 250, 250, 250;
   --color-text: rgb(var(--color-text-rgb));
   --color-text-muted: rgba(var(--color-text-rgb), 0.65);
+  --color-text-label: #90bbffa0;
   --color-border: rgba(255, 255, 255, 0.1);
   --color-border-light: rgba(255, 255, 255, 0.05);
   --color-success: #34d399;
