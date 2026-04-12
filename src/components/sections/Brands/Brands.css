@@ -21,6 +21,7 @@
   align-items: center;
   justify-content: center;
   margin-top: -1rem;
+  bottom: -1rem;
 }
 
 .brands-stage-composer {
@@ -107,14 +108,12 @@
 
 .scanner-glass.right {
   right: 0;
-  width: 32%;
-  opacity: 85%;
-  background-color: #d7daf7;
+  width: 35%;
+  background: linear-gradient(to right, transparent 0%, rgba(215, 218, 247, 0.4) 40%, rgba(215, 218, 247, 0.8) 100%);
 }
 
 [data-theme="dark"] .scanner-glass.right {
-  opacity: 85%;
-  background-color: #11143d;
+  background: linear-gradient(to right, transparent 0%, rgba(17, 20, 61, 0.4) 40%, rgba(17, 20, 61, 0.8) 100%);
 }
 
 .brands-track {
@@ -152,7 +151,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
 }
 
 .brand-logo img {
@@ -160,11 +160,35 @@
   width: auto;
   max-width: 100%;
   object-fit: contain;
-  filter: saturate(1) brightness(1);
-  /* Ensure it is fully colored in the center */
+  filter: grayscale(1) blur(1px);
+  opacity: 0.3;
+  transition: transform 0.3s ease, filter 0.6s ease, opacity 0.6s ease;
+}
+
+.brand-card.is-colored .brand-logo img,
+.brands-marquee.is-static .brand-card .brand-logo img {
+  filter: grayscale(0) blur(0px);
   opacity: 1;
-  /* Fully opaque so glass effect works properly */
-  transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+}
+
+.scan-tick {
+  position: absolute;
+  top: -6px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  opacity: 0;
+  transform: scale(0.5) translateY(10px);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));
+}
+
+.brand-card.is-checked .scan-tick,
+.brands-marquee.is-static .brand-card .scan-tick {
+  opacity: 1;
+  transform: scale(1) translateY(0);
 }
 
 .brand-card:hover .brand-logo img {

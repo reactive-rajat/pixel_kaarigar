@@ -243,7 +243,8 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  color: var(--color-primary) !important;
+  font-weight: 600;
+  color: var(--color-primary);
   background: color-mix(in srgb, var(--color-bg-main) 90%, var(--color-bg-soft) 50%);
   backdrop-filter: blur(1rem);
   -webkit-backdrop-filter: blur(1rem);

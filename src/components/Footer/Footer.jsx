@@ -84,9 +84,10 @@ const Footer = () => {
   return (
     <>
       {/* CTA Section before footer */}
-      {location.pathname !== '/contact' && (
+      {location.pathname !== "/contact" && (
         <section className="pre-footer-cta container">
-          <div className="cta-card card-lg">
+          <div className="container-lg">
+            <div className="cta-card card-lg card-1">
               <div className="cta-content">
                 <div className="status-badge">
                   <div className="ping-dot">
@@ -107,23 +108,27 @@ const Footer = () => {
               <div className="cta-actions">
                 <a href="#contact" className="btn btn-primary">
                   <span>Start a Project</span>
-                  <span className="material-symbols-outlined right-fix">arrow_forward</span>
+                  <span className="material-symbols-outlined right-fix">
+                    arrow_forward
+                  </span>
                 </a>
                 <a href="#work" className="btn btn-secondary">
                   View My Work
                 </a>
               </div>
             </div>
+          </div>
         </section>
       )}
 
       {/* Main Footer */}
-      <footer className="site-footer" aria-label="Site footer">
-        <div className="footer-main container">
+      <footer className="site-footer card-2" aria-label="Site footer">
+        <div className="container-lg">
+          <div className="footer-main">
             {/* Column 1: Brand & Social */}
             <div className="footer-col footer-brand">
               <div className="footer-logo">
-                <div className="footer-logo-img"> 
+                <div className="footer-logo-img">
                   <img
                     src="/assets/brand/avatar.png"
                     alt="Avatar"
@@ -131,7 +136,7 @@ const Footer = () => {
                   />
                   <div>
                     <h3 className="brand-name">Rajat Gulati</h3>
-                  <p className="brand-tagline">UX Designer & Developer</p>
+                    <p className="brand-tagline">UX Designer & Developer</p>
                   </div>
                 </div>
               </div>
@@ -148,7 +153,8 @@ const Footer = () => {
                 </div>
               </div>
               <p className="footer-bio">
-                Designing experiences that solve real problems and bringing them to life with code.
+                Designing experiences that solve real problems and bringing them
+                to life with code.
               </p>
               <div className="social-links">
                 {socialLinks.map(({ label, href, icon }) => (
@@ -211,10 +217,10 @@ const Footer = () => {
               </div>
             </div>
           </div>
-
-          {/* Footer Bottom */}
+        </div>
+        {/* Footer Bottom */}
           <div className="footer-bottom">
-            <div className="footer-meta">
+            <div className="container-lg footer-meta">
               <p className="copyright">
                 © {currentYear} Rajat Gulati. All rights reserved.
               </p>

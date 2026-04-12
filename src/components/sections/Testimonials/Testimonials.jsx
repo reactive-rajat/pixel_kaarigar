@@ -25,8 +25,9 @@ const Testimonials = () => {
   }, [isPaused]);
 
   return (
-    <section className="testimonials-section content-section">
-      <SectionHeading
+    <section className="testimonials-section content-section card-2">
+      <div className="container-lg">
+        <SectionHeading
         label="Testimonials"
         title={
           <>
@@ -103,6 +104,7 @@ const Testimonials = () => {
             onClick={() => setActiveIndex(index)}
           />
         ))}
+      </div>
       </div>
     </section>
   );

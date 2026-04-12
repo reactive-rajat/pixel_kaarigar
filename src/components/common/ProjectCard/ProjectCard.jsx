@@ -75,7 +75,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
           <div className="content-inner">
             <div className="content-top">
               <div className="content-heading">
-                <span className="card-category label-tag">
+                <span className="pill card-category label-tag">
                   {categoryLabel}
                 </span>
                 <h3 className="card-title">
@@ -96,7 +96,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
                 <p className="card-desc">{project.description}</p>
                 <div className="card-tags">
                   {(project.tags || []).map((tag) => (
-                    <span key={tag} className="card-tag label-tag">
+                    <span key={tag} className="pill card-tag label-tag">
                       {tag}
                     </span>
                   ))}

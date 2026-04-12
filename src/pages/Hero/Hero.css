@@ -1,13 +1,3 @@
-.hero-section {
-  min-height: 100dvh;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: center;
-  padding-top: var(--space-2xl);
-  padding-bottom: var(--space-2xl);
-  gap: var(--space-8);
-}
-
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -66,7 +56,6 @@
   display: flex;
   flex-direction: column;
   gap: clamp(5rem, 8vw, 6.25rem);
-  margin-top: clamp(5rem, 8vw, 6rem);
 }
 
 .hero-lower-sections > section {

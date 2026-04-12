@@ -6,10 +6,7 @@ import HeroVisual from "../../components/common/HeroVisual/HeroVisual";
 import projects, { featuredProjects } from "../../data/projects.js";
 import brands from "../../data/brands.js";
 import "./Hero.css";
-import {
-  aboutSkills,
-  aboutSnapshotCards,
-} from "../../data/about.js";
+import { aboutSkills, aboutSnapshotCards } from "../../data/about.js";
 import Testimonials from "../../components/sections/Testimonials/Testimonials";
 
 const sectionReveal = {
@@ -130,269 +127,266 @@ const Hero = ({ setActivePage }) => {
   const activeProject = showcaseProjects[activeProjectIndex];
 
   return (
-    <section className="hero-section container">
-      <div>
-        <div className="hero-grid">
-          <div className="hero-content">
-            <StatusBadge text="Open to work" showPing />
+    <>
+      <header className="container-lg hero-grid hero-padding">
+        <div className="hero-content">
+          <StatusBadge text="Open to work" showPing />
 
-            <h1 className="hero-title">
-              <span className="text-gradient">
-                UX Designer <br />
-              </span>
-              with an unfair advantage.
-            </h1>
+          <h1 className="hero-title">
+            <span className="text-gradient">
+              UX Designer <br />
+            </span>
+            with an unfair advantage.
+          </h1>
 
-            <p className="hero-description">
-              I design experiences that solve real problems — then bring them to
-              life with code.
-            </p>
+          <p className="hero-description">
+            I design experiences that solve real problems — then bring them to
+            life with code.
+          </p>
 
-            <div className="skills-marquee-container">
-              <ul className="skills-list">
-                {[...skills, ...skills].map((skill, index) => (
-                  <li key={index} className="skill-item pill">
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="hero-actions">
-              <button
-                className="btn btn-primary"
-                onClick={() => setActivePage("works")}
-              >
-                <span>See My Work</span>
-                <span className="material-symbols-outlined right-fix">arrow_forward</span>
-              </button>
-              <button
-                className="btn btn-secondary"
-                onClick={() => setActivePage("contact")}
-              >
-                Let&apos;s Talk
-              </button>
-            </div>
+          <div className="skills-marquee-container">
+            <ul className="skills-list">
+              {[...skills, ...skills].map((skill, index) => (
+                <li key={index} className="skill-item pill">
+                  {skill}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <HeroVisual
-            defaultMood="focused"
-            onCharacterClick={handleHeroClick}
-          />
+          <div className="hero-actions">
+            <button
+              className="btn btn-primary"
+              onClick={() => setActivePage("works")}
+            >
+              <span>See My Work</span>
+              <span className="material-symbols-outlined right-fix">
+                arrow_forward
+              </span>
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => setActivePage("contact")}
+            >
+              Let&apos;s Talk
+            </button>
+          </div>
         </div>
 
-        <div className="hero-lower-sections">
-          <motion.section
-            className="snapshot-section"
-            variants={sectionReveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            onViewportEnter={() => setStartSnapshotCount(true)}
-          >
-            <motion.div
-              className="snapshot-grid"
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
+        <HeroVisual defaultMood="focused" onCharacterClick={handleHeroClick} />
+      </header>
+      <motion.section
+        className="card-2 snapshot-section"
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        onViewportEnter={() => setStartSnapshotCount(true)}
+      >
+        <motion.div
+          className="container-lg snapshot-grid"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+        >
+          {aboutSnapshotCards.map((card) => (
+            <motion.article
+              key={card.id}
+              className={`card card-3 snapshot-card snapshot-card-${card.id} card-md`}
+              variants={staggerItem}
             >
-              {aboutSnapshotCards.map((card) => (
-                <motion.article
-                  key={card.id}
-                  className={`card card-3 snapshot-card snapshot-card-${card.id} card-md`}
-                  variants={staggerItem}
-                >
-                  {card.type === "stat" ? (
-                    <>
-                      <h2 className="snapshot-value">
-                        <CountUpNumber
-                          value={card.value}
-                          suffix={card.suffix}
-                          start={startSnapshotCount}
-                        />
-                      </h2>
-                      <h4 className="snapshot-label">{card.label}</h4>
-                      <p className="snapshot-text">{card.description}</p>
-                    </>
-                  ) : (
-                    <>
-                      <h2 className="snapshot-value">20+</h2>
-                      <h4 className="snapshot-brand-heading">{card.label}</h4>
-                      <div className="snapshot-brand-marquee">
-                        <div className="snapshot-brand-track">
-                          {movingBrands.map((brand, index) => (
-                            <div
-                              key={`${brand.brandName}-${index}`}
-                              className="snapshot-brand-pill"
-                            >
-                              <span className="snapshot-brand-logo-frame">
-                                <img
-                                  src={brand.logoImage}
-                                  alt={brand.brandName}
-                                  className="snapshot-brand-logo"
-                                />
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </motion.article>
-              ))}
-            </motion.div>
-          </motion.section>
-          
-          <motion.section
-            className="featured-work-section"
-            initial={{ opacity: 0, x: 64 }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-              transition: {
-                duration: 0.7,
-                ease: [0.22, 1, 0.36, 1],
-              },
-            }}
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <div
-              className="showcase-shell"
-              onMouseEnter={() => setIsProjectPaused(true)}
-              onMouseLeave={() => setIsProjectPaused(false)}
-            >
-              <div className="showcase-stage">
-                <AnimatePresence initial={false} mode="sync">
-                  <motion.div
-                    key={activeProject.id}
-                    className="showcase-slide"
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -18 }}
-                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <div className="showcase-copy">
-                      <span className="showcase-category pill">
-                        {activeProject.category?.[0] ||
-                          activeProject.projectType}
-                      </span>
-
-                      <h2 className="showcase-title">
-                        {activeProject.title.replace(/\n/g, " ")}
-                      </h2>
-
-                      <p className="showcase-description">
-                        {activeProject.description}
-                      </p>
-
-                      <div className="showcase-tags">
-                        {activeProject.tags?.map((tag) => (
-                          <span key={tag} className="showcase-tag pill">
-                            {tag}
+              {card.type === "stat" ? (
+                <>
+                  <h2 className="snapshot-value">
+                    <CountUpNumber
+                      value={card.value}
+                      suffix={card.suffix}
+                      start={startSnapshotCount}
+                    />
+                  </h2>
+                  <h4 className="snapshot-label">{card.label}</h4>
+                  <p className="snapshot-text">{card.description}</p>
+                </>
+              ) : (
+                <>
+                  <h2 className="snapshot-value">20+</h2>
+                  <h4 className="snapshot-brand-heading">{card.label}</h4>
+                  <div className="snapshot-brand-marquee">
+                    <div className="snapshot-brand-track">
+                      {movingBrands.map((brand, index) => (
+                        <div
+                          key={`${brand.brandName}-${index}`}
+                          className="snapshot-brand-pill"
+                        >
+                          <span className="snapshot-brand-logo-frame">
+                            <img
+                              src={brand.logoImage}
+                              alt={brand.brandName}
+                              className="snapshot-brand-logo"
+                            />
                           </span>
-                        ))}
-                      </div>
-
-                      <Link
-                        className="showcase-link btn btn-primary"
-                        to={`/project/${activeProject.slug}`}
-                      >
-                        View Case Study →
-                      </Link>
+                        </div>
+                      ))}
                     </div>
+                  </div>
+                </>
+              )}
+            </motion.article>
+          ))}
+        </motion.div>
+      </motion.section>
 
-                    <div className="showcase-media">
-                      {activeProject.image?.endsWith(".mp4") ? (
-                        <video
-                          className="showcase-image"
-                          src={activeProject.image}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                        />
-                      ) : (
-                        <img
-                          className="showcase-image"
-                          src={activeProject.image}
-                          alt={activeProject.title.replace(/\n/g, " ")}
-                        />
-                      )}
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              <div className="showcase-dots" aria-label="Featured projects">
-                {showcaseProjects.map((project, index) => (
-                  <button
-                    key={project.id}
-                    type="button"
-                    className={`showcase-dot ${
-                      activeProjectIndex === index ? "active" : ""
-                    }`}
-                    aria-label={`Show ${project.title.replace(/\n/g, " ")}`}
-                    onClick={() => setActiveProjectIndex(index)}
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.section>
-
-          <motion.div
-            variants={sectionReveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-          >
-            <Testimonials />
-          </motion.div>
-
-          <motion.section
-            className="skills-section"
-            variants={sectionReveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-          >
-            <div className="head-group skills-glimpse-header">
-              <span className="pill section-kicker">Skills & tools</span>
-              <h3 className="section-title">
-                A quick glimpse of the tools behind the work.
-              </h3>
-            </div>
-
-            <div className="skills-bento-grid">
-              {skillHighlights.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  className="skill-bento-card"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.08,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  whileHover={{
-                    y: -5,
-                    transition: { duration: 0.2, ease: "easeOut" },
-                  }}
-                >
-                  <div className="skill-bento-glow" aria-hidden="true" />
-                  <span className="material-symbols-outlined skill-bento-icon">
-                    {skill.icon}
+      <motion.section
+        className="card-3 featured-work-section"
+        initial={{ opacity: 0, x: 64 }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          transition: {
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1],
+          },
+        }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <div
+          className="container-lg showcase-shell"
+          onMouseEnter={() => setIsProjectPaused(true)}
+          onMouseLeave={() => setIsProjectPaused(false)}
+        >
+          <div className="showcase-stage">
+            <AnimatePresence initial={false} mode="sync">
+              <motion.div
+                key={activeProject.id}
+                className="showcase-slide"
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -18 }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="showcase-copy">
+                  <span className="showcase-category pill">
+                    {activeProject.category?.[0] || activeProject.projectType}
                   </span>
-                  <p className="skill-bento-name">{skill.name}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
+
+                  <h2 className="showcase-title">
+                    {activeProject.title.replace(/\n/g, " ")}
+                  </h2>
+
+                  <p className="showcase-description">
+                    {activeProject.description}
+                  </p>
+
+                  <div className="showcase-tags">
+                    {activeProject.tags?.map((tag) => (
+                      <span key={tag} className="showcase-tag pill">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Link
+                    className="showcase-link btn btn-primary"
+                    to={`/project/${activeProject.slug}`}
+                  >
+                    View Case Study →
+                  </Link>
+                </div>
+
+                <div className="showcase-media">
+                  {activeProject.image?.endsWith(".mp4") ? (
+                    <video
+                      className="showcase-image"
+                      src={activeProject.image}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  ) : (
+                    <img
+                      className="showcase-image"
+                      src={activeProject.image}
+                      alt={activeProject.title.replace(/\n/g, " ")}
+                    />
+                  )}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <div className="showcase-dots" aria-label="Featured projects">
+            {showcaseProjects.map((project, index) => (
+              <button
+                key={project.id}
+                type="button"
+                className={`showcase-dot ${
+                  activeProjectIndex === index ? "active" : ""
+                }`}
+                aria-label={`Show ${project.title.replace(/\n/g, " ")}`}
+                onClick={() => setActiveProjectIndex(index)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </motion.section>
+
+      <motion.div
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+      >
+        <Testimonials />
+      </motion.div>
+
+      <motion.section
+        className="card-1"
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+      >
+        <div className="container-lg">
+          <div className="skills-section">
+          <div className="head-group skills-glimpse-header">
+          <span className="pill section-kicker">Skills & tools</span>
+          <h3 className="section-title">
+            A quick glimpse of the tools behind the work.
+          </h3>
+        </div>
+
+        <div className="skills-bento-grid">
+          {skillHighlights.map((skill, index) => (
+            <motion.div
+              key={skill.name}
+              className="skill-bento-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{
+                y: -5,
+                transition: { duration: 0.2, ease: "easeOut" },
+              }}
+            >
+              <div className="skill-bento-glow" aria-hidden="true" />
+              <span className="material-symbols-outlined skill-bento-icon">
+                {skill.icon}
+              </span>
+              <p className="skill-bento-name">{skill.name}</p>
+            </motion.div>
+          ))}
+        </div>
+        </div>
+        </div>
+      </motion.section>
+    </>
   );
 };
 

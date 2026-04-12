@@ -274,7 +274,9 @@ const Works = () => {
   const filteredProjects =
     filter === "All"
       ? projects
-      : projects.filter((project) => getProjectCategories(project).includes(filter));
+      : projects.filter((project) =>
+          getProjectCategories(project).includes(filter),
+        );
 
   const orderedProjects = useMemo(() => {
     const nextProjects = [...filteredProjects];
@@ -309,37 +311,45 @@ const Works = () => {
   const gridColumnClass = `projects-grid--columns-${Math.min(columnCount, 8)}`;
 
   return (
-    <section className="works-section container">
-      <div className="works-header">
-        <div className="header-left">
-          <StatusBadge text="SELECTED WORK" />
-          <h1 className="section-title">
-            Work <br />That Solved<br/><span className="text-primary">Problems.</span>
-          </h1>
-          <p className="header-desc">
-          Real problems, real decisions, real outcomes — this is how I think and what I make.
-        </p>
+    <>
+      <header className="works-section">
+        <div className="container-lg hero-padding works-header">
+          <div className="header-left">
+            <StatusBadge text="SELECTED WORK" />
+            <h1 className="section-title">
+              Work <br />
+              That Solved
+              <br />
+              <span className="text-primary">Problems.</span>
+            </h1>
+            <p className="header-desc">
+              Real problems, real decisions, real outcomes — this is how I think
+              and what I make.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <section style={{padding: "0"}}>
+        <div className="container-lg filter-container">
+        <div className="filter-chips">
+          {["All", "Case Study", "UI & Dev", "Creative"].map((cat) => (
+            <button
+              key={cat}
+              className={
+                filter === cat
+                  ? "btn btn-primary filter-chip"
+                  : "btn btn-secondary filter-chip"
+              }
+              onClick={() => setFilter(cat)}
+            >
+              <span>{cat}</span>
+            </button>
+          ))}
         </div>
       </div>
 
-      <div className="filter-container">
-        <div className="filter-chips">
-        {["All", "Case Study", "UI & Dev", "Creative"].map((cat) => (
-          <button
-            key={cat}
-            className={filter === cat ? "btn btn-primary filter-chip" : "btn btn-secondary filter-chip"}
-            onClick={() => setFilter(cat)}
-          >
-            <span>{cat}</span>
-          </button>
-        ))}
-      </div>
-      </div>
-
-      <div
-        className={`projects-grid ${gridColumnClass}`}
-        ref={gridRef}
-      >
+      <div className={`container-lg projects-grid ${gridColumnClass}`} ref={gridRef}>
         {laidOutProjects.map(({ project, layout }) => (
           <ProjectCard
             key={project.id}
@@ -349,21 +359,8 @@ const Works = () => {
           />
         ))}
       </div>
-
-      <div className="works-cta">
-        <div className="cta-glow"></div>
-        <h2 className="cta-title">
-          Have a problem worth solving?
-        </h2>
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={() => navigate("/contact")}
-        >
-          <span>Let's work together</span>
-        </button>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

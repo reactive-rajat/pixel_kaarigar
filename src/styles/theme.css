@@ -286,8 +286,8 @@
   --card-padding-lg: var(--space-xl);
 
   /* Layout */
-  --container-width: 1200px;
-  --container-width-lg: 900px;
+  --container-width-lg: 1200px;
+  --container-width-md: 900px;
 }
 
 

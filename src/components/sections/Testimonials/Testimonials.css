@@ -12,6 +12,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-5);
+  margin-bottom: var(--space-8);
 }
 
 /* ── Individual card ── */

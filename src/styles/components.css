@@ -99,19 +99,21 @@
 /* Container keeps original padding-top for nav offset */
 /* ── Layout ── */
 
-.container {
-  max-width: var(--container-width);
+.container-lg {
+  max-width: var(--container-width-lg);
   margin: 0 auto;
   width: 100%;
 }
 
-header.container {
-  padding: 9rem var(--space-lg) 0;
+.container-md {
+  max-width: var(--container-width-md);
+  margin: 0 auto;
 }
 
-.container-md {
-  max-width: var(--container-width-lg);
-  margin: 0 auto;
+/* Hero padding */
+
+.hero-padding {
+  padding: 9rem 0 5rem 0 !important;
 }
 
 /* ── Dark-theme secondary btn: border white ── */
