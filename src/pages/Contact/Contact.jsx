@@ -8,8 +8,8 @@ const Contact = () => {
     'https://wa.me/919899321639?text=Hi%20Rajat%2C%20I%20want%20to%20connect%20with%20you%20about%20a%20project.';
 
   return (
-    <section className="contact-section container">
-      <div className="contact-grid">
+    <header className="contact-section container-lg">
+      <div className="contact-grid hero-padding" style={{paddingBottom: "0"}}>
         {/* Left Column: Content & Mascot */}
         <div className="contact-info">
           <StatusBadge text="Open to work" showPing />
@@ -74,7 +74,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </section>
+    </header>
   );
 };
 

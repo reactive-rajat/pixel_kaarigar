@@ -404,6 +404,7 @@
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-3);
   padding: var(--space-4) var(--space-7);
   border-radius: var(--radius-full);

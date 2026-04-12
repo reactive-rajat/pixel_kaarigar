@@ -1,12 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import StatusBadge from "../../components/common/StatusBadge/StatusBadge";
 import ProjectCard from "../../components/common/ProjectCard/ProjectCard";
 import projects from "../../data/projects.js";
 import { getProjectCategories } from "../../utils/projectMeta.js";
 import "./Works.css";
 
-const GRID_MIN_CARD_WIDTH = 280;
+const GRID_MIN_CARD_WIDTH = 340;
 const GRID_GAP = 20;
 
 const CARD_MAX_SPAN = {
@@ -315,7 +314,6 @@ const Works = () => {
       <header className="works-section">
         <div className="container-lg hero-padding works-header">
           <div className="header-left">
-            <StatusBadge text="SELECTED WORK" />
             <h1 className="section-title">
               Work <br />
               That Solved
