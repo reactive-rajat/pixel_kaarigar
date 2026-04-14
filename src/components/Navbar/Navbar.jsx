@@ -16,7 +16,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
 
   return (
     <div className="fixed-nav-container">
-      <nav className="glass-panel navbar">
+      <nav className="card-glass navbar">
         <div className="nav-logo" onClick={() => handleNavClick('home')}>
           <img src="/assets/brand/avatar.png" alt="Avatar" className="logo-avatar" />
           <span className="logo-text">Rajat_Gulati</span>
@@ -65,7 +65,7 @@ const Navbar = ({ darkMode, toggleDarkMode, activePage, setActivePage }) => {
       </nav>
       <div
         id="mobile-nav-menu"
-        className={isMobileMenuOpen ? 'mobile-menu open glass-panel' : 'mobile-menu glass-panel'}
+        className={isMobileMenuOpen ? 'mobile-menu open card-glass' : 'mobile-menu card-glass'}
       >
         <button
           className={`mobile-nav-link ${activePage === 'works' ? 'active' : ''}`}

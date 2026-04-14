@@ -206,6 +206,27 @@
     background-color: var(--color-success);
   }
 
+  /* ── Legacy overrides (rescued from components.css) ── */
+  .head-group { @apply flex-1 flex flex-col gap-3 mb-4 items-start; }
+  .whatsapp-icon { @apply inline-flex shrink-0; width: 1.15rem; height: 1.15rem; }
+  .hero-padding { padding: 9rem 0 5rem 0 !important; }
+
+  html[data-theme="dark"] .btn-secondary { border: 1px solid white; color: white; /* KEEP: Dark mode override */ }
+
+  /* ── Mobile Layout Hard-Resets ── */
+  @media (max-width: 768px) {
+    [class*='card']:hover, [class*='pill']:hover, [class*='btn']:hover {
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    .btn-secondary:hover {
+      background: rgba(var(--rgb-bg-main), 0.03);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    .btn-primary:active, .btn-secondary:active { transform: scale(0.98) !important; }
+  }
+
   /* ── Links ── */
   .link { @apply no-underline transition-opacity duration-200; color: var(--color-primary); /* KEEP: CSS var */ }
   .link:hover { @apply opacity-80; }

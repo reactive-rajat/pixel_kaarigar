@@ -31,7 +31,7 @@ const Testimonials = () => {
         label="Testimonials"
         title={
           <>
-            What People Say<span className="primary-text"> About Me</span>
+            What People Say<span className="text-primary"> About Me</span>
           </>
         }
         description="A few kind words from people I've worked with."
