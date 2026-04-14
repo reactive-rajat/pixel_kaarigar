@@ -312,7 +312,7 @@ const Works = () => {
   return (
     <>
       <header className="works-section">
-        <div className="container-lg hero-padding works-header">
+        <div className="container-lg works-header">
           <div className="header-left">
             <h1 className="section-title">
               Work <br />
@@ -330,33 +330,36 @@ const Works = () => {
 
       <section className="p-0">
         <div className="container-lg filter-container">
-        <div className="filter-chips">
-          {["All", "Case Study", "UI & Dev", "Creative"].map((cat) => (
-            <button
-              key={cat}
-              className={
-                filter === cat
-                  ? "btn btn-primary filter-chip"
-                  : "btn btn-secondary filter-chip"
-              }
-              onClick={() => setFilter(cat)}
-            >
-              <span>{cat}</span>
-            </button>
+          <div className="filter-chips">
+            {["All", "Case Study", "UI & Dev", "Creative"].map((cat) => (
+              <button
+                key={cat}
+                className={
+                  filter === cat
+                    ? "btn btn-primary filter-chip"
+                    : "btn btn-secondary filter-chip"
+                }
+                onClick={() => setFilter(cat)}
+              >
+                <span>{cat}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div
+          className={`container-lg projects-grid ${gridColumnClass}`}
+          ref={gridRef}
+        >
+          {laidOutProjects.map(({ project, layout }) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              layout={layout}
+              onProjectOpen={() => navigate(`/project/${project.slug}`)}
+            />
           ))}
         </div>
-      </div>
-
-      <div className={`container-lg projects-grid ${gridColumnClass}`} ref={gridRef}>
-        {laidOutProjects.map(({ project, layout }) => (
-          <ProjectCard
-            key={project.id}
-            project={project}
-            layout={layout}
-            onProjectOpen={() => navigate(`/project/${project.slug}`)}
-          />
-        ))}
-      </div>
       </section>
     </>
   );

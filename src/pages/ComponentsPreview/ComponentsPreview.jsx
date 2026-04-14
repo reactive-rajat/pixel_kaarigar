@@ -196,8 +196,8 @@ export default function ComponentsPreview() {
             <span className="text-primary font-bold body">text-primary</span>
             <span className="text-muted body">text-muted</span>
             <span className="text-label body">text-label</span>
-            <span className="text-success font-semi body">text-success</span>
-            <span className="text-danger font-semi body">text-danger</span>
+            <span className="text-success font-semibold body">text-success</span>
+            <span className="text-danger font-semibold body">text-danger</span>
             <span className="h3 text-gradient">text-gradient</span>
           </div>
           <div className="cp-row-wrap" style={{ marginBottom: 'var(--space-4)' }}>
@@ -210,12 +210,12 @@ export default function ComponentsPreview() {
           <div className="cp-row-wrap" style={{ marginBottom: 'var(--space-4)', gap: 'var(--space-6)', alignItems: 'center' }}>
             <span className="font-normal body">font-normal</span>
             <span className="font-medium body">font-medium</span>
-            <span className="font-semi body">font-semi</span>
+            <span className="font-semibold body">font-semibold</span>
             <span className="font-bold body">font-bold</span>
             <span className="font-black body">font-black</span>
           </div>
           <div className="cp-row-wrap">
-            {['.font-normal', '.font-medium', '.font-semi', '.font-bold', '.font-black'].map(c => (
+            {['.font-normal', '.font-medium', '.font-semibold', '.font-bold', '.font-black'].map(c => (
               <Chip key={c} label={c} onCopy={copy} />
             ))}
           </div>
@@ -431,7 +431,7 @@ export default function ComponentsPreview() {
               ['.shadow-glow', 'shadow-glow'],
             ].map(([cls, label]) => (
               <div key={cls} className={`card-1 card-md ${cls.slice(1)}`} style={{ textAlign: 'center' }}>
-                <p className="body-sm font-semi">{label}</p>
+                <p className="body-sm font-semibold">{label}</p>
               </div>
             ))}
           </div>
@@ -516,7 +516,7 @@ export default function ComponentsPreview() {
                 {['.h1','.h2','.h3','.h4','.h5','.h6',
                   '.body-lg','.body','.body-sm','.caption',
                   '.text-primary','.text-muted','.text-label','.text-success','.text-danger','.text-gradient',
-                  '.font-normal','.font-medium','.font-semi','.font-bold','.font-black',
+                  '.font-normal','.font-medium','.font-semibold','.font-bold','.font-black',
                   '.uppercase','.tracking-wide',
                 ].map(c => <Chip key={c} label={c} onCopy={copy} />)}
               </div>

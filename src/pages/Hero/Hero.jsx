@@ -128,7 +128,7 @@ const Hero = ({ setActivePage }) => {
 
   return (
     <>
-      <header className="container-lg hero-grid hero-padding">
+      <header className="container-lg hero-grid">
         <div className="hero-content">
           <StatusBadge text="Open to work" showPing />
 
@@ -180,7 +180,7 @@ const Hero = ({ setActivePage }) => {
       <Brands />
 
       <motion.section
-        className="snapshot-section"
+        className="bg-card-alt snapshot-section"
         variants={sectionReveal}
         initial="hidden"
         whileInView="visible"
@@ -208,41 +208,41 @@ const Hero = ({ setActivePage }) => {
           {aboutSnapshotCards
             .filter((card) => card.type === "stat")
             .map((card) => (
-            <motion.article
-              key={card.id}
-              className={`card card-1 snapshot-card snapshot-card-${card.id} card-md`}
-              variants={staggerItem}
-              whileHover={{
-                y: -8,
-                transition: { duration: 0.3, ease: "easeOut" },
-              }}
-            >
-              <div className="snapshot-card-glow" aria-hidden="true" />
-              <div className="snapshot-content-wrapper">
-                <div className="snapshot-icon-wrapper">
-                  <span className="material-symbols-outlined snapshot-icon">
-                    {card.id === "experience" ? "hourglass_top" : "memory"}
-                  </span>
+              <motion.article
+                key={card.id}
+                className={`card card-1 snapshot-card snapshot-card-${card.id} card-md`}
+                variants={staggerItem}
+                whileHover={{
+                  y: -8,
+                  transition: { duration: 0.3, ease: "easeOut" },
+                }}
+              >
+                <div className="snapshot-card-glow" aria-hidden="true" />
+                <div className="snapshot-content-wrapper">
+                  <div className="snapshot-icon-wrapper">
+                    <span className="material-symbols-outlined snapshot-icon">
+                      {card.id === "experience" ? "hourglass_top" : "memory"}
+                    </span>
+                  </div>
+                  <div className="snapshot-text-content">
+                    <h2 className="snapshot-value h2">
+                      <CountUpNumber
+                        value={card.value}
+                        suffix={card.suffix}
+                        start={startSnapshotCount}
+                      />
+                    </h2>
+                    <h4 className="snapshot-label">{card.label}</h4>
+                    <p className="snapshot-text">{card.description}</p>
+                  </div>
                 </div>
-                <div className="snapshot-text-content">
-                  <h2 className="snapshot-value h2">
-                    <CountUpNumber
-                      value={card.value}
-                      suffix={card.suffix}
-                      start={startSnapshotCount}
-                    />
-                  </h2>
-                  <h4 className="snapshot-label">{card.label}</h4>
-                  <p className="snapshot-text">{card.description}</p>
-                </div>
-              </div>
-            </motion.article>
-          ))}
+              </motion.article>
+            ))}
         </motion.div>
       </motion.section>
 
       <motion.section
-        className="featured-work-section"
+        className="bg-bg-soft featured-work-section"
         initial={{ opacity: 0, x: 64 }}
         whileInView={{
           opacity: 1,
@@ -346,7 +346,7 @@ const Hero = ({ setActivePage }) => {
       </motion.div>
 
       <motion.section
-        className=""
+        className="bg-card"
         variants={sectionReveal}
         initial="hidden"
         whileInView="visible"
@@ -354,40 +354,40 @@ const Hero = ({ setActivePage }) => {
       >
         <div className="container-lg">
           <div className="skills-section">
-          <div className="head-group skills-glimpse-header">
-          <span className="pill section-kicker">Skills & tools</span>
-          <h3 className="section-title">
-            A quick glimpse of the tools behind the work.
-          </h3>
-        </div>
+            <div className="head-group skills-glimpse-header">
+              <span className="pill section-kicker">Skills & tools</span>
+              <h3 className="section-title">
+                A quick glimpse of the tools behind the work.
+              </h3>
+            </div>
 
-        <div className="skills-bento-grid">
-          {skillHighlights.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              className="skill-bento-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              whileHover={{
-                y: -5,
-                transition: { duration: 0.2, ease: "easeOut" },
-              }}
-            >
-              <div className="skill-bento-glow" aria-hidden="true" />
-              <span className="material-symbols-outlined skill-bento-icon">
-                {skill.icon}
-              </span>
-              <p className="skill-bento-name">{skill.name}</p>
-            </motion.div>
-          ))}
-        </div>
-        </div>
+            <div className="skills-bento-grid">
+              {skillHighlights.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  className="skill-bento-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.08,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  whileHover={{
+                    y: -5,
+                    transition: { duration: 0.2, ease: "easeOut" },
+                  }}
+                >
+                  <div className="skill-bento-glow" aria-hidden="true" />
+                  <span className="material-symbols-outlined skill-bento-icon">
+                    {skill.icon}
+                  </span>
+                  <p className="skill-bento-name">{skill.name}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </motion.section>
     </>

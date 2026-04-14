@@ -50,7 +50,7 @@ const About = () => {
       <Brands />
 
       {/* Timeline */}
-      <section className="timeline-section">
+      <section className="bg-card timeline-section">
         <div className="container-lg">
           <SectionHeading
             label="Journey"
@@ -211,17 +211,17 @@ const About = () => {
             description="Strategy, design, and development tailored to your product goals."
           />
           <div className="container-lg deliver-grid">
-            <div className="deliver-card card card-1 card-md">
+            <div className="deliver-card card-1 card-md">
               <span className="material-symbols-outlined">strategy</span>
               <h3>Strategy</h3>
               <p>Define the purpose and map the journey for maximum impact.</p>
             </div>
-            <div className="deliver-card card card-1 card-md">
+            <div className="deliver-card card-1 card-md">
               <span className="material-symbols-outlined">brush</span>
               <h3>Design</h3>
               <p>Craft crisp, intuitive interfaces with clear hierarchy.</p>
             </div>
-            <div className="deliver-card card card-1 card-md">
+            <div className="deliver-card card-1 card-md">
               <span className="material-symbols-outlined">code</span>
               <h3>Development</h3>
               <p>Build scalable products with clean code and smooth UX.</p>
@@ -231,7 +231,7 @@ const About = () => {
       </section>
 
       {/* Toolkit */}
-      <section className="toolkit-section">
+      <section className="bg-card-alt toolkit-section">
         <div className="container-lg">
           <SectionHeading
           label="Toolkit"
@@ -245,7 +245,7 @@ const About = () => {
         />
         </div>
         <div className="container-md toolkit-grid">
-          <div className="toolkit-card card card-1 card-md">
+          <div className="toolkit-card card-1 card-md">
             <div className="toolkit-header">
               <div className="toolkit-icon">
                 <span className="material-symbols-outlined">auto_awesome</span>
@@ -266,7 +266,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="toolkit-card card card-1 card-md">
+          <div className="toolkit-card card-1 card-md">
             <div className="toolkit-header">
               <div className="toolkit-icon">
                 <span className="material-symbols-outlined">
@@ -308,7 +308,7 @@ const About = () => {
       {/* Testimonials */}
       <Testimonials />
 
-      <section className="dual-cards-section">
+      <section className="bg-card dual-cards-section">
         <div className="container-lg">
           <SectionHeading
           label="Approach"
@@ -322,12 +322,12 @@ const About = () => {
         />
         </div>
         <div className="container-md dual-grid">
-          <div className="dual-card card card-1 card-md visualist">
+          <div className="dual-card card-1 card-md visualist">
             <span className="pill card-tag">THE VISUALIST</span>
             <h3>I craft stories through visuals.</h3>
             <p>Every pixel has a purpose. I focus on hierarchy and emotion.</p>
           </div>
-          <div className="dual-card card card-1 card-md architect">
+          <div className="dual-card card-1 card-md architect">
             <span className="pill card-tag">THE ARCHITECT</span>
             <h3>I build systems that scale.</h3>
             <p>Robust, maintainable systems that evolve with the product.</p>
