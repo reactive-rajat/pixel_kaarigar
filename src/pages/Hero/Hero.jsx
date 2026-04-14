@@ -4,10 +4,11 @@ import { AnimatePresence, motion } from "motion/react";
 import StatusBadge from "../../components/common/StatusBadge/StatusBadge";
 import HeroVisual from "../../components/common/HeroVisual/HeroVisual";
 import projects, { featuredProjects } from "../../data/projects.js";
-import brands from "../../data/brands.js";
 import "./Hero.css";
 import { aboutSkills, aboutSnapshotCards } from "../../data/about.js";
 import Testimonials from "../../components/sections/Testimonials/Testimonials";
+import Brands from "../../components/sections/Brands/Brands";
+import SectionHeading from "../../components/common/SectionHeading/SectionHeading";
 
 const sectionReveal = {
   hidden: { opacity: 0, y: 48 },
@@ -107,7 +108,6 @@ const Hero = ({ setActivePage }) => {
     return projects.slice(0, 3);
   }, []);
 
-  const movingBrands = useMemo(() => [...brands, ...brands], []);
   const skillHighlights = useMemo(() => aboutSkills.slice(0, 8), []);
 
   useEffect(() => {
@@ -175,6 +175,10 @@ const Hero = ({ setActivePage }) => {
 
         <HeroVisual defaultMood="focused" onCharacterClick={handleHeroClick} />
       </header>
+
+      {/* Brands */}
+      <Brands />
+
       <motion.section
         className="card-2 snapshot-section"
         variants={sectionReveal}
@@ -183,22 +187,45 @@ const Hero = ({ setActivePage }) => {
         viewport={{ once: true, amount: 0.25 }}
         onViewportEnter={() => setStartSnapshotCount(true)}
       >
+        <div className="container-lg">
+          <SectionHeading
+            label="Snapshot"
+            title={
+              <>
+                A quick <span className="text-primary">Snapshot</span>
+              </>
+            }
+            description="The short version of my impact and the scale of work I've delivered."
+          />
+        </div>
         <motion.div
-          className="container-lg snapshot-grid"
+          className="container-md snapshot-grid"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.25 }}
         >
-          {aboutSnapshotCards.map((card) => (
+          {aboutSnapshotCards
+            .filter((card) => card.type === "stat")
+            .map((card) => (
             <motion.article
               key={card.id}
-              className={`card card-3 snapshot-card snapshot-card-${card.id} card-md`}
+              className={`card card-1 snapshot-card snapshot-card-${card.id} card-md`}
               variants={staggerItem}
+              whileHover={{
+                y: -8,
+                transition: { duration: 0.3, ease: "easeOut" },
+              }}
             >
-              {card.type === "stat" ? (
-                <>
-                  <h2 className="snapshot-value">
+              <div className="snapshot-card-glow" aria-hidden="true" />
+              <div className="snapshot-content-wrapper">
+                <div className="snapshot-icon-wrapper">
+                  <span className="material-symbols-outlined snapshot-icon">
+                    {card.id === "experience" ? "hourglass_top" : "memory"}
+                  </span>
+                </div>
+                <div className="snapshot-text-content">
+                  <h2 className="snapshot-value h2">
                     <CountUpNumber
                       value={card.value}
                       suffix={card.suffix}
@@ -207,31 +234,8 @@ const Hero = ({ setActivePage }) => {
                   </h2>
                   <h4 className="snapshot-label">{card.label}</h4>
                   <p className="snapshot-text">{card.description}</p>
-                </>
-              ) : (
-                <>
-                  <h2 className="snapshot-value">20+</h2>
-                  <h4 className="snapshot-brand-heading">{card.label}</h4>
-                  <div className="snapshot-brand-marquee">
-                    <div className="snapshot-brand-track">
-                      {movingBrands.map((brand, index) => (
-                        <div
-                          key={`${brand.brandName}-${index}`}
-                          className="snapshot-brand-pill"
-                        >
-                          <span className="snapshot-brand-logo-frame">
-                            <img
-                              src={brand.logoImage}
-                              alt={brand.brandName}
-                              className="snapshot-brand-logo"
-                            />
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </>
-              )}
+                </div>
+              </div>
             </motion.article>
           ))}
         </motion.div>

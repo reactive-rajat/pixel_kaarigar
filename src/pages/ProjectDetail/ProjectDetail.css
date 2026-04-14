@@ -3,8 +3,6 @@
   padding-bottom: var(--space-2xl);
 }
 
-
-
 .project-not-found {
   display: grid;
   gap: 1.25rem;
@@ -19,8 +17,41 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
+
+.project-main {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  padding: 1rem;
+  margin-top: var(--space-xl);
+  background-color: var(--card-bg-2);
+}
+
+.project-main .group .pill{
+  margin-bottom: 0;
+}
+
+.project-main .card {
+  gap: 0.5rem;
+  align-items: start;
+  align-content: flex-start;
+}
+
+.project-main .card h4{
+  margin-bottom: 0;
+  margin-top: 0.5rem;
+}
+
+.project-detail-shell header {
+  background-color: var(--color-card);
+  border-radius: var(--border-radius-xl);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: var(--shadow-lg);
+  padding-bottom: 3rem !important;
+}
+
 
 .project-nav-row {
   display: flex;
@@ -192,15 +223,10 @@
   display: grid;
   max-width: var(--container-width);
   margin: 0 auto;
+  gap: 3rem;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
   align-items: stretch;
-  background-color: var(--color-card);
-  padding-bottom: 3.15rem !important;
-  border-radius: var(--border-radius-xl);
-  padding: 2rem 1rem 1rem 1rem;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  box-shadow: var(--shadow-lg);
+  padding: 0rem 3rem;
 }
 
 /* ── Content divider strip ── */
@@ -209,7 +235,6 @@
   flex-direction: column;
   gap: 1.75rem;
   padding-top: 1rem;
-  margin-bottom: 4rem;
 }
 
 .project-content-divider-label {
@@ -231,11 +256,8 @@
 
 /* ── HTML content panel ── */
 .project-content {
-  position: relative;
-  margin: 0 calc(var(--space-lg) * -1);
-  padding: 2rem var(--space-lg) 4rem;
-  border-bottom: 1px solid var(--color-border);
-  border-radius: 0;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
 }
 
 .project-hero-copy {

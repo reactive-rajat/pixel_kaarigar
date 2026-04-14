@@ -72,13 +72,6 @@
   border-bottom: none;
 }
 
-#rh-case .wrap-wide {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 32px;
-  width: 100%;
-}
-
 #rh-case .label {
   display: inline-flex;
   align-items: center;
@@ -110,7 +103,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 64px;
+  padding: 64px 0;
   position: relative;
   overflow: hidden;
 }
@@ -219,28 +212,6 @@
   color: var(--color-text-muted);
   letter-spacing: 0.08em;
   margin-bottom: 8px;
-}
-
-#rh-case .prob-card h3 {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: var(--color-text);
-}
-
-#rh-case .prob-card p {
-  font-size: 13px;
-  color: var(--color-text-muted);
-  line-height: 1.5;
-}
-
-#rh-case .prob-card.highlight {
-  border-color: var(--color-primary);
-  background: var(--color-primary-10);
-}
-
-#rh-case .prob-card.highlight h3 {
-  color: var(--color-primary);
 }
 
 #rh-case .ba-grid {
@@ -457,7 +428,7 @@
   font-style: normal;
 }
 
-#rh-case .tags {
+#rh-case .pills-list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -477,21 +448,9 @@
 #rh-case .steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  gap: 1rem;
   margin-top: 32px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
   overflow: hidden;
-}
-
-#rh-case .step {
-  padding: 20px;
-  border-right: 1px solid var(--color-border);
-  background: var(--color-card);
-}
-
-#rh-case .step:last-child {
-  border-right: none;
 }
 
 /* TYPOGRAPHY COMPARISON */

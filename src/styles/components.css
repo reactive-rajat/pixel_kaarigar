@@ -32,6 +32,7 @@
 .card-1 { background: var(--card-bg-1); border-color: var(--card-border-1); }
 .card-2 { background: var(--card-bg-2); border-color: var(--card-border-1); }
 .card-3 { background: var(--card-bg-3); border-color: var(--card-border-1); }
+.card-4 { background: var(--color-danger-bg); border-color: var(--color-danger); }
 
 .card-md { border-radius: var(--card-radius-md); padding: var(--card-padding-md); }
 .card-lg { border-radius: var(--card-radius-lg); padding: var(--card-padding-lg); }
@@ -108,6 +109,7 @@
 .container-md {
   max-width: var(--container-width-md);
   margin: 0 auto;
+  width: 100%;
 }
 
 /* Hero padding */

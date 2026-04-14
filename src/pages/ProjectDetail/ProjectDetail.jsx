@@ -44,7 +44,7 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <main className="project-detail-page container">
+      <main className="project-detail-page container-lg">
         <div className="project-not-found">
           <StatusBadge text="Not Found" />
           <h1>Project not found</h1>
@@ -70,10 +70,11 @@ const ProjectDetail = () => {
   const contentHeading = getContentHeading(project.projectType);
 
   return (
-    <main className="project-detail-page">
+    <main className="project-detail-page container-lg">
       <div className="project-detail-shell">
-        <header className="project-hero">
-          <div className="container project-hero-copy">
+        <header className="hero-padding">
+          <div className="container-lg project-hero ">
+            <div className="container project-hero-copy">
             <span className="pill project-category">{categoryLabel}</span>
             <h1 className="project-title">{project.title}</h1>
             <p className="project-description">{project.description}</p>
@@ -141,31 +142,13 @@ const ProjectDetail = () => {
               />
             )}
           </div>
+          </div>
         </header>
 
-        <main className="container" style={{paddingTop: 0}}>
-          <div
-            className="project-content-divider container"
-            style={{ paddingTop: "3rem" }}
-          >
-            <div className="project-content-divider-label">
-              <h2
-                className="project-content-divider-heading"
-                style={{ marginBottom: "0.65rem" }}
-              >
-                {contentHeading}
-              </h2>
-              <p className="project-content-divider-sub">
-                {project.projectType === "case-study"
-                  ? "A deep-dive into the problem, process, and outcome."
-                  : "Everything behind the build — decisions, approach, and results."}
-              </p>
-            </div>
-          </div>
-
+        <main className="project-main container" style={{paddingTop: 0}}>
           <section
             className="project-content container"
-            style={{ paddingTop: "2rem" }}
+            style={{ marginTop: "1rem", paddingTop: 0 }}
           >
             <ProjectHtmlContent
               contentPath={project.contentPath}
