@@ -73,10 +73,10 @@ const ProjectDetail = () => {
     <main className="project-detail-page container-lg">
       <div className="project-detail-shell">
         <header className="hero-padding">
-          <div className="container-lg project-hero ">
+          <div className="container-lg project-hero">
             <div className="container project-hero-copy">
             <span className="pill project-category">{categoryLabel}</span>
-            <h1 className="project-title">{project.title}</h1>
+            <h1 className="">{project.title}</h1>
             <p className="project-description">{project.description}</p>
 
             <div className="project-actions">
@@ -116,7 +116,7 @@ const ProjectDetail = () => {
               <div className="project-meta-footer">
                 <div className="project-tags">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="pill project-tag">
+                    <span key={tag} className="pill">
                       {tag}
                     </span>
                   ))}
@@ -155,15 +155,15 @@ const ProjectDetail = () => {
           </section>
         </main>
 
-        <div className="project-nav-row project-nav-bottom container">
+        <div className="project-nav-row container">
           <Link to="/work" className="project-back-link project-nav-pill">
             <span
-              className="project-back-icon-wrap project-nav-icon-wrap"
+              className="project-nav-icon-wrap"
               aria-hidden="true"
             >
               <span className="material-symbols-outlined">arrow_back</span>
             </span>
-            <span className="project-back-link-label project-nav-pill-label">
+            <span className="project-nav-pill-label">
               Back to work
             </span>
           </Link>

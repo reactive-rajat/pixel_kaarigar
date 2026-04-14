@@ -311,7 +311,7 @@ const Works = () => {
 
   return (
     <>
-      <header className="works-section">
+      <header className="">
         <div className="container-lg works-header">
           <div className="header-left">
             <h1 className="section-title">

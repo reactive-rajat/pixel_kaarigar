@@ -7,7 +7,7 @@ const SectionHeading = ({ label, title, description }) => {
     <div className="text-center grid gap-4 mb-12">
       {label ? <span className="pill mx-auto">{label}</span> : null}
       {title ? <h2 className="section-title">{title}</h2> : null}
-      {description ? <p className="section-description">{description}</p> : null}
+      {description ? <p className="">{description}</p> : null}
     </div>
   );
 };

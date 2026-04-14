@@ -13,7 +13,7 @@ const Contact = () => {
         {/* Left Column: Content & Mascot */}
         <div className="contact-info">
           <StatusBadge text="Open to work" showPing />
-          <h1 className="contact-title">
+          <h1 className="">
             Let's Build <br />
             <span className="text-primary">Something Weird.</span>
           </h1>
@@ -27,7 +27,7 @@ const Contact = () => {
         </div>
 
         {/* Right Column: Quick Contact */}
-        <div className="contact-content">
+        <div className="">
           <div className="contact-form-card card card-md">
             <div className="form-header">
               <div className="hud-dots">
@@ -37,7 +37,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="contact-form quick-connect">
+            <div className="contact-form">
               <div className="head-group">
                 <span className="pill">PRIMARY CHAT</span>
                 <h3>WhatsApp Connect</h3>

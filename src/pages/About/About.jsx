@@ -20,7 +20,7 @@ const About = () => {
           <div className="about-hero">
             <div className="about-hero-text">
 
-              <h1 className="about-title">
+              <h1 className="">
                 I design experiences
                 <span className="text-primary"> people actually enjoy.</span>
               </h1>
@@ -50,7 +50,7 @@ const About = () => {
       <Brands />
 
       {/* Timeline */}
-      <section className="bg-card timeline-section">
+      <section className="bg-card">
         <div className="container-lg">
           <SectionHeading
             label="Journey"
@@ -199,7 +199,7 @@ const About = () => {
       </section>
 
       {/* What I Deliver */}
-      <section className="deliver-section ">
+      <section className="">
         <div className="container-lg">
           <SectionHeading
             label="Services"
@@ -308,7 +308,7 @@ const About = () => {
       {/* Testimonials */}
       <Testimonials />
 
-      <section className="bg-card dual-cards-section">
+      <section className="bg-card">
         <div className="container-lg">
           <SectionHeading
           label="Approach"
@@ -322,7 +322,7 @@ const About = () => {
         />
         </div>
         <div className="container-md dual-grid">
-          <div className="dual-card card-1 card-md visualist">
+          <div className="dual-card card-1 card-md">
             <span className="pill card-tag">THE VISUALIST</span>
             <h3>I craft stories through visuals.</h3>
             <p>Every pixel has a purpose. I focus on hierarchy and emotion.</p>

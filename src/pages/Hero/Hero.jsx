@@ -132,7 +132,7 @@ const Hero = ({ setActivePage }) => {
         <div className="hero-content">
           <StatusBadge text="Open to work" showPing />
 
-          <h1 className="hero-title">
+          <h1 className="">
             <span className="text-gradient">
               UX Designer <br />
             </span>

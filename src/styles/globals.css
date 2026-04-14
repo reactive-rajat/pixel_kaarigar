@@ -88,12 +88,11 @@
     @apply inline-flex items-center justify-center gap-3 py-4 px-7 rounded-full font-bold text-base font-sans cursor-pointer no-underline border-none transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]; 
   }
   .btn-primary { 
-    @apply hover:scale-105; 
-    background-color: var(--color-primary);
-    color: white;
+    @apply hover:scale-105 text-white; 
+    background-color: var(--color-primary); /* KEEP: CSS var for dark mode */
   }
   .btn-primary:hover {
-    box-shadow: var(--shadow-glow);
+    box-shadow: var(--shadow-glow); /* KEEP: CSS var token */
   }
   .btn-secondary { 
     @apply border hover:scale-105; 
@@ -106,12 +105,12 @@
   }
   .btn-outline { 
     @apply bg-transparent border; 
-    border-color: var(--color-border);
-    color: var(--color-text);
+    border-color: var(--color-border); /* KEEP: CSS var for dark mode */
+    color: var(--color-text); /* KEEP: CSS var for dark mode */
   }
   .btn-ghost { 
     @apply bg-transparent; 
-    color: var(--color-text-muted);
+    color: var(--color-text-muted); /* KEEP: CSS var for dark mode */
   }
   .btn-sm { 
     @apply py-2 px-4 text-sm; 
@@ -208,23 +207,23 @@
   }
 
   /* ── Links ── */
-  .link { color: var(--color-primary); text-decoration: none; transition: opacity 0.2s; }
-  .link:hover { opacity: 0.8; }
-  .link-underline { text-decoration: underline; text-underline-offset: 3px; }
-  .link-muted { color: var(--color-text-muted); }
+  .link { @apply no-underline transition-opacity duration-200; color: var(--color-primary); /* KEEP: CSS var */ }
+  .link:hover { @apply opacity-80; }
+  .link-underline { @apply underline underline-offset-4; }
+  .link-muted { color: var(--color-text-muted); /* KEEP: CSS var */ }
 
   /* ── Layout: containers ── */
-  .container { max-width: var(--container-width-lg); margin: 0 auto; width: 100%; padding: 0 var(--space-8); }
-  .container-md { max-width: var(--container-width-md); margin: 0 auto; width: 100%; padding: 0 var(--space-8); }
-  .container-lg { max-width: var(--container-width-lg); margin: 0 auto; width: 100%; padding: 0 var(--space-8); }
-  .section { padding: var(--space-2xl) 0; }
-  .section-sm { padding: var(--space-xl) 0; }
-  .divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--color-border), transparent); margin: var(--space-4) 0; }
+  .container    { @apply mx-auto w-full; max-width: var(--container-width-lg); padding: 0 var(--space-8); /* KEEP: CSS var tokens */ }
+  .container-md { @apply mx-auto w-full; max-width: var(--container-width-md); padding: 0 var(--space-8); /* KEEP: CSS var tokens */ }
+  .container-lg { @apply mx-auto w-full; max-width: var(--container-width-lg); padding: 0 var(--space-8); /* KEEP: CSS var tokens */ }
+  .section    { padding: var(--space-2xl) 0; /* KEEP: CSS var token */ }
+  .section-sm { padding: var(--space-xl) 0;  /* KEEP: CSS var token */ }
+  .divider    { @apply w-full; height: 1px; background: linear-gradient(90deg, transparent, var(--color-border), transparent); margin: var(--space-4) 0; /* KEEP: gradient + CSS vars */ }
 
   /* ── Icons ── */
-  .icon-sm { width: 20px; height: 20px; }
-  .icon-md { width: 24px; height: 24px; }
-  .icon-lg { width: 32px; height: 32px; }
+  .icon-sm { @apply w-5 h-5; }
+  .icon-md { @apply w-6 h-6; }
+  .icon-lg { @apply w-8 h-8; }
 
   /* ── Animations ── */
   @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
@@ -232,16 +231,58 @@
   @keyframes pulse { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.1); } }
   .animate-pulse-glow { animation: pulse 4s ease-in-out infinite; }
   @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-  .shimmer { position: relative; overflow: hidden; }
-  .shimmer::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent); animation: shimmer 2s infinite; }
+  .shimmer { @apply relative overflow-hidden; }
+  .shimmer::after { @apply absolute inset-0 w-full h-full; content: ''; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent); animation: shimmer 2s infinite; /* KEEP: gradient shimmer effect */ }
 }
 
 @layer utilities {
+  /* ── Text gradient ── */
   .text-gradient {
-    /* Exact current implementation */
     background: linear-gradient(to right, var(--color-text), var(--color-primary));
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; /* KEEP: required for gradient text clip technique */
   }
+
+  /* ── Color utilities (restored from theme.css) ── */
+  .text-primary  { color: var(--color-primary); }
+  .text-muted    { color: var(--color-text-muted); }
+  .text-label    { color: var(--color-text-label); }
+  .text-success  { color: var(--color-success); }
+  .text-danger   { color: var(--color-danger); }
+  .text-text     { color: var(--color-text); }
+
+  /* ── Background utilities ── */
+  .bg-card     { background-color: var(--card-bg-1); } /* KEEP: CSS var for dark mode */
+  .bg-card-alt { background-color: var(--card-bg-2); } /* KEEP: CSS var for dark mode */
+  .bg-bg-soft  { background-color: var(--color-bg-soft); } /* KEEP: CSS var for dark mode */
+
+  /* ── Typography scale utilities (restored from theme.css) ── */
+  .h1 { font-size: clamp(2.8rem, 7vw, 4.25rem); line-height: 1.05; font-weight: 900; letter-spacing: -0.025em; } /* KEEP: clamp() not expressible in @apply */
+  .h2 { font-size: clamp(2.15rem, 4.8vw, 3.25rem); line-height: 1; font-weight: 900; letter-spacing: -0.035em; } /* KEEP: clamp() */
+  .h3 { font-size: clamp(1rem, 2vw, 2.5rem); font-weight: 700; line-height: 1.5; }                                /* KEEP: clamp() */
+  .h4, .h5, .h6 { font-size: clamp(1rem, 1.4vw, 1.6rem); font-weight: 600; line-height: 1; }                    /* KEEP: clamp() */
+
+  /* ── Body scale ── */
+  .body-lg  { @apply text-lg leading-relaxed; }
+  .body     { @apply text-base leading-relaxed; }
+  .body-sm  { @apply text-sm leading-relaxed; }
+  .caption  { @apply text-xs leading-normal; }
+
+  /* ── Font weight utilities ── */
+  .font-normal   { @apply font-normal; }
+  .font-medium   { @apply font-medium; }
+  .font-semi     { font-weight: 600; }
+  .font-bold     { @apply font-bold; }
+  .font-black    { @apply font-black; }
+
+  /* ── Misc text utilities ── */
+  .uppercase     { @apply uppercase; }
+  .tracking-wide { letter-spacing: 0.08em; }
+
+  /* ── Shadow utilities ── */
+  .shadow-sm   { box-shadow: var(--shadow-sm); }  /* KEEP: uses CSS var token */
+  .shadow-md   { box-shadow: var(--shadow-md); }  /* KEEP: uses CSS var token */
+  .shadow-lg   { box-shadow: var(--shadow-lg); }  /* KEEP: uses CSS var token */
+  .shadow-glow { box-shadow: var(--shadow-glow); } /* KEEP: uses CSS var token */
 }
