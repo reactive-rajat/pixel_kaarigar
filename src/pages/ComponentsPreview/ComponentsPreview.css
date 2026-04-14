@@ -92,6 +92,10 @@
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
 }
 
+.cp-doc-grid-1 {
+  grid-template-columns: 1fr;
+}
+
 .cp-doc-card {
   background: var(--color-card);
   border: 1px solid var(--color-border);

@@ -64,6 +64,7 @@ const LIBRARY_GUIDE = {
   '.btn-ghost': 'background: transparent;\ncolor: var(--color-text-muted);',
   '.btn-sm': 'padding: 0.5rem 1rem;\nfont-size: 0.875rem;',
   '.btn-lg': 'padding: 1.25rem 2.5rem;\nfont-size: 1.125rem;',
+  '.btn-icon': 'width: 3rem;\nheight: 3rem;\nborder-radius: 50%;\ndisplay: flex;\nalign-items: center;\njustify-content: center;',
   '.card-1': 'background-color: var(--color-card);\nborder-color: var(--color-border);',
   '.card-2': 'background-color: var(--color-card-alt);\nborder-color: var(--color-border);',
   '.card-3': 'background-color: var(--color-bg-soft);\nborder-color: var(--color-border);',
@@ -92,8 +93,10 @@ const LIBRARY_GUIDE = {
   '.flex-col': 'display: flex;\nflex-direction: column;',
   '.flex-center': 'display: flex;\nalign-items: center;\njustify-content: center;',
   '.flex-between': 'display: flex;\nalign-items: center;\njustify-content: space-between;',
-  '.grid-2': 'display: grid;\ngrid-template-columns: repeat(2, 1fr);',
-  '.grid-3': 'display: grid;\ngrid-template-columns: repeat(3, 1fr);',
+  '.grid-1': 'display: grid;\ngrid-template-columns: 1fr;\ngap: 1.5rem;',
+  '.grid-2': 'display: grid;\n@media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }\ngap: 1.5rem;',
+  '.grid-3': 'display: grid;\n@media (min-width: 1024px) { grid-template-columns: repeat(3, 1fr); }\ngap: 1.5rem;',
+  '.grid-4': 'display: grid;\n@media (min-width: 1024px) { grid-template-columns: repeat(4, 1fr); }\ngap: 1.5rem;',
   '.gap-2': 'gap: 0.5rem;',
   '.gap-3': 'gap: 0.75rem;',
   '.gap-4': 'gap: 1rem;',
@@ -128,7 +131,7 @@ function useComputedVar(varName) {
 function DocCard({ label, title, preview, htmlCode, alignLeft, onCopy }) {
   const cssCode = LIBRARY_GUIDE[label] || '/* Utility class variations \n  Refer to core CSS */';
   const [activeTab, setActiveTab] = useState('css');
-  const activeHTML = htmlCode || (preview ? `<div class="${label.replace(/\./g, '').trim()}">\n  Content\n</div>` : null);
+  const activeHTML = htmlCode || (preview ? `<div className="${label.replace(/\./g, '').trim()}">\n  Content\n</div>` : null);
 
   const handleCopy = (e) => {
     e.stopPropagation();
@@ -274,7 +277,7 @@ export default function ComponentsPreview() {
                     key={cls} label={cls} title={Tag.toUpperCase()} 
                     alignLeft onCopy={copy}
                     preview={<Tag className={className}>{text}</Tag>}
-                    htmlCode={`<${Tag} class="${className}">\n  ${text}\n</${Tag}>`}
+                    htmlCode={`<${Tag} className="${className}">\n  ${text}\n</${Tag}>`}
                  />
                  );
             })}
@@ -283,9 +286,9 @@ export default function ComponentsPreview() {
 
         <Section title="Typography Utilities">
            <div className="cp-doc-grid">
-              <DocCard label=".text-primary" title="Brand Text" preview={<span className="text-primary font-bold">Colored Text</span>} htmlCode={`<span class="text-primary font-bold">\n  Colored Text\n</span>`} onCopy={copy} />
-              <DocCard label=".text-muted" title="Soft Text" preview={<span className="text-muted">Descriptive Subtext</span>} htmlCode={`<span class="text-muted">\n  Descriptive Subtext\n</span>`} onCopy={copy} />
-              <DocCard label=".text-gradient" title="Gradient Text" preview={<span className="text-gradient h3">Premium Flow</span>} htmlCode={`<h3 class="text-gradient h3">\n  Premium Flow\n</h3>`} onCopy={copy} />
+              <DocCard label=".text-primary" title="Brand Text" preview={<span className="text-primary font-bold">Colored Text</span>} htmlCode={`<span className="text-primary font-bold">\n  Colored Text\n</span>`} onCopy={copy} />
+              <DocCard label=".text-muted" title="Soft Text" preview={<span className="text-muted">Descriptive Subtext</span>} htmlCode={`<span className="text-muted">\n  Descriptive Subtext\n</span>`} onCopy={copy} />
+              <DocCard label=".text-gradient" title="Gradient Text" preview={<span className="text-gradient h3">Premium Flow</span>} htmlCode={`<h3 className="text-gradient h3">\n  Premium Flow\n</h3>`} onCopy={copy} />
            </div>
         </Section>
 
@@ -295,10 +298,10 @@ export default function ComponentsPreview() {
         ══════════════════════════════ */}
         <Section title="Action Buttons">
           <div className="cp-doc-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
-            <DocCard label=".btn .btn-primary" title="Primary Button" preview={<a className="btn btn-primary">Primary Action</a>} htmlCode={`<a href="#" class="btn btn-primary">\n  Primary Action\n</a>`} onCopy={copy} />
-            <DocCard label=".btn .btn-secondary" title="Secondary Button" preview={<a className="btn btn-secondary">Secondary</a>} htmlCode={`<a href="#" class="btn btn-secondary">\n  Secondary\n</a>`} onCopy={copy} />
-            <DocCard label=".btn .btn-outline" title="Outline Button" preview={<a className="btn btn-outline">Outlined</a>} htmlCode={`<a href="#" class="btn btn-outline">\n  Outlined\n</a>`} onCopy={copy} />
-            <DocCard label=".btn .btn-ghost" title="Ghost Button" preview={<a className="btn btn-ghost">Ghost Text</a>} htmlCode={`<a href="#" class="btn btn-ghost">\n  Ghost Text\n</a>`} onCopy={copy} />
+            <DocCard label=".btn .btn-primary" title="Primary Button" preview={<a className="btn btn-primary">Primary Action</a>} htmlCode={`<a href="#" className="btn btn-primary">\n  Primary Action\n</a>`} onCopy={copy} />
+            <DocCard label=".btn .btn-secondary" title="Secondary Button" preview={<a className="btn btn-secondary">Secondary</a>} htmlCode={`<a href="#" className="btn btn-secondary">\n  Secondary\n</a>`} onCopy={copy} />
+            <DocCard label=".btn .btn-outline" title="Outline Button" preview={<a className="btn btn-outline">Outlined</a>} htmlCode={`<a href="#" className="btn btn-outline">\n  Outlined\n</a>`} onCopy={copy} />
+            <DocCard label=".btn .btn-ghost" title="Ghost Button" preview={<a className="btn btn-ghost">Ghost Text</a>} htmlCode={`<a href="#" className="btn btn-ghost">\n  Ghost Text\n</a>`} onCopy={copy} />
           </div>
         </Section>
 
@@ -309,22 +312,22 @@ export default function ComponentsPreview() {
           <div className="cp-doc-grid">
             <DocCard label=".card-1" title="Main Surface" alignLeft preview={
                <div className="card-1 card-sm w-full"><span className="h5">Standard Card</span><p className="body-sm mt-2 text-muted">Primary surface layer.</p></div>
-            } htmlCode={`<div class="card-1 card-sm">\n  <span class="h5">Standard Card</span>\n  <p class="body-sm mt-2 text-muted">Primary surface layer.</p>\n</div>`} onCopy={copy} />
+            } htmlCode={`<div className="card-1 card-sm">\n  <span className="h5">Standard Card</span>\n  <p className="body-sm mt-2 text-muted">Primary surface layer.</p>\n</div>`} onCopy={copy} />
             <DocCard label=".card-2" title="Offset Surface" alignLeft preview={
                <div className="card-2 card-sm w-full"><span className="h5">Alt Surface</span><p className="body-sm mt-2 text-muted">Secondary block panel.</p></div>
-            } htmlCode={`<div class="card-2 card-sm">\n  <span class="h5">Alt Surface</span>\n  <p class="body-sm mt-2 text-muted">Secondary block panel.</p>\n</div>`} onCopy={copy} />
+            } htmlCode={`<div className="card-2 card-sm">\n  <span className="h5">Alt Surface</span>\n  <p className="body-sm mt-2 text-muted">Secondary block panel.</p>\n</div>`} onCopy={copy} />
             <DocCard label=".card-3" title="Tinted Box" alignLeft preview={
                <div className="card-3 card-sm w-full"><span className="h5">Tinted Panel</span><p className="body-sm mt-2 text-primary">Matches theme hue.</p></div>
-            } htmlCode={`<div class="card-3 card-sm">\n  <span class="h5">Tinted Panel</span>\n  <p class="body-sm mt-2 text-primary">Matches theme hue.</p>\n</div>`} onCopy={copy} />
+            } htmlCode={`<div className="card-3 card-sm">\n  <span className="h5">Tinted Panel</span>\n  <p className="body-sm mt-2 text-primary">Matches theme hue.</p>\n</div>`} onCopy={copy} />
           </div>
           
           <div className="cp-doc-grid">
             <DocCard label=".card-hover" title="Interaction Lifts" preview={
                <div className="card-1 card-md card-hover shadow-md"><span className="h6 text-primary">Hover This Frame</span></div>
-            } htmlCode={`<div class="card-1 card-md card-hover shadow-md">\n  <span class="h6 text-primary">Hover This Frame</span>\n</div>`} onCopy={copy} />
+            } htmlCode={`<div className="card-1 card-md card-hover shadow-md">\n  <span className="h6 text-primary">Hover This Frame</span>\n</div>`} onCopy={copy} />
             <DocCard label=".card-glass" title="Translucent Background" preview={
                <div className="card-glass card-md" style={{ background: 'var(--color-primary-20)'}}><span className="h6 text-gradient">Glass Morph Layer</span></div>
-            } htmlCode={`<div class="card-glass card-md">\n  <span class="h6 text-gradient">Glass Morph Layer</span>\n</div>`} onCopy={copy} />
+            } htmlCode={`<div className="card-glass card-md">\n  <span className="h6 text-gradient">Glass Morph Layer</span>\n</div>`} onCopy={copy} />
           </div>
         </Section>
 
@@ -333,10 +336,10 @@ export default function ComponentsPreview() {
         ══════════════════════════════ */}
         <Section title="Pills & Tags">
           <div className="cp-doc-grid">
-            <DocCard label=".pill" title="Base Tag" preview={<span className="pill">Base Tag</span>} htmlCode={`<span class="pill">Base Tag</span>`} onCopy={copy} />
-            <DocCard label=".pill-primary" title="Brand Pill" preview={<span className="pill pill-primary">Alpha Mode</span>} htmlCode={`<span class="pill pill-primary">Alpha Mode</span>`} onCopy={copy} />
-            <DocCard label=".pill-secondary" title="Highlight Pill" preview={<span className="pill pill-secondary">Launch</span>} htmlCode={`<span class="pill pill-secondary">Launch</span>`} onCopy={copy} />
-            <DocCard label=".pill-status" title="Status Signal" preview={<span className="pill pill-status ping-dot">Live Server</span>} htmlCode={`<span class="pill pill-status ping-dot">Live Server</span>`} onCopy={copy} />
+            <DocCard label=".pill" title="Base Tag" preview={<span className="pill">Base Tag</span>} htmlCode={`<span className="pill">Base Tag</span>`} onCopy={copy} />
+            <DocCard label=".pill-primary" title="Brand Pill" preview={<span className="pill pill-primary">Alpha Mode</span>} htmlCode={`<span className="pill pill-primary">Alpha Mode</span>`} onCopy={copy} />
+            <DocCard label=".pill-secondary" title="Highlight Pill" preview={<span className="pill pill-secondary">Launch</span>} htmlCode={`<span className="pill pill-secondary">Launch</span>`} onCopy={copy} />
+            <DocCard label=".pill-status" title="Status Signal" preview={<span className="pill pill-status ping-dot">Live Server</span>} htmlCode={`<span className="pill pill-status ping-dot">Live Server</span>`} onCopy={copy} />
           </div>
         </Section>
 
@@ -345,17 +348,148 @@ export default function ComponentsPreview() {
         ══════════════════════════════ */}
         <Section title="Shadow Depths">
            <div className="cp-doc-grid">
-              <DocCard label=".shadow-md" title="Standard Depth" preview={<div className="card-1 card-sm shadow-md">Lifted Content</div>} htmlCode={`<div class="card-1 card-sm shadow-md">\n  Lifted Content\n</div>`} onCopy={copy} />
-              <DocCard label=".shadow-lg" title="Hero Elevation" preview={<div className="card-1 card-sm shadow-lg">Floating Layout</div>} htmlCode={`<div class="card-1 card-sm shadow-lg">\n  Floating Layout\n</div>`} onCopy={copy} />
-              <DocCard label=".shadow-glow" title="Neon Emitting" preview={<div className="card-2 card-sm shadow-glow text-primary">Glow Mode</div>} htmlCode={`<div class="card-2 card-sm shadow-glow text-primary">\n  Glow Mode\n</div>`} onCopy={copy} />
+              <DocCard label=".shadow-md" title="Standard Depth" preview={<div className="card-1 card-sm shadow-md">Lifted Content</div>} htmlCode={`<div className="card-1 card-sm shadow-md">\n  Lifted Content\n</div>`} onCopy={copy} />
+              <DocCard label=".shadow-lg" title="Hero Elevation" preview={<div className="card-1 card-sm shadow-lg">Floating Layout</div>} htmlCode={`<div className="card-1 card-sm shadow-lg">\n  Floating Layout\n</div>`} onCopy={copy} />
+              <DocCard label=".shadow-glow" title="Neon Emitting" preview={<div className="card-2 card-sm shadow-glow text-primary">Glow Mode</div>} htmlCode={`<div className="card-2 card-sm shadow-glow text-primary">\n  Glow Mode\n</div>`} onCopy={copy} />
            </div>
         </Section>
         
         <Section title="Animation Modifiers">
            <div className="cp-doc-grid">
-              <DocCard label=".animate-float" title="Slow Levitation" preview={<div className="card-1 card-sm animate-float">Floating Asset</div>} htmlCode={`<div class="card-1 card-sm animate-float">\n  Floating Asset\n</div>`} onCopy={copy} />
-              <DocCard label=".shimmer" title="Loading Skeleton" preview={<div className="card-1 card-md shimmer w-full" />} htmlCode={`<div class="card-1 card-md shimmer"></div>`} onCopy={copy} />
-              <DocCard label=".ping-dot" title="CSS Animated Radar" preview={<div className="pill pill-primary ping-dot">Radar Active</div>} htmlCode={`<div class="pill pill-primary ping-dot">\n  Radar Active\n</div>`} onCopy={copy} />
+              <DocCard label=".animate-float" title="Slow Levitation" preview={<div className="card-1 card-sm animate-float">Floating Asset</div>} htmlCode={`<div className="card-1 card-sm animate-float">\n  Floating Asset\n</div>`} onCopy={copy} />
+              <DocCard label=".shimmer" title="Loading Skeleton" preview={<div className="card-1 card-md shimmer w-full" />} htmlCode={`<div className="card-1 card-md shimmer"></div>`} onCopy={copy} />
+              <DocCard label=".ping-dot" title="CSS Animated Radar" preview={<div className="pill pill-primary ping-dot">Radar Active</div>} htmlCode={`<div className="pill pill-primary ping-dot">\n  Radar Active\n</div>`} onCopy={copy} />
+           </div>
+        </Section>
+        {/* ══════════════════════════════
+            SECTION 8 — Typography Headers & Combos
+        ══════════════════════════════ */}
+        <Section title="Section Headers">
+          <div className="cp-doc-grid cp-doc-grid-1">
+            <DocCard label=".section-header" title="Standard Section Heading Block" alignLeft
+              htmlCode={`<div className="flex-col gap-3">\n  <span className="pill pill-primary">Our Process</span>\n  <h2 className="h2">How We Work</h2>\n  <p className="body-lg text-muted">A structured approach to transforming ideas into digital products.</p>\n</div>`}
+              preview={
+                <div className="flex-col gap-3" style={{ padding: 'var(--space-4)' }}>
+                  <span className="pill pill-primary">Our Process</span>
+                  <h2 className="h2" style={{margin: '8px 0'}}>How We Work</h2>
+                  <p className="body-lg text-muted" style={{margin: 0}}>A structured approach to transforming ideas into digital products.</p>
+                </div>
+              } onCopy={copy} />
+          </div>
+        </Section>
+
+        {/* ══════════════════════════════
+            SECTION 9 — Layout Blocks & Grids
+        ══════════════════════════════ */}
+        <Section title="Layout Blocks & Grids">
+          <div className="cp-doc-grid cp-doc-grid-1">
+            
+            <DocCard label=".grid-1" title="Single Column Stack (Fixed 1 Col)" alignLeft 
+               htmlCode={`<div className="grid-1">\n  <div className="card-1 card-md">Item 1</div>\n</div>`}
+               preview={
+                 <div className="grid-1 w-full" style={{width: '100%'}}>
+                   <div className="card-1 card-sm w-full">Single Block Spread</div>
+                 </div>
+               } onCopy={copy} />
+
+            <DocCard label=".grid-2" title="Two Column Grid (MD: 2 Col)" alignLeft 
+               htmlCode={`<div className="grid-2">\n  <div className="card-1 card-md">Item 1</div>\n  <div className="card-1 card-md">Item 2</div>\n</div>`}
+               preview={
+                 <div className="grid-2 w-full" style={{width: '100%'}}>
+                   <div className="card-1 card-sm w-full">Item 1</div>
+                   <div className="card-1 card-sm w-full">Item 2</div>
+                 </div>
+               } onCopy={copy} />
+               
+            <DocCard label=".grid-3" title="Three Column Grid (LG: 3 Col)" alignLeft 
+               htmlCode={`<div className="grid-3">\n  <div className="card-1 card-md">Item 1</div>\n  <div className="card-1 card-md">Item 2</div>\n  <div className="card-1 card-md">Item 3</div>\n</div>`}
+               preview={
+                 <div className="grid-3 w-full" style={{width: '100%'}}>
+                   <div className="card-1 card-sm w-full">Item 1</div>
+                   <div className="card-1 card-sm w-full">Item 2</div>
+                   <div className="card-1 card-sm w-full">Item 3</div>
+                 </div>
+               } onCopy={copy} />
+               
+            <DocCard label=".grid-4" title="Four Column System (LG: 4 Col)" alignLeft 
+               htmlCode={`<div className="grid-4">\n  <div className="card-1 card-md">1</div>\n  <div className="card-1 card-md">2</div>\n  <div className="card-1 card-md">3</div>\n  <div className="card-1 card-md">4</div>\n</div>`}
+               preview={
+                 <div className="grid-4 w-full" style={{width: '100%'}}>
+                   <div className="card-1 card-sm w-full" style={{minHeight: 50}}></div>
+                   <div className="card-1 card-sm w-full" style={{minHeight: 50}}></div>
+                   <div className="card-1 card-sm w-full" style={{minHeight: 50}}></div>
+                   <div className="card-1 card-sm w-full" style={{minHeight: 50}}></div>
+                 </div>
+               } onCopy={copy} />
+
+            <DocCard label="Structured Bento Grid" title="Complex Bento (Span Layout)" alignLeft 
+               htmlCode={`<div className="grid-3 gap-6">\n  {/* First item spanning 2 columns */}\n  <div className="card-1 card-md" style={{ gridColumn: 'span 2' }}>Wide Item</div>\n  <div className="card-1 card-md">Square Item</div>\n  {/* 3 items in bottom row */}\n  <div className="card-1 card-md">Item</div>\n  <div className="card-1 card-md">Item</div>\n  <div className="card-1 card-md">Item</div>\n</div>`}
+               preview={
+                 <div className="grid-3 gap-4 w-full">
+                   <div className="card-1 card-sm w-full" style={{gridColumn: 'span 2', minHeight: 60}}>Wide Block (Span 2)</div>
+                   <div className="card-1 card-sm w-full" style={{minHeight: 60}}>Square Block</div>
+                   <div className="card-1 card-sm w-full" style={{minHeight: 60}}>Item</div>
+                   <div className="card-1 card-sm w-full" style={{minHeight: 60}}>Item</div>
+                   <div className="card-1 card-sm w-full" style={{minHeight: 60}}>Item</div>
+                 </div>
+               } onCopy={copy} />
+               
+          </div>
+        </Section>
+
+        {/* ══════════════════════════════
+            SECTION 10 — Advanced Elements & Hover Cards
+        ══════════════════════════════ */}
+        <Section title="Interactive & Advanced Behaviors">
+           <div className="cp-doc-grid cp-doc-grid-1">
+              <DocCard label=".snapshot-card" title="Native Hover Card Transition (Icon Rotation, Glow, Zoom)" alignLeft
+                htmlCode={`<div className="snapshot-card" style="padding: 2rem; border-radius: 1.6rem;">\n  <div className="snapshot-card-glow"></div>\n  <div className="snapshot-content-wrapper">\n    <div className="snapshot-icon-wrapper">\n      <span className="material-symbols-outlined snapshot-icon">rocket_launch</span>\n    </div>\n    <div className="snapshot-text-content">\n      <h3 className="snapshot-label">Performance</h3>\n      <p className="snapshot-text">Zoom and lift transitions built in natively.</p>\n    </div>\n  </div>\n</div>`}
+                preview={
+                   <div className="snapshot-card" style={{padding: '2rem', borderRadius: '1.6rem', width: '100%', maxWidth: '400px'}}>
+                     <div className="snapshot-card-glow"></div>
+                     <div className="snapshot-content-wrapper">
+                       <div className="snapshot-icon-wrapper">
+                         <span className="material-symbols-outlined snapshot-icon">rocket_launch</span>
+                       </div>
+                       <div className="snapshot-text-content">
+                         <h3 className="snapshot-label m-0">Performance</h3>
+                         <p className="snapshot-text" style={{marginTop: 8}}>Zoom and lift transitions built in natively as seen on Hero page.</p>
+                       </div>
+                     </div>
+                   </div>
+                } onCopy={copy} />
+
+              <DocCard label=".showcase-stage" title="Carousel Navigation + Interactive Dots" alignLeft
+                 htmlCode={`<div className="showcase-stage">\n  {/* Embed image or component slide here */}\n  <div className="showcase-media" style={{ height: '300px' }}></div>\n  \n  <div className="showcase-dots">\n    <button className="showcase-dot active"></button>\n    <button className="showcase-dot"></button>\n    <button className="showcase-dot"></button>\n  </div>\n</div>`}
+                 preview={
+                     <div style={{width: '100%'}}>
+                       <div className="showcase-media" style={{height: '100px', width: '100%', border: '1px solid var(--color-border)'}}></div>
+                       <div className="showcase-dots">
+                          <button className="showcase-dot active"></button>
+                          <button className="showcase-dot"></button>
+                          <button className="showcase-dot"></button>
+                       </div>
+                     </div>
+                 } onCopy={copy} />
+           </div>
+        </Section>
+
+        {/* ══════════════════════════════
+            SECTION 11 — Element Groups & Icons
+        ══════════════════════════════ */}
+        <Section title="Element Groups & Icons">
+           <div className="cp-doc-grid">
+              <DocCard label="flex-group" title="Primary & Secondary Button Set" alignLeft 
+                 htmlCode={`<div className="flex gap-4">\n  <a href="#" className="btn btn-primary">Get Started</a>\n  <a href="#" className="btn btn-secondary">Learn More</a>\n</div>`}
+                 preview={<div className="flex gap-4"><a className="btn btn-primary">Get Started</a><a className="btn btn-secondary">Learn More</a></div>} onCopy={copy} />
+                 
+              <DocCard label=".btn-icon" title="Fixed Width Icon Button" alignLeft 
+                 htmlCode={`<button className="btn btn-secondary btn-icon">\n  <span className="material-symbols-outlined">arrow_forward</span>\n</button>`}
+                 preview={<button className="btn btn-secondary btn-icon"><span className="material-symbols-outlined flex">arrow_forward</span></button>} onCopy={copy} />
+                 
+              <DocCard label=".snapshot-icon-wrapper" title="Brand Tinted Icon Container" alignLeft 
+                 htmlCode={`<div className="snapshot-icon-wrapper">\n  <span className="material-symbols-outlined snapshot-icon">star</span>\n</div>`}
+                 preview={<div className="snapshot-icon-wrapper"><span className="material-symbols-outlined snapshot-icon">star</span></div>} onCopy={copy} />
            </div>
         </Section>
 

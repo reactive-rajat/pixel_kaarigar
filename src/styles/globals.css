@@ -118,6 +118,12 @@
   .btn-lg { 
     @apply py-5 px-10 text-lg; 
   }
+  .btn-icon {
+    @apply p-0 flex items-center justify-center shrink-0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
 
   /* Legacy aliases ensuring no HTML breaks */
   /* ── 2. Cards ── */
@@ -241,6 +247,12 @@
   .section    { padding: var(--space-2xl) 0; /* KEEP: CSS var token */ }
   .section-sm { padding: var(--space-xl) 0;  /* KEEP: CSS var token */ }
   .divider    { @apply w-full; height: 1px; background: linear-gradient(90deg, transparent, var(--color-border), transparent); margin: var(--space-4) 0; /* KEEP: gradient + CSS vars */ }
+
+  /* ── Layout: grids ── */
+  .grid-1 { @apply grid grid-cols-1 gap-6; }
+  .grid-2 { @apply grid grid-cols-1 md:grid-cols-2 gap-6; }
+  .grid-3 { @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6; }
+  .grid-4 { @apply grid grid-cols-1 sm:grid-cols-2 mt-2 lg:grid-cols-4 gap-6; }
 
   /* ── Icons ── */
   .icon-sm { @apply w-5 h-5; }
