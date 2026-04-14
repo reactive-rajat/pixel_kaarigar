@@ -31,30 +31,7 @@
   align-items: stretch;
 }
 
-.deliver-card {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  height: 100%;
-}
 
-.deliver-card span {
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: var(--radius-full);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-primary-20);
-  color: var(--color-primary);
-  font-size: 1.85rem;
-}
-
-.deliver-card p {
-  color: var(--color-text-muted);
-  line-height: var(--leading-relaxed);
-}
 
 /* ── Toolkit ── */
 .toolkit-columns {
@@ -71,7 +48,6 @@
   width: 100%;
 }
 
-.toolkit-card { text-align: left; position: relative; align-content: start; }
 
 .toolkit-header {
   display: flex;
@@ -308,19 +284,6 @@
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-8);
   width: 100%;
-}
-
-.dual-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.card-tag { color: var(--color-secondary); }
-
-.dual-card p {
-  color: var(--color-text-muted);
-  line-height: var(--leading-relaxed);
 }
 
 /* ── Works / About CTA ── */

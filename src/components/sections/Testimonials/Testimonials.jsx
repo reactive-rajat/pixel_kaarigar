@@ -5,9 +5,9 @@ import { testimonials } from "../../../data/about.js";
 import './Testimonials.css';
 
 const StarRating = ({ count = 5 }) => (
-  <div className="t-stars" aria-label={`${count} star rating`}>
+  <div className="flex gap-[2px]" aria-label={`${count} star rating`}>
     {Array.from({ length: count }).map((_, i) => (
-      <span key={i} className="material-symbols-outlined t-star">star</span>
+      <span key={i} className="material-symbols-outlined text-base text-amber-500" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
     ))}
   </div>
 );
@@ -38,7 +38,7 @@ const Testimonials = () => {
       />
 
       <div
-        className="t-grid"
+        className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -47,39 +47,40 @@ const Testimonials = () => {
           return (
             <motion.div
               key={t.name}
-              className={`t-card card-md card-hover${isActive ? ' t-card--active' : ''}`}
+              className={`card card-1 card-md card-hover ${isActive ? 'border-(--color-primary) ring-1 ring-(--color-primary-20) shadow-[0_0_28px_var(--color-primary-glow)]' : ''}`}
               onClick={() => setActiveIndex(index)}
               animate={{
                 opacity: isActive ? 1 : 0.55,
                 y: isActive ? -4 : 0,
               }}
+              whileHover={{
+                opacity: 1,
+              }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Top: avatar + name + stars */}
-              <div className="t-card-header">
+              <div className="flex items-center gap-3 w-full">
                 <img
-                  className="t-avatar"
+                  className="w-11 h-11 rounded-full object-cover shrink-0 border-2 border-[color-mix(in_srgb,var(--color-primary)_30%,var(--color-border))] shadow-sm"
                   src={t.image}
                   alt={t.name}
                   loading="lazy"
                 />
-                <div className="t-identity">
-                  <span className="t-name">{t.name}</span>
-                  <span className="t-role">{t.role}</span>
+                <div className="flex-1 flex flex-col gap-0.5 min-w-0 text-left">
+                  <span className="text-sm font-bold text-(--color-text) whitespace-nowrap overflow-hidden text-ellipsis">{t.name}</span>
+                  <span className="text-xs text-(--color-text-muted) whitespace-nowrap overflow-hidden text-ellipsis">{t.role}</span>
                 </div>
-                <span className="t-quote-mark material-symbols-outlined" aria-hidden="true">
+                <span className={`material-symbols-outlined text-[1.75rem] shrink-0 ml-auto leading-none transition-colors duration-300 ${isActive ? 'text-(--color-primary)' : 'text-(--color-primary-20)'}`} aria-hidden="true">
                   format_quote
                 </span>
               </div>
 
-              {/* Stars */}
               <StarRating />
 
-              {/* Quote */}
               <AnimatePresence mode="wait">
                 <motion.blockquote
                   key={t.name + isActive}
-                  className="t-quote"
+                  className={`text-sm leading-relaxed text-left m-0 flex-1 transition-colors duration-300 ${isActive ? 'text-(--color-text)' : 'text-(--color-text-muted)'}`}
+                  style={{ quotes: 'none' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}

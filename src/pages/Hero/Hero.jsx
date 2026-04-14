@@ -147,7 +147,7 @@ const Hero = ({ setActivePage }) => {
           <div className="skills-marquee-container">
             <ul className="skills-list">
               {[...skills, ...skills].map((skill, index) => (
-                <li key={index} className="skill-item pill">
+                <li key={index} className="pill">
                   {skill}
                 </li>
               ))}
@@ -210,14 +210,14 @@ const Hero = ({ setActivePage }) => {
             .map((card) => (
               <motion.article
                 key={card.id}
-                className={`card card-1 snapshot-card snapshot-card-${card.id} card-md`}
+                className={`card card-1 card-hover snapshot-card-${card.id} card-md`}
                 variants={staggerItem}
                 whileHover={{
                   y: -8,
                   transition: { duration: 0.3, ease: "easeOut" },
                 }}
               >
-                <div className="snapshot-card-glow" aria-hidden="true" />
+                
                 <div className="snapshot-content-wrapper">
                   <div className="snapshot-icon-wrapper">
                     <span className="material-symbols-outlined snapshot-icon">
@@ -270,7 +270,7 @@ const Hero = ({ setActivePage }) => {
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="showcase-copy">
-                  <span className="showcase-category pill">
+                  <span className="pill pill-secondary">
                     {activeProject.category?.[0] || activeProject.projectType}
                   </span>
 
@@ -284,7 +284,7 @@ const Hero = ({ setActivePage }) => {
 
                   <div className="showcase-tags">
                     {activeProject.tags?.map((tag) => (
-                      <span key={tag} className="showcase-tag pill">
+                      <span key={tag} className="pill pill-primary">
                         {tag}
                       </span>
                     ))}
@@ -355,7 +355,7 @@ const Hero = ({ setActivePage }) => {
         <div className="container-lg">
           <div className="skills-section">
             <div className="head-group skills-glimpse-header">
-              <span className="pill section-kicker">Skills & tools</span>
+              <span className="pill">Skills & tools</span>
               <h3 className="section-title">
                 A quick glimpse of the tools behind the work.
               </h3>
@@ -365,7 +365,7 @@ const Hero = ({ setActivePage }) => {
               {skillHighlights.map((skill, index) => (
                 <motion.div
                   key={skill.name}
-                  className="skill-bento-card"
+                  className="card card-2 card-md card-hover text-center items-center justify-center"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
@@ -379,7 +379,7 @@ const Hero = ({ setActivePage }) => {
                     transition: { duration: 0.2, ease: "easeOut" },
                   }}
                 >
-                  <div className="skill-bento-glow" aria-hidden="true" />
+                  
                   <span className="material-symbols-outlined skill-bento-icon">
                     {skill.icon}
                   </span>

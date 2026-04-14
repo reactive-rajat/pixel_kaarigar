@@ -87,28 +87,29 @@ const Footer = () => {
       {location.pathname !== "/contact" && (
         <section className="pre-footer-cta container">
           <div className="container-lg">
-            <div className="cta-card card-lg card-1">
-              <div className="cta-content">
-                <div className="pill pill-status ping-dot">
+            <div className="card card-1 card-lg flex lg:flex-row flex-col lg:items-center items-stretch justify-between gap-12 overflow-hidden relative shadow-[0_20px_60px_var(--color-primary-glow)]">
+              <div className="absolute -top-[50%] -right-[20%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,var(--color-primary-glow)_0%,transparent_70%)] opacity-40 pointer-events-none" />
+              <div className="flex-1 flex flex-col gap-6 relative z-10 lg:text-left text-center lg:items-start items-center">
+                <div className="pill pill-status ping-dot w-fit">
                   Available for work
                 </div>
-                <h2 className="cta-title">
+                <h2 className="mt-2">
                   Let's create something{" "}
                   <span className="text-gradient">amazing</span> together
                 </h2>
-                <p className="cta-description">
+                <p className="text-[var(--color-text-muted)] leading-relaxed mt-2">
                   I'm always excited to work on innovative projects that make a
                   difference. Let's turn your vision into reality.
                 </p>
               </div>
-              <div className="cta-actions">
-                <a href="#contact" className="btn btn-primary">
+              <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-center gap-4 shrink-0 relative z-10 w-full lg:w-auto">
+                <a href="#contact" className="btn btn-primary justify-center">
                   <span>Start a Project</span>
                   <span className="material-symbols-outlined right-fix">
                     arrow_forward
                   </span>
                 </a>
-                <a href="#work" className="btn btn-secondary">
+                <a href="#work" className="btn btn-secondary justify-center">
                   View My Work
                 </a>
               </div>

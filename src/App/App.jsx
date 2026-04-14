@@ -24,6 +24,8 @@ const pageToRoute = {
   contact: '/contact'
 };
 
+import ScrollToTopButton from '../components/common/ScrollToTopButton/ScrollToTopButton';
+
 const AppShell = () => {
   const [activePage, setActivePage] = useState('home');
   const [darkMode, setDarkMode] = useState(false);
@@ -83,6 +85,7 @@ const AppShell = () => {
         </Routes>
       </main>
 
+      <ScrollToTopButton />
       <Footer />
     </div>
   );

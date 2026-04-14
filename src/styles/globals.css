@@ -128,8 +128,11 @@
   /* Legacy aliases ensuring no HTML breaks */
   /* ── 2. Cards ── */
   .card { 
-    @apply grid border; 
-    border-color: color-mix(in srgb, var(--color-text) 8%, transparent);
+    @apply flex flex-col items-start gap-4 border text-left; 
+    border-color: color-mix(in srgb, var(--color-border) 60%, transparent);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
   }
   .card-1 { 
     background-color: var(--card-bg-1);
@@ -159,11 +162,33 @@
   .card-lg { @apply rounded-xl p-[var(--card-padding-lg)]; }
   
   .card-hover { 
-    @apply cursor-pointer transition-[border-color,transform,box-shadow] duration-250 ease-out hover:-translate-y-1; 
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; 
+    cursor: pointer;
+  }
+  .card-hover::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background: var(--color-primary);
+    filter: blur(35px);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: -1;
+    pointer-events: none;
   }
   .card-hover:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-glow);
+    background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+    box-shadow: 0 8px 30px color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
+  .card-hover:hover::before {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scale(2.5);
   }
   /* ── 3. Pills & Badges ── */
   .pill { 

@@ -211,20 +211,26 @@ const About = () => {
             description="Strategy, design, and development tailored to your product goals."
           />
           <div className="container-lg deliver-grid">
-            <div className="deliver-card card-1 card-md">
-              <span className="material-symbols-outlined">strategy</span>
+            <div className="card card-1 card-md card-hover justify-between h-full">
+              <div className="snapshot-icon-wrapper mb-2">
+                <span className="material-symbols-outlined snapshot-icon">strategy</span>
+              </div>
               <h3>Strategy</h3>
-              <p>Define the purpose and map the journey for maximum impact.</p>
+              <p className="text-muted leading-relaxed">Define the purpose and map the journey for maximum impact.</p>
             </div>
-            <div className="deliver-card card-1 card-md">
-              <span className="material-symbols-outlined">brush</span>
+            <div className="card card-1 card-md card-hover justify-between h-full">
+              <div className="snapshot-icon-wrapper mb-2">
+                <span className="material-symbols-outlined snapshot-icon">brush</span>
+              </div>
               <h3>Design</h3>
-              <p>Craft crisp, intuitive interfaces with clear hierarchy.</p>
+              <p className="text-muted leading-relaxed">Craft crisp, intuitive interfaces with clear hierarchy.</p>
             </div>
-            <div className="deliver-card card-1 card-md">
-              <span className="material-symbols-outlined">code</span>
+            <div className="card card-1 card-md card-hover justify-between h-full">
+              <div className="snapshot-icon-wrapper mb-2">
+                <span className="material-symbols-outlined snapshot-icon">code</span>
+              </div>
               <h3>Development</h3>
-              <p>Build scalable products with clean code and smooth UX.</p>
+              <p className="text-muted leading-relaxed">Build scalable products with clean code and smooth UX.</p>
             </div>
           </div>
         </div>
@@ -245,7 +251,7 @@ const About = () => {
         />
         </div>
         <div className="container-md toolkit-grid">
-          <div className="toolkit-card card-1 card-md">
+          <div className="card card-1 card-md card-hover self-start h-full">
             <div className="toolkit-header">
               <div className="toolkit-icon">
                 <span className="material-symbols-outlined">auto_awesome</span>
@@ -266,7 +272,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="toolkit-card card-1 card-md">
+          <div className="card card-1 card-md card-hover self-start h-full">
             <div className="toolkit-header">
               <div className="toolkit-icon">
                 <span className="material-symbols-outlined">
@@ -322,15 +328,15 @@ const About = () => {
         />
         </div>
         <div className="container-md dual-grid">
-          <div className="dual-card card-1 card-md">
-            <span className="pill card-tag">THE VISUALIST</span>
+          <div className="card card-1 card-md card-hover">
+            <span className="pill card-tag w-fit mb-2">THE VISUALIST</span>
             <h3>I craft stories through visuals.</h3>
-            <p>Every pixel has a purpose. I focus on hierarchy and emotion.</p>
+            <p className="text-muted leading-relaxed">Every pixel has a purpose. I focus on hierarchy and emotion.</p>
           </div>
-          <div className="dual-card card-1 card-md architect">
-            <span className="pill card-tag">THE ARCHITECT</span>
+          <div className="card card-1 card-md card-hover">
+            <span className="pill card-tag w-fit mb-2">THE ARCHITECT</span>
             <h3>I build systems that scale.</h3>
-            <p>Robust, maintainable systems that evolve with the product.</p>
+            <p className="text-muted leading-relaxed">Robust, maintainable systems that evolve with the product.</p>
           </div>
         </div>
       </section>

@@ -15,12 +15,12 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
   const categoryLabel = categories.filter(Boolean).join(" + ");
   const layoutClassName = layout
     ? {
-        colStart: `project-card--col-start-${layout.columnStart}`,
-        rowStart: `project-card--row-start-${layout.rowStart}`,
-        colSpan: `project-card--col-span-${layout.colSpan}`,
-        rowSpan: `project-card--row-span-${layout.rowSpan}`,
+        gridColumnStart: layout.columnStart,
+        gridRowStart: layout.rowStart,
+        gridColumnEnd: `span ${layout.colSpan}`,
+        gridRowEnd: `span ${layout.rowSpan}`,
       }
-    : null;
+    : {};
 
   const handleOpen = () => {
     if (!isInteractive) {
@@ -41,13 +41,14 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
 
   return (
     <div
-      className={`project-card ${project.size || ""} ${isCompact ? "compact" : ""} ${layoutClassName ? `${layoutClassName.colStart} ${layoutClassName.rowStart} ${layoutClassName.colSpan} ${layoutClassName.rowSpan}` : ""}`.trim()}
+      className={`card card-hover project-card ${project.size || ""} ${isCompact ? "compact" : ""}`.trim()}
+      style={layoutClassName}
       role={isInteractive ? "button" : undefined}
       tabIndex={isInteractive ? 0 : undefined}
       onClick={handleOpen}
       onKeyDown={handleKeyDown}
     >
-      <div className="card-media card-hover">
+      <div className="card-media">
         {canPreviewVideo ? (
           <video
             src={mediaSrc}
@@ -75,7 +76,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
           <div className="content-inner">
             <div className="content-top">
               <div className="content-heading">
-                <span className="pill card-category label-tag">
+                <span className="pill pill-secondary">
                   {categoryLabel}
                 </span>
                 <h3 className="card-title">
@@ -96,7 +97,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
                 <p className="card-desc">{project.description}</p>
                 <div className="card-tags">
                   {(project.tags || []).map((tag) => (
-                    <span key={tag} className="pill card-tag label-tag">
+                    <span key={tag} className="pill pill-primary">
                       {tag}
                     </span>
                   ))}
