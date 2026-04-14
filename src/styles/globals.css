@@ -85,7 +85,7 @@
 @layer components {
   /* ── 1. Buttons ── */
   .btn { 
-    @apply inline-flex items-center justify-center gap-3 py-4 px-7 rounded-full font-bold text-base font-sans cursor-pointer no-underline border-none transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]; 
+    @apply inline-flex min-w-45 items-center justify-center gap-3 py-4 px-7 rounded-full font-bold text-base font-sans cursor-pointer no-underline border-none transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]; 
   }
   .btn-primary { 
     @apply hover:scale-105 text-white; 
@@ -95,7 +95,7 @@
     box-shadow: var(--shadow-glow); /* KEEP: CSS var token */
   }
   .btn-secondary { 
-    @apply border hover:scale-105; 
+    @apply border border-solid hover:scale-105; 
     background-color: var(--color-bg-main);
     border-color: var(--color-primary);
     color: var(--color-primary);
@@ -104,7 +104,7 @@
     background-color: var(--color-primary-20);
   }
   .btn-outline { 
-    @apply bg-transparent border; 
+    @apply bg-transparent border border-solid; 
     border-color: var(--color-border); /* KEEP: CSS var for dark mode */
     color: var(--color-text); /* KEEP: CSS var for dark mode */
   }

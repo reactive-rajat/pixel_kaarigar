@@ -5,6 +5,8 @@
   align-items: center;
   width: 100%;
   min-width: 0;
+  padding-top: calc(var(--spacing) * 30);
+  padding-bottom: calc(var(--spacing) * 20);
 }
 
 .hero-content {

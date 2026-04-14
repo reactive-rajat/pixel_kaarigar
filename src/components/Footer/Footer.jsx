@@ -122,7 +122,7 @@ const Footer = () => {
       )}
 
       {/* Main Footer */}
-      <footer className="site-footer card-2" aria-label="Site footer">
+      <footer className={`site-footer card-2 ${location.pathname !== "/contact" ? "mt-20" : "mt-0"}`} aria-label="Site footer">
         <div className="container-lg">
           <div className="footer-main">
             {/* Column 1: Brand & Social */}

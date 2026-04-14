@@ -17,8 +17,8 @@ const About = () => {
       {/* Hero */}
       <header>
         <div className="container-lg">
-          <div className="about-hero">
-            <div className="about-hero-text">
+          <div className="hero-grid">
+            <div className="grid gap-7">
 
               <h1 className="">
                 I design experiences
@@ -30,7 +30,7 @@ const About = () => {
                 means I know exactly what's buildable, and why it matters.
               </p>
 
-              <div className="about-actions">
+              <div className="about-actions mt-3">
                 <button className="btn btn-primary">
                   <span>Download Resume</span>
                   <span className="material-symbols-outlined right-fix">

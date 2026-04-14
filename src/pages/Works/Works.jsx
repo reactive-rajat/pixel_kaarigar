@@ -312,7 +312,7 @@ const Works = () => {
   return (
     <>
       <header className="">
-        <div className="container-lg works-header">
+        <div className="container-lg hero-grid">
           <div className="header-left">
             <h1 className="section-title">
               Work <br />
