@@ -74,7 +74,7 @@ const ProjectDetail = () => {
       <div className="project-detail-shell">
         <header className="hero-padding">
           <div className="container-lg project-hero">
-            <div className="container project-hero-copy">
+            <div className="project-hero-copy">
             <span className="pill project-category">{categoryLabel}</span>
             <h1 className="">{project.title}</h1>
             <p className="project-description">{project.description}</p>
@@ -125,7 +125,7 @@ const ProjectDetail = () => {
             )}
           </div>
 
-          <div className="project-hero-media container">
+          <div className="project-hero-media">
             {project.projectType === "motion" ? (
               <video
                 src={project.image}

@@ -171,39 +171,40 @@
     background-color: var(--color-primary-20);
     border-color: var(--color-primary-glow);
   }
-  .pill-success { 
-    @apply border;
-    color: var(--color-success);
-    background-color: var(--color-success-bg);
-    border-color: var(--color-success);
-  }
-  .pill-danger { 
-    @apply border;
-    color: var(--color-danger);
-    background-color: var(--color-danger-bg);
-    border-color: var(--color-danger);
+  .pill-secondary { 
+    color: var(--color-secondary);
+    background-color: rgba(var(--rgb-secondary), 0.15);
+    border-color: var(--color-secondary);
   }
 
-  .status-badge { 
-    @apply inline-flex items-center gap-2 py-2 px-3 border rounded-full w-fit; 
+
+  .pill-status { 
+    @apply border;
+    color: var(--color-success);
     background-color: var(--color-success-bg);
     border-color: var(--color-success);
   }
-  .status-text {
-    @apply text-xs font-black uppercase tracking-[0.05em];
-    color: var(--color-success);
-  }
   
-  /* KEEP: Ping animations rely on existing structure and specific cubic-bezier interpolation */
-  .ping-dot { @apply relative flex w-2 h-2; }
-  .ping-inner { 
-    @apply absolute w-full h-full rounded-full opacity-75 animate-ping; 
-    animation-timing-function: cubic-bezier(0,0,0.2,1); 
-    background-color: var(--color-success);
+  /* Ping dot modifier directly on pill elements */
+  .ping-dot { 
+    position: relative;
+    padding-left: 1.8rem !important;
   }
-  .ping-outer { 
-    @apply relative w-2 h-2 rounded-full; 
-    background-color: var(--color-success);
+  .ping-dot::before,
+  .ping-dot::after {
+    content: '';
+    position: absolute;
+    left: 0.9rem;
+    top: 50%;
+    margin-top: -0.25rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background-color: currentColor;
+  }
+  .ping-dot::before {
+    @apply opacity-75 animate-ping;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
   }
 
   /* ── Legacy overrides (rescued from components.css) ── */

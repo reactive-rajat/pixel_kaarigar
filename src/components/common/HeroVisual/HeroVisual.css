@@ -144,7 +144,7 @@
         .energy-bar-fill {
           width: 94%;
           height: 100%;
-          background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+          background: linear-gradient(to left, var(--color-primary), var(--color-primary), var(--color-secondary));
           border-radius: var(--radius-full);
         }
 

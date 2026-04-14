@@ -89,12 +89,8 @@ const Footer = () => {
           <div className="container-lg">
             <div className="cta-card card-lg card-1">
               <div className="cta-content">
-                <div className="status-badge">
-                  <div className="ping-dot">
-                    <span className="ping-inner"></span>
-                    <span className="ping-outer"></span>
-                  </div>
-                  <span className="status-text">Available for work</span>
+                <div className="pill pill-status ping-dot">
+                  Available for work
                 </div>
                 <h2 className="cta-title">
                   Let's create something{" "}
