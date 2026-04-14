@@ -116,13 +116,13 @@
     margin-bottom: 1rem;
   }
 
-  .contact-form-card .primary-btn {
+  .contact-form-card .btn-primary {
     width: 100%;
   }
 }
 
 @media (hover: none) {
-  .contact-form-card .primary-btn:hover {
+  .contact-form-card .btn-primary:hover {
     transform: none;
     box-shadow: none;
   }

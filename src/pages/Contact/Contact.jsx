@@ -9,7 +9,7 @@ const Contact = () => {
 
   return (
     <header className="contact-section container-lg">
-      <div className="contact-grid hero-padding" style={{paddingBottom: "0"}}>
+      <div className="contact-grid hero-padding pb-0">
         {/* Left Column: Content & Mascot */}
         <div className="contact-info">
           <StatusBadge text="Open to work" showPing />
@@ -18,7 +18,7 @@ const Contact = () => {
             <span className="text-primary">Something Weird.</span>
           </h1>
           <p className="contact-description">
-            I design and build digital experiences that look sharp and work flawlessly. <span style={{fontWeight: '600', color: 'var(--color-text)'}}>Got an idea? Let’s bring it to life.</span>
+            I design and build digital experiences that look sharp and work flawlessly. <span className="font-semi text-text">Got an idea? Let’s bring it to life.</span>
           </p>
 
  

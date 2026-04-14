@@ -338,28 +338,9 @@
 }
 
 /* ── Works / About CTA ── */
-.works-cta {
-  position: relative;
-  margin-top: var(--space-2xl);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-8);
-  text-align: center;
-}
-
-.about-cta { margin-top: 0; }
-
-.cta-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 300px;
-  background: var(--color-primary-glow);
-  filter: blur(80px);
-  z-index: -1;
+/* .works-cta and .cta-glow are defined in Works.css — do not duplicate here */
+.about-cta {
+  margin-top: 0;
 }
 
 /* ── Responsive ── */
@@ -396,8 +377,8 @@
     gap: 0.8rem;
   }
 
-  .about-actions .primary-btn,
-  .about-actions .secondary-btn {
+  .about-actions .btn-primary,
+  .about-actions .btn-secondary {
     justify-content: center;
     width: 100%;
   }

@@ -288,6 +288,7 @@
   /* Layout */
   --container-width-lg: 1200px;
   --container-width-md: 900px;
+  --container-width: var(--container-width-lg); /* default alias */
 }
 
 
@@ -616,6 +617,34 @@
 
 .link-muted {
   color: var(--color-text-muted);
+}
+
+/* ── Layout: containers ── */
+.container {
+  max-width: var(--container-width-lg);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
+}
+
+.container-md {
+  max-width: var(--container-width-md);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
+}
+
+.container-lg {
+  max-width: var(--container-width-lg);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
 }
 
 .section {

@@ -180,7 +180,7 @@ const Hero = ({ setActivePage }) => {
       <Brands />
 
       <motion.section
-        className="card-2 snapshot-section"
+        className="snapshot-section"
         variants={sectionReveal}
         initial="hidden"
         whileInView="visible"
@@ -242,7 +242,7 @@ const Hero = ({ setActivePage }) => {
       </motion.section>
 
       <motion.section
-        className="card-3 featured-work-section"
+        className="featured-work-section"
         initial={{ opacity: 0, x: 64 }}
         whileInView={{
           opacity: 1,
@@ -346,7 +346,7 @@ const Hero = ({ setActivePage }) => {
       </motion.div>
 
       <motion.section
-        className="card-1"
+        className=""
         variants={sectionReveal}
         initial="hidden"
         whileInView="visible"

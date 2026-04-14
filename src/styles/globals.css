@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+/* Keep existing theme tokens as plain CSS since dark mode relies on them */
+@import './theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { 
+    @apply font-sans bg-[var(--color-bg-gradient)] text-text leading-normal; 
+    min-height: 100vh; 
+    background-attachment: fixed;
+    overflow-x: hidden; 
+    transition: background 0.5s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out; 
+  }
+  
+  h1, h2, h3, h4, h5, h6 { 
+    @apply font-sans text-text; 
+    margin: 0; 
+    padding: 0; 
+  }
+  
+  h1 { 
+    font-size: clamp(2.8rem, 7vw, 4.25rem);
+    @apply leading-tight font-black tracking-[-0.025em]; 
+  }
+  
+  h2 { 
+    font-size: clamp(2.15rem, 4.8vw, 3.25rem);
+    @apply leading-[1] font-black tracking-[-0.035em]; 
+  }
+  
+  h3 { 
+    font-size: clamp(1rem, 2vw, 2.5rem);
+    @apply font-bold leading-normal; 
+  }
+  
+  h4, h5, h6 { 
+    font-size: clamp(1rem, 1.4vw, 1.6rem);
+    @apply font-semi leading-[1]; 
+    margin-bottom: 0.4rem; 
+  }
+  
+  p { 
+    @apply text-base leading-relaxed text-text-muted; 
+  }
+  
+  a { 
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  section { 
+    @apply py-20; 
+  }
+
+  /* Base element resets */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  ul { list-style: none; }
+  button { cursor: pointer; border: none; background: none; font-family: inherit; }
+  img, video { max-width: 100%; height: auto; }
+}
+
+@layer components {
+  /* ── 1. Buttons ── */
+  .btn { 
+    @apply inline-flex items-center justify-center gap-3 py-4 px-7 rounded-full font-bold text-base font-sans cursor-pointer no-underline border-none transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]; 
+  }
+  .btn-primary { 
+    @apply bg-primary text-[white] hover:scale-105 hover:shadow-glow; 
+  }
+  .btn-secondary { 
+    @apply bg-bg-main border border-primary text-primary hover:scale-105 hover:bg-[var(--color-primary-20)]; 
+  }
+  .btn-outline { 
+    @apply bg-transparent border border-border text-text; 
+  }
+  .btn-ghost { 
+    @apply bg-transparent text-text-muted; 
+  }
+  .btn-sm { 
+    @apply py-2 px-4 text-sm; 
+  }
+  .btn-lg { 
+    @apply py-5 px-10 text-lg; 
+  }
+
+  /* Legacy aliases ensuring no HTML breaks */
+  .primary-btn { @apply btn btn-primary; }
+  .secondary-btn { @apply btn btn-secondary; }
+
+  /* ── 2. Cards ── */
+  .card { 
+    @apply grid border border-[color-mix(in_srgb,var(--color-text)_8%,transparent)]; 
+  }
+  .card-1 { @apply bg-[var(--card-bg-1)] border-[var(--card-border-1)]; }
+  .card-2 { @apply bg-[var(--card-bg-2)] border-[var(--card-border-1)]; }
+  .card-3 { @apply bg-[var(--card-bg-3)] border-[var(--card-border-1)]; }
+  .card-glass { @apply bg-bg-soft backdrop-blur-[20px] border border-border; }
+  .card-4 { @apply bg-[var(--color-danger-bg)] border border-danger; }
+  
+  .card-sm { @apply rounded-md p-[var(--card-padding-sm)]; }
+  .card-md { @apply rounded-lg p-[var(--card-padding-md)]; }
+  .card-lg { @apply rounded-xl p-[var(--card-padding-lg)]; }
+  
+  .card-hover { 
+    @apply cursor-pointer transition-[border-color,transform,box-shadow] duration-250 ease-out hover:border-primary hover:-translate-y-1 hover:shadow-glow; 
+  }
+  .card-hoverable { @apply card-hover; }
+
+  /* ── 3. Pills & Badges ── */
+  .pill { 
+    @apply inline-flex items-center gap-[0.4rem] w-fit cursor-default text-xs font-medium uppercase tracking-[0.5px] text-text-label bg-bg-soft border border-border px-[0.9rem] pb-[0.3rem] pt-[0.38rem] rounded-full; 
+  }
+  .pill-primary { 
+    @apply text-primary bg-[var(--color-primary-20)] border-[var(--color-primary-glow)]; 
+  }
+  .pill-success { 
+    @apply text-success bg-[var(--color-success-bg)] border border-success; 
+  }
+  .pill-danger { 
+    @apply text-danger bg-[var(--color-danger-bg)] border border-danger; 
+  }
+
+  .status-badge { 
+    @apply inline-flex items-center gap-2 py-2 px-3 bg-[var(--color-success-bg)] border border-success rounded-full w-fit; 
+  }
+  .status-text {
+    @apply text-xs font-black uppercase tracking-[0.05em] text-success;
+  }
+  
+  /* KEEP: Ping animations rely on existing structure and specific cubic-bezier interpolation */
+  .ping-dot { @apply relative flex w-2 h-2; }
+  .ping-inner { @apply absolute w-full h-full bg-success rounded-full opacity-75 animate-ping; animation-timing-function: cubic-bezier(0,0,0.2,1); }
+  .ping-outer { @apply relative w-2 h-2 bg-success rounded-full; }
+}
+
+@layer utilities {
+  .text-gradient {
+    /* Exact current implementation */
+    background: linear-gradient(to right, var(--color-text), var(--color-primary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

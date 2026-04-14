@@ -399,8 +399,8 @@
     gap: 0.8rem;
   }
 
-  .hero-actions .primary-btn,
-  .hero-actions .secondary-btn {
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary {
     justify-content: center;
     width: 100%;
   }

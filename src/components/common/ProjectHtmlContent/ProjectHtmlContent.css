@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   text-align: center;
 }
 
@@ -35,7 +35,7 @@
 .project-html-content li,
 .project-html-content figcaption,
 .project-html-content blockquote {
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   line-height: 1.75;
 }
 
@@ -57,13 +57,13 @@
   position: absolute;
   top: 0.05rem;
   left: 0;
-  color: var(--primary-color);
+  color: var(--color-primary);
   font-size: 1.15rem;
   line-height: 1.4;
 }
 
 .project-html-content a {
-  color: var(--primary-color);
+  color: var(--color-primary);
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
@@ -80,14 +80,14 @@
 .project-html-content img,
 .project-html-content video {
   width: 100%;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-border);
   background: color-mix(in srgb, var(--color-bg-main) 24%, transparent);
   object-fit: cover;
 }
 
 .project-html-content hr {
   border: 0;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--color-border);
 }
 
 .project-html-content .stats-grid {

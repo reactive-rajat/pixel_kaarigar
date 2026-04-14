@@ -145,11 +145,8 @@ const ProjectDetail = () => {
           </div>
         </header>
 
-        <main className="project-main container" style={{paddingTop: 0}}>
-          <section
-            className="project-content container"
-            style={{ marginTop: "1rem", paddingTop: 0 }}
-          >
+        <main className="project-main container pt-0 mt-4">
+          <section className="project-content container">
             <ProjectHtmlContent
               contentPath={project.contentPath}
               title={project.title}

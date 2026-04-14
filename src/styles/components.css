@@ -2,6 +2,7 @@
    COMPONENTS & UTILITIES
    Legacy + Project-specific styles only.
    All token primitives live in theme.css.
+   Duplicates of theme.css classes have been removed.
 ========================= */
 
 /* ── Legacy button aliases (keep old class names pointing at .btn tokens) ── */
@@ -23,23 +24,19 @@
 .section-gap { padding: 80px 0; }
 
 /* ── Cards ── */
+/* NOTE: .card-1, .card-2, .card-3, .card-sm, .card-md, .card-lg, .card-hover are defined in theme.css.
+   .card-hoverable is kept here as a legacy alias mapping to the same behaviour. */
 .card {
   display: grid;
   border: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
 }
 
-.card-1, .card-2, .card-3 { border: 1px solid var(--card-border-1); }
-.card-1 { background: var(--card-bg-1); border-color: var(--card-border-1); }
-.card-2 { background: var(--card-bg-2); border-color: var(--card-border-1); }
-.card-3 { background: var(--card-bg-3); border-color: var(--card-border-1); }
-.card-4 { background: var(--color-danger-bg); border-color: var(--color-danger); }
-
-.card-md { border-radius: var(--card-radius-md); padding: var(--card-padding-md); }
-.card-lg { border-radius: var(--card-radius-lg); padding: var(--card-padding-lg); }
-
 /* Legacy hoverable — maps to .card-hover */
 .card-hoverable { transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; cursor: pointer; }
 .card-hoverable:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: 0 12px 32px var(--color-primary-glow); }
+
+/* card-4 is a danger variant not in theme.css */
+.card-4 { background: var(--color-danger-bg); border-color: var(--color-danger); }
 
 /* Legacy shadow shorthands */
 .card-shadow-md { box-shadow: 0 8px  36px var(--color-primary-glow); }
@@ -80,26 +77,9 @@
   color: var(--color-success);
 }
 
-/* ── Shimmer (project-specific, not in global lib) ── */
-@keyframes shimmer {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-.shimmer { position: relative; overflow: hidden; }
-.shimmer::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-  animation: shimmer 2s infinite;
-}
-
 /* ── Layout ── */
 
 /* Container keeps original padding-top for nav offset */
-/* ── Layout ── */
-
 .container-lg {
   max-width: var(--container-width-lg);
   margin: 0 auto;
@@ -113,7 +93,6 @@
 }
 
 /* Hero padding */
-
 .hero-padding {
   padding: 9rem 0 5rem 0 !important;
 }

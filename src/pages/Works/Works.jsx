@@ -328,7 +328,7 @@ const Works = () => {
         </div>
       </header>
 
-      <section style={{padding: "0"}}>
+      <section className="p-0">
         <div className="container-lg filter-container">
         <div className="filter-chips">
           {["All", "Case Study", "UI & Dev", "Creative"].map((cat) => (
