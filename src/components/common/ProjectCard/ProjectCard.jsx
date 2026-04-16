@@ -95,7 +95,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
             <div className="content-details">
               <div className="details-inner">
                 <p className="card-desc">{project.description}</p>
-                <div className="card-tags">
+                <div className="flex gap-2">
                   {(project.tags || []).map((tag) => (
                     <span key={tag} className="pill pill-primary">
                       {tag}

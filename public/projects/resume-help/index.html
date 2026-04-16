@@ -14,13 +14,13 @@
   <section id="s1" class="section">
     <div class="pt-15">
       <div class="grid gap-7">
-        <div>
+        <div class="mx-auto">
           <span class="pill pill-primary">UX Case Study · Design Systems</span>
         </div>
-        <h1 class="h1">Rebuilding the design<br />foundation of ResumeHelp<br /><span class="text-muted">from scratch</span></h1>
+        <h2 class="h2 text-center">Rebuilding the design<br />foundation of <span class="text-primary">ResumeHelp</span><br /><span class="text-muted font-normal">from scratch</span></h2>
         <p class="body-lg text-muted max-w-2xl text-center mx-auto">The product had grown but the design hadn't. I led the migration from an inconsistent,
         accessibility-challenged theme to a proper design system used by the whole team.</p>
-        <div class="flex flex-wrap gap-x-12 gap-y-6 mt-8 border-t  pt-8">
+        <div class="flex flex-wrap justify-center gap-x-16 gap-y-6 mt-8 border-(--color-border) border-t  pt-8">
           <div>
             <div class="body-sm text-muted uppercase tracking-wider font-bold mb-1">Product</div>
             <div class="body font-semibold">ResumeHelp</div>
@@ -46,7 +46,7 @@
   <section id="s2" >
     <div class="grid gap-12">
       <div class="max-w-2xl text-center mx-auto">
-        <span class="pill mb-6 inline-block">Context</span>
+        <span class="pill pill-primary mb-6 inline-block">Context</span>
         <h2 class="h2 mb-4">Why this project happened</h2>
         <p class="body text-muted">ResumeHelp is an online resume builder. As the product grew — more
           pages, more markets, more people working on it — the original design started showing cracks. It was never
@@ -56,22 +56,22 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-(--border-color) rounded-2xl overflow-hidden ">
         <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r border-b lg:border-b-0 ">
-          <div class="snapshot-icon-wrapper font-bold mb-4">01</div>
+          <div class="pill pill-rounded mb-4">01</div>
           <h4 class="h4 mb-2">Felt outdated</h4>
           <p class="body-sm text-muted">The visual style no longer matched where the brand was heading.</p>
         </div>
         <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r border-b lg:border-b-0 ">
-          <div class="snapshot-icon-wrapper font-bold mb-4">02</div>
+          <div class="pill pill-rounded mb-4">02</div>
           <h4 class="h4 mb-2">Hard to scale</h4>
           <p class="body-sm text-muted">No shared rules — every designer made their own calls.</p>
         </div>
         <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r border-b lg:border-b-0 ">
-          <div class="snapshot-icon-wrapper font-bold mb-4">03</div>
+          <div class="pill pill-rounded mb-4">03</div>
           <h4 class="h4 mb-2">Dev confusion</h4>
           <p class="body-sm text-muted">No specs meant developers couldn't build a proper component library.</p>
         </div>
         <div class="card-hover card-1 card-sm rounded-none">
-          <div class="snapshot-icon-wrapper font-bold mb-4">04</div>
+          <div class="pill pill-rounded mb-4">04</div>
           <h4 class="h4 mb-2">Accessibility gaps</h4>
           <p class="body-sm text-muted">Some colours didn't meet basic contrast standards.</p>
         </div>
@@ -90,42 +90,42 @@
   <!-- 3. PROBLEM -->
   <section id="s3" class="section">
     <div class="grid gap-8">
-      <div class="max-w-2xl text-center mx-auto">
-        <span class="pill mb-6 inline-block">The Problem</span>
+      <div class="max-w-2xl text-center mx-auto theme-danger">
+        <span class="pill pill-primary mb-6 inline-block">The Problem</span>
         <h2 class="h2 mb-4">6 things that were quietly broken</h2>
         <p class="body text-muted">None of these were show-stoppers alone. Together, they made the
         product feel patched together — and made designing new pages without adding more inconsistency nearly
         impossible.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="card card-1 card-sm card-hover">
-          <div class="body-sm uppercase tracking-widest font-bold mb-4">01</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 theme-danger">
+        <div class="card-1 card-sm card-hover border">
+          <div class="pill pill-rounded mb-4">01</div>
           <h4 class="h4 mb-2">Poor colour contrast</h4>
           <p class="body-sm text-muted">White text on the primary green (#3CD9A7) failed WCAG standards. A real issue for a mass-use product.</p>
         </div>
-        <div class="card card-1 card-sm card-hover">
-          <div class="body-sm uppercase tracking-widest font-bold mb-4">02</div>
+        <div class="card-1 card-sm card-hover border">
+          <div class="pill pill-rounded mb-4">02</div>
           <h4 class="h4 mb-2">Colour overlays everywhere</h4>
           <p class="body-sm text-muted">Every hero section had a dark teal overlay on photos. Images lost their purpose.</p>
         </div>
-        <div class="card card-1 card-sm card-hover">
-          <div class="body-sm uppercase tracking-widest font-bold mb-4">03</div>
+        <div class="card-1 card-sm card-hover border">
+          <div class="pill pill-rounded mb-4">03</div>
           <h4 class="h4 mb-2">No spacing or grid system</h4>
           <p class="body-sm text-muted">No defined margins, no grid, no padding rules. Every page was eyeballed.</p>
         </div>
-        <div class="card card-1 card-sm card-hover">
-          <div class="body-sm uppercase tracking-widest font-bold mb-4">04</div>
+        <div class="card-1 card-sm card-hover border">
+          <div class="pill pill-rounded mb-4">04</div>
           <h4 class="h4 mb-2">Thin typography</h4>
           <p class="body-sm text-muted">Only 6 type styles for the whole product — not enough for pages of this complexity.</p>
         </div>
-        <div class="card card-1 card-sm card-hover">
-          <div class="body-sm uppercase tracking-widest font-bold mb-4">05</div>
+        <div class="card-1 card-sm card-hover border">
+          <div class="pill pill-rounded mb-4">05</div>
           <h4 class="h4 mb-2">Inconsistent icons</h4>
           <p class="body-sm text-muted">Outlined on one page, filled on another, 2-colour somewhere else. No rule at all.</p>
         </div>
-        <div class="card card-1 card-sm card-hover">
-          <div class="body-sm uppercase tracking-widest font-bold mb-4">06</div>
+        <div class="card-1 card-sm card-hover border">
+          <div class="pill pill-rounded mb-4">06</div>
           <h4 class="h4 mb-2">Dark sections without logic</h4>
           <p class="body-sm text-muted">Dark backgrounds used randomly to "separate" sections — no system, just habit.</p>
         </div>
@@ -137,10 +137,22 @@
   <section id="s4" >
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
-        <span class="pill mb-6 inline-block">Before</span>
+        <span class="pill pill-primary mb-6 inline-block">Before</span>
         <h2 class="h2 mb-4">The old theme</h2>
         <p class="body text-muted">Teal-heavy, dark overlays on everything, no defined spacing. It
           worked — but not at scale.</p>
+      </div>
+      <div class="flex flex-col gap-3">
+          <img src="./assets/rh-old-theme-1.png" class="w-full rounded-xl border  block" alt="New colour system" />
+          <div class="text-sm text-muted text-center mt-2">Structured colour
+            palette with
+            named tokens</div>
+      </div>
+      <div class="flex flex-col gap-3">
+          <img src="./assets/rh-old-theme-2.png" class="w-full rounded-xl border  block" alt="New colour system" />
+          <div class="text-sm text-muted text-center mt-2">Structured colour
+            palette with
+            named tokens</div>
       </div>
     </div>
   </section>
@@ -149,7 +161,7 @@
   <section id="s5" class="section">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
-        <span class="pill mb-6 inline-block">After</span>
+        <span class="pill pill-primary mb-6 inline-block">After</span>
         <h2 class="h2 mb-4">The new design system</h2>
         <p class="body text-muted">A proper system — colour tokens, grid specs, button rules, blade
           backgrounds, and a full typography hierarchy. Built to scale.</p>
@@ -195,7 +207,7 @@
   <section id="s6" class="section ">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
-        <span class="pill mb-6 inline-block">Key Change · Colours</span>
+        <span class="pill pill-primary mb-6 inline-block">Key Change · Colours</span>
         <h2 class="h2 mb-4">Fixing the colour problem first</h2>
         <p class="body text-muted">The old green wasn't just outdated — it was failing accessibility.
         That made it the most urgent thing to fix. The new system moved to a violet-led palette where every colour
@@ -251,7 +263,7 @@
   <section id="s7" class="section">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
-        <span class="pill mb-6 inline-block">Key Change · Typography</span>
+        <span class="pill pill-primary mb-6 inline-block">Key Change · Typography</span>
         <h2 class="h2 mb-4">A font change that changed the feel</h2>
         <p class="body text-muted">Typography is one of the first things a user notices — even if they
         don't realise it. The old fonts felt wide and heavy. The new ones feel modern, clean, and approachable. A small

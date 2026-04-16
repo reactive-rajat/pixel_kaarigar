@@ -83,25 +83,68 @@
 }
 
 @layer components {
+  /* ── 0. Theme Intents ── */
+  .theme-primary {
+    --theme-base: var(--color-primary);
+    --theme-soft: var(--color-primary-20);
+    --theme-border: var(--color-primary-glow);
+    --theme-text-fill: #ffffff; 
+    --theme-card-bg-default: color-mix(in srgb, var(--color-primary) 5%, transparent);
+    --theme-card-border-default: color-mix(in srgb, var(--color-primary) 15%, transparent);
+    --theme-card-bg-hover: var(--color-primary-20);
+    --theme-card-border-hover: var(--color-primary-glow);
+  }
+  .theme-secondary {
+    --theme-base: var(--color-secondary);
+    --theme-soft: rgba(var(--rgb-secondary), 0.15);
+    --theme-border: var(--color-secondary);
+    --theme-text-fill: #ffffff;
+    --theme-card-bg-default: color-mix(in srgb, var(--color-secondary) 5%, transparent);
+    --theme-card-border-default: color-mix(in srgb, var(--color-secondary) 15%, transparent);
+    --theme-card-bg-hover: rgba(var(--rgb-secondary), 0.15);
+    --theme-card-border-hover: var(--color-secondary);
+  }
+  .theme-success {
+    --theme-base: var(--color-success);
+    --theme-soft: var(--color-success-bg);
+    --theme-border: var(--color-success);
+    --theme-text-fill: #ffffff;
+    --theme-card-bg-default: color-mix(in srgb, var(--color-success) 5%, transparent);
+    --theme-card-border-default: color-mix(in srgb, var(--color-success) 15%, transparent);
+    --theme-card-bg-hover: var(--color-success-bg);
+    --theme-card-border-hover: var(--color-success);
+  }
+  .theme-danger {
+    --theme-base: var(--color-danger);
+    --theme-soft: var(--color-danger-bg);
+    --theme-border: var(--color-danger);
+    --theme-text-fill: #ffffff;
+    --theme-card-bg-default: color-mix(in srgb, var(--color-danger) 5%, transparent);
+    --theme-card-border-default: color-mix(in srgb, var(--color-danger) 15%, transparent);
+    --theme-card-bg-hover: var(--color-danger-bg);
+    --theme-card-border-hover: var(--color-danger);
+  }
+
   /* ── 1. Buttons ── */
   .btn { 
     @apply inline-flex min-w-45 items-center justify-center gap-3 py-4 px-7 rounded-full font-bold text-base font-sans cursor-pointer no-underline border-none transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]; 
   }
   .btn-primary { 
-    @apply hover:scale-105 text-white; 
-    background-color: var(--color-primary); /* KEEP: CSS var for dark mode */
+    @apply hover:scale-105;
+    color: var(--theme-text-fill, #ffffff);
+    background-color: var(--theme-base, var(--color-primary)); /* KEEP: CSS var for dark mode */
   }
   .btn-primary:hover {
-    box-shadow: var(--shadow-glow); /* KEEP: CSS var token */
+    box-shadow: 0 0 20px var(--theme-border, var(--color-primary-glow)); /* KEEP: CSS var token */
   }
   .btn-secondary { 
     @apply border border-solid hover:scale-105; 
     background-color: var(--color-bg-main);
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+    border-color: var(--theme-base, var(--color-primary));
+    color: var(--theme-base, var(--color-primary));
   }
   .btn-secondary:hover {
-    background-color: var(--color-primary-20);
+    background-color: var(--theme-soft, var(--color-primary-20));
   }
   .btn-outline { 
     @apply bg-transparent border border-solid; 
@@ -135,26 +178,26 @@
     overflow: hidden;
   }
   .card-1 { 
-    background-color: var(--card-bg-1);
-    border-color: var(--card-border-1);
+    background-color: var(--theme-card-bg-default, var(--card-bg-1));
+    border-color: var(--theme-card-border-default, var(--card-border-1));
   }
   .card-2 { 
-    background-color: var(--card-bg-2);
-    border-color: var(--card-border-1);
+    background-color: var(--theme-card-bg-default, var(--card-bg-2));
+    border-color: var(--theme-card-border-default, var(--card-border-1));
   }
   .card-3 { 
-    background-color: var(--card-bg-3);
-    border-color: var(--card-border-1);
+    background-color: var(--theme-card-bg-default, var(--card-bg-3));
+    border-color: var(--theme-card-border-default, var(--card-border-1));
   }
   .card-glass { 
     @apply backdrop-blur-[20px] border; 
-    background-color: var(--color-bg-soft);
-    border-color: var(--color-border);
+    background-color: var(--theme-card-bg-default, var(--color-bg-soft));
+    border-color: var(--theme-card-border-default, var(--color-border));
   }
   .card-4 { 
     @apply border; 
-    background-color: var(--color-danger-bg);
-    border-color: var(--color-danger);
+    background-color: var(--theme-card-bg-default, var(--color-danger-bg));
+    border-color: var(--theme-card-border-default, var(--color-danger));
   }
   
   .card-sm { @apply rounded-md p-[var(--card-padding-sm)]; }
@@ -173,7 +216,7 @@
     width: 6rem;
     height: 6rem;
     border-radius: 50%;
-    background: var(--color-primary);
+    background: var(--theme-base, var(--color-primary));
     filter: blur(35px);
     transform: translate(-50%, -50%);
     opacity: 0;
@@ -182,9 +225,9 @@
     pointer-events: none;
   }
   .card-hover:hover {
-    background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);
-    border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
-    box-shadow: 0 8px 30px color-mix(in srgb, var(--color-primary) 10%, transparent);
+    background-color: var(--theme-card-bg-hover, color-mix(in srgb, var(--color-primary) 5%, transparent));
+    border-color: var(--theme-card-border-hover, color-mix(in srgb, var(--color-primary) 30%, transparent));
+    box-shadow: 0 8px 30px color-mix(in srgb, var(--theme-base, var(--color-primary)) 10%, transparent);
   }
   .card-hover:hover::before {
     opacity: 0.15;
@@ -193,27 +236,37 @@
   /* ── 3. Pills & Badges ── */
   .pill { 
     @apply inline-flex items-center gap-[0.4rem] w-fit cursor-default text-xs font-medium uppercase tracking-[0.5px] border px-[0.9rem] pb-[0.3rem] pt-[0.38rem] rounded-full; 
-    color: var(--color-text-label);
-    background-color: var(--color-bg-soft);
-    border-color: var(--color-border);
+    color: var(--theme-base, var(--color-text-label));
+    background-color: var(--theme-soft, var(--color-bg-soft));
+    border-color: var(--theme-border, var(--color-border));
   }
+  /* colors */
   .pill-primary { 
-    color: var(--color-primary);
-    background-color: var(--color-primary-20);
-    border-color: var(--color-primary-glow);
+    color: var(--theme-base, var(--color-primary));
+    background-color: var(--theme-soft, var(--color-primary-20));
+    border-color: var(--theme-border, var(--color-primary-glow));
   }
   .pill-secondary { 
-    color: var(--color-secondary);
-    background-color: rgba(var(--rgb-secondary), 0.15);
-    border-color: var(--color-secondary);
+    color: var(--theme-base, var(--color-secondary));
+    background-color: var(--theme-soft, rgba(var(--rgb-secondary), 0.15));
+    border-color: var(--theme-border, var(--color-secondary));
   }
-
-
   .pill-status { 
     @apply border;
-    color: var(--color-success);
-    background-color: var(--color-success-bg);
-    border-color: var(--color-success);
+    color: var(--theme-base, var(--color-success));
+    background-color: var(--theme-soft, var(--color-success-bg));
+    border-color: var(--theme-border, var(--color-success));
+  }
+  /* shape */
+  .pill-rounded {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: var(--radius-full);
+    font-size: 1rem !important;
+    transition: all 0.3s ease;
   }
   
   /* Ping dot modifier directly on pill elements */

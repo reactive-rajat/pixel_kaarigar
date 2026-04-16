@@ -173,22 +173,6 @@
   align-items: flex-start;
 }
 
-.snapshot-icon-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: var(--radius-full);
-  background: color-mix(in srgb, var(--color-primary) 15%, transparent);
-  color: var(--color-primary);
-}
-
-.snapshot-icon {
-  font-size: 1.8rem !important;
-  transition: transform 0.3s ease;
-}
-
 .card-hover:hover .snapshot-icon {
   transform: scale(1.1) rotate(5deg);
 }

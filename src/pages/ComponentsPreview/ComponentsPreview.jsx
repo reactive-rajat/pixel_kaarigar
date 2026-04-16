@@ -109,6 +109,10 @@ const LIBRARY_GUIDE = {
   '.shimmer': 'animation: shimmer 2s infinite;',
   '.transition': 'transition-duration: 150ms;',
   '.transition-fast': 'transition-duration: 75ms;',
+  '.theme-primary': 'Sets theme intents to primary:\n--theme-base\n--theme-soft\n--theme-border\n--theme-text-fill',
+  '.theme-secondary': 'Sets theme intents to secondary/pink variant.',
+  '.theme-success': 'Sets theme intents to success/green variant.',
+  '.theme-danger': 'Sets theme intents to danger/red variant.',
 };
 
 function useComputedVar(varName) {
@@ -344,7 +348,49 @@ export default function ComponentsPreview() {
         </Section>
 
         {/* ══════════════════════════════
-            SECTION 6 — Utilities & Shadows
+            SECTION 6 — Theme Intents Architecture
+        ══════════════════════════════ */}
+        <Section title="Theme Intents (Dynamic Component Theming)">
+          <p className="body-sm text-muted mb-6" style={{ maxWidth: 800 }}>
+            Applying a <span className="text-primary font-bold">.theme-*</span> class dynamically restyles generic components (Cards, Pills, Buttons) to match the chosen semantic intent.
+          </p>
+          <div className="cp-doc-grid">
+            <DocCard label=".theme-primary" title="Primary Intent" alignLeft preview={
+               <div className="flex-col gap-3 w-full theme-primary">
+                 <span className="pill">Primary Pill</span>
+                 <a className="btn btn-secondary" style={{width: 'fit-content'}}>Action</a>
+                 <div className="card-1 card-sm w-full"><span className="h6 text-primary">Styled Card</span></div>
+               </div>
+            } htmlCode={`<div className="theme-primary">\n  <span className="pill">Pill</span>\n  <a className="btn btn-secondary">Action</a>\n  <div className="card-1">...</div>\n</div>`} onCopy={copy} />
+            
+            <DocCard label=".theme-secondary" title="Secondary Intent" alignLeft preview={
+               <div className="flex-col gap-3 w-full theme-secondary">
+                 <span className="pill">Secondary Pill</span>
+                 <a className="btn btn-secondary" style={{width: 'fit-content'}}>Action</a>
+                 <div className="card-1 card-sm w-full"><span className="h6 text-primary" style={{color: 'var(--theme-base)'}}>Styled Card</span></div>
+               </div>
+            } htmlCode={`<div className="theme-secondary">\n  <span className="pill">Pill</span>\n  <a className="btn btn-secondary">Action</a>\n  <div className="card-1">...</div>\n</div>`} onCopy={copy} />
+
+            <DocCard label=".theme-success" title="Success Intent" alignLeft preview={
+               <div className="flex-col gap-3 w-full theme-success">
+                 <span className="pill">Success Pill</span>
+                 <a className="btn btn-secondary" style={{width: 'fit-content'}}>Action</a>
+                 <div className="card-1 card-sm w-full"><span className="h6 text-primary" style={{color: 'var(--theme-base)'}}>Styled Card</span></div>
+               </div>
+            } htmlCode={`<div className="theme-success">\n  <span className="pill">Pill</span>\n  <a className="btn btn-secondary">Action</a>\n  <div className="card-1">...</div>\n</div>`} onCopy={copy} />
+            
+            <DocCard label=".theme-danger" title="Danger Intent" alignLeft preview={
+               <div className="flex-col gap-3 w-full theme-danger">
+                 <span className="pill">Danger Pill</span>
+                 <a className="btn btn-secondary" style={{width: 'fit-content'}}>Action</a>
+                 <div className="card-1 card-sm w-full"><span className="h6 text-primary" style={{color: 'var(--theme-base)'}}>Styled Card</span></div>
+               </div>
+            } htmlCode={`<div className="theme-danger">\n  <span className="pill">Pill</span>\n  <a className="btn btn-secondary">Action</a>\n  <div className="card-1">...</div>\n</div>`} onCopy={copy} />
+          </div>
+        </Section>
+
+        {/* ══════════════════════════════
+            SECTION 7 — Utilities & Shadows
         ══════════════════════════════ */}
         <Section title="Shadow Depths">
            <div className="cp-doc-grid">
