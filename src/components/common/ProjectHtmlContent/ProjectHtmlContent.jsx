@@ -250,11 +250,27 @@ const ProjectHtmlContent = ({ contentPath, title, omitPrimaryHeading = false }) 
     );
   }
 
+  const handleHtmlClick = (e) => {
+    const summary = e.target.closest("summary");
+    if (summary) {
+      const details = summary.parentElement;
+      // If it is currently open, a click means it's about to close.
+      if (details && details.hasAttribute("open")) {
+        // Give the browser a tick to actually remove the content from the flow,
+        // then smoothly scroll the remaining button back to the center of the screen.
+        setTimeout(() => {
+          details.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 50);
+      }
+    }
+  };
+
   return (
     <>
       <div
         className="project-html-content"
         dangerouslySetInnerHTML={{ __html: html }}
+        onClick={handleHtmlClick}
       />
     </>
   );

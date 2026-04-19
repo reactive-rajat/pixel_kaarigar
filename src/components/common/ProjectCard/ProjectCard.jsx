@@ -62,7 +62,7 @@ const ProjectCard = ({ project, layout, onProjectOpen }) => {
           <img
             src={project.image}
             alt={project.title}
-            className="card-image"
+            className="card-image image-hover-scale"
             referrerPolicy="no-referrer"
           />
         )}

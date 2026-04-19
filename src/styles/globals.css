@@ -79,7 +79,20 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   ul { list-style: none; }
   button { cursor: pointer; border: none; background: none; font-family: inherit; }
-  img, video { max-width: 100%; height: auto; }
+  img, video { 
+    max-width: 100%; 
+    height: auto; 
+  }
+
+  .image-hover-scale {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @media (min-width: 1024px) {
+    .image-hover-scale:hover {
+      transform: scale(1.03);
+    }
+  }
 }
 
 @layer components {

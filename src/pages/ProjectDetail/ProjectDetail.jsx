@@ -137,7 +137,7 @@ const ProjectDetail = () => {
               <img
                 src={project.image}
                 alt={project.title}
-                className="project-cover-media"
+                className="project-cover-media image-hover-scale"
                 referrerPolicy="no-referrer"
               />
             )}

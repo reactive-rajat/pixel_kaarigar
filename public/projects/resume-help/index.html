@@ -5,487 +5,322 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <!-- style.css is auto-fetched and injected by ProjectHtmlContent.jsx -->
 </head>
 
 <body>
 
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 1. HERO -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
   <section id="s1" class="section">
     <div class="pt-15">
       <div class="grid gap-7">
         <div class="mx-auto">
           <span class="pill pill-primary">UX Case Study · Design Systems</span>
         </div>
-        <h2 class="h2 text-center">Rebuilding the design<br />foundation of <span class="text-primary">ResumeHelp</span><br /><span class="text-muted font-normal">from scratch</span></h2>
-        <p class="body-lg text-muted max-w-2xl text-center mx-auto">ResumeHelp is an online resume builder — part of Bold's product family. The product had scaled but the design never did. I owned the migration from an inconsistent, accessibility-broken theme to a proper design system that the whole team could actually trust.</p>
+        <h2 class="h2 text-center">
+          Rebuilding ResumeHelp's<br /><span class="text-primary">Design Foundation.</span>
+        </h2>
+        <p class="body-lg text-muted max-w-2xl text-center mx-auto">
+          ResumeHelp grew rapidly, but the design didn't. I led the mission to rebuild the system from scratch, ensuring it was accessible, scalable, and dev-friendly. Migrated a live product to a new design system — fixing inconsistency and scalability at scale.
+        </p>
         <div class="flex flex-wrap justify-center gap-x-16 gap-y-6 mt-8 border-(--color-border) border-t pt-8">
           <div>
             <div class="body-sm text-muted uppercase tracking-wider font-bold mb-1">Company</div>
-            <div class="body font-semibold">Bold (4 yrs tenure)</div>
+            <div class="body font-semibold">Bold (ResumeHelp)</div>
           </div>
           <div>
             <div class="body-sm text-muted uppercase tracking-wider font-bold mb-1">My Role</div>
-            <div class="body font-semibold">Sr. Web Designer · DS Owner</div>
+            <div class="body font-semibold">Sr. UX Designer · System Owner</div>
           </div>
           <div>
-            <div class="body-sm text-muted uppercase tracking-wider font-bold mb-1">Scope</div>
-            <div class="body font-semibold">Design System foundation · ~15 pages</div>
+            <div class="body-sm text-muted uppercase tracking-wider font-bold mb-1">Scale</div>
+            <div class="body font-semibold">15 to 25 Core Pages</div>
           </div>
           <div>
-            <div class="body-sm text-muted uppercase tracking-wider font-bold mb-1">Tools</div>
-            <div class="body font-semibold">Figma · Font Awesome 5</div>
+            <div class="body-sm text-muted uppercase tracking-wider font-bold mb-1">The Team</div>
+            <div class="body font-semibold">Internal Team, External Agency, Devs</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 2. CONTEXT — Why this project happened -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="s2">
-    <div class="grid gap-12">
+  <section id="s2" class="section">
+    <div class="grid gap-10">
       <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Context</span>
-        <h2 class="h2 mb-4">Why this project was needed</h2>
-        <p class="body text-muted">ResumeHelp had been around for a while. As the product grew — more pages, more markets, more people touching the design files — the original theme started falling apart. It was never really built as a "system." It was just a bunch of one-off decisions stacked on top of each other over the years.</p>
+        <span class="pill pill-primary mb-6 inline-block">The Problem</span>
+        <h2 class="h2 mb-4">Breaking at Scale.</h2>
+        <p class="body text-muted">
+          ResumeHelp is a massive resume builder used by millions in the US and UK. Because multiple designers and agencies added new pages over time without central rules, the UI became a patched-together mess of one-off decisions. 
+        </p>
+      </div>
+
+      <div class="w-full flex flex-col items-center justify-center text-center min-h-[250px] border border-(--border-color) rounded-xl overflow-hidden">
+          <img class="image-hover-scale" src="./assets/the_problem.png" alt="" srcset="">
+        </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card-1 card-sm border">
+          <div class="pill pill-secondary mb-4 mt-1" style="background: var(--color-danger-bg); color: var(--color-danger);">Accessibility</div>
+          <h4 class="h4 mb-2">Failing Contrast</h4>
+          <p class="body-sm text-muted">The brand green (<code>#00C194</code>) with white text failed WCAG tests. Low-vision users couldn't read the main CTAs.</p>
+        </div>
+        <div class="card-1 card-sm border">
+          <div class="pill pill-secondary mb-4 mt-1" style="background: var(--color-danger-bg); color: var(--color-danger);">Structure</div>
+          <h4 class="h4 mb-2">No Layout Math</h4>
+          <p class="body-sm text-muted">No column grid and no spacing tokens. Developers had to manually inspect Figma layers to guess the padding.</p>
+        </div>
+        <div class="card-1 card-sm border">
+          <div class="pill pill-secondary mb-4 mt-1" style="background: var(--color-danger-bg); color: var(--color-danger);">Typography</div>
+          <h4 class="h4 mb-2">Incomplete Scale</h4>
+          <p class="body-sm text-muted">The style guide only had 6 text styles. Designers were forced to manually tweak font sizes for edge cases, breaking consistency.</p>
+        </div>
+        <div class="card-1 card-sm border">
+          <div class="pill pill-secondary mb-4 mt-1" style="background: var(--color-danger-bg); color: var(--color-danger);">Visuals</div>
+          <h4 class="h4 mb-2">Heavy Overlays</h4>
+          <p class="body-sm text-muted">Every hero image had a heavy dark teal (<code>#023642</code>) overlay, hiding the photos and making the site feel gloomy.</p>
+        </div>
+        <div class="card-1 card-sm border">
+          <div class="pill pill-secondary mb-4 mt-1" style="background: var(--color-danger-bg); color: var(--color-danger);">Icons</div>
+          <h4 class="h4 mb-2">Iconography Chaos</h4>
+          <p class="body-sm text-muted">Styles were mixed everywhere—some outlined, some solid, some 2-colored. It made the interface feel untrustworthy.</p>
+        </div>
+        <div class="card-1 card-sm border">
+          <div class="pill pill-secondary mb-4 mt-1" style="background: var(--color-danger-bg); color: var(--color-danger);">Sections</div>
+          <h4 class="h4 mb-2">Random Backgrounds</h4>
+          <p class="body-sm text-muted">Dark backgrounds were placed randomly just to separate sections, with no logical rule for when to use dark vs. light UI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s3" class="section">
+    <div class="grid gap-10">
+      <div class="max-w-2xl text-center mx-auto">
+        <span class="pill pill-primary mb-6 inline-block">Design Ownership</span>
+        <h2 class="h2 mb-4">The System Gatekeeper.</h2>
+        <p class="body text-muted">
+          We hired an external design agency to help build the initial visual concepts, but a design system isn't just a Figma file—it requires strict ownership. Here is how I managed the collaboration:
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-(--border-color) rounded-2xl overflow-hidden">
         <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r border-b lg:border-b-0">
           <div class="pill pill-rounded mb-4">01</div>
-          <h4 class="h4 mb-2">Accessibility was broken</h4>
-          <p class="body-sm text-muted">The primary green (<code>#00C194</code>) failed both WCAG AA and AAA contrast standards. For a product used by millions, this wasn't okay.</p>
+          <h4 class="h4 mb-2">Set the Rules</h4>
+          <p class="body-sm text-muted">I briefed the agency on our user context, accessibility needs, and technical requirements before they started.</p>
         </div>
         <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r border-b lg:border-b-0">
           <div class="pill pill-rounded mb-4">02</div>
-          <h4 class="h4 mb-2">No shared design rules</h4>
-          <p class="body-sm text-muted">Every designer made their own spacing, colour and layout decisions. There was no single source of truth anyone could point to.</p>
+          <h4 class="h4 mb-2">Strict Validation</h4>
+          <p class="body-sm text-muted">Reviewed deliveries pixel-by-pixel. If a padding was off or a hover state was missing, I pushed it back for revision.</p>
         </div>
         <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r border-b lg:border-b-0">
           <div class="pill pill-rounded mb-4">03</div>
-          <h4 class="h4 mb-2">Devs couldn't build with confidence</h4>
-          <p class="body-sm text-muted">Without proper specs and a component library, developers had to keep asking designers "what font size is this?" or "what's the padding here?" for every single page.</p>
+          <h4 class="h4 mb-2">Filled the Gaps</h4>
+          <p class="body-sm text-muted">I personally defined the structural grid math, created missing spacing tokens, and finalized the typography scale.</p>
         </div>
         <div class="card-hover card-1 card-sm rounded-none">
           <div class="pill pill-rounded mb-4">04</div>
-          <h4 class="h4 mb-2">Visually inconsistent product</h4>
-          <p class="body-sm text-muted">Mixed icon styles, random dark sections, teal overlays on images, inconsistent typography — the product just didn't feel like one product anymore.</p>
+          <h4 class="h4 mb-2">Enforced Consistency</h4>
+          <p class="body-sm text-muted">Ensured that no "creative but inconsistent" tweaks made it into the final product. Protected the locked system.</p>
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 3. THE CORE PROBLEM — What exactly was broken -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="s3" class="section">
-    <div class="grid gap-8">
-      <div class="max-w-2xl text-center mx-auto theme-danger">
-        <span class="pill pill-primary mb-6 inline-block">The Problem</span>
-        <h2 class="h2 mb-4">6 things that were quietly broken</h2>
-        <p class="body text-muted">None of these were a "stop everything" kind of issue by themselves. But put them together and you get a product that feels patched together — and makes designing any new page without introducing more inconsistency almost impossible.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 theme-danger">
-        <div class="card-1 card-sm card-hover border">
-          <div class="pill pill-rounded mb-4">01</div>
-          <h4 class="h4 mb-2">Failed colour contrast</h4>
-          <p class="body-sm text-muted">White text on the primary green (<code>#00C194</code>) didn't pass WCAG standards. For a product used by regular people building their resumes, readability is everything.</p>
-        </div>
-        <div class="card-1 card-sm card-hover border">
-          <div class="pill pill-rounded mb-4">02</div>
-          <h4 class="h4 mb-2">Dark teal overlays on every hero</h4>
-          <p class="body-sm text-muted">Every hero section had a dark overlay slapped on top of the photos. The images basically lost their purpose — you could barely see what was underneath.</p>
-        </div>
-        <div class="card-1 card-sm card-hover border">
-          <div class="pill pill-rounded mb-4">03</div>
-          <h4 class="h4 mb-2">No spacing or grid system</h4>
-          <p class="body-sm text-muted">No defined margins, no grid columns, no padding rules. Every page was hand-eyeballed by whoever happened to design it.</p>
-        </div>
-        <div class="card-1 card-sm card-hover border">
-          <div class="pill pill-rounded mb-4">04</div>
-          <h4 class="h4 mb-2">Too few typography styles</h4>
-          <p class="body-sm text-muted">Only 6 type styles for the whole product. That's just not enough when you have 15+ different page types with complex content hierarchies.</p>
-        </div>
-        <div class="card-1 card-sm card-hover border">
-          <div class="pill pill-rounded mb-4">05</div>
-          <h4 class="h4 mb-2">Chaotic icons — no consistency</h4>
-          <p class="body-sm text-muted">Some pages had outlined icons, some had filled, some had two-colour icons from random packs. No one ever decided on a single icon family to use everywhere.</p>
-        </div>
-        <div class="card-1 card-sm card-hover border">
-          <div class="pill pill-rounded mb-4">06</div>
-          <h4 class="h4 mb-2">Random dark sections</h4>
-          <p class="body-sm text-muted">Dark background sections were used randomly just to "visually separate" content. There was no logic — just habit.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 4. BEFORE — The old theme (with actual screenshots) -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="s4">
+  <section id="s4" class="section">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Before</span>
-        <h2 class="h2 mb-4">The old theme — what we were working with</h2>
-        <p class="body text-muted">Teal-heavy, overlays on everything, no defined spacing tokens, no structured type hierarchy. It was functional — but it didn't scale. And it definitely didn't meet accessibility standards.</p>
+        <span class="pill pill-primary mb-6 inline-block">Core Decision 01</span>
+        <h2 class="h2 mb-4">Color System & Accessibility</h2>
+        <p class="body text-muted">The biggest risk in the old design was the failing green button. We completely overhauled the palette to make it inclusive by default.</p>
       </div>
 
-      <!-- Old theme screenshots -->
-      <div class="flex flex-col gap-6">
-        <div class="flex flex-col gap-3">
-          <img src="./assets/rh-old-theme-1.png" class="w-full rounded-xl border block" alt="Old ResumeHelp theme — homepage with teal overlays and poor contrast" />
-          <div class="text-sm text-muted text-center mt-2">The old homepage — heavy teal overlays, poor contrast green buttons, no structured layout grid</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div class="w-full flex flex-col items-center justify-center text-center min-h-[250px] border border-(--border-color) rounded-xl overflow-hidden">
+          <img class="image-hover-scale" src="./assets/thumb_decision_01.png" alt="" srcset="">
         </div>
-        <div class="flex flex-col gap-3">
-          <img src="./assets/rh-old-theme-2.png" class="w-full rounded-xl border block" alt="Old ResumeHelp theme — inconsistent styling across pages" />
-          <div class="text-sm text-muted text-center mt-2">Interior pages — inconsistent spacing, mixed icon styles, generic feel throughout</div>
-        </div>
-      </div>
-
-      <!-- Old page screenshots from Figma -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-        <div class="flex flex-col gap-3">
-          <img src="./assets/screenshots/old/Home.png" class="w-full rounded-xl border block" alt="Old homepage full view" />
-          <div class="text-sm text-muted text-center mt-2">Old homepage — full Figma export</div>
-        </div>
-        <div class="flex flex-col gap-3">
-          <img src="./assets/screenshots/old/Resume Builder.png" class="w-full rounded-xl border block" alt="Old resume builder page" />
-          <div class="text-sm text-muted text-center mt-2">Old resume builder page — notice the inconsistent component usage</div>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="flex flex-col gap-3">
-          <img src="./assets/screenshots/old/Career Blog.png" class="w-full rounded-xl border block" alt="Old career blog listing page" />
-          <div class="text-sm text-muted text-center mt-2">Old career blog listing — no clear design hierarchy</div>
-        </div>
-        <div class="flex flex-col gap-3">
-          <img src="./assets/screenshots/old/Resume Examples.png" class="w-full rounded-xl border block" alt="Old resume examples page" />
-          <div class="text-sm text-muted text-center mt-2">Old resume examples page — visually disconnected from the rest</div>
+        
+        <div class="flex flex-col gap-4">
+          <div class="card-1 card-sm border">
+            <h4 class="h4 mb-2">Primary: Coach Ultra Violet</h4>
+            <p class="body-sm text-muted">Switched from Green to <code>#3D50FF</code>. It passes WCAG AA, draws the eye instantly, and builds trust.</p>
+          </div>
+          <div class="card-1 card-sm border">
+            <h4 class="h4 mb-2">Secondary: Assertive Magenta</h4>
+            <p class="body-sm text-muted">Added <code>#D01176</code> for highlights that need energy without fighting the primary violet.</p>
+          </div>
+          <div class="card-1 card-sm border">
+            <h4 class="h4 mb-2">Logical Backgrounds</h4>
+            <p class="body-sm text-muted">Defined exactly 3 light and 3 dark background shades. We stopped using random dark backgrounds just to separate sections.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 5. OBJECTIVE — What we set out to do -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
   <section id="s5" class="section">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Objective</span>
-        <h2 class="h2 mb-4">Build a design system that actually works</h2>
-        <p class="body text-muted">The goal was simple to say but hard to execute — replace the old theme with a proper, scalable design system. Fix the accessibility issues. Give developers specs they can actually use. And make every page feel like it belongs to the same product.</p>
+        <span class="pill pill-primary mb-6 inline-block">Core Decision 02</span>
+        <h2 class="h2 mb-4">Typography Built for UI</h2>
+        <p class="body text-muted">A resume builder is a heavy, data-dense UI. We needed fonts that were highly readable at small sizes and friendly enough to reduce user anxiety.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="card-1 card-sm card-hover border text-center">
-          <div class="h2 mb-2">🎯</div>
-          <h4 class="h4 mb-2">Pass WCAG standards</h4>
-          <p class="body-sm text-muted">Replace the failing <code>#00C194</code> green with a new palette that passes AA and AAA contrast ratios.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div class="flex flex-col gap-4 order-last md:order-first">
+          <div class="card-1 card-sm border">
+            <h4 class="h4 mb-2">Headings: Circular Std</h4>
+            <p class="body-sm text-muted">Moved away from the wide, bulky <em>Montserrat</em>. Circular Std is rounder and friendlier, which helps calm stressed job seekers.</p>
+          </div>
+          <div class="card-1 card-sm border">
+            <h4 class="h4 mb-2">Body Text: Public Sans</h4>
+            <p class="body-sm text-muted">Replaced <em>Source Sans Pro</em>. Public Sans is exceptionally clear for small form labels and dense paragraphs.</p>
+          </div>
+          <div class="card-1 card-sm border">
+            <h4 class="h4 mb-2">Full Hierarchy</h4>
+            <p class="body-sm text-muted">Went from only 6 styles to a full responsive system (Display, H1-H6, Labels, Captions) so designers never had to guess.</p>
+          </div>
         </div>
-        <div class="card-1 card-sm card-hover border text-center">
-          <div class="h2 mb-2">🧱</div>
-          <h4 class="h4 mb-2">One system, one source</h4>
-          <p class="body-sm text-muted">A single Figma file with all tokens, components and specs. No more "which version is correct?"</p>
-        </div>
-        <div class="card-1 card-sm card-hover border text-center">
-          <div class="h2 mb-2">🤝</div>
-          <h4 class="h4 mb-2">Zero-friction dev handoff</h4>
-          <p class="body-sm text-muted">Put the specs right on the canvas where developers can see them. No guesswork, no back-and-forth.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 6. PROCESS & COLLABORATION — How we got it done -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="s6">
-    <div class="grid gap-8">
-      <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Process</span>
-        <h2 class="h2 mb-4">How we got it done — step by step</h2>
-        <p class="body text-muted">I was working with one in-house designer and an external agency. My job was to lead the design system effort — brief the agency, validate everything before it reached developers, and make sure the final output actually made their life easier.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-0 border border-(--border-color) rounded-2xl overflow-hidden">
-        <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r border-b lg:border-b-0">
-          <div class="pill pill-rounded mb-4">01</div>
-          <h4 class="h4 mb-2">Stakeholder meetings</h4>
-          <p class="body-sm text-muted">Had multiple alignment calls with PMs and product stakeholders to understand what the business actually needed from this redesign.</p>
-        </div>
-        <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r border-b lg:border-b-0">
-          <div class="pill pill-rounded mb-4">02</div>
-          <h4 class="h4 mb-2">Briefed the agency</h4>
-          <p class="body-sm text-muted">Put together detailed requirements for the external design agency — covering colour tokens, grid rules, typography needs and component expectations.</p>
-        </div>
-        <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r border-b lg:border-b-0">
-          <div class="pill pill-rounded mb-4">03</div>
-          <h4 class="h4 mb-2">Continuous review</h4>
-          <p class="body-sm text-muted">Closely monitored progress through Figma comments and calls. Flagged gaps, pushed for missing foundational pieces, and course-corrected early.</p>
-        </div>
-        <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r border-b lg:border-b-0">
-          <div class="pill pill-rounded mb-4">04</div>
-          <h4 class="h4 mb-2">Built the foundations</h4>
-          <p class="body-sm text-muted">Added structured grids, spacing tokens, a strict H1–H6 typography hierarchy, and unified all UI elements into a proper component library.</p>
-        </div>
-        <div class="card-hover card-1 card-sm rounded-none">
-          <div class="pill pill-rounded mb-4">05</div>
-          <h4 class="h4 mb-2">Dev-ready handoff</h4>
-          <p class="body-sm text-muted">Put explicit front-facing specs right on the Figma canvas — so devs could see font sizes, spacing and colours without opening Dev Mode.</p>
+        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full" style="background: rgba(0,0,0,0.02);">
+          <div class="h3 mb-2">🖼️</div>
+          <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: NEW TYPOGRAPHY SCALE]</div>
+          <div class="text-xs text-muted mt-2">Show the clean list of H1-H6, Body, Label, and Caption styles with their exact pixel sizes.</div>
         </div>
       </div>
     </div>
   </section>
 
+  <section id="s6" class="section">
+    <div class="grid gap-10">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px]" style="background: rgba(0,0,0,0.02);">
+          <div class="h3 mb-2">🖼️</div>
+          <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: GRID SYSTEM OVERLAY]</div>
+          <div class="text-xs text-muted mt-2">Show a webpage screenshot with pink/blue columns highlighting the 12-column layout.</div>
+        </div>
+        <div>
+          <h2 class="h2 mb-4">The Grid & Spacing Math</h2>
+          <p class="body text-muted mb-4">To stop designers and developers from "eyeballing" margins, we introduced strict mathematical rules.</p>
+          <ul class="body-sm text-muted flex flex-col gap-3" style="list-style: disc; padding-left: 1.2rem;">
+            <li><b>Responsive Columns:</b> 12 columns for Desktop (1280px max), 8 for Tablet, 2 for Mobile.</li>
+            <li><b>Spacing Tokens:</b> Named values (e.g., <code>Space-LG</code>, <code>Space-XL</code>) instead of random pixel numbers.</li>
+            <li><b>The UX Impact:</b> Layouts became completely predictable. Elements stopped "jumping" when users navigated between pages.</li>
+          </ul>
+        </div>
+      </div>
 
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 7. FOUNDATIONAL UPDATES — Colours & Typography -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
+      <hr class="border-(--color-border) my-4" />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="h2 mb-4">Component Standardization</h2>
+          <p class="body text-muted mb-4">We wiped out the mixed icon styles and built a master, atomic library.</p>
+          <ul class="body-sm text-muted flex flex-col gap-3" style="list-style: disc; padding-left: 1.2rem;">
+            <li><b>One Icon Set:</b> Moved 100% of the product to <b>Font Awesome 5 Solid</b>. It guaranteed visual harmony, and devs already knew the classes.</li>
+            <li><b>Atomic Library:</b> Designed 5 button types across 4 sizes, complete with hover, active, and disabled states.</li>
+            <li><b>Reusable Assets:</b> Created standardized Trust Blades (client logos) and Form Inputs.</li>
+          </ul>
+        </div>
+        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px]" style="background: rgba(0,0,0,0.02);">
+          <div class="h3 mb-2">🖼️</div>
+          <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: FIGMA COMPONENT LIBRARY]</div>
+          <div class="text-xs text-muted mt-2">Show the matrix of the 5 Button types, Trust Blades, and Form Inputs.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <section id="s7" class="section">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Foundations — Colours</span>
-        <h2 class="h2 mb-4">A new colour palette that actually passes accessibility</h2>
-        <p class="body text-muted">The biggest pain point was the old green. <code>#00C194</code> looked nice but white text on it was basically unreadable for people with any kind of visual impairment. The new palette was built with WCAG compliance as a hard requirement — not an afterthought.</p>
+        <span class="pill pill-primary mb-6 inline-block">Execution</span>
+        <h2 class="h2 mb-4">Developer Handoff: Zero Guesswork</h2>
+        <p class="body text-muted">Figma's Dev Mode is great, but developers still found themselves digging through nested layers to find exact padding values.</p>
       </div>
 
-      <div class="flex flex-col gap-3">
-        <img src="./assets/screenshots/new/Colors.png" class="w-full rounded-xl border block" alt="New ResumeHelp colour palette with WCAG-compliant tokens" />
-        <div class="text-sm text-muted text-center mt-2">The new structured colour palette — named tokens, WCAG-tested, ready for developers to pick up directly</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 8. TYPOGRAPHY -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="s8">
-    <div class="grid gap-8">
-      <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Foundations — Typography</span>
-        <h2 class="h2 mb-4">From 6 styles to a proper type hierarchy</h2>
-        <p class="body text-muted">The old system had only 6 type styles for the entire product. That's just not enough when you've got homepage heroes, blog articles, builder interfaces and legal pages all sharing the same design language. We built a full H1 through H6 scale, paragraph styles, caption sizes — everything documented with exact specs.</p>
-      </div>
-
-      <div class="flex flex-col gap-3">
-        <img src="./assets/screenshots/new/Typography.png" class="w-full rounded-xl border block" alt="Full typography hierarchy — H1 to H6, paragraph styles, with specs" />
-        <div class="text-sm text-muted text-center mt-2">Complete typography scale — every heading level, paragraph style, and caption size defined with exact pixel values and weights</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 9. GRIDS & SPACING -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="s9" class="section">
-    <div class="grid gap-8">
-      <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Foundations — Grid & Spacing</span>
-        <h2 class="h2 mb-4">Structured grids and spacing tokens</h2>
-        <p class="body text-muted">Before this, every page was spaced by eye. One designer would use 40px between sections, another would use 60px, and nobody documented any of it. We introduced proper column grids and a defined vertical spacing system that everyone had to follow.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="flex flex-col gap-3">
-          <img src="./assets/screenshots/new/Grids.png" class="w-full rounded-xl border block" alt="Grid system specs" />
-          <div class="text-sm text-muted text-center mt-2">Column grid specifications — consistent layout framework across all pages</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-4">
+        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[300px]" style="background: rgba(0,0,0,0.02);">
+          <div class="h3 mb-2">🖼️</div>
+          <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: SPECS ON CANVAS]</div>
+          <div class="text-xs text-muted mt-2">Show the Figma canvas where red text and lines point directly to the padding and font sizes next to the UI design.</div>
         </div>
-        <div class="flex flex-col gap-3">
-          <img src="./assets/screenshots/new/Vertical Spacing.png" class="w-full rounded-xl border block" alt="Vertical spacing token system" />
-          <div class="text-sm text-muted text-center mt-2">Vertical spacing tokens — defined values for section gaps, component margins, and content padding</div>
+        <div>
+          <div class="card-sm card-1 border mb-4">
+            <h4 class="h4 mb-2">Front-Facing Specs</h4>
+            <p class="body-sm text-muted">I placed explicit text specs (margins, font sizes, colors) directly on the Figma canvas next to the designs.</p>
+          </div>
+          <div class="card-sm card-1 border mb-4">
+            <h4 class="h4 mb-2">Matched the Ecosystem</h4>
+            <p class="body-sm text-muted">I used the exact same spec format as Bold's other major product, <em>ResumeGenius</em>, so devs had zero learning curve.</p>
+          </div>
+          <div class="card-sm card-1 border">
+            <h4 class="h4 mb-2">The Result</h4>
+            <p class="body-sm text-muted">Developers stopped asking "what size is this?" Design-to-code speed improved massively because the answers were printed right in front of them.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 10. ICON STANDARDISATION -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="s10">
-    <div class="grid gap-8">
-      <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Standardisation</span>
-        <h2 class="h2 mb-4">One icon library to rule them all</h2>
-        <p class="body text-muted">The old product had icons from at least 3-4 different sources. Some were outlined, some filled, some were even custom two-colour icons that didn't match anything else on the page. We standardised the entire product under <strong>Font Awesome 5 (Solid)</strong> — one style, one weight, zero confusion.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="card-1 card-sm border theme-danger">
-          <div class="pill pill-primary mb-4">Before</div>
-          <h4 class="h4 mb-2">Mixed icon chaos</h4>
-          <p class="body-sm text-muted">Outlined icons on one page, filled on another, custom two-colour icons on a third page. No pattern, no logic — just whatever each designer happened to pick.</p>
-          <p class="body-sm text-muted mt-4"><em><!-- [Image Placeholder: Old inconsistent icon examples from various pages] --></em></p>
-        </div>
-        <div class="card-1 card-sm border">
-          <div class="pill pill-primary mb-4">After</div>
-          <h4 class="h4 mb-2">Font Awesome 5 — Solid</h4>
-          <p class="body-sm text-muted">One icon family, one weight (Solid), used everywhere. Developers could simply use the FA class names — no custom SVGs to manage, no confusion about which icon pack to use.</p>
-          <p class="body-sm text-muted mt-4"><em><!-- [Image Placeholder: Unified Font Awesome 5 Solid icon set] --></em></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 11. GLOBAL COMPONENT LIBRARY -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="s11" class="section">
-    <div class="grid gap-8">
-      <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Component Library</span>
-        <h2 class="h2 mb-4">Reusable components — built once, used everywhere</h2>
-        <p class="body text-muted">This was probably the most impactful part for the team. Instead of recreating buttons, navbars, breadcrumbs and forms from scratch on every new page, we built a global component library in Figma. Every state documented. Every variation covered. Designers could just drag and drop, developers could look at one place for specs.</p>
-      </div>
-
-      <!-- Buttons -->
-      <div class="flex flex-col gap-3">
-        <img src="./assets/screenshots/new/Buttons.png" class="w-full rounded-xl border block" alt="Button component library — all states and variations" />
-        <div class="text-sm text-muted text-center mt-2">Buttons — every colour variant, size, and state (default, hover, disabled) documented in one place</div>
-      </div>
-
-      <!-- Breadcrumbs & Lists -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="flex flex-col gap-3">
-          <img src="./assets/screenshots/new/Breadcrumb.png" class="w-full rounded-xl border block" alt="Breadcrumb component" />
-          <div class="text-sm text-muted text-center mt-2">Breadcrumb navigation — consistent across all template pages</div>
-        </div>
-        <div class="flex flex-col gap-3">
-          <img src="./assets/screenshots/new/Lists.png" class="w-full rounded-xl border block" alt="List component variations" />
-          <div class="text-sm text-muted text-center mt-2">List styles — bullet, numbered, and feature list components</div>
+  <section id="s8" class="section">
+    <div class="grid gap-12">
+      
+      <div>
+        <h2 class="h2 mb-6">The Final Impact</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="card-1 card-sm border">
+            <div class="h3 mb-2 text-primary">✅</div>
+            <h4 class="h4 mb-2">100% Accessible</h4>
+            <p class="body-sm text-muted">Every interactive CTA now passes strict WCAG standards.</p>
+          </div>
+          <div class="card-1 card-sm border">
+            <div class="h3 mb-2 text-primary">✅</div>
+            <h4 class="h4 mb-2">15+ Pages Migrated</h4>
+            <p class="body-sm text-muted">Successfully applied this system to redesign 15 to 25 core pages with zero design drift.</p>
+          </div>
+          <div class="card-1 card-sm border">
+            <div class="h3 mb-2 text-primary">✅</div>
+            <h4 class="h4 mb-2">One Source of Truth</h4>
+            <p class="body-sm text-muted">Agency, internal designers, and developers finally spoke the exact same visual language.</p>
+          </div>
+          <div class="card-1 card-sm border">
+            <div class="h3 mb-2 text-primary">✅</div>
+            <h4 class="h4 mb-2">Faster Shipping</h4>
+            <p class="body-sm text-muted">Designers stopped reinventing cards. Developers built reusable wrappers. Production multiplied.</p>
+          </div>
         </div>
       </div>
 
-      <!-- Logos & Brand elements -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="flex flex-col gap-3">
-          <img src="./assets/screenshots/new/Logos.png" class="w-full rounded-xl border block" alt="Logo usage specs" />
-          <div class="text-sm text-muted text-center mt-2">Logo specifications — proper usage rules for different contexts</div>
+      <hr class="border-(--color-border)" />
+
+      <div>
+        <div class="max-w-2xl text-center mx-auto mb-8">
+          <span class="pill pill-primary mb-4 inline-block">Reflection</span>
+          <h2 class="h2 mb-4">What I Learned</h2>
+          <blockquote class="body-lg font-italic text-muted border-l-4 border-primary pl-4 text-left mx-auto">
+            "A design system doesn't make products consistent. The person protecting it does."
+          </blockquote>
         </div>
-        <div class="flex flex-col gap-3">
-          <img src="./assets/screenshots/new/Blade - Company Logos.png" class="w-full rounded-xl border block" alt="Company logo blade component" />
-          <div class="text-sm text-muted text-center mt-2">Trust blade — standardised company logo strip used across landing pages</div>
-        </div>
-      </div>
 
-      <!-- Circular buttons -->
-      <div class="flex flex-col gap-3">
-        <img src="./assets/screenshots/new/Circular Color Buttons.png" class="w-full rounded-xl border block" alt="Circular colour button components" />
-        <div class="text-sm text-muted text-center mt-2">Circular colour buttons — used for resume template colour selection in the builder</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 12. DEVELOPER HANDOFF — Front-facing specs -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="s12">
-    <div class="grid gap-8">
-      <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Developer Handoff</span>
-        <h2 class="h2 mb-4">Specs on the canvas — zero guesswork</h2>
-        <p class="body text-muted">This is something I'm genuinely proud of. Instead of just relying on Figma's Dev Mode (which, honestly, many developers don't love), I placed explicit specs directly on the canvas itself. Font sizes, line heights, spacing values — all visible right next to the actual components. Developers could look at the design and immediately know what to build.</p>
-      </div>
-
-      <div class="card-1 card-sm border">
-        <h4 class="h4 mb-4">Why front-facing specs matter</h4>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div>
-            <p class="body font-semibold mb-2">No back-and-forth</p>
-            <p class="body-sm text-muted">Devs don't need to hover over every element in Figma. The specs are right there — labelled, visible, clear.</p>
+          <div class="card-sm card-1 border">
+            <h4 class="h4 mb-2">1. Document the "Why"</h4>
+            <p class="body-sm text-muted">If you just tell a designer "use this 24px margin," they will argue. If you explain <em>why</em> it aligns with the dev grid, they agree. Context stops debates.</p>
           </div>
-          <div>
-            <p class="body font-semibold mb-2">Cross-product consistency</p>
-            <p class="body-sm text-muted">We mirrored the spec format from Bold's other product (ResumeGenius). Same formatting style = zero learning curve for devs switching projects.</p>
+          <div class="card-sm card-1 border">
+            <h4 class="h4 mb-2">2. Constraints = Speed</h4>
+            <p class="body-sm text-muted">Making WCAG compliance the very first rule actually sped up our color exploration by instantly filtering out bad choices.</p>
           </div>
-          <div>
-            <p class="body font-semibold mb-2">Single source of truth</p>
-            <p class="body-sm text-muted">One Figma file. All tokens, all components, all specs. If it's not in this file, it doesn't exist in the product.</p>
+          <div class="card-sm card-1 border">
+            <h4 class="h4 mb-2">3. Systems Need Bouncers</h4>
+            <p class="body-sm text-muted">The UI kit is only 20% of the job. 80% is governing the system, reviewing work, and having the confidence to say "no" to random tweaks.</p>
           </div>
         </div>
       </div>
 
-      <!-- Old style guide that was updated -->
-      <div class="flex flex-col gap-3">
-        <img src="./assets/screenshots/old/1-Updated-Style-Guide.png" class="w-full rounded-xl border block" alt="Updated style guide with front-facing developer specs" />
-        <div class="text-sm text-muted text-center mt-2">The updated style guide — note the explicit specs placed directly on the canvas for developer reference</div>
-      </div>
-
-      <!-- Old home showing old style guide -->
-      <div class="flex flex-col gap-3">
-        <img src="./assets/screenshots/old/Home-1.png" class="w-full rounded-xl border block" alt="Homepage Figma view with annotated specs" />
-        <div class="text-sm text-muted text-center mt-2">Homepage design with front-facing specs — developers can see exact values without opening Dev Mode</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 13. IMPACT & RESULTS -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="s13" class="section">
-    <div class="grid gap-8">
-      <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Impact</span>
-        <h2 class="h2 mb-4">What changed after this</h2>
-        <p class="body text-muted">The whole thing took about 2-3 days of core execution to put together. But the impact on the team's workflow was immediate and lasting.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="card-1 card-sm card-hover border text-center">
-          <div class="h2 mb-3">✅</div>
-          <h4 class="h4 mb-2">WCAG compliant</h4>
-          <p class="body-sm text-muted">The new colour palette passes both AA and AAA contrast standards. No more accessibility failures on primary buttons and CTAs.</p>
-        </div>
-        <div class="card-1 card-sm card-hover border text-center">
-          <div class="h2 mb-3">⚡</div>
-          <h4 class="h4 mb-2">Faster dev handoffs</h4>
-          <p class="body-sm text-muted">Front-facing specs eliminated the constant "what's the font size here?" questions. Developers could build without waiting for design clarifications.</p>
-        </div>
-        <div class="card-1 card-sm card-hover border text-center">
-          <div class="h2 mb-3">🎨</div>
-          <h4 class="h4 mb-2">Premium, unified look</h4>
-          <p class="body-sm text-muted">Standardised typography, icons, and components gave the product a cohesive visual identity. Every page finally felt like it belonged to the same product.</p>
-        </div>
-      </div>
-
-      <!-- Closing reflection -->
-      <div class="card-1 border mt-4">
-        <h4 class="h4 mb-4">Reflection</h4>
-        <p class="body text-muted mb-4">Design systems aren't just about making things look pretty. They're about making sure a team of designers and developers — spread across time zones, working on different features — can all produce work that looks and feels like it came from one brain.</p>
-        <p class="body text-muted mb-4">The ResumeHelp design system wasn't a massive 6-month project. It was an intense, focused effort to fix what was broken and build a foundation that could actually scale. The key was being hands-on with both the agency and the dev team — not just throwing a Figma file over the fence and hoping for the best.</p>
-        <p class="body text-muted">The 15-page template migration that followed (covered separately) was only possible because this foundation existed. Without it, every new page would have just added more inconsistency to the pile.</p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <!-- 14. WHAT'S NEXT — teaser for the page migration project -->
-  <!-- ═══════════════════════════════════════════════════════════ -->
-  <section id="s14">
-    <div class="grid gap-6">
-      <div class="max-w-2xl text-center mx-auto">
-        <span class="pill pill-primary mb-6 inline-block">Coming Up</span>
-        <h2 class="h2 mb-4">Next — the 15-page migration</h2>
-        <p class="body text-muted">With the design system in place, the real rollout began — applying the new system across ~15 template pages (desktop + mobile). That migration is a separate case study, covering the page-by-page redesign, responsive adaptations, and how the system held up when it met real content.</p>
-      </div>
     </div>
   </section>
 

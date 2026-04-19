@@ -310,7 +310,7 @@ const Hero = ({ setActivePage }) => {
                     />
                   ) : (
                     <img
-                      className="showcase-image"
+                      className="showcase-image image-hover-scale"
                       src={activeProject.image}
                       alt={activeProject.title.replace(/\n/g, " ")}
                     />
