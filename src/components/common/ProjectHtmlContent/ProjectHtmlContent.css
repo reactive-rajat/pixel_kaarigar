@@ -119,20 +119,15 @@
   font-size: 1.25rem;
 }
 
-/* ── Journey Track global layout ── */
+/* ── Centered Interactive Journey Track ── */
 .project-journey {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-left: 36px;
-  margin: 1.5rem auto 0;
-  max-width: 920px;
-}
-
-@media (min-width: 768px) {
-  .project-journey {
-    padding-left: 64px;
-  }
+  align-items: center;
+  padding: 0;
+  margin: 2rem auto 0;
+  max-width: 1000px;
 }
 
 .project-journey::before {
@@ -140,80 +135,77 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 2px;
   background: color-mix(in srgb, var(--color-border) 60%, transparent);
   border-radius: 2px;
+  z-index: 0;
   
   /* Fade the start and end of the journey line */
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 500px, black calc(100% - 500px), transparent);
-  mask-image: linear-gradient(to bottom, transparent, black 500px, black calc(100% - 500px), transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 150px, black calc(100% - 150px), transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 150px, black calc(100% - 150px), transparent);
 }
 
-/* Containers hold relative context for their own dots */
-.project-journey .topic-cover,
+/* Base transparent border state for specific highlight containers */
+.project-journey section,
+.project-journey section > .topic-cover,
 .project-journey .topic-details > article {
   position: relative;
+  z-index: 10;
+  width: 100%;
 }
 
-/* Base style for ALL dots on the track */
-.project-journey .topic-cover::before,
-.project-journey .topic-details > article::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -36px;
-  border-radius: 50%;
-  background: var(--color-bg-main);
-  transform: translateX(calc(-50% + 1px)) translateY(-50%);
-  z-index: 2;
-  opacity: 0.35;
-  box-sizing: border-box;
-  
-  /* Bouncy elastic curve for width, height, and shadows -> non-boring pop! */
-  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-              height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-              border-color 0.4s ease,
-              opacity 0.4s ease,
-              background 0.4s ease;
-              
-  box-shadow: 0 0 0 0 transparent, 0 0 0 transparent;
+/* The actual items receiving the border highlight transition */
+.project-journey .topic-cover,
+.project-journey .topic-details > article {
+  border-color: transparent !important;
+  transition: border-color 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease;
 }
 
-@media (min-width: 768px) {
-  .project-journey .topic-cover::before,
-  .project-journey .topic-details > article::before {
-    left: -64px;
-  }
+/* Explicit node definitions for the `.topic-node` components */
+.project-journey .topic-node {
+  position: relative;
+  z-index: 20;
 }
 
-/* Major dots (Covers) */
-.project-journey .topic-cover::before {
-  width: 18px;
-  height: 18px;
-  border: 4px solid var(--theme-base, var(--color-primary-glow));
+/* Active Highlight Logics */
+.project-journey section.is-active-node > .topic-cover,
+.project-journey article.is-active-node {
+  border-color: var(--theme-base, var(--color-primary)) !important;
+  transform: scale(1.01);
+  box-shadow: 0 10px 40px color-mix(in srgb, var(--theme-base, var(--color-primary)) 10%, transparent);
 }
 
-/* Minor dots (Nested detail articles) */
-.project-journey .topic-details > article::before {
-  width: 12px;
-  height: 12px;
-  border: 4px solid color-mix(in srgb, var(--color-text-muted) 50%, var(--color-border));
-}
-
-/* Focus / Active Scroll State (Unified popping growth) */
+/* Dots injected gracefully onto the centered track when active */
 .project-journey section.is-active-node > .topic-cover::before,
 .project-journey article.is-active-node::before {
-  opacity: 1;
-  width: 24px;
-  height: 24px;
-  border-width: 4px;
-  border-style: solid;
-  border-color: var(--theme-base, var(--color-primary));
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 4px solid var(--theme-base, var(--color-primary));
   background: var(--color-bg-main);
-  
-  /* Double glow: a distinct ring + a soft ambient blur */
-  box-shadow: 0 0 0 5px color-mix(in srgb, var(--theme-base, var(--color-primary)) 15%, transparent),
-              0 0 20px color-mix(in srgb, var(--theme-base, var(--color-primary)) 50%, transparent);
+  z-index: 10;
+  opacity: 0;
+  animation: popInNode 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.2s;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--theme-base) 60%, transparent);
+}
+
+.project-journey section.is-active-node > .topic-cover::before {
+  top: -30px;
+  width: 20px;
+  height: 20px;
+}
+
+.project-journey article.is-active-node::before {
+  top: -24px;
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes popInNode {
+  0% { transform: translate(-50%, 10px) scale(0.5); opacity: 0; }
+  100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
 }
