@@ -21,7 +21,9 @@ const BLOCKED_TAGS = [
 ];
 
 const removeBlockedNodes = (root) => {
-  root.querySelectorAll(BLOCKED_TAGS.join(",")).forEach((node) => node.remove());
+  root
+    .querySelectorAll(BLOCKED_TAGS.join(","))
+    .forEach((node) => node.remove());
 };
 
 const sanitizeUri = (value, assetBaseUrl) => {
@@ -70,7 +72,12 @@ const extractStylesheetUrls = (html, assetBaseUrl) => {
   return urls;
 };
 
-const sanitizeProjectHtml = (html, assetBaseUrl, omitPrimaryHeading = false, injectedCss = "") => {
+const sanitizeProjectHtml = (
+  html,
+  assetBaseUrl,
+  omitPrimaryHeading = false,
+  injectedCss = "",
+) => {
   const parser = new DOMParser();
   const parsedDocument = parser.parseFromString(html, "text/html");
   const { body } = parsedDocument;
@@ -149,6 +156,16 @@ const sanitizeProjectHtml = (html, assetBaseUrl, omitPrimaryHeading = false, inj
     }
   });
 
+  const childrenNodes = Array.from(body.children);
+  if (childrenNodes.length > 1) {
+    const journeyWrapper = parsedDocument.createElement("div");
+    journeyWrapper.className = "project-journey";
+    for (let i = 1; i < childrenNodes.length; i++) {
+      journeyWrapper.appendChild(childrenNodes[i]);
+    }
+    body.appendChild(journeyWrapper);
+  }
+
   const styleBlock = injectedCss
     ? `<style data-project-css="true">${injectedCss}</style>`
     : "";
@@ -156,10 +173,19 @@ const sanitizeProjectHtml = (html, assetBaseUrl, omitPrimaryHeading = false, inj
   const containerId = body.id ? ` id="${body.id}"` : "";
   const containerClass = body.className ? ` class="${body.className}"` : "";
 
-  return styleBlock + `<div${containerId}${containerClass}>` + body.innerHTML + `</div>`;
+  return (
+    styleBlock +
+    `<div${containerId}${containerClass}>` +
+    body.innerHTML +
+    `</div>`
+  );
 };
 
-const ProjectHtmlContent = ({ contentPath, title, omitPrimaryHeading = false }) => {
+const ProjectHtmlContent = ({
+  contentPath,
+  title,
+  omitPrimaryHeading = false,
+}) => {
   const [html, setHtml] = useState("");
   const [status, setStatus] = useState("loading");
 

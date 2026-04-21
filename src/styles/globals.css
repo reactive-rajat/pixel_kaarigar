@@ -137,6 +137,16 @@
     --theme-card-bg-hover: var(--color-danger-bg);
     --theme-card-border-hover: var(--color-danger);
   }
+  .theme-neutral {
+    --theme-base: var(--color-text-muted);
+    --theme-soft: var(--color-card-alt);
+    --theme-border: var(--color-border);
+    --theme-text-fill: var(--color-text);
+    --theme-card-bg-default: var(--card-bg-1);
+    --theme-card-border-default: var(--card-border-1);
+    --theme-card-bg-hover: var(--color-bg-soft);
+    --theme-card-border-hover: var(--color-border);
+  }
 
   /* ── 1. Buttons ── */
   .btn { 
@@ -270,6 +280,11 @@
     background-color: var(--theme-soft, var(--color-success-bg));
     border-color: var(--theme-border, var(--color-success));
   }
+  .pill-inverted { 
+    color: var(--theme-base, var(--color-text-label));
+    background-color: var(--bg-card, var(--color-card));
+    border-color: var(--theme-border, var(--color-border));
+  }
   /* shape */
   .pill-rounded {
     display: inline-flex;
@@ -378,6 +393,7 @@
   .text-text     { color: var(--color-text); }
 
   /* ── Background utilities ── */
+  .bg-theme-soft { background-color: var(--theme-soft, var(--color-bg-soft)) !important; }
   .bg-card     { background-color: var(--card-bg-1); } /* KEEP: CSS var for dark mode */
   .bg-card-alt { background-color: var(--card-bg-2); } /* KEEP: CSS var for dark mode */
   .bg-bg-soft  { background-color: var(--color-bg-soft); } /* KEEP: CSS var for dark mode */
