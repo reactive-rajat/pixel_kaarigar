@@ -99,42 +99,42 @@
   /* ── 0. Theme Intents ── */
   .theme-primary {
     --theme-base: var(--color-primary);
-    --theme-soft: var(--color-primary-20);
+    --theme-soft: color-mix(in srgb, var(--color-primary) 8%, var(--color-bg-main));
     --theme-border: var(--color-primary-glow);
     --theme-text-fill: #ffffff; 
-    --theme-card-bg-default: color-mix(in srgb, var(--color-primary) 5%, transparent);
-    --theme-card-border-default: color-mix(in srgb, var(--color-primary) 15%, transparent);
-    --theme-card-bg-hover: var(--color-primary-20);
+    --theme-card-bg-default: color-mix(in srgb, var(--color-primary) 4%, var(--card-bg-1));
+    --theme-card-border-default: color-mix(in srgb, var(--color-primary) 15%, var(--card-border-1));
+    --theme-card-bg-hover: color-mix(in srgb, var(--color-primary) 8%, var(--card-bg-2));
     --theme-card-border-hover: var(--color-primary-glow);
   }
   .theme-secondary {
     --theme-base: var(--color-secondary);
-    --theme-soft: rgba(var(--rgb-secondary), 0.15);
+    --theme-soft: color-mix(in srgb, var(--color-secondary) 8%, var(--color-bg-main));
     --theme-border: var(--color-secondary);
     --theme-text-fill: #ffffff;
-    --theme-card-bg-default: color-mix(in srgb, var(--color-secondary) 5%, transparent);
-    --theme-card-border-default: color-mix(in srgb, var(--color-secondary) 15%, transparent);
-    --theme-card-bg-hover: rgba(var(--rgb-secondary), 0.15);
+    --theme-card-bg-default: color-mix(in srgb, var(--color-secondary) 4%, var(--card-bg-1));
+    --theme-card-border-default: color-mix(in srgb, var(--color-secondary) 15%, var(--card-border-1));
+    --theme-card-bg-hover: color-mix(in srgb, var(--color-secondary) 8%, var(--card-bg-2));
     --theme-card-border-hover: var(--color-secondary);
   }
   .theme-success {
     --theme-base: var(--color-success);
-    --theme-soft: var(--color-success-bg);
+    --theme-soft: color-mix(in srgb, var(--color-success) 8%, var(--color-bg-main));
     --theme-border: var(--color-success);
     --theme-text-fill: #ffffff;
-    --theme-card-bg-default: color-mix(in srgb, var(--color-success) 5%, transparent);
-    --theme-card-border-default: color-mix(in srgb, var(--color-success) 15%, transparent);
-    --theme-card-bg-hover: var(--color-success-bg);
+    --theme-card-bg-default: color-mix(in srgb, var(--color-success) 4%, var(--card-bg-1));
+    --theme-card-border-default: color-mix(in srgb, var(--color-success) 15%, var(--card-border-1));
+    --theme-card-bg-hover: color-mix(in srgb, var(--color-success) 8%, var(--card-bg-2));
     --theme-card-border-hover: var(--color-success);
   }
   .theme-danger {
     --theme-base: var(--color-danger);
-    --theme-soft: var(--color-danger-bg);
+    --theme-soft: color-mix(in srgb, var(--color-danger) 8%, var(--color-bg-main));
     --theme-border: var(--color-danger);
     --theme-text-fill: #ffffff;
-    --theme-card-bg-default: color-mix(in srgb, var(--color-danger) 5%, transparent);
-    --theme-card-border-default: color-mix(in srgb, var(--color-danger) 15%, transparent);
-    --theme-card-bg-hover: var(--color-danger-bg);
+    --theme-card-bg-default: color-mix(in srgb, var(--color-danger) 4%, var(--card-bg-1));
+    --theme-card-border-default: color-mix(in srgb, var(--color-danger) 15%, var(--card-border-1));
+    --theme-card-bg-hover: color-mix(in srgb, var(--color-danger) 8%, var(--card-bg-2));
     --theme-card-border-hover: var(--color-danger);
   }
   .theme-neutral {
@@ -248,8 +248,8 @@
     pointer-events: none;
   }
   .card-hover:hover {
-    background-color: var(--theme-card-bg-hover, color-mix(in srgb, var(--color-primary) 5%, transparent));
-    border-color: var(--theme-card-border-hover, color-mix(in srgb, var(--color-primary) 30%, transparent));
+    background-color: var(--theme-card-bg-hover, color-mix(in srgb, var(--color-primary) 5%, var(--card-bg-2)));
+    border-color: var(--theme-card-border-hover, color-mix(in srgb, var(--color-primary) 30%, var(--card-border-1)));
     box-shadow: 0 8px 30px color-mix(in srgb, var(--theme-base, var(--color-primary)) 10%, transparent);
   }
   .card-hover:hover::before {

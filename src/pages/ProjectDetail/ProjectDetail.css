@@ -20,12 +20,7 @@
 }
 
 .project-main {
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-xl);
-  overflow: hidden;
-  padding: 1rem;
   margin-top: var(--space-xl);
-  background-color: var(--card-bg-2);
 }
 
 .project-main .group .pill{

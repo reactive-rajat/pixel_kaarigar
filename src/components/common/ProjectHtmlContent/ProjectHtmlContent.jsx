@@ -260,6 +260,40 @@ const ProjectHtmlContent = ({
     };
   }, [contentPath, omitPrimaryHeading]);
 
+  useEffect(() => {
+    if (status !== "ready" || !html) return;
+
+    const timer = setTimeout(() => {
+      const journeyNodes = document.querySelectorAll(
+        ".project-journey > section, .project-journey article"
+      );
+
+      if (!journeyNodes.length) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-active-node");
+            } else {
+              entry.target.classList.remove("is-active-node");
+            }
+          });
+        },
+        { rootMargin: "-30% 0px -40% 0px" }
+      );
+
+      journeyNodes.forEach((node) => observer.observe(node));
+
+      return () => {
+        journeyNodes.forEach((node) => observer.unobserve(node));
+        observer.disconnect();
+      };
+    }, 20);
+
+    return () => clearTimeout(timer);
+  }, [html, status]);
+
   if (status === "loading") {
     return (
       <div className="project-html-state">

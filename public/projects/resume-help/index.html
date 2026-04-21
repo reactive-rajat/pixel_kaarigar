@@ -26,19 +26,19 @@
         <div class="flex flex-wrap justify-center gap-x-16 gap-y-6 mt-8 border-(--color-border) border-t pt-8">
           <div>
             <div class="body-sm text-muted uppercase tracking-wider font-bold mb-1">Company</div>
-            <div class="body font-semibold">Bold (ResumeHelp)</div>
+            <div class="body font-semibold">Bold</div>
           </div>
           <div>
             <div class="body-sm text-muted uppercase tracking-wider font-bold mb-1">My Role</div>
-            <div class="body font-semibold">Sr. UX Designer · System Owner</div>
+            <div class="body font-semibold">Sr. Web Designer</div>
           </div>
           <div>
             <div class="body-sm text-muted uppercase tracking-wider font-bold mb-1">Scale</div>
-            <div class="body font-semibold">15 to 25 Core Pages</div>
+            <div class="body font-semibold">15-25 Core Pages</div>
           </div>
           <div>
             <div class="body-sm text-muted uppercase tracking-wider font-bold mb-1">The Team</div>
-            <div class="body font-semibold">Internal Team, External Agency, Devs</div>
+            <div class="body font-semibold">Internal Team, Agency, Devs</div>
           </div>
         </div>
       </div>
@@ -50,51 +50,51 @@
     <div class="grid gap-10">
       
       <!-- Intro and Points -->
-      <div class="max-w-2xl text-center mx-auto">
+      <div class="text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">The Problem</span>
         <h2 class="h2 mb-4">Breaking at Scale.</h2>
-        <p class="body text-muted">
+        <p class="body max-w-2xl mx-auto text-muted">
           ResumeHelp is a massive resume builder used by millions in the US and UK. Because multiple designers and
           agencies added new pages over time without central rules, the UI became a patched-together mess of one-off
           decisions.
         </p>
 
-        <ul class="body text-muted flex flex-col gap-3 max-w-md mx-auto text-left mt-8">
-          <li class="flex gap-3 items-start">
-             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
-             <div><strong>Accessibility:</strong> Failing contrast with brand colors.</div>
-          </li>
-          <li class="flex gap-3 items-start">
-             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
-             <div><strong>Structure:</strong> No layout math or spacing tokens.</div>
-          </li>
-          <li class="flex gap-3 items-start">
-             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
-             <div><strong>Readability:</strong> Poor legibility due to font choices.</div>
-          </li>
-          <li class="flex gap-3 items-start">
-             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
-             <div><strong>Visuals:</strong> Heavy dark overlays on images.</div>
-          </li>
-          <li class="flex gap-3 items-start">
-             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
-             <div><strong>Icons:</strong> Mixed and chaotic iconography styles.</div>
-          </li>
-          <li class="flex gap-3 items-start">
-             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
-             <div><strong>Sections:</strong> Random usage of dark backgrounds.</div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="w-full flex flex-col items-center justify-center text-center min-h-[250px] border border-(--color-border) rounded-xl overflow-hidden bg-[rgba(0,0,0,0.02)]">
+        <div class="w-full mt-10 flex flex-col items-center justify-center text-center min-h-[250px] border border-(--color-border) rounded-xl overflow-hidden bg-(--color-card)">
         <img class="image-hover-scale" src="./assets/the_problem.png" alt="" srcset="">
       </div>
+      </div>
+
+      <ul class="body text-muted grid grid-cols-2 !gap-x-10 !gap-y-2 mx-auto text-left">
+          <li class="flex gap-3 items-start">
+             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
+             <div class="font-semibold text-(--color-text)">Failing contrast with brand colors.</div>
+          </li>
+          <li class="flex gap-3 items-start">
+             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
+             <div class="font-semibold text-(--color-text)">No layout math or spacing tokens.</div>
+          </li>
+          <li class="flex gap-3 items-start">
+             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
+             <div class="font-semibold text-(--color-text)">Poor legibility due to font choices.</div>
+          </li>
+          <li class="flex gap-3 items-start">
+             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
+             <div class="font-semibold text-(--color-text)">Heavy dark overlays on images.</div>
+          </li>
+          <li class="flex gap-3 items-start">
+             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
+             <div class="font-semibold text-(--color-text)">Mixed and chaotic iconography styles.</div>
+          </li>
+          <li class="flex gap-3 items-start">
+             <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
+             <div class="font-semibold text-(--color-text)">Random usage of dark backgrounds.</div>
+          </li>
+        </ul>
     </div>
   </div>
   <div class="topic-details grid grid-cols-1 gap-8 !mb-16">
   <!-- Problem 01 -->
-  <article id="p1" class="section !p-6 md:!p-8 rounded-[24px] border border-(--color-border) bg-card">
+  <article id="p1" class="section !p-6 md:!p-8 rounded-[24px] border border-(--color-border) bg-theme-soft">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Problem 01</span>
@@ -138,7 +138,7 @@
              <p class="body-sm text-muted">With no spacing tokens, developers had to manually inspect Figma layers to guess the padding.</p>
           </div>
         </div>
-        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full" style="background: rgba(0,0,0,0.02);">
+        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full">
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: NO TOKENS]</div>
           <div class="text-xs text-muted mt-2">Screenshot highlighting inconsistent alignment and spacing.</div>
@@ -192,7 +192,7 @@
              <p class="body-sm text-muted">These stylistic choices made the site feel unexpectedly gloomy for a career-focused tool.</p>
           </div>
         </div>
-        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full" style="background: rgba(0,0,0,0.02);">
+        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full">
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: HEAVY OVERLAYS]</div>
           <div class="text-xs text-muted mt-2">Example of the old hero section with aggressive dark overlays.</div>
@@ -210,7 +210,7 @@
         <p class="body text-muted">The interface lacked cohesion due to a fragmented collection of icons.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full" style="background: rgba(0,0,0,0.02);">
+        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full">
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: MIXED ICONS]</div>
           <div class="text-xs text-muted mt-2">Collage of outlined, solid, and dual-tone icons used together.</div>
@@ -248,7 +248,7 @@
              <p class="body-sm text-muted">There was no underlying rationale for when to use dark versus light UI components.</p>
           </div>
         </div>
-        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full" style="background: rgba(0,0,0,0.02);">
+        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full">
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: RANDOM DARK SECTIONS]</div>
           <div class="text-xs text-muted mt-2">Show an interface scrolling with unjustified background color swaps.</div>
@@ -377,7 +377,7 @@
 
         <div
           class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full"
-          style="background: rgba(0,0,0,0.02);">
+         >
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: NEW TYPOGRAPHY SCALE]</div>
           <div class="text-xs text-muted mt-2">Show the clean list of H1-H6, Body, Label, and Caption styles with their
@@ -399,7 +399,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div
           class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full"
-          style="background: rgba(0,0,0,0.02);">
+         >
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: GRID SYSTEM OVERLAY]</div>
           <div class="text-xs text-muted mt-2">Show a webpage screenshot with pink/blue columns highlighting the
@@ -454,7 +454,7 @@
 
         <div
           class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full"
-          style="background: rgba(0,0,0,0.02);">
+         >
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: FIGMA COMPONENT LIBRARY]</div>
           <div class="text-xs text-muted mt-2">Show the matrix of the 5 Button types, Trust Blades, and Form Inputs.
@@ -479,7 +479,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div
           class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[300px] h-full"
-          style="background: rgba(0,0,0,0.02);">
+         >
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: SPECS ON CANVAS]</div>
           <div class="text-xs text-muted mt-2">Show the Figma canvas where red text and lines point directly to the
