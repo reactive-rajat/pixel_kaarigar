@@ -42,6 +42,13 @@ const ProjectDetail = () => {
     window.scrollTo(0, 0);
   }, [slug]);
 
+  useEffect(() => {
+    document.body.classList.add("project-view-active");
+    return () => {
+      document.body.classList.remove("project-view-active");
+    };
+  }, []);
+
   if (!project) {
     return (
       <main className="project-detail-page container-lg">

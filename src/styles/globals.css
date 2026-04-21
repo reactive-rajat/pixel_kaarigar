@@ -103,7 +103,7 @@
     --theme-border: var(--color-primary-glow);
     --theme-text-fill: #ffffff; 
     --theme-card-bg-default: color-mix(in srgb, var(--color-primary) 4%, var(--card-bg-1));
-    --theme-card-border-default: color-mix(in srgb, var(--color-primary) 15%, var(--card-border-1));
+    --theme-card-border-default: color-mix(in srgb, var(--color-primary) 30%, var(--card-border-1));
     --theme-card-bg-hover: color-mix(in srgb, var(--color-primary) 8%, var(--card-bg-2));
     --theme-card-border-hover: var(--color-primary-glow);
   }
@@ -113,17 +113,17 @@
     --theme-border: var(--color-secondary);
     --theme-text-fill: #ffffff;
     --theme-card-bg-default: color-mix(in srgb, var(--color-secondary) 4%, var(--card-bg-1));
-    --theme-card-border-default: color-mix(in srgb, var(--color-secondary) 15%, var(--card-border-1));
+    --theme-card-border-default: color-mix(in srgb, var(--color-secondary) 30%, var(--card-border-1));
     --theme-card-bg-hover: color-mix(in srgb, var(--color-secondary) 8%, var(--card-bg-2));
     --theme-card-border-hover: var(--color-secondary);
   }
   .theme-success {
     --theme-base: var(--color-success);
-    --theme-soft: color-mix(in srgb, var(--color-success) 8%, var(--color-bg-main));
+    --theme-soft: color-mix(in srgb, var(--color-success) 4%, var(--color-bg-main));
     --theme-border: var(--color-success);
     --theme-text-fill: #ffffff;
     --theme-card-bg-default: color-mix(in srgb, var(--color-success) 4%, var(--card-bg-1));
-    --theme-card-border-default: color-mix(in srgb, var(--color-success) 15%, var(--card-border-1));
+    --theme-card-border-default: color-mix(in srgb, var(--color-success) 30%, var(--card-border-1));
     --theme-card-bg-hover: color-mix(in srgb, var(--color-success) 8%, var(--card-bg-2));
     --theme-card-border-hover: var(--color-success);
   }
@@ -133,7 +133,7 @@
     --theme-border: var(--color-danger);
     --theme-text-fill: #ffffff;
     --theme-card-bg-default: color-mix(in srgb, var(--color-danger) 4%, var(--card-bg-1));
-    --theme-card-border-default: color-mix(in srgb, var(--color-danger) 15%, var(--card-border-1));
+    --theme-card-border-default: color-mix(in srgb, var(--color-danger) 30%, var(--card-border-1));
     --theme-card-bg-hover: color-mix(in srgb, var(--color-danger) 8%, var(--card-bg-2));
     --theme-card-border-hover: var(--color-danger);
   }
@@ -393,7 +393,14 @@
   .text-text     { color: var(--color-text); }
 
   /* ── Background utilities ── */
-  .bg-theme-soft { background-color: var(--theme-soft, var(--color-bg-soft)) !important; }
+  .bg-theme-soft {
+    background-color: var(--color-bg-main) !important;
+    background-image: linear-gradient(var(--theme-soft, var(--color-bg-soft)), var(--theme-soft, var(--color-bg-soft))) !important;
+  }
+  
+  /* Dynamic Border Application Utilities */
+  .border-theme-soft { border-color: var(--theme-card-border-default, var(--color-border)) !important; }
+  .border-theme { border-color: var(--theme-border, var(--color-border)) !important; }
   .bg-card     { background-color: var(--card-bg-1); } /* KEEP: CSS var for dark mode */
   .bg-card-alt { background-color: var(--card-bg-2); } /* KEEP: CSS var for dark mode */
   .bg-bg-soft  { background-color: var(--color-bg-soft); } /* KEEP: CSS var for dark mode */

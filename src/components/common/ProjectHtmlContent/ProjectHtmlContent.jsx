@@ -263,14 +263,19 @@ const ProjectHtmlContent = ({
   useEffect(() => {
     if (status !== "ready" || !html) return;
 
+    let observer = null;
+    let journeyNodes = document.querySelectorAll(
+      ".project-journey > section, .project-journey article"
+    );
+
     const timer = setTimeout(() => {
-      const journeyNodes = document.querySelectorAll(
+      journeyNodes = document.querySelectorAll(
         ".project-journey > section, .project-journey article"
       );
 
       if (!journeyNodes.length) return;
 
-      const observer = new IntersectionObserver(
+      observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -284,15 +289,16 @@ const ProjectHtmlContent = ({
       );
 
       journeyNodes.forEach((node) => observer.observe(node));
-
-      return () => {
-        journeyNodes.forEach((node) => observer.unobserve(node));
-        observer.disconnect();
-      };
     }, 20);
 
-    return () => clearTimeout(timer);
-  }, [html, status]);
+    return () => {
+      clearTimeout(timer);
+      if (observer) {
+        journeyNodes.forEach((node) => observer.unobserve(node));
+        observer.disconnect();
+      }
+    };
+  });
 
   if (status === "loading") {
     return (
