@@ -130,82 +130,64 @@
   max-width: 1000px;
 }
 
-.project-journey::before {
-  content: "";
+/* ── Dynamic Scrolling Journey Line ── */
+.project-journey .journey-progress-line {
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 2px;
-  background: color-mix(in srgb, var(--color-border) 60%, transparent);
+  background-color: var(--active-journey-color, transparent);
   border-radius: 2px;
-  z-index: 0;
+  z-index: 5; /* Behind content but above background */
+  transition: background-color 0.4s ease;
   
-  /* Fade the start and end of the journey line */
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 150px, black calc(100% - 150px), transparent);
-  mask-image: linear-gradient(to bottom, transparent, black 150px, black calc(100% - 150px), transparent);
+  /* Fallback glow around the dynamic line */
+  box-shadow: 0 0 12px var(--active-journey-color, transparent);
 }
 
-/* Base transparent border state for specific highlight containers */
-.project-journey section,
+/* Base states: No borders, Fully Opaque backgrounds to block the line */
 .project-journey section > .topic-cover,
 .project-journey .topic-details > article {
   position: relative;
   z-index: 10;
   width: 100%;
-}
-
-/* The actual items receiving the border highlight transition */
-.project-journey .topic-cover,
-.project-journey .topic-details > article {
   border-color: transparent !important;
   transition: border-color 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease;
 }
 
-/* Explicit node definitions for the `.topic-node` components */
 .project-journey .topic-node {
   position: relative;
   z-index: 20;
+  opacity: 0.35;
+  transition: opacity 0.6s ease;
+}
+
+/* Faded Out Elements: Target inner content exclusively so background stays solid */
+.project-journey section > .topic-cover > *:not(.absolute),
+.project-journey .topic-details > article > *:not(.absolute) {
+  opacity: 0.35;
+  transition: opacity 0.6s ease;
+}
+
+/* Force hard white/black (var(--card-bg-1)) onto inner cards/images instead of theme-tinted colors */
+.project-journey .card-1,
+.project-journey .img-box {
+  background-color: var(--card-bg-1) !important;
 }
 
 /* Active Highlight Logics */
+.project-journey section.is-active-node > .topic-node,
+.project-journey section.is-active-node > .topic-cover > *:not(.absolute),
+.project-journey article.is-active-node > *:not(.absolute) {
+  opacity: 1;
+}
+
 .project-journey section.is-active-node > .topic-cover,
-.project-journey article.is-active-node {
+.project-journey article.is-active-node,
+.project-journey section.is-active-node > .topic-cover .img-box,
+.project-journey article.is-active-node .img-box {
   border-color: var(--theme-base, var(--color-primary)) !important;
   transform: scale(1.01);
   box-shadow: 0 10px 40px color-mix(in srgb, var(--theme-base, var(--color-primary)) 10%, transparent);
-}
-
-/* Dots injected gracefully onto the centered track when active */
-.project-journey section.is-active-node > .topic-cover::before,
-.project-journey article.is-active-node::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  border: 4px solid var(--theme-base, var(--color-primary));
-  background: var(--color-bg-main);
-  z-index: 10;
-  opacity: 0;
-  animation: popInNode 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.2s;
-  box-shadow: 0 0 16px color-mix(in srgb, var(--theme-base) 60%, transparent);
-}
-
-.project-journey section.is-active-node > .topic-cover::before {
-  top: -30px;
-  width: 20px;
-  height: 20px;
-}
-
-.project-journey article.is-active-node::before {
-  top: -24px;
-  width: 16px;
-  height: 16px;
-}
-
-@keyframes popInNode {
-  0% { transform: translate(-50%, 10px) scale(0.5); opacity: 0; }
-  100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
 }

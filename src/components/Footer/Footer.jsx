@@ -84,7 +84,7 @@ const Footer = () => {
   return (
     <>
       {/* CTA Section before footer */}
-      {location.pathname !== "/contact" && (
+      {location.pathname !== "/contact" && !location.pathname.startsWith("/project") && (
         <section className="pre-footer-cta container">
           <div className="container-lg">
             <div className="card card-1 card-lg flex lg:flex-row flex-col lg:items-center items-stretch justify-between gap-12 overflow-hidden relative shadow-[0_20px_60px_var(--color-primary-glow)]">
@@ -119,7 +119,7 @@ const Footer = () => {
       )}
 
       {/* Main Footer */}
-      <footer className={`site-footer card-2 ${location.pathname !== "/contact" ? "mt-20" : "mt-0"}`} aria-label="Site footer">
+      <footer className={`site-footer card-2 ${location.pathname !== "/contact" && !location.pathname.startsWith("/project") ? "mt-20" : "mt-0"}`} aria-label="Site footer">
         <div className="container-lg">
           <div className="footer-main">
             {/* Column 1: Brand & Social */}

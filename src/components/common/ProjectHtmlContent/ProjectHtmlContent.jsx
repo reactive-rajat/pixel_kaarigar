@@ -160,6 +160,11 @@ const sanitizeProjectHtml = (
   if (childrenNodes.length > 1) {
     const journeyWrapper = parsedDocument.createElement("div");
     journeyWrapper.className = "project-journey";
+    
+    const progressLine = parsedDocument.createElement("div");
+    progressLine.className = "journey-progress-line";
+    journeyWrapper.appendChild(progressLine);
+
     for (let i = 1; i < childrenNodes.length; i++) {
       journeyWrapper.appendChild(childrenNodes[i]);
     }
@@ -267,6 +272,44 @@ const ProjectHtmlContent = ({
     let journeyNodes = document.querySelectorAll(
       ".project-journey > section, .project-journey article"
     );
+    
+    const progressLine = document.querySelector(".journey-progress-line");
+    const journeyContainer = document.querySelector(".project-journey");
+    const firstNode = journeyContainer ? journeyContainer.querySelector(".topic-node") : null;
+    
+    const handleScroll = () => {
+      if (!progressLine || !journeyContainer || !firstNode) return;
+      
+      // Calculate start and terminal boundaries using rects dynamically
+      const journeyRect = journeyContainer.getBoundingClientRect();
+      const firstRect = firstNode.getBoundingClientRect();
+      
+      const allBlocks = journeyContainer.querySelectorAll("article, .topic-cover");
+      if (!allBlocks.length) return;
+      const lastNode = allBlocks[allBlocks.length - 1];
+      const lastRect = lastNode.getBoundingClientRect();
+
+      // Center points relative to the container
+      const startOffset = (firstRect.top - journeyRect.top) + (firstRect.height / 2);
+      const endOffset = (lastRect.top - journeyRect.top) + (lastRect.height / 2);
+      const maxLineHeight = Math.max(0, endOffset - startOffset);
+
+      // Force the line to start exactly at the first node
+      progressLine.style.top = `${startOffset}px`;
+
+      const viewportCenter = window.innerHeight / 2;
+      const lineScreenTop = firstRect.top + (firstRect.height / 2);
+      
+      let progress = viewportCenter - lineScreenTop;
+      progress = Math.max(0, Math.min(progress, maxLineHeight));
+
+      progressLine.style.height = `${progress}px`;
+    };
+
+    if (progressLine) {
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll();
+    }
 
     const timer = setTimeout(() => {
       journeyNodes = document.querySelectorAll(
@@ -280,18 +323,29 @@ const ProjectHtmlContent = ({
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("is-active-node");
+              
+              if (progressLine) {
+                const parentSection = entry.target.closest("section");
+                if (parentSection) {
+                  const themeVal = window.getComputedStyle(parentSection).getPropertyValue("--theme-base");
+                  if (themeVal) {
+                    progressLine.style.setProperty("--active-journey-color", themeVal.trim());
+                  }
+                }
+              }
             } else {
               entry.target.classList.remove("is-active-node");
             }
           });
         },
-        { rootMargin: "-30% 0px -40% 0px" }
+        { rootMargin: "-48% 0px -48% 0px" }
       );
 
       journeyNodes.forEach((node) => observer.observe(node));
     }, 20);
 
     return () => {
+      window.removeEventListener("scroll", handleScroll);
       clearTimeout(timer);
       if (observer) {
         journeyNodes.forEach((node) => observer.unobserve(node));
