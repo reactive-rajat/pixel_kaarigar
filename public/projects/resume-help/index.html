@@ -46,7 +46,9 @@
   </section>
 
   <section id="topic-problem" class="theme-danger !mt-8">
-    <div class="topic-cover section !p-8 md:!p-12 !mb-8 rounded-[32px] border border-theme-soft bg-theme-soft">
+    <div class="topic-cover relative section !p-10 md:!p-16 !mb-8 rounded-[40px] !border border-[rgba(var(--rgb-text),0.05)] bg-card shadow-[0_0_40px_rgba(var(--rgb-text),0.03)] overflow-hidden isolate">
+      <div class="absolute top-0 right-0 w-[50vh] h-[50vh] bg-[var(--theme-base)] opacity-[0.05] md:opacity-[0.08] blur-[100px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+      <div class="absolute bottom-0 left-0 w-[40vh] h-[40vh] bg-[var(--theme-base)] opacity-[0.04] md:opacity-[0.07] blur-[80px] rounded-full pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
     <div class="grid gap-10">
       
       <!-- Intro and Points -->
@@ -98,7 +100,7 @@
   </div>
   <div class="topic-details grid grid-cols-1 gap-8 !mb-16">
   <!-- Problem 01 -->
-  <article id="p1" class="section !p-6 md:!p-8 rounded-[24px] !border border-theme-soft bg-theme-soft">
+  <article id="p1" class="section !p-6 md:!p-8 rounded-[24px] border !border-2 !border-dashed border-theme bg-theme-soft">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Problem 01</span>
@@ -106,7 +108,7 @@
         <p class="body text-muted">The brand green made critical UI elements inaccessible to low-vision users.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <div class="w-full flex flex-col items-center justify-center text-center min-h-[250px] border border-(--color-border) rounded-xl overflow-hidden bg-[rgba(0,0,0,0.02)]">
+        <div class="img-box w-full flex flex-col items-center justify-center text-center aspect-square border border-theme card-1 rounded-xl overflow-hidden">
           <img class="image-hover-scale" src="./assets/failing_contrast.png" alt="">
         </div>
         <div class="flex flex-col gap-4">
@@ -124,7 +126,7 @@
   </article>
 
   <!-- Problem 02 -->
-  <article id="p2" class="section !p-6 md:!p-8 rounded-[24px] !border border-theme-soft bg-theme-soft">
+  <article id="p2" class="section !p-6 md:!p-8 rounded-[24px] border !border-2 !border-dashed border-theme bg-theme-soft">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Problem 02</span>
@@ -142,7 +144,7 @@
              <p class="body-sm text-muted">With no spacing tokens, developers had to manually inspect Figma layers to guess the padding.</p>
           </div>
         </div>
-        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full">
+        <div class="img-box w-full rounded-xl border border-theme card-1 flex flex-col items-center justify-center p-8 text-center aspect-square">
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: NO TOKENS]</div>
           <div class="text-xs text-muted mt-2">Screenshot highlighting inconsistent alignment and spacing.</div>
@@ -152,7 +154,7 @@
   </article>
 
   <!-- Problem 03 -->
-  <article id="p3" class="section !p-6 md:!p-8 rounded-[24px] !border border-theme-soft bg-theme-soft">
+  <article id="p3" class="section !p-6 md:!p-8 rounded-[24px] border !border-2 !border-dashed border-theme bg-theme-soft">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Problem 03</span>
@@ -160,7 +162,7 @@
         <p class="body text-muted">Dense forms and data required highly legible typography, which the old system lacked.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <div class="w-full flex flex-col items-center justify-center text-center min-h-[250px] border border-(--color-border) rounded-xl overflow-hidden bg-[rgba(0,0,0,0.02)]">
+        <div class="img-box w-full flex flex-col items-center justify-center text-center aspect-square border border-theme card-1 rounded-xl overflow-hidden">
           <img class="image-hover-scale" src="./assets/bad_legibility.png" alt="">
         </div>
         <div class="flex flex-col gap-4">
@@ -178,7 +180,7 @@
   </article>
 
   <!-- Problem 04 -->
-  <article id="p4" class="section !p-6 md:!p-8 rounded-[24px] !border border-theme-soft bg-theme-soft">
+  <article id="p4" class="section !p-6 md:!p-8 rounded-[24px] border !border-2 !border-dashed border-theme bg-theme-soft">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Problem 04</span>
@@ -196,7 +198,7 @@
              <p class="body-sm text-muted">These stylistic choices made the site feel unexpectedly gloomy for a career-focused tool.</p>
           </div>
         </div>
-        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full">
+        <div class="img-box w-full rounded-xl border border-theme card-1 flex flex-col items-center justify-center p-8 text-center aspect-square">
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: HEAVY OVERLAYS]</div>
           <div class="text-xs text-muted mt-2">Example of the old hero section with aggressive dark overlays.</div>
@@ -206,7 +208,7 @@
   </article>
 
   <!-- Problem 05 -->
-  <article id="p5" class="section !p-6 md:!p-8 rounded-[24px] !border border-theme-soft bg-theme-soft">
+  <article id="p5" class="section !p-6 md:!p-8 rounded-[24px] border !border-2 !border-dashed border-theme bg-theme-soft">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Problem 05</span>
@@ -214,7 +216,7 @@
         <p class="body text-muted">The interface lacked cohesion due to a fragmented collection of icons.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full">
+        <div class="img-box w-full rounded-xl border border-theme card-1 flex flex-col items-center justify-center p-8 text-center aspect-square">
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: MIXED ICONS]</div>
           <div class="text-xs text-muted mt-2">Collage of outlined, solid, and dual-tone icons used together.</div>
@@ -234,7 +236,7 @@
   </article>
 
   <!-- Problem 06 -->
-  <article id="p6" class="section !p-6 md:!p-8 rounded-[24px] !border border-theme-soft bg-theme-soft">
+  <article id="p6" class="section !p-6 md:!p-8 rounded-[24px] border !border-2 !border-dashed border-theme bg-theme-soft">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Problem 06</span>
@@ -252,7 +254,7 @@
              <p class="body-sm text-muted">There was no underlying rationale for when to use dark versus light UI components.</p>
           </div>
         </div>
-        <div class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full">
+        <div class="img-box w-full rounded-xl border border-theme card-1 flex flex-col items-center justify-center p-8 text-center aspect-square">
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: RANDOM DARK SECTIONS]</div>
           <div class="text-xs text-muted mt-2">Show an interface scrolling with unjustified background color swaps.</div>
@@ -264,7 +266,9 @@
   </section>
 
   <section id="topic-ownership" class="theme-primary !mt-8">
-    <div class="topic-cover section !p-8 md:!p-12 !mb-12 rounded-[32px] border border-theme-soft bg-theme-soft">
+    <div class="topic-cover relative section !p-10 md:!p-16 !mb-12 rounded-[40px] !border border-[rgba(var(--rgb-text),0.05)] bg-card shadow-[0_0_40px_rgba(var(--rgb-text),0.03)] overflow-hidden isolate">
+      <div class="absolute top-0 right-0 w-[50vh] h-[50vh] bg-[var(--theme-base)] opacity-[0.05] md:opacity-[0.08] blur-[100px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+      <div class="absolute bottom-0 left-0 w-[40vh] h-[40vh] bg-[var(--theme-base)] opacity-[0.04] md:opacity-[0.07] blur-[80px] rounded-full pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
     <div class="grid gap-10">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Design Ownership</span>
@@ -307,7 +311,9 @@
   </section>
 
   <section id="topic-decisions" class="theme-success !mt-8">
-    <div class="topic-cover section !p-8 md:!p-12 !mb-12 rounded-[32px] border border-theme-soft bg-theme-soft">
+    <div class="topic-cover relative section !p-10 md:!p-16 !mb-12 rounded-[40px] !border border-[rgba(var(--rgb-text),0.05)] bg-card shadow-[0_0_40px_rgba(var(--rgb-text),0.03)] overflow-hidden isolate">
+      <div class="absolute top-0 right-0 w-[50vh] h-[50vh] bg-[var(--theme-base)] opacity-[0.05] md:opacity-[0.08] blur-[100px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+      <div class="absolute bottom-0 left-0 w-[40vh] h-[40vh] bg-[var(--theme-base)] opacity-[0.04] md:opacity-[0.07] blur-[80px] rounded-full pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Core Decisions</span>
         <h2 class="h2 mb-4">Systemizing the Chaos.</h2>
@@ -315,7 +321,7 @@
       </div>
     </div>
     <div class="topic-details grid grid-cols-1 gap-8 !mb-16">
-      <article id="s4" class="section !p-6 md:!p-8 rounded-[24px] border border-theme-soft bg-card">
+      <article id="s4" class="section !p-6 md:!p-8 rounded-[24px] border !border-2 !border-dashed border-theme bg-card">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Core Decision 01</span>
@@ -326,7 +332,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div
-          class="w-full flex flex-col items-center justify-center text-center min-h-[250px] border border-(--border-color) rounded-xl overflow-hidden">
+          class="img-box w-full flex flex-col items-center justify-center text-center aspect-square border border-theme card-1 rounded-xl overflow-hidden">
           <img class="image-hover-scale" src="./assets/thumb_decision_01.png" alt="" srcset="">
         </div>
 
@@ -351,7 +357,7 @@
     </div>
   </article>
 
-  <article id="s5" class="section !p-6 md:!p-8 rounded-[24px] border border-theme-soft bg-card">
+  <article id="s5" class="section !p-6 md:!p-8 rounded-[24px] border !border-2 !border-dashed border-theme bg-card">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Core Decision 02</span>
@@ -380,7 +386,7 @@
         </div>
 
         <div
-          class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full"
+          class="img-box w-full rounded-xl border border-theme card-1 flex flex-col items-center justify-center p-8 text-center aspect-square"
          >
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: NEW TYPOGRAPHY SCALE]</div>
@@ -391,7 +397,7 @@
     </div>
   </article>
 
-  <article id="s6" class="section !p-6 md:!p-8 rounded-[24px] border border-theme-soft bg-card">
+  <article id="s6" class="section !p-6 md:!p-8 rounded-[24px] border !border-2 !border-dashed border-theme bg-card">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Core Decision 03</span>
@@ -402,7 +408,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div
-          class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full"
+          class="img-box w-full rounded-xl border border-theme card-1 flex flex-col items-center justify-center p-8 text-center aspect-square"
          >
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: GRID SYSTEM OVERLAY]</div>
@@ -430,7 +436,7 @@
     </div>
   </article>
 
-  <article id="s7" class="section !p-6 md:!p-8 rounded-[24px] border border-theme-soft bg-card">
+  <article id="s7" class="section !p-6 md:!p-8 rounded-[24px] border !border-2 !border-dashed border-theme bg-card">
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Core Decision 04</span>
@@ -457,7 +463,7 @@
         </div>
 
         <div
-          class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[250px] h-full"
+          class="img-box w-full rounded-xl border border-theme card-1 flex flex-col items-center justify-center p-8 text-center aspect-square"
          >
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: FIGMA COMPONENT LIBRARY]</div>
@@ -471,7 +477,9 @@
   </section>
 
   <section id="topic-execution" class="theme-primary !mt-8">
-    <div class="topic-cover section !p-8 md:!p-12 !mb-12 rounded-[32px] border border-theme-soft bg-theme-soft">
+    <div class="topic-cover relative section !p-10 md:!p-16 !mb-12 rounded-[40px] !border border-[rgba(var(--rgb-text),0.05)] bg-card shadow-[0_0_40px_rgba(var(--rgb-text),0.03)] overflow-hidden isolate">
+      <div class="absolute top-0 right-0 w-[50vh] h-[50vh] bg-[var(--theme-base)] opacity-[0.05] md:opacity-[0.08] blur-[100px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+      <div class="absolute bottom-0 left-0 w-[40vh] h-[40vh] bg-[var(--theme-base)] opacity-[0.04] md:opacity-[0.07] blur-[80px] rounded-full pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
     <div class="grid gap-8">
       <div class="max-w-2xl text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Execution</span>
@@ -482,7 +490,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div
-          class="w-full rounded-xl border border-dashed border-(--color-border) flex flex-col items-center justify-center p-8 text-center min-h-[300px] h-full"
+          class="img-box w-full rounded-xl border border-theme card-1 flex flex-col items-center justify-center p-8 text-center aspect-square"
          >
           <div class="h3 mb-2">🖼️</div>
           <div class="body-sm font-bold text-muted">[IMAGE PLACEHOLDER: SPECS ON CANVAS]</div>
@@ -513,7 +521,9 @@
   </section>
 
   <section id="topic-impact" class="theme-success !mt-8">
-    <div class="topic-cover section !p-8 md:!p-12 !mb-12 rounded-[32px] border border-theme-soft bg-theme-soft">
+    <div class="topic-cover relative section !p-10 md:!p-16 !mb-12 rounded-[40px] !border border-[rgba(var(--rgb-text),0.05)] bg-card shadow-[0_0_40px_rgba(var(--rgb-text),0.03)] overflow-hidden isolate">
+      <div class="absolute top-0 right-0 w-[50vh] h-[50vh] bg-[var(--theme-base)] opacity-[0.05] md:opacity-[0.08] blur-[100px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+      <div class="absolute bottom-0 left-0 w-[40vh] h-[40vh] bg-[var(--theme-base)] opacity-[0.04] md:opacity-[0.07] blur-[80px] rounded-full pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
     <div>
       <div class="max-w-2xl text-center mx-auto mb-8">
         <span class="pill pill-inverted mb-6 inline-block">Impact</span>
@@ -551,7 +561,9 @@
   </section>
 
   <section id="topic-reflection" class="theme-primary !mt-8">
-    <div class="topic-cover section !p-8 md:!p-12 !mb-12 rounded-[32px] border border-theme-soft bg-theme-soft">
+    <div class="topic-cover relative section !p-10 md:!p-16 !mb-12 rounded-[40px] !border border-[rgba(var(--rgb-text),0.05)] bg-card shadow-[0_0_40px_rgba(var(--rgb-text),0.03)] overflow-hidden isolate">
+      <div class="absolute top-0 right-0 w-[50vh] h-[50vh] bg-[var(--theme-base)] opacity-[0.05] md:opacity-[0.08] blur-[100px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+      <div class="absolute bottom-0 left-0 w-[40vh] h-[40vh] bg-[var(--theme-base)] opacity-[0.04] md:opacity-[0.07] blur-[80px] rounded-full pointer-events-none translate-y-1/3 -translate-x-1/3"></div>
     <div>
       <div class="max-w-2xl text-center mx-auto mb-8">
         <span class="pill pill-inverted mb-6 inline-block">Reflection</span>

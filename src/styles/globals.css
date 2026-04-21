@@ -99,7 +99,7 @@
   /* ── 0. Theme Intents ── */
   .theme-primary {
     --theme-base: var(--color-primary);
-    --theme-soft: color-mix(in srgb, var(--color-primary) 8%, var(--color-bg-main));
+    --theme-soft: color-mix(in srgb, var(--color-primary) 12%, var(--color-bg-main));
     --theme-border: var(--color-primary-glow);
     --theme-text-fill: #ffffff; 
     --theme-card-bg-default: color-mix(in srgb, var(--color-primary) 4%, var(--card-bg-1));
