@@ -54,18 +54,25 @@
 
 .project-html-content li {
   position: relative;
-  padding-left: 0.5rem;
+  padding-left: 2rem;
 }
 
 .project-html-content li::before {
-  content: "✦";
+  font-family: 'Material Symbols Outlined';
+  content: "circle";
   position: absolute;
-  top: 0.05rem;
-  left: 0;
-  color: var(--color-primary);
+  top: 0.15rem;
+  left: 0.1rem;
+  color: var(--theme-base, var(--color-primary));
   font-size: 1.15rem;
   line-height: 1.4;
+  font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
 }
+
+.project-html-content .theme-primary li::before { content: "star"; }
+.project-html-content .theme-danger li::before { content: "close"; }
+.project-html-content .theme-success li::before { content: "check"; }
+.project-html-content .theme-neutral li::before { content: "circle"; }
 
 .project-html-content a {
   color: var(--color-primary);
