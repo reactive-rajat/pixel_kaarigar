@@ -69,7 +69,7 @@
       </div>
 
       <div class="body text-muted grid grid-cols-1 md:grid-cols-2 gap-8 mt-3 mx-auto text-left w-full">
-        <ul class="card-1 card-sm border flex flex-col gap-4 !pl-5">
+        <ul class="card-1 card-sm border-1 border-theme flex flex-col gap-4 !pl-5">
           <li class="flex gap-3 items-start">
              <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
              <div class="font-semibold text-(--color-text)">Failing contrast with brand colors.</div>
@@ -83,7 +83,7 @@
              <div class="font-semibold text-(--color-text)">Poor legibility due to font choices.</div>
           </li>
         </ul>
-        <ul class="card-1 card-sm border flex flex-col gap-4 !pl-5">
+        <ul class="card-1 card-sm border-1 border-theme  flex flex-col gap-4 !pl-5">
           <li class="flex gap-3 items-start">
              <div class="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
              <div class="font-semibold text-(--color-text)">Heavy dark overlays on images.</div>
@@ -114,11 +114,11 @@
           <img class="image-hover-scale" src="./assets/failing_contrast.png" alt="">
         </div>
         <div class="flex flex-col gap-4">
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">WCAG Failure</h4>
              <p class="body-sm text-muted">The brand green (<code>#00C194</code>) with white text failed essential WCAG tests.</p>
           </div>
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">Unreadable CTAs</h4>
              <p class="body-sm text-muted">Low-vision users struggled significantly to read text on our primary calls-to-action.</p>
           </div>
@@ -137,11 +137,11 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div class="flex flex-col gap-4 order-last md:order-first">
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">Missing Grid</h4>
              <p class="body-sm text-muted">The absence of a defined column grid resulted in misaligned pages and structure.</p>
           </div>
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">Eyeballed Spacing</h4>
              <p class="body-sm text-muted">With no spacing tokens, developers had to manually inspect Figma layers to guess the padding.</p>
           </div>
@@ -166,11 +166,11 @@
           <img class="image-hover-scale" src="./assets/bad_legibility.png" alt="">
         </div>
         <div class="flex flex-col gap-4">
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">Inadequate Typography</h4>
              <p class="body-sm text-muted">The primary body font (Source Sans Pro) severely hurt legibility in dense form inputs.</p>
           </div>
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">Limited Hierarchy</h4>
              <p class="body-sm text-muted">We only had 6 text styles available, which restricted developers from establishing visual structure.</p>
           </div>
@@ -189,11 +189,11 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div class="flex flex-col gap-4 order-last md:order-first">
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">Obscured Photography</h4>
              <p class="body-sm text-muted">Every hero image had heavy dark overlays, hiding the photos entirely.</p>
           </div>
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">Gloomy Tone</h4>
              <p class="body-sm text-muted">These stylistic choices made the site feel unexpectedly gloomy for a career-focused tool.</p>
           </div>
@@ -218,11 +218,11 @@
           <img class="image-hover-scale" src="./assets/icon_chaos.png" alt="">
         </div>
         <div class="flex flex-col gap-4">
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">Mixed Styles</h4>
              <p class="body-sm text-muted">Styles were mixed everywhere—some outlined, some solid, some 2-colored.</p>
           </div>
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">Untrustworthy Look</h4>
              <p class="body-sm text-muted">The resulting visual mess made the product feel untested and unpolished.</p>
           </div>
@@ -241,11 +241,11 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div class="flex flex-col gap-4 order-last md:order-first">
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">Arbitrary Usage</h4>
              <p class="body-sm text-muted">Dark backgrounds were placed randomly just to separate visual sections.</p>
           </div>
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border-1 border-theme ">
              <h4 class="h4 mb-2">No Logical Rule</h4>
              <p class="body-sm text-muted">There was no underlying rationale for when to use dark versus light UI components.</p>
           </div>
@@ -278,20 +278,20 @@
       </div>
 
       <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-0 border border-(--border-color) rounded-2xl overflow-hidden">
-        <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r lg:border-b">
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-0 border border-theme rounded-2xl overflow-hidden">
+        <div class="card-hover card-1 card-sm rounded-none border-theme border-b border-r">
           <div class="pill pill-rounded mb-4">01</div>
           <h4 class="h4 mb-2">Set the Rules</h4>
           <p class="body-sm text-muted">I briefed the agency on our user context, accessibility needs, and technical
             requirements before they started.</p>
         </div>
-        <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-b">
+        <div class="card-hover card-1 card-sm rounded-none border-theme border-b">
           <div class="pill pill-rounded mb-4">02</div>
           <h4 class="h4 mb-2">Strict Validation</h4>
           <p class="body-sm text-muted">Reviewed deliveries pixel-by-pixel. If a padding was off or a hover state was
             missing, I pushed it back for revision.</p>
         </div>
-        <div class="card-hover card-1 card-sm rounded-none border-(--border-color) border-r">
+        <div class="card-hover card-1 card-sm rounded-none border-theme border-r">
           <div class="pill pill-rounded mb-4">03</div>
           <h4 class="h4 mb-2">Filled the Gaps</h4>
           <p class="body-sm text-muted">I personally defined the structural grid math, created missing spacing tokens,
@@ -321,7 +321,7 @@
       </div>
     </div>
     <div class="topic-details grid grid-cols-1 gap-8 !mb-16">
-      <article id="s4" class="section !p-6 md:!p-8 rounded-[24px] border !border-1 border-theme bg-theme-soft">
+      <article id="s4" class="section !p-6 md:!p-8 rounded-[24px] !border !border-theme bg-theme-soft">
     <div class="grid gap-8">
       <div class="text-center mx-auto">
         <span class="pill pill-inverted mb-6 inline-block">Core Decision 01</span>
@@ -332,7 +332,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div
-          class="img-box w-full flex flex-col items-center justify-center text-center aspect-square border border-theme card-1 rounded-xl overflow-hidden">
+          class="img-box w-full flex flex-col items-center justify-center text-center aspect-square border card-1 rounded-xl overflow-hidden">
           <img class="image-hover-scale" src="./assets/thumb_decision_01.png" alt="" srcset="">
         </div>
 
@@ -342,12 +342,12 @@
             <p class="body-sm text-muted">Switched from Green to <code>#3D50FF</code>. It passes WCAG AA, draws the eye
               instantly, and builds trust.</p>
           </div>
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border border-theme">
             <h4 class="h4 mb-2">Secondary: Assertive Magenta</h4>
             <p class="body-sm text-muted">Added <code>#D01176</code> for highlights that need energy without fighting
               the primary violet.</p>
           </div>
-          <div class="card-1 card-sm border">
+          <div class="card-1 card-sm border border-theme">
             <h4 class="h4 mb-2">Logical Backgrounds</h4>
             <p class="body-sm text-muted">Defined exactly 3 light and 3 dark background shades. We stopped using random
               dark backgrounds just to separate sections.</p>
