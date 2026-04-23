@@ -191,9 +191,7 @@
 }
 
 .project-journey section.is-active-node > .topic-cover,
-.project-journey article.is-active-node,
-.project-journey section.is-active-node > .topic-cover .img-box,
-.project-journey article.is-active-node .img-box {
+.project-journey article.is-active-node {
   border-color: var(--theme-base, var(--color-primary)) !important;
   transform: scale(1.01);
   box-shadow: 0 10px 40px color-mix(in srgb, var(--theme-base, var(--color-primary)) 10%, transparent);
