@@ -1,5 +1,5 @@
 import React from "react";
-import ImageBox from "../utils/image/ImageBox";
+import ImageBox from "../ui/ImageBox";
 
 /**
  * ImageContentSplit

@@ -1,6 +1,6 @@
 import React from "react";
-import StatusBadge from "../../components/common/StatusBadge/StatusBadge";
-import WhatsAppIcon from "../../components/common/WhatsAppIcon/WhatsAppIcon";
+import StatusBadge from "../../components/ui/StatusBadge/StatusBadge";
+import WhatsAppIcon from "../../components/ui/WhatsAppIcon/WhatsAppIcon";
 import "./Contact.css";
 
 const Contact = () => {

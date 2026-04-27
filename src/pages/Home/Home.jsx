@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
-import StatusBadge from "../../components/common/StatusBadge/StatusBadge";
-import HeroVisual from "../../components/common/HeroVisual/HeroVisual";
+import StatusBadge from "../../components/ui/StatusBadge/StatusBadge";
+import HeroVisual from "../../components/sections/HeroVisual/HeroVisual";
 import projects, { featuredProjects } from "../../data/projects.js";
-import "./Hero.css";
+import "./Home.css";
 import { aboutSkills, aboutSnapshotCards } from "../../data/about.js";
 import Testimonials from "../../components/sections/Testimonials/Testimonials";
 import Brands from "../../components/sections/Brands/Brands";
-import SectionHeading from "../../components/common/SectionHeading/SectionHeading";
+import SectionHeading from "../../components/ui/SectionHeading/SectionHeading";
 
 const sectionReveal = {
   hidden: { opacity: 0, y: 48 },
@@ -79,7 +79,7 @@ const CountUpNumber = ({ value, suffix = "", start }) => {
   );
 };
 
-const Hero = ({ setActivePage }) => {
+const Home = ({ setActivePage }) => {
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
   const [isProjectPaused, setIsProjectPaused] = useState(false);
   const [startSnapshotCount, setStartSnapshotCount] = useState(false);
@@ -394,4 +394,4 @@ const Hero = ({ setActivePage }) => {
   );
 };
 
-export default Hero;
+export default Home;

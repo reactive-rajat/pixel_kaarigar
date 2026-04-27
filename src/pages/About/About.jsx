@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Brands from "../../components/sections/Brands/Brands";
-import HeroVisual from "../../components/common/HeroVisual/HeroVisual";
-import StatusBadge from "../../components/common/StatusBadge/StatusBadge";
-import SectionHeading from "../../components/common/SectionHeading/SectionHeading";
+import HeroVisual from "../../components/sections/HeroVisual/HeroVisual";
+import StatusBadge from "../../components/ui/StatusBadge/StatusBadge";
+import SectionHeading from "../../components/ui/SectionHeading/SectionHeading";
 import { aboutSkills } from "../../data/about.js";
 import Testimonials from "../../components/sections/Testimonials/Testimonials";
 import "./About.css";

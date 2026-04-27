@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from "motion/react";
-import SectionHeading from '../../common/SectionHeading/SectionHeading';
+import SectionHeading from '../../ui/SectionHeading/SectionHeading';
 import { testimonials } from "../../../data/about.js";
 import './Testimonials.css';
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import WhatsAppIcon from "../common/WhatsAppIcon/WhatsAppIcon";
+import WhatsAppIcon from "../../ui/WhatsAppIcon/WhatsAppIcon";
 import "./Footer.css";
 
 const Footer = () => {

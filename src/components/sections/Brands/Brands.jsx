@@ -3,7 +3,7 @@ import brandLogos from "../../../data/brands.js";
 import "./Brands.css";
 import Backdrop from "@/public/assets/brand/backdrop/Backdrop.jsx";
 import Laptop from "@/public/assets/brand/backdrop/Laptop.jsx";
-import SectionHeading from "../../common/SectionHeading/SectionHeading.jsx";
+import SectionHeading from "../../ui/SectionHeading/SectionHeading.jsx";
 
 function Brands() {
   const shouldScroll = brandLogos.length >= 5;

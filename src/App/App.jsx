@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
-import Hero from '../pages/Hero/Hero';
+import Navbar from '../components/layout/Navbar/Navbar';
+import Footer from '../components/layout/Footer/Footer';
+import Home from '../pages/Home/Home';
 import Works from '../pages/Works/Works';
 import About from '../pages/About/About';
 import Contact from '../pages/Contact/Contact';
@@ -24,7 +24,7 @@ const pageToRoute = {
   contact: '/contact'
 };
 
-import ScrollToTopButton from '../components/common/ScrollToTopButton/ScrollToTopButton';
+import ScrollToTopButton from '../components/layout/ScrollToTopButton/ScrollToTopButton';
 
 const AppShell = () => {
   const [activePage, setActivePage] = useState('home');
@@ -77,7 +77,7 @@ const AppShell = () => {
 
       <main className={`page-content ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
         <Routes>
-          <Route path="/" element={<Hero setActivePage={handlePageChange} />} />
+          <Route path="/" element={<Home setActivePage={handlePageChange} />} />
           <Route path="/about" element={<About />} />
           <Route path="/work" element={<Works />} />
           <Route path="/project/:slug" element={<ProjectDetail />} />

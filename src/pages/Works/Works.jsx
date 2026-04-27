@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ProjectCard from "../../components/common/ProjectCard/ProjectCard";
+import ProjectCard from "../../components/ui/ProjectCard/ProjectCard";
 import projects from "../../data/projects.js";
 import { getProjectCategories } from "../../utils/projectMeta.js";
 import "./Works.css";

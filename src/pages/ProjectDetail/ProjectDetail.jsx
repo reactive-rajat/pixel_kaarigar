@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, Suspense, lazy } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import StatusBadge from "../../components/common/StatusBadge/StatusBadge";
+import StatusBadge from "../../components/ui/StatusBadge/StatusBadge";
 
 
 const projectComponents = {
