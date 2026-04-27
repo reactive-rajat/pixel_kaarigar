@@ -7,13 +7,13 @@ import { slugifyProjectTitle } from "../utils/projectMeta";
 // - repoUrl/githubUrl: repository URL used for code references and preview fallback
 // - folderPath/folder: project detail content location inside `public/projects`
 //
-// Editing flow:
-// 1. Create a folder like `public/projects/my-new-project/`
-// 2. Add an `index.html` file inside that folder
-// 3. Add a project entry below with `folder: "my-new-project"`
+// Editing flow (New JSX Component Architecture):
+// 1. Create a JSX component like `src/pages/ProjectDetail/projects/MyNewProject.jsx`
+// 2. Add an import to `projectComponents` in `src/pages/ProjectDetail/ProjectDetail.jsx`
+// 3. Add a project entry below with `folder: "my-new-project"` (this string must exactly match the key you added in `ProjectDetail.jsx`)
 //
-// The route slug and detailed walkthrough path are derived automatically
-// from the folder name, so folder + HTML stay in sync.
+// To change a project name, simply update the `title` field below.
+// To remove a project, delete its entry from the `projectEntries` array.
 const PROJECTS_BASE_PATH = "/projects";
 
 const trimTrailingSlash = (value = "") => value.replace(/\/+$/, "");

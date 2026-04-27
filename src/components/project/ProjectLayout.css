@@ -1,0 +1,9 @@
+@import "../common/ProjectHtmlContent/ProjectHtmlContent.css";
+
+/* Any new styles for React components can go here */
+.project-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: var(--color-text);
+}

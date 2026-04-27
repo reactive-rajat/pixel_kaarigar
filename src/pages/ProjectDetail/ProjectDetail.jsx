@@ -1,7 +1,16 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, Suspense, lazy } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import StatusBadge from "../../components/common/StatusBadge/StatusBadge";
 import ProjectHtmlContent from "../../components/common/ProjectHtmlContent/ProjectHtmlContent";
+
+const projectComponents = {
+  "resume-help": lazy(() => import("./projects/ResumeHelp")),
+  "bold-india": lazy(() => import("./projects/BoldIndia")),
+  "portfolio-v1": lazy(() => import("./projects/PortfolioV1")),
+  "resume-nerd": lazy(() => import("./projects/ResumeNerd")),
+  "behance": lazy(() => import("./projects/Behance")),
+  "wedding-invite": lazy(() => import("./projects/WeddingInvite")),
+};
 import projects, { getProjectBySlug } from "../../data/projects.js";
 import { getProjectCategories } from "../../utils/projectMeta.js";
 import "./ProjectDetail.css";
@@ -154,11 +163,17 @@ const ProjectDetail = () => {
 
         <main className="project-main container pt-0 mt-4">
           <section className="project-content container">
-            <ProjectHtmlContent
-              contentPath={project.contentPath}
-              title={project.title}
-              omitPrimaryHeading
-            />
+            {projectComponents[project.slug] ? (
+              <Suspense fallback={<div className="project-html-state"><p>Loading project content...</p></div>}>
+                {React.createElement(projectComponents[project.slug])}
+              </Suspense>
+            ) : (
+              <ProjectHtmlContent
+                contentPath={project.contentPath}
+                title={project.title}
+                omitPrimaryHeading
+              />
+            )}
           </section>
         </main>
 
