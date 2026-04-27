@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, Suspense, lazy } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import StatusBadge from "../../components/common/StatusBadge/StatusBadge";
-import ProjectHtmlContent from "../../components/common/ProjectHtmlContent/ProjectHtmlContent";
+
 
 const projectComponents = {
   "resume-help": lazy(() => import("./projects/ResumeHelp")),
@@ -168,11 +168,7 @@ const ProjectDetail = () => {
                 {React.createElement(projectComponents[project.slug])}
               </Suspense>
             ) : (
-              <ProjectHtmlContent
-                contentPath={project.contentPath}
-                title={project.title}
-                omitPrimaryHeading
-              />
+              <div className="project-html-state"><p>Project component not found.</p></div>
             )}
           </section>
         </main>
