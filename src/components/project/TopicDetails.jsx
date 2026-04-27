@@ -2,7 +2,7 @@ import React from "react";
 
 export const TopicDetails = ({ children, className = "" }) => {
   return (
-    <div className={`topic-details grid grid-cols-1 gap-8 !mb-16 ${className}`}>
+    <div className={`topic-details grid grid-cols-1 gap-20 !mb-16 ${className}`}>
       {children}
     </div>
   );

@@ -1,0 +1,39 @@
+import React from "react";
+
+export const BulletList = ({ id, items = [], columns = 1 }) => {
+  const isMultiColumn = columns > 1;
+
+  const renderList = (listItems) => (
+    <ul className="card-1 card-sm border flex flex-col gap-4 !pl-5">
+      {listItems.map((item, index) => (
+        <li key={index} className="flex gap-3 items-start">
+          <div className="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
+          <div className="font-semibold text-(--color-text)">{item}</div>
+        </li>
+      ))}
+    </ul>
+  );
+
+  if (isMultiColumn) {
+    const half = Math.ceil(items.length / columns);
+    const columnsArray = Array.from({ length: columns }, (_, i) =>
+      items.slice(i * half, i * half + half)
+    );
+
+    return (
+      <div id={id} className={`body text-muted grid grid-cols-1 md:grid-cols-${columns} gap-8 mt-3 mx-auto text-left w-full`}>
+        {columnsArray.map((colItems, i) => (
+          <React.Fragment key={i}>
+            {renderList(colItems)}
+          </React.Fragment>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div id={id} className="body text-muted mt-3 mx-auto text-left w-full">
+      {renderList(items)}
+    </div>
+  );
+};

@@ -14,6 +14,10 @@
   color: var(--color-text);
 }
 
+#topic-problem {
+  padding-top: 0;
+}
+
 .project-html-content section,
 .project-html-content article {
   display: flex;
@@ -178,8 +182,7 @@
 }
 
 /* Force hard white/black (var(--card-bg-1)) onto inner cards/images instead of theme-tinted colors */
-.project-journey .card-1,
-.project-journey .img-box {
+.project-journey .card-1 {
   background-color: var(--card-bg-1) !important;
 }
 
