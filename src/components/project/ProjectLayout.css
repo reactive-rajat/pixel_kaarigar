@@ -181,11 +181,6 @@
   transition: opacity 0.6s ease;
 }
 
-/* Force hard white/black (var(--card-bg-1)) onto inner cards/images instead of theme-tinted colors */
-.project-journey .card-1 {
-  background-color: var(--card-bg-1) !important;
-}
-
 /* Active Highlight Logics */
 .project-journey section.is-active-node > .topic-node,
 .project-journey section.is-active-node > .topic-cover > *:not(.absolute),

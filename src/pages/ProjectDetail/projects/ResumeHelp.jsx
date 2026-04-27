@@ -66,7 +66,7 @@ const problemData = {
   p6: {
     title: "Random Backgrounds",
     description: "Unjustifiable design choices led to awkward shifts in UI brightness.",
-    imageSrc: `${basePath}/assets/random_backgrounds.png`,
+    imageSrc: `${basePath}/assets/random_bg.png`,
     imageAlt: "Random Backgrounds",
     imagePosition: "right",
     items: [
