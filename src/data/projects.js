@@ -41,13 +41,18 @@ const getProjectFolderPath = (project) => {
 
 const projectEntries = [
   {
-    title: "Fixing What Broke at Scale.",
+    title: "Fixing What Broke at Scale: Rebuilding ResumeHelp's Design Foundation",
     projectType: "case-study",
     featuredOrder: 1,
     folder: "resume-help",
     url: "https://resumehelp.com/",
     description:
-      "Migrated a live product to a new design system — fixing accessibility, consistency, and scalability.",
+      "How I transformed a fragmented, inconsistent UI into a scalable, accessible, and developer-friendly design system to support rapid product growth.",
+    quickContext: {
+      Role: "Lead UI/UX Designer",
+      Timeline: "3 Months",
+      Deliverables: "UI Audit, Design Tokens, Component Library, Developer Specs"
+    },
     image: "/assets/projects/thumbnails/resumehelp_thumbnail.png",
     tags: ["UX", "DESIGN SYSTEM", "FIGMA"],
     size: "large",

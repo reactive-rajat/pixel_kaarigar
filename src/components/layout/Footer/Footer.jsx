@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import WhatsAppIcon from "../../ui/WhatsAppIcon/WhatsAppIcon";
 import "./Footer.css";
 
@@ -103,15 +103,15 @@ const Footer = () => {
                 </p>
               </div>
               <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-center gap-4 shrink-0 relative z-10 w-full lg:w-auto">
-                <a href="#contact" className="btn btn-primary justify-center">
+                <Link to="/contact" className="btn btn-primary justify-center">
                   <span>Start a Project</span>
                   <span className="material-symbols-outlined right-fix">
                     arrow_forward
                   </span>
-                </a>
-                <a href="#work" className="btn btn-secondary justify-center">
+                </Link>
+                <Link to="/work" className="btn btn-secondary justify-center">
                   View My Work
-                </a>
+                </Link>
               </div>
             </div>
           </div>

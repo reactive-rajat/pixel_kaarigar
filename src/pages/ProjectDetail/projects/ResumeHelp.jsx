@@ -1,6 +1,6 @@
 import React from "react";
 import { 
-  ProjectJourney, ProjectSection, ProjectHero, TopicHeader, 
+  ProjectJourney, ProjectSection, TopicHeader, 
   TopicCover, TopicIntro, BulletList, TopicDetails, ArticleCard,
   ImageContentSplit, TextCardGrid
 } from "@/src/components/project";
@@ -158,19 +158,6 @@ const reflectionGridData = [
   { title: "3. Systems Need Bouncers", description: "The UI kit is only 20% of the job. 80% is governing the system, reviewing work, and having the confidence to say \"no\" to random tweaks." }
 ];
 
-const heroData = {
-  id: "hero-intro",
-  pill: "UX Case Study · Design Systems",
-  title: "Rebuilding ResumeHelp's",
-  titleHighlight: "Design Foundation.",
-  description: "ResumeHelp grew fast — but the design didn't keep up. I owned the full migration to a new design system: fixing accessibility failures, removing inconsistencies, and making it something developers could actually build from.",
-  stats: [
-    { label: "Company", value: "Bold" },
-    { label: "My Role", value: "Sr. Web Designer · Design System Owner" },
-    { label: "The Team", value: "Internal Team, Agency, Devs" }
-  ]
-};
-
 const problemIntroData = {
   id: "problem-intro",
   title: "Breaking at Scale.",
@@ -180,7 +167,7 @@ const problemIntroData = {
     "Primary green (#00C194) failed WCAG AA on buttons.",
     "No grid system — every page spaced by eye.",
     "Only 6 type styles for an entire multi-page product.",
-    "Every hero image covered with a dark teal overlay — photos lost their purpose.",
+    "Every image, especially the hero images, covered with a dark overlay which makes images lost their purpose.",
     "3+ icon styles mixed across pages — outlined, filled, two-colour.",
     "Dark sections placed randomly with no rule or reason."
   ]
@@ -219,10 +206,6 @@ const reflectionIntroData = {
 const ResumeHelp = () => {
   return (
     <div className="project-html-content project-content-wrapper">
-      <ProjectSection id="s1" theme="primary" noJourney={true}>
-        <ProjectHero {...heroData} />
-      </ProjectSection>
-
       <ProjectJourney>
         {/* THE PROBLEM */}
         <ProjectSection id="topic-problem" theme="danger">
