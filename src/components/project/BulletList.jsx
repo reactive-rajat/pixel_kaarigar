@@ -4,11 +4,11 @@ export const BulletList = ({ id, items = [], columns = 1 }) => {
   const isMultiColumn = columns > 1;
 
   const renderList = (listItems) => (
-    <ul className="card-1 card-sm border flex flex-col gap-4 !pl-5">
+    <ul className="card-1 card-sm border flex flex-col !gap-3 !pl-4">
       {listItems.map((item, index) => (
         <li key={index} className="flex gap-3 items-start">
           <div className="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
-          <div className="font-semibold text-(--color-text)">{item}</div>
+          <div className="text-(--color-text) leading-relaxed">{item}</div>
         </li>
       ))}
     </ul>

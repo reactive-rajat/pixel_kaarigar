@@ -15,41 +15,41 @@ const problemData = {
     imageAlt: "Failing Contrast",
     imagePosition: "left",
     items: [
-      { title: "WCAG Failure", description: "The brand green (<code>#00C194</code>) with white text failed essential WCAG tests." },
-      { title: "Unreadable CTAs", description: "Low-vision users struggled significantly to read text on our primary calls-to-action." }
+      { title: "WCAG Failure", description: "#00C194 with white text = 2.30:1 contrast ratio. WCAG AA requires minimum 4.5:1. Every primary button on the site was failing." },
+      { title: "Unreadable CTAs", description: "The most important button on every page — 'Create Your Resume' — was technically unreadable for users with visual impairments." }
     ]
   },
   p2: {
     title: "No Layout Math",
-    description: "Inconsistent alignment and arbitrary spacing slowed down production across the board.",
+    description: "No column grid, no spacing tokens — every page was built by eye.",
     imageSrc: `${basePath}/assets/no_layout.png`,
     imageAlt: "No Layout Math",
     imagePosition: "right",
     items: [
-      { title: "Missing Grid", description: "The absence of a defined column grid resulted in misaligned pages and structure." },
-      { title: "Eyeballed Spacing", description: "With no spacing tokens, developers had to manually inspect Figma layers to guess the padding." }
+      { title: "Missing Grid", description: "No column grid existed. Each designer chose their own layout width and margins — nothing aligned across pages." },
+      { title: "Eyeballed Spacing", description: "Developers opened every Figma file just to find padding values. No tokens, no documentation — pure guesswork every time." }
     ]
   },
   p3: {
     title: "Poor Legibility",
-    description: "Dense forms and data required highly legible typography, which the old system lacked.",
+    description: "A resume builder needs clear, readable type at every size. The old system had neither.",
     imageSrc: `${basePath}/assets/bad_legibility.png`,
     imageAlt: "Poor Legibility",
     imagePosition: "left",
     items: [
-      { title: "Inadequate Typography", description: "The primary body font (Source Sans Pro) severely hurt legibility in dense form inputs." },
-      { title: "Limited Hierarchy", description: "We only had 6 text styles available, which restricted developers from establishing visual structure." }
+      { title: "Inadequate Typography", description: "Source Sans Pro worked fine for marketing pages — but in dense form fields and resume content, it felt cramped and hard to read." },
+      { title: "Limited Hierarchy", description: "Just 6 type styles for the entire product — homepage, examples, templates, builder, blog, legal pages etc, all sharing the same 6 styles. Not enough." }
     ]
   },
   p4: {
     title: "Heavy Overlays",
-    description: "Aggressive image treatments were actively harming the visual tone.",
+    description: "Every hero image had a heavy dark teal overlay — the photos underneath were barely visible.",
     imageSrc: `${basePath}/assets/heavy_overlays.png`,
     imageAlt: "Heavy Overlays",
     imagePosition: "right",
     items: [
-      { title: "Obscured Photography", description: "Every hero image had heavy dark overlays, hiding the photos entirely." },
-      { title: "Gloomy Tone", description: "These stylistic choices made the site feel unexpectedly gloomy for a career-focused tool." }
+      { title: "Obscured Photography", description: "Hero images were chosen carefully — then covered with a dark teal overlay that made them almost invisible. The photography added zero value." },
+      { title: "Gloomy Tone", description: "A job seeker landing on the site for the first time saw a dark, heavy page. Not the confident, encouraging feel a career product should have." }
     ]
   },
   p5: {
@@ -59,28 +59,28 @@ const problemData = {
     imageAlt: "Iconography Chaos",
     imagePosition: "left",
     items: [
-      { title: "Mixed Styles", description: "Styles were mixed everywhere—some outlined, some solid, some 2-colored." },
-      { title: "Untrustworthy Look", description: "The resulting visual mess made the product feel untested and unpolished." }
+      { title: "Mixed Styles", description: "Three completely different icon styles used across the same product — solid with circle backgrounds, two-colour line icons, and Font Awesome — with no rule for when to use which." },
+      { title: "Untrustworthy Look", description: "When icons don't follow a consistent style, the product looks assembled — not designed. It signals to users that no one is in charge of quality." }
     ]
   },
   p6: {
     title: "Random Backgrounds",
-    description: "Unjustifiable design choices led to awkward shifts in UI brightness.",
+    description: "Dark sections appeared with no rule — sometimes 3 in a row, sometimes none. Just habit, not design.",
     imageSrc: `${basePath}/assets/random_bg.png`,
     imageAlt: "Random Backgrounds",
     imagePosition: "right",
     items: [
-      { title: "Arbitrary Usage", description: "Dark backgrounds were placed randomly just to separate visual sections." },
-      { title: "No Logical Rule", description: "There was no underlying rationale for when to use dark versus light UI components." }
+      { title: "Arbitrary Usage", description: "The dark header colour (#023642) was used to 'break up' pages — but there was no logic for when or why. It just happened to be what someone did once, and it stuck." },
+      { title: "No Logical Rule", description: "Without a defined rule, each new page either copied the pattern blindly or ignored it — making the product feel inconsistent even to casual visitors." }
     ]
   }
 };
 
 const ownershipGridData = [
-  { number: "01", title: "Set the Rules", description: "I briefed the agency on our user context, accessibility needs, and technical requirements before they started." },
-  { number: "02", title: "Strict Validation", description: "Reviewed deliveries pixel-by-pixel. If a padding was off or a hover state was missing, I pushed it back for revision." },
-  { number: "03", title: "Filled the Gaps", description: "I personally defined the structural grid math, created missing spacing tokens, and finalized the typography scale." },
-  { number: "04", title: "Enforced Consistency", description: "Ensured that no 'creative but inconsistent' tweaks made it into the final product. Protected the locked system." }
+  { number: "01", title: "Briefed the Agency", description: "Before the agency started, I documented the requirements — colour rules, grid specs, accessibility standards, and component expectations. The brief was the contract." },
+  { number: "02", title: "Reviewed Every Delivery", description: "Every component the agency delivered was checked against the brief. Wrong padding, missing state, off-spec colour — I flagged it and sent it back before approving." },
+  { number: "03", title: "Filled What Was Missing", description: "Some foundational pieces weren't in the agency's scope. I personally defined the column grid, spacing tokens, and typography scale directly in Figma." },
+  { number: "04", title: "Governed After Launch", description: "Once the system was live, I reviewed designer and developer output against it. Any deviation — however small — was caught and corrected before it compounded" }
 ];
 
 const decisionData = {
@@ -163,11 +163,10 @@ const heroData = {
   pill: "UX Case Study · Design Systems",
   title: "Rebuilding ResumeHelp's",
   titleHighlight: "Design Foundation.",
-  description: "ResumeHelp grew rapidly, but the design didn't. I led the mission to rebuild the system from scratch, ensuring it was accessible, scalable, and dev-friendly. Migrated a live product to a new design system — fixing inconsistency and scalability at scale.",
+  description: "ResumeHelp grew fast — but the design didn't keep up. I owned the full migration to a new design system: fixing accessibility failures, removing inconsistencies, and making it something developers could actually build from.",
   stats: [
     { label: "Company", value: "Bold" },
-    { label: "My Role", value: "Sr. Web Designer" },
-    { label: "Scale", value: "15-25 Core Pages" },
+    { label: "My Role", value: "Sr. Web Designer · Design System Owner" },
     { label: "The Team", value: "Internal Team, Agency, Devs" }
   ]
 };
@@ -175,22 +174,22 @@ const heroData = {
 const problemIntroData = {
   id: "problem-intro",
   title: "Breaking at Scale.",
-  description: "ResumeHelp is a massive resume builder used by millions in the US and UK. Because multiple designers and agencies added new pages over time without central rules, the UI became a patched-together mess of one-off decisions.",
+  description: "RH is a resume builder used by millions in the US and UK. As the product scaled, multiple designers and agencies added pages without any shared rules — leading to a visually inconsistent, accessibility-broken UI that was hard to maintain.",
   bulletsId: "problem-bullets",
   bullets: [
-    "Failing contrast with brand colors.",
-    "No layout math or spacing tokens.",
-    "Poor legibility due to font choices.",
-    "Heavy dark overlays on images.",
-    "Mixed and chaotic iconography styles.",
-    "Random usage of dark backgrounds."
+    "Primary green (#00C194) failed WCAG AA on buttons.",
+    "No grid system — every page spaced by eye.",
+    "Only 6 type styles for an entire multi-page product.",
+    "Every hero image covered with a dark teal overlay — photos lost their purpose.",
+    "3+ icon styles mixed across pages — outlined, filled, two-colour.",
+    "Dark sections placed randomly with no rule or reason."
   ]
 };
 
 const ownershipIntroData = {
   id: "ownership-intro",
-  title: "The System Gatekeeper.",
-  description: "We hired an external design agency to help build the initial visual concepts, but a design system isn't just a Figma file—it requires strict ownership. Here is how I managed the collaboration:"
+  title: "My Role in This Project",
+  description: "An external agency built the initial design system. My job was to own the outcome — brief them, review everything, fill what was missing, and make sure it stayed consistent once it went live."
 };
 
 const decisionsIntroData = {
@@ -260,8 +259,8 @@ const ResumeHelp = () => {
                 id="ownership-grid"
                 items={ownershipGridData} 
                 columns={2} 
-                className="gap-0 border border-theme rounded-2xl overflow-hidden" 
-                cardClassName="card-hover rounded-none border-theme [&:nth-child(1)]:border-b [&:nth-child(1)]:border-r [&:nth-child(2)]:border-b [&:nth-child(3)]:border-r" 
+                className="gap-0" 
+                cardClassName="border-theme [&:nth-child(1)]:border-b [&:nth-child(1)]:border-r [&:nth-child(2)]:border-b [&:nth-child(3)]:border-r" 
               />
             </div>
           </TopicCover>
