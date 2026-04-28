@@ -7,6 +7,7 @@ const projectComponents = {
   "resume-help": lazy(() => import("./projects/ResumeHelp")),
   "bold-india": lazy(() => import("./projects/BoldIndia")),
   "portfolio-v1": lazy(() => import("./projects/PortfolioV1")),
+  "graphic-design": lazy(() => import("./projects/GraphicDesign")),
   "resume-nerd": lazy(() => import("./projects/ResumeNerd")),
   "behance": lazy(() => import("./projects/Behance")),
   "wedding-invite": lazy(() => import("./projects/WeddingInvite")),

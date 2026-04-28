@@ -58,6 +58,7 @@ const projectEntries = [
     size: "large",
     category: ["Case Study"],
   },
+
   {
     title: "Portfolio v1",
     projectType: "coding",
@@ -83,13 +84,13 @@ const projectEntries = [
     category: ["Apps", "Design"],
   },
   {
-    title: "Behance",
+    title: "Graphic & Marketing Design",
     projectType: "case-study",
-    folder: "behance",
-    url: "https://www.behance.net/designifinity",
-    description: "Explore more of my design work on Behance.",
-    image: "/assets/projects/thumbnails/behance_thumbnail.png",
-    tags: ["BEHANCE", "MORE PROJECTS"],
+    folder: "graphic-design",
+    url: "",
+    description: "A consolidated archive of branding, social media overhauls, print, and packaging design across multiple clients.",
+    image: "/assets/projects/thumbnails/graphic_design_thumbnail.png",
+    tags: ["BRANDING", "SOCIAL MEDIA", "PRINT"],
     size: "small",
     category: ["Design"],
   },

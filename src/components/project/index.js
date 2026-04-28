@@ -7,3 +7,4 @@ export { BulletList } from "./BulletList";
 export { TopicDetails, ArticleCard } from "./TopicDetails";
 export { ImageContentSplit } from "./ImageContentSplit";
 export { TextCardGrid } from "./TextCardGrid";
+export { BeforeAfterSlider } from "./BeforeAfterSlider";
