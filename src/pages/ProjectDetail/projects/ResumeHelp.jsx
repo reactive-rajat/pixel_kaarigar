@@ -76,13 +76,6 @@ const problemData = {
   }
 };
 
-const ownershipGridData = [
-  { number: "01", title: "Briefed the Agency", description: "Before the agency started, I documented the requirements — colour rules, grid specs, accessibility standards, and component expectations. The brief was the contract." },
-  { number: "02", title: "Reviewed Every Delivery", description: "Every component the agency delivered was checked against the brief. Wrong padding, missing state, off-spec colour — I flagged it and sent it back before approving." },
-  { number: "03", title: "Filled What Was Missing", description: "Some foundational pieces weren't in the agency's scope. I personally defined the column grid, spacing tokens, and typography scale directly in Figma." },
-  { number: "04", title: "Governed After Launch", description: "Once the system was live, I reviewed designer and developer output against it. Any deviation — however small — was caught and corrected before it compounded" }
-];
-
 const decisionData = {
   s4: {
     title: "Color System & Accessibility",
@@ -159,21 +152,34 @@ const problemIntroData = {
   bullets: [
     "<b>Accessibility Failures:</b> Low-contrast text (ratios as low as 2.30:1) and unreadable CTAs created friction for users.",
     "<b>Visual Chaos:</b> A mix of random backgrounds, conflicting iconography, and heavy overlays diluted brand trust.",
-    "<b>Structural Flaws:</b> A lack of \"layout math\" and arbitrary spacing meant developers had to guess, severely slowing down release cycles."
+    "<b>Structural Flaws:</b> A lack of \"layout math\" and arbitrary spacing meant developers had to guess, severely slowing down release cycles.",
+    "<b>Component Fragmentation:</b> Without a centralized library, teams constantly reinvented the wheel, leading to duplicated design efforts and an unmanageable UI inventory."
   ]
 };
 
 const ownershipIntroData = {
   id: "ownership-intro",
   title: "My Role & Scope",
-  description: "I spearheaded the end-to-end visual overhaul and design system architecture.",
-  bulletsId: "ownership-bullets",
-  bullets: [
-    "<b>Auditing:</b> Conducted a comprehensive UI/UX audit to identify usability and accessibility flaws.",
-    "<b>Architecting:</b> Built a scalable, WCAG-compliant design system from the ground up in Figma.",
-    "<b>Collaborating:</b> Partnered closely with engineering to ensure seamless, pixel-perfect implementation."
-  ]
+  description: "I spearheaded the end-to-end visual overhaul and design system architecture."
 };
+
+const ownershipGridData = [
+  { 
+    icon: <span className="material-symbols-outlined" style={{ fontSize: "2rem" }}>troubleshoot</span>, 
+    title: "Auditing", 
+    description: "Conducted a comprehensive UI/UX audit to identify usability and accessibility flaws." 
+  },
+  { 
+    icon: <span className="material-symbols-outlined" style={{ fontSize: "2rem" }}>architecture</span>, 
+    title: "Architecting", 
+    description: "Built a scalable, WCAG-compliant design system from the ground up in Figma." 
+  },
+  { 
+    icon: <span className="material-symbols-outlined" style={{ fontSize: "2rem" }}>handshake</span>, 
+    title: "Collaborating", 
+    description: "Partnered closely with engineering to ensure seamless, pixel-perfect implementation." 
+  }
+];
 
 const decisionsIntroData = {
   id: "decisions-intro",
@@ -247,7 +253,12 @@ const ResumeHelp = () => {
           <TopicCover>
             <div className="grid gap-10">
               <TopicIntro id={ownershipIntroData.id} title={ownershipIntroData.title} description={ownershipIntroData.description} />
-              <BulletList id={ownershipIntroData.bulletsId} items={ownershipIntroData.bullets} columns={1} />
+              <TextCardGrid 
+                id="ownership-grid"
+                items={ownershipGridData} 
+                columns={3} 
+                cardClassName="bg-[var(--color-card)] flex flex-col items-start text-left" 
+              />
             </div>
           </TopicCover>
         </ProjectSection>
