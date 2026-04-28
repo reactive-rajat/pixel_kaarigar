@@ -86,7 +86,7 @@ const ownershipGridData = [
 const decisionData = {
   s4: {
     title: "Color System & Accessibility",
-    description: "The biggest risk in the old design was the failing green button. We completely overhauled the palette to make it inclusive by default.",
+    description: "Defined a strict, WCAG-compliant color palette anchored by Ultra Violet. This eliminated visual clutter and ensured text legibility and clear, accessible actions for all users.",
     imageSrc: `${basePath}/assets/thumb_decision_01.png`,
     imageAlt: "Color System & Accessibility",
     imagePosition: "left",
@@ -98,7 +98,7 @@ const decisionData = {
   },
   s5: {
     title: "Typography Built for UI",
-    description: "A resume builder is a heavy, data-dense UI. We needed fonts that were highly readable at small sizes and friendly enough to reduce user anxiety.",
+    description: "Replaced fragmented marketing fonts with a cohesive, mathematical type scale using <em>Circular Std</em> and <em>Public Sans</em> for optimal readability on dense data screens.",
     imageSrc: `${basePath}/assets/thumb_decision_02.png`,
     imageAlt: "Typography Built for UI",
     imagePosition: "right",
@@ -110,7 +110,7 @@ const decisionData = {
   },
   s6: {
     title: "The Grid & Spacing Math",
-    description: "To stop designers and developers from \"eyeballing\" margins, we introduced strict mathematical rules.",
+    description: "Introduced a strict 8-point grid system. By mathematically aligning padding and margins, we eliminated \"magic numbers\" and created a predictable rhythm across all devices.",
     imageSrc: `${basePath}/assets/thumb_decision_03.png`,
     imageAlt: "The Grid & Spacing Math",
     imagePosition: "left",
@@ -122,7 +122,7 @@ const decisionData = {
   },
   s7: {
     title: "Component Standardization",
-    description: "We wiped out the mixed icon styles and built a master, atomic library.",
+    description: "Built a robust, reusable Figma component library utilizing Auto Layout and Variants to drastically speed up future design iterations and maintain consistency.",
     imageSrc: `${basePath}/assets/thumb_decision_04.png`,
     imageAlt: "Component Standardization",
     imagePosition: "right",
@@ -146,49 +146,52 @@ const executionData = {
 };
 
 const impactGridData = [
-  { icon: "✅", title: "100% Accessible", description: "Every interactive CTA now passes strict WCAG standards." },
-  { icon: "✅", title: "15+ Pages Migrated", description: "Successfully applied this system to redesign 15 to 25 core pages with zero design drift." },
-  { icon: "✅", title: "One Source of Truth", description: "Agency, internal designers, and developers finally spoke the exact same visual language." },
-  { icon: "✅", title: "Faster Shipping", description: "Designers stopped reinventing cards. Developers built reusable wrappers. Production multiplied." }
-];
-
-const reflectionGridData = [
-  { title: "1. Document the \"Why\"", description: "If you just tell a designer \"use this 24px margin,\" they will argue. If you explain <em>why</em> it aligns with the dev grid, they agree. Context stops debates." },
-  { title: "2. Constraints = Speed", description: "Making WCAG compliance the very first rule actually sped up our color exploration by instantly filtering out bad choices." },
-  { title: "3. Systems Need Bouncers", description: "The UI kit is only 20% of the job. 80% is governing the system, reviewing work, and having the confidence to say \"no\" to random tweaks." }
+  { icon: "✅", title: "Single Source of Truth", description: "Established a centralized component library, seamlessly aligning both the product and engineering teams." },
+  { icon: "✅", title: "Faster Shipping", description: "Component standardization drastically reduced UI design and front-end development time for new features." },
+  { icon: "✅", title: "Elevated Usability", description: "Resolved critical accessibility issues, resulting in a cleaner, more intuitive user journey." }
 ];
 
 const problemIntroData = {
   id: "problem-intro",
-  title: "Breaking at Scale.",
-  description: "RH is a resume builder used by millions in the US and UK. As the product scaled, multiple designers and agencies added pages without any shared rules — leading to a visually inconsistent, accessibility-broken UI that was hard to maintain.",
+  title: "The Challenge: Design Debt at Scale",
+  description: "As ResumeHelp grew rapidly, the platform accumulated massive design debt. The lack of a centralized system led to an inconsistent user experience and a bloated codebase. We were facing:",
   bulletsId: "problem-bullets",
   bullets: [
-    "Primary green (#00C194) failed WCAG AA on buttons.",
-    "No grid system — every page spaced by eye.",
-    "Only 6 type styles for an entire multi-page product.",
-    "Every image, especially the hero images, covered with a dark overlay which makes images lost their purpose.",
-    "3+ icon styles mixed across pages — outlined, filled, two-colour.",
-    "Dark sections placed randomly with no rule or reason."
+    "<b>Accessibility Failures:</b> Low-contrast text (ratios as low as 2.30:1) and unreadable CTAs created friction for users.",
+    "<b>Visual Chaos:</b> A mix of random backgrounds, conflicting iconography, and heavy overlays diluted brand trust.",
+    "<b>Structural Flaws:</b> A lack of \"layout math\" and arbitrary spacing meant developers had to guess, severely slowing down release cycles."
   ]
 };
 
 const ownershipIntroData = {
   id: "ownership-intro",
-  title: "My Role in This Project",
-  description: "An external agency built the initial design system. My job was to own the outcome — brief them, review everything, fill what was missing, and make sure it stayed consistent once it went live."
+  title: "My Role & Scope",
+  description: "I spearheaded the end-to-end visual overhaul and design system architecture.",
+  bulletsId: "ownership-bullets",
+  bullets: [
+    "<b>Auditing:</b> Conducted a comprehensive UI/UX audit to identify usability and accessibility flaws.",
+    "<b>Architecting:</b> Built a scalable, WCAG-compliant design system from the ground up in Figma.",
+    "<b>Collaborating:</b> Partnered closely with engineering to ensure seamless, pixel-perfect implementation."
+  ]
 };
 
 const decisionsIntroData = {
   id: "decisions-intro",
-  title: "Systemizing the Chaos.",
-  description: "To fix the underlying structural problems, we made 4 foundational decisions that completely overhauled the UI logic."
+  title: "Systemizing the Chaos: Building the Foundation",
+  description: "To fix the underlying structural problems, we made 4 foundational decisions that completely overhauled the UI logic.",
+  bulletsId: "decisions-bullets",
+  bullets: [
+    "<b>Color System:</b> Defined a strict, WCAG-compliant palette anchored by Ultra Violet.",
+    "<b>Typography:</b> Replaced fragmented fonts with a cohesive, mathematical type scale.",
+    "<b>Grid & Spacing:</b> Introduced a strict 8-point grid to eliminate arbitrary spacing.",
+    "<b>Component Library:</b> Built a reusable Figma atomic library with Auto Layout."
+  ]
 };
 
 const executionIntroData = {
   id: "execution-intro",
   title: "Developer Handoff: Zero Guesswork",
-  description: "Figma's Dev Mode is great, but developers still found themselves digging through nested layers to find exact padding values."
+  description: "A design system is useless if it can't be built. I provided 100% front-facing specs and standardized tokens—eliminating guesswork and empowering engineering to build faster with absolute accuracy."
 };
 
 const impactIntroData = {
@@ -200,7 +203,7 @@ const impactIntroData = {
 const reflectionIntroData = {
   id: "reflection-intro",
   title: "What I Learned",
-  description: "A systemic overhaul is just as much about communication as it is about typography and spacing."
+  description: "I learned that a Design System is a product in itself, and its primary users are developers and other designers. The biggest challenge isn't just pushing pixels, but change management. Strict, clear documentation proved just as important as the visual design itself."
 };
 
 const ResumeHelp = () => {
@@ -213,7 +216,13 @@ const ResumeHelp = () => {
           <TopicCover>
             <div className="grid gap-10">
               <TopicIntro id={problemIntroData.id} title={problemIntroData.title} description={problemIntroData.description} />
-              <BulletList id={problemIntroData.bulletsId} items={problemIntroData.bullets} columns={2} />
+              <BulletList 
+                id={problemIntroData.bulletsId} 
+                items={problemIntroData.bullets} 
+                columns={2} 
+                icon="close" 
+                iconColor="text-[var(--color-danger)]" 
+              />
             </div>
           </TopicCover>
 
@@ -238,13 +247,7 @@ const ResumeHelp = () => {
           <TopicCover>
             <div className="grid gap-10">
               <TopicIntro id={ownershipIntroData.id} title={ownershipIntroData.title} description={ownershipIntroData.description} />
-              <TextCardGrid 
-                id="ownership-grid"
-                items={ownershipGridData} 
-                columns={2} 
-                className="gap-0" 
-                cardClassName="border-theme [&:nth-child(1)]:border-b [&:nth-child(1)]:border-r [&:nth-child(2)]:border-b [&:nth-child(3)]:border-r" 
-              />
+              <BulletList id={ownershipIntroData.bulletsId} items={ownershipIntroData.bullets} columns={1} />
             </div>
           </TopicCover>
         </ProjectSection>
@@ -253,7 +256,16 @@ const ResumeHelp = () => {
         <ProjectSection id="topic-decisions" theme="success">
           <TopicHeader title="Core Decisions" />
           <TopicCover>
-            <TopicIntro id={decisionsIntroData.id} title={decisionsIntroData.title} description={decisionsIntroData.description} />
+            <div className="grid gap-10">
+              <TopicIntro id={decisionsIntroData.id} title={decisionsIntroData.title} description={decisionsIntroData.description} />
+              <BulletList 
+                id={decisionsIntroData.bulletsId} 
+                items={decisionsIntroData.bullets} 
+                columns={2} 
+                icon="check" 
+                iconColor="text-[var(--color-success)]" 
+              />
+            </div>
           </TopicCover>
           <TopicDetails>
             {Object.entries(decisionData).map(([id, data], index) => (
@@ -298,7 +310,7 @@ const ResumeHelp = () => {
               <TextCardGrid 
                 id="impact-grid"
                 items={impactGridData} 
-                columns={4} 
+                columns={3} 
                 cardClassName="bg-[var(--color-card)]" 
               />
             </div>
@@ -310,10 +322,9 @@ const ResumeHelp = () => {
           <TopicHeader title="Reflection" />
           <TopicCover>
             <div>
-              <div className="mb-8">
+              <div className="mb-0">
                 <TopicIntro id={reflectionIntroData.id} title={reflectionIntroData.title} description={reflectionIntroData.description} />
               </div>
-              <TextCardGrid id="reflection-grid" items={reflectionGridData} columns={3} />
             </div>
           </TopicCover>
         </ProjectSection>

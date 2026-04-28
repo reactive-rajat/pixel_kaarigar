@@ -141,7 +141,7 @@ const ProjectDetail = () => {
               {project.projectType === "motion" ? (
                 <video src={project.image} className="w-full h-full object-cover absolute inset-0" controls playsInline />
               ) : (
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover absolute inset-0" referrerPolicy="no-referrer" />
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover absolute inset-0 image-hover-scale" referrerPolicy="no-referrer" />
               )}
               
               {/* Tags overlay (Top Left) */}
@@ -213,34 +213,20 @@ const ProjectDetail = () => {
           </section>
         </main>
 
-        <div className="project-nav-row container">
-          <Link to="/work" className="project-back-link project-nav-pill">
-            <span
-              className="project-nav-icon-wrap"
-              aria-hidden="true"
-            >
-              <span className="material-symbols-outlined">arrow_back</span>
-            </span>
-            <span className="project-nav-pill-label">
-              Back to work
-            </span>
+        <div className="project-nav-row container items-center flex justify-between my-16">
+          <Link to="/work" className="btn btn-secondary">
+            <span className="material-symbols-outlined">arrow_back</span>
+            <span className="text-nowrap">Back to Work</span>
           </Link>
 
           {nextProject && (
             <Link
               to={`/project/${nextProject.slug}`}
-              className="project-next-link project-nav-pill"
+              className="btn btn-primary"
               aria-label={`Go to next project: ${nextProject.title}`}
             >
-              <span className="project-next-link-label project-nav-pill-label">
-                Next Project
-              </span>
-              <span
-                className="project-next-icon-wrap project-nav-icon-wrap"
-                aria-hidden="true"
-              >
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </span>
+              <span className="text-nowrap">Next Project</span>
+              <span className="material-symbols-outlined right-fix">arrow_forward</span>
             </Link>
           )}
         </div>

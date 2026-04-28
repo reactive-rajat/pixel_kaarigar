@@ -1,14 +1,20 @@
 import React from "react";
 
-export const BulletList = ({ id, items = [], columns = 1 }) => {
+export const BulletList = ({ id, items = [], columns = 1, icon, iconColor }) => {
   const isMultiColumn = columns > 1;
 
   const renderList = (listItems) => (
-    <ul className="card-1 card-sm border flex flex-col !gap-3 !pl-4">
+    <ul className="card-1 card-sm border flex flex-col !gap-4 !pl-4">
       {listItems.map((item, index) => (
         <li key={index} className="flex gap-3 items-start">
-          <div className="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
-          <div className="text-(--color-text) leading-relaxed">{item}</div>
+          {icon ? (
+            <span className={`material-symbols-outlined shrink-0 mt-0.5 ${iconColor || 'text-primary'}`} style={{ fontSize: '1.25rem', fontWeight: 700 }}>
+              {icon}
+            </span>
+          ) : (
+            <div className="w-2 h-2 rounded-full bg-primary shrink-0 mt-2"></div>
+          )}
+          <div className="text-(--color-text) leading-relaxed" dangerouslySetInnerHTML={{ __html: item }}></div>
         </li>
       ))}
     </ul>

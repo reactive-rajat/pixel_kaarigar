@@ -90,7 +90,7 @@
 
   @media (min-width: 1024px) {
     .image-hover-scale:hover {
-      transform: scale(1.03);
+      transform: scale(1.075);
     }
   }
 }

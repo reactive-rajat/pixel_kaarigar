@@ -58,6 +58,10 @@ const AppShell = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
     const nextPage = location.pathname.startsWith('/project/')
       ? 'works'
       : routeToPage[location.pathname] || 'home';
