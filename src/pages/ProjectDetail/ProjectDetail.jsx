@@ -100,7 +100,16 @@ const ProjectDetail = () => {
                     {categoryLabel}
                   </span>
                 )}
-                {project.title.includes(': ') ? (
+                {project.tagline ? (
+                  <h1 className="text-balance m-0 mb-6 mt-2">
+                    <span className="block text-sm md:text-base font-bold uppercase text-[var(--color-primary)] tracking-widest mb-3">
+                      {project.tagline}
+                    </span>
+                    <span className="block leading-[1.1]" style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}>
+                      {project.title}
+                    </span>
+                  </h1>
+                ) : project.title.includes(': ') ? (
                   <h1 className="text-balance m-0 mb-6 mt-2">
                     <span className="block text-sm md:text-base font-bold uppercase text-[var(--color-primary)] tracking-widest mb-3">
                       {project.title.split(': ')[0]}

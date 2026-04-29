@@ -41,7 +41,8 @@ const getProjectFolderPath = (project) => {
 
 const projectEntries = [
   {
-    title: "Fixing What Broke at Scale: Rebuilding ResumeHelp's Design Foundation",
+    title: "Rebuilding ResumeHelp's Design Foundation",
+    tagline: "Fixing What Broke at Scale",
     projectType: "case-study",
     featuredOrder: 1,
     folder: "resume-help",
@@ -68,7 +69,7 @@ const projectEntries = [
     image: "/assets/projects/thumbnails/portfolio_v1_thumbnail.png",
     tags: ["Three.js", "GSAP"],
     size: "medium",
-    category: ["Apps"],
+    category: ["UI & Dev"],
   },
   {
     title: "Resume Nerd",
@@ -81,7 +82,7 @@ const projectEntries = [
     image: "/assets/projects/thumbnails/nerd_thumbnail.png",
     tags: ["HTML/CSS", "UI DESIGN", "FIGMA"],
     size: "medium",
-    category: ["Apps", "Design"],
+    category: ["UI & Dev"],
   },
   {
     title: "Graphic & Marketing Design",
@@ -92,7 +93,7 @@ const projectEntries = [
     image: "/assets/projects/thumbnails/graphic_design_thumbnail.png",
     tags: ["BRANDING", "SOCIAL MEDIA", "PRINT"],
     size: "small",
-    category: ["Design"],
+    category: ["Creative"],
   },
   {
     title: "Wedding Invite",
@@ -103,7 +104,7 @@ const projectEntries = [
     image: "/assets/projects/thumbnails/harshit_himanshi_invite.mp4",
     tags: ["VIDEO", "INVITATION"],
     size: "small",
-    category: ["Motion"],
+    category: ["Creative"],
   },
   {
     title: "BOLD India",
@@ -116,7 +117,7 @@ const projectEntries = [
     image: "/assets/projects/thumbnails/bold_india_thumbnail.png",
     tags: ["WEB DESIGN", "HTML / CSS", "UI KIT", "GOOGLE SITES"],
     size: "large",
-    category: ["Apps", "Design"],
+    category: ["UI & Dev"],
   },
 ];
 
