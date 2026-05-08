@@ -398,6 +398,26 @@
     background-image: linear-gradient(var(--theme-soft, var(--color-bg-soft)), var(--theme-soft, var(--color-bg-soft))) !important;
   }
   
+  /* ── Grid Pattern Background ── */
+  .bg-grid-pattern {
+    position: relative;
+    isolation: isolate;
+  }
+  .bg-grid-pattern::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    border-radius: inherit;
+    background-size: 0.68rem 0.68rem;
+    background-image: 
+      linear-gradient(to right, color-mix(in srgb, var(--color-text) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-text) 5%, transparent) 1px, transparent 1px);
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  }
+  
   /* Dynamic Border Application Utilities */
   .border-theme-soft { border-color: var(--theme-card-border-default, var(--color-border)) !important; }
   .border-theme { border-color: var(--theme-border, var(--color-border)) !important; }
