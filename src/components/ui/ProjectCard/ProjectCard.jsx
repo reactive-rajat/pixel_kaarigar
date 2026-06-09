@@ -1,81 +1,32 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useMemo, useRef } from "react";
 import {
   getProjectCategories,
   isVideoPath,
 } from "../../../utils/projectMeta.js";
 import "./ProjectCard.css";
 
-/**
- * InfoTooltip
- * Shows a floating tooltip to the right (or left if near screen edge) with
- * the full description and all tags. Triggered by hovering the ℹ icon.
- */
-const InfoTooltip = ({ description, tags, comingSoon }) => {
-  const triggerRef = useRef(null);
-  const tooltipRef = useRef(null);
-  const [visible, setVisible] = useState(false);
-  const [flipLeft, setFlipLeft] = useState(false);
-
-  const show = () => {
-    if (tooltipRef.current && triggerRef.current) {
-      const triggerRect = triggerRef.current.getBoundingClientRect();
-      const viewportWidth = window.innerWidth;
-      // Flip left if less than 280px space on the right
-      setFlipLeft(viewportWidth - triggerRect.right < 280);
-    }
-    setVisible(true);
-  };
-
-  const hide = () => setVisible(false);
-
-  return (
-    <span
-      className="card-info-trigger"
-      ref={triggerRef}
-      onMouseEnter={show}
-      onMouseLeave={hide}
-      onFocus={show}
-      onBlur={hide}
-      tabIndex={0}
-      aria-label="More info"
-    >
-      <span className="material-symbols-outlined card-info-icon">info</span>
-      <div
-        ref={tooltipRef}
-        className={`card-info-tooltip ${visible ? "card-info-tooltip--visible" : ""} ${flipLeft ? "card-info-tooltip--left" : ""}`}
-        role="tooltip"
-      >
-        {comingSoon ? (
-          <p className="card-info-coming-soon">🔒 This project isn't publicly available yet. Check back soon!</p>
-        ) : (
-          <>
-            {description && <p className="card-info-desc">{description}</p>}
-            {tags && tags.length > 0 && (
-              <div className="card-info-tags">
-                {tags.map((tag) => (
-                  <span key={tag} className="pill pill-primary card-info-pill">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </>
-        )}
-      </div>
-    </span>
-  );
-};
-
 const ProjectCard = ({ project, layout, onProjectOpen, externalUrl }) => {
-  const isCompact = layout?.rowSpan === 1;
+  const videoRef = useRef(null);
+
   const categories = getProjectCategories(project);
   const mediaSrc = project.image || "";
   const canPreviewVideo =
     categories.includes("Motion") && isVideoPath(mediaSrc);
   const hasExternalUrl = Boolean(externalUrl);
   const isInteractive = typeof onProjectOpen === "function";
-  const categoryLabel = categories.filter(Boolean).join(" + ");
-  const layoutClassName = layout
+  const categoryLabel = categories.filter(Boolean).join(" · ");
+  const projectIndex = String(project.id || "").padStart(2, "0");
+
+  const domain = useMemo(() => {
+    if (!externalUrl) return null;
+    try {
+      return new URL(externalUrl).hostname.replace(/^www\./, "");
+    } catch {
+      return null;
+    }
+  }, [externalUrl]);
+
+  const layoutStyle = layout
     ? {
         gridColumnStart: layout.columnStart,
         gridRowStart: layout.rowStart,
@@ -85,34 +36,53 @@ const ProjectCard = ({ project, layout, onProjectOpen, externalUrl }) => {
     : {};
 
   const handleOpen = () => {
-    if (!isInteractive) return;
-    onProjectOpen(project);
+    if (isInteractive) onProjectOpen(project);
   };
 
-  const handleKeyDown = (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    event.preventDefault();
+  const handleKeyDown = (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
     handleOpen();
   };
 
-  // For "Coming Soon" on cards with no URL, we still want hover tooltip
-  const showComingSoon = isInteractive && !hasExternalUrl;
+  const handleMouseEnter = () => {
+    if (videoRef.current && canPreviewVideo) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current && canPreviewVideo) {
+      videoRef.current.pause();
+    }
+  };
 
   return (
-    <div
-      className={`card card-hover project-card ${project.size || ""} ${isCompact ? "compact" : ""} ${!hasExternalUrl && isInteractive ? "no-link" : ""}`.trim()}
-      style={layoutClassName}
-      role={isInteractive && hasExternalUrl ? "button" : undefined}
-      tabIndex={isInteractive && hasExternalUrl ? 0 : undefined}
-      onClick={handleOpen}
-      onKeyDown={handleKeyDown}
-      aria-label={hasExternalUrl ? `Open ${project.title}` : `${project.title} — coming soon`}
+    <article
+      className={`project-card ${project.size || ""} ${!hasExternalUrl ? "no-link" : ""}`.trim()}
+      style={layoutStyle}
     >
-      <div className="card-media">
+      {/* ── Thumbnail frame ─────────────────────────────────────── */}
+      <div
+        className="card-frame"
+        role={isInteractive && hasExternalUrl ? "button" : undefined}
+        tabIndex={isInteractive && hasExternalUrl ? 0 : undefined}
+        aria-label={
+          hasExternalUrl
+            ? `Open ${project.title} — ${domain}`
+            : `${project.title} — coming soon`
+        }
+        onClick={handleOpen}
+        onKeyDown={handleKeyDown}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Thumbnail */}
         {canPreviewVideo ? (
           <video
+            ref={videoRef}
             src={mediaSrc}
-            className="card-image card-video"
+            className="card-thumb"
             muted
             loop
             playsInline
@@ -122,68 +92,80 @@ const ProjectCard = ({ project, layout, onProjectOpen, externalUrl }) => {
           <img
             src={project.image}
             alt={project.title}
-            className="card-image image-hover-scale"
+            className="card-thumb"
             referrerPolicy="no-referrer"
           />
         )}
-        <div className="card-gradient"></div>
 
+        {/* Atmospheric bottom gradient */}
+        <div className="card-atmo" aria-hidden="true" />
+
+        {/* One-time scan sheen on hover entry */}
+        <div className="card-sheen" aria-hidden="true" />
+
+        {/* Editorial index — top left */}
+        <span className="card-index" aria-hidden="true">{projectIndex}</span>
+
+        {/* Badge (if project has one) */}
         {project.badge && (
           <div className="card-badge label-tag">{project.badge}</div>
         )}
 
-        <div className="card-content">
-          <div className="content-inner">
-            <div className="content-top">
-              <div className="content-heading">
-                <span className="pill pill-secondary category-pill">
-                  {categoryLabel}
-                </span>
-                <h3 className="card-title">
-                  {project.title.split("\n").map((line, i) => (
-                    <span key={i}>
-                      {line}
-                      <br />
-                    </span>
-                  ))}
-                </h3>
-              </div>
-              {/* Show arrow CTA only for cards with a URL */}
-              {hasExternalUrl && (
-                <span className="card-cta" aria-hidden="true">
-                  <span className="material-symbols-outlined">arrow_outward</span>
-                </span>
-              )}
-            </div>
+        {/* Corner bracket decorators */}
+        <span className="card-corner card-corner--tl" aria-hidden="true" />
+        <span className="card-corner card-corner--tr" aria-hidden="true" />
+        <span className="card-corner card-corner--bl" aria-hidden="true" />
+        <span className="card-corner card-corner--br" aria-hidden="true" />
 
-            <div className="content-details">
-              <div className="details-inner">
-                {/* Description row: clamped text + info icon */}
-                <div className="card-desc-row">
-                  <p className="card-desc">{project.description}</p>
-                  <InfoTooltip
-                    description={project.description}
-                    tags={project.tags}
-                    comingSoon={showComingSoon}
-                  />
-                </div>
+        {/* External destination badge — top right, reveals on hover */}
+        {hasExternalUrl && domain && (
+          <div className="card-dest" aria-hidden="true">
+            <span
+              className="material-symbols-outlined card-dest-icon"
+              aria-hidden="true"
+            >
+              open_in_new
+            </span>
+            <span className="card-dest-url">{domain}</span>
+          </div>
+        )}
 
-                {/* Tags row: show pills, no wrapping */}
-                {(project.tags || []).length > 0 && (
-                  <div className="card-tags-row">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="pill pill-primary tag-pill">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
+        {/* ── Info drawer ────────────────────────────────────────── */}
+        <div className="card-drawer" aria-hidden="true">
+          {/* Glowing accent rule */}
+          <div className="drawer-rule" />
+
+          <div className="drawer-body">
+            {/* Description */}
+            <p className="drawer-desc">{project.description}</p>
+
+            {/* Tags */}
+            {(project.tags || []).length > 0 && (
+              <ul className="drawer-tags">
+                {project.tags.map((tag) => (
+                  <li key={tag} className="drawer-tag">{tag}</li>
+                ))}
+              </ul>
+            )}
+
+            {/* Coming soon notice for no-URL cards */}
+            {!hasExternalUrl && (
+              <p className="drawer-soon">
+                <span className="material-symbols-outlined">lock</span>
+                Not publicly available yet
+              </p>
+            )}
           </div>
         </div>
       </div>
-    </div>
+
+      {/* ── Below-frame meta ─────────────────────────────────────── */}
+      {/* Animates upward ("defocuses") into frame on hover */}
+      <footer className="card-meta">
+        <span className="card-category">{categoryLabel}</span>
+        <h3 className="card-title">{project.title.replace(/\n/g, " ")}</h3>
+      </footer>
+    </article>
   );
 };
 
