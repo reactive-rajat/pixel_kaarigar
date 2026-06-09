@@ -4,7 +4,10 @@ export const TopicHeader = ({ title }) => {
   if (!title) return null;
 
   return (
-    <div className="topic-node table mx-auto relative z-20 mb-8 bg-[var(--theme-base)] text-[#ffffff] px-8 py-3 rounded-full font-bold shadow-[0_10px_30px_color-mix(in_srgb,var(--theme-base)_50%,transparent)]">
+    <div 
+      className="topic-node table mx-auto relative z-20 mb-8 px-8 py-3 rounded-full font-bold shadow-[0_10px_30px_color-mix(in_srgb,var(--theme-base)_50%,transparent)]"
+      style={{ backgroundColor: 'var(--theme-base)', color: 'var(--theme-text-fill, #ffffff)' }}
+    >
       {title}
     </div>
   );

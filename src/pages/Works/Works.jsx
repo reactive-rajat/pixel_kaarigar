@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import ProjectCard from "../../components/ui/ProjectCard/ProjectCard";
 import projects from "../../data/projects.js";
+import projectLinks from "../../data/projectLinks.js";
 import { getProjectCategories } from "../../utils/projectMeta.js";
 import "./Works.css";
 
@@ -228,7 +228,6 @@ const buildCardLayout = (
 };
 
 const Works = () => {
-  const navigate = useNavigate();
   const [filter, setFilter] = useState("All");
   const [columnCount, setColumnCount] = useState(1);
   const gridRef = useRef(null);
@@ -356,7 +355,11 @@ const Works = () => {
               key={project.id}
               project={project}
               layout={layout}
-              onProjectOpen={() => navigate(`/project/${project.slug}`)}
+              externalUrl={projectLinks[project.folder] ?? ""}
+              onProjectOpen={() => {
+                const url = projectLinks[project.folder];
+                if (url) window.open(url, "_blank", "noopener,noreferrer");
+              }}
             />
           ))}
         </div>

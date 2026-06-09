@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import StatusBadge from "../../components/ui/StatusBadge/StatusBadge";
 import HeroVisual from "../../components/sections/HeroVisual/HeroVisual";
 import projects, { featuredProjects } from "../../data/projects.js";
+import projectLinks from "../../data/projectLinks.js";
 import "./Home.css";
 import { aboutSkills, aboutSnapshotCards } from "../../data/about.js";
 import Testimonials from "../../components/sections/Testimonials/Testimonials";
@@ -290,12 +290,16 @@ const Home = ({ setActivePage }) => {
                     ))}
                   </div>
 
-                  <Link
-                    className="showcase-link btn btn-primary"
-                    to={`/project/${activeProject.slug}`}
-                  >
-                    View Case Study →
-                  </Link>
+                  {projectLinks[activeProject.folder] && (
+                    <a
+                      className="showcase-link btn btn-primary"
+                      href={projectLinks[activeProject.folder]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Project →
+                    </a>
+                  )}
                 </div>
 
                 <div className="showcase-media">

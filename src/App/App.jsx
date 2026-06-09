@@ -6,7 +6,6 @@ import Home from '../pages/Home/Home';
 import Works from '../pages/Works/Works';
 import About from '../pages/About/About';
 import Contact from '../pages/Contact/Contact';
-import ProjectDetail from '../pages/ProjectDetail/ProjectDetail';
 import ComponentsPreview from '../pages/ComponentsPreview/ComponentsPreview';
 import "./App.css";
 
@@ -62,9 +61,7 @@ const AppShell = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    const nextPage = location.pathname.startsWith('/project/')
-      ? 'works'
-      : routeToPage[location.pathname] || 'home';
+    const nextPage = routeToPage[location.pathname] || 'home';
     if (nextPage !== activePage) {
       setActivePage(nextPage);
     }
@@ -84,7 +81,6 @@ const AppShell = () => {
           <Route path="/" element={<Home setActivePage={handlePageChange} />} />
           <Route path="/about" element={<About />} />
           <Route path="/work" element={<Works />} />
-          <Route path="/project/:slug" element={<ProjectDetail />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
