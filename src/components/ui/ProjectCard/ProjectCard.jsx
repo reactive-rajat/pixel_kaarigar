@@ -1,19 +1,34 @@
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import {
   getProjectCategories,
   isVideoPath,
 } from "../../../utils/projectMeta.js";
 import "./ProjectCard.css";
 
-const ProjectCard = ({ project, layout, onProjectOpen, externalUrl }) => {
+/*
+  Unidirectional flip state machine
+  ─────────────────────────────────
+  idle        → hovering  : animate 0° → 180°  (flip to back)
+  hovering    → leaving   : animate 180° → 360° (continue same direction, show front)
+  leaving     → idle      : reset to 0° (instant, no transition)
+
+  Description expand state:
+  When user hovers the clipped description on the back face, an overlay
+  fades in covering the full back face with the complete description text.
+*/
+
+const ProjectCard = ({ project, layout, externalUrl }) => {
   const videoRef = useRef(null);
+  const flipTimeoutRef = useRef(null);
+
+  // "idle" | "hovering" | "leaving"
+  const [flipState, setFlipState] = useState("idle");
 
   const categories = getProjectCategories(project);
   const mediaSrc = project.image || "";
   const canPreviewVideo =
     categories.includes("Motion") && isVideoPath(mediaSrc);
   const hasExternalUrl = Boolean(externalUrl);
-  const isInteractive = typeof onProjectOpen === "function";
   const categoryLabel = categories.filter(Boolean).join(" · ");
   const projectIndex = String(project.id || "").padStart(2, "0");
 
@@ -35,136 +50,158 @@ const ProjectCard = ({ project, layout, onProjectOpen, externalUrl }) => {
       }
     : {};
 
-  const handleOpen = () => {
-    if (isInteractive) onProjectOpen(project);
-  };
+  // Clean up on unmount
+  useEffect(() => {
+    return () => {
+      if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+    };
+  }, []);
 
-  const handleKeyDown = (e) => {
-    if (e.key !== "Enter" && e.key !== " ") return;
-    e.preventDefault();
-    handleOpen();
-  };
-
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
+    if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+    setFlipState("hovering");
     if (videoRef.current && canPreviewVideo) {
       videoRef.current.play().catch(() => {});
     }
-  };
+  }, [canPreviewVideo]);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
+    if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
+    setFlipState("leaving");
     if (videoRef.current && canPreviewVideo) {
       videoRef.current.pause();
     }
+    // After leave animation completes, reset flipper to 0° instantly
+    flipTimeoutRef.current = setTimeout(() => {
+      setFlipState("idle");
+    }, 580);
+  }, [canPreviewVideo]);
+
+  const handleLinkClick = (e) => {
+    e.stopPropagation();
+    if (hasExternalUrl) {
+      window.open(externalUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  // Card body click does nothing
+  const handleCardClick = (e) => {
+    e.preventDefault();
   };
 
   return (
     <article
-      className={`project-card ${project.size || ""} ${!hasExternalUrl ? "no-link" : ""}`.trim()}
+      className={`project-card ${project.size || ""} flip-${flipState}`.trim()}
       style={layoutStyle}
+      onClick={handleCardClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* ── Thumbnail frame ─────────────────────────────────────── */}
-      <div
-        className="card-frame"
-        role={isInteractive && hasExternalUrl ? "button" : undefined}
-        tabIndex={isInteractive && hasExternalUrl ? 0 : undefined}
-        aria-label={
-          hasExternalUrl
-            ? `Open ${project.title} — ${domain}`
-            : `${project.title} — coming soon`
-        }
-        onClick={handleOpen}
-        onKeyDown={handleKeyDown}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {/* Thumbnail */}
-        {canPreviewVideo ? (
-          <video
-            ref={videoRef}
-            src={mediaSrc}
-            className="card-thumb"
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          />
-        ) : (
-          <img
-            src={project.image}
-            alt={project.title}
-            className="card-thumb"
-            referrerPolicy="no-referrer"
-          />
-        )}
+      {/* ── 3D flip scene ─────────────────────────────────────────── */}
+      <div className="card-scene">
+        <div className="card-flipper">
 
-        {/* Atmospheric bottom gradient */}
-        <div className="card-atmo" aria-hidden="true" />
-
-        {/* One-time scan sheen on hover entry */}
-        <div className="card-sheen" aria-hidden="true" />
-
-        {/* Editorial index — top left */}
-        <span className="card-index" aria-hidden="true">{projectIndex}</span>
-
-        {/* Badge (if project has one) */}
-        {project.badge && (
-          <div className="card-badge label-tag">{project.badge}</div>
-        )}
-
-        {/* Corner bracket decorators */}
-        <span className="card-corner card-corner--tl" aria-hidden="true" />
-        <span className="card-corner card-corner--tr" aria-hidden="true" />
-        <span className="card-corner card-corner--bl" aria-hidden="true" />
-        <span className="card-corner card-corner--br" aria-hidden="true" />
-
-        {/* External destination badge — top right, reveals on hover */}
-        {hasExternalUrl && domain && (
-          <div className="card-dest" aria-hidden="true">
-            <span
-              className="material-symbols-outlined card-dest-icon"
-              aria-hidden="true"
-            >
-              open_in_new
-            </span>
-            <span className="card-dest-url">{domain}</span>
-          </div>
-        )}
-
-        {/* ── Info drawer ────────────────────────────────────────── */}
-        <div className="card-drawer" aria-hidden="true">
-          {/* Glowing accent rule */}
-          <div className="drawer-rule" />
-
-          <div className="drawer-body">
-            {/* Description */}
-            <p className="drawer-desc">{project.description}</p>
-
-            {/* Tags */}
-            {(project.tags || []).length > 0 && (
-              <ul className="drawer-tags">
-                {project.tags.map((tag) => (
-                  <li key={tag} className="drawer-tag">{tag}</li>
-                ))}
-              </ul>
+          {/* ── FRONT FACE — pure thumbnail, no text overlays ──────── */}
+          <div className="card-face card-face--front">
+            {canPreviewVideo ? (
+              <video
+                ref={videoRef}
+                src={mediaSrc}
+                className="card-thumb"
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
+            ) : (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="card-thumb"
+                referrerPolicy="no-referrer"
+              />
             )}
 
-            {/* Coming soon notice for no-URL cards */}
-            {!hasExternalUrl && (
-              <p className="drawer-soon">
-                <span className="material-symbols-outlined">lock</span>
-                Not publicly available yet
-              </p>
+            {/* One-time scan sheen on hover entry */}
+            <div className="card-sheen" aria-hidden="true" />
+
+            {/* Badge */}
+            {project.badge && (
+              <div className="card-badge label-tag">{project.badge}</div>
             )}
+
           </div>
+
+          {/* ── BACK FACE — all project info ───────────────────────── */}
+          <div className="card-face card-face--back">
+
+            {/* ── Normal back layout ──────────────────────────────── */}
+            <div className="card-back-inner">
+
+              {/* Category */}
+              <span className="back-category">{categoryLabel}</span>
+
+              {/* Title */}
+              <h3 className="back-title">{project.title.replace(/\n/g, " ")}</h3>
+
+              {/* Accent rule */}
+              <div className="back-rule" />
+
+              {/* Description */}
+              {project.description && (
+                <div className="desc-container">
+                  <div className="back-desc-wrap">
+                    <p className="back-desc">{project.description}</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Tags */}
+              {(project.tags || []).length > 0 && (
+                <ul className="back-tags">
+                  {project.tags.map((tag) => (
+                    <li key={tag} className="back-tag">{tag}</li>
+                  ))}
+                </ul>
+              )}
+
+              {/* Spacer */}
+              <div className="back-spacer" />
+
+              {/* CTA */}
+              {hasExternalUrl ? (
+                <button
+                  className="btn btn-primary back-link-btn"
+                  onClick={handleLinkClick}
+                  aria-label={`Visit ${project.title} — opens ${domain}`}
+                  type="button"
+                >
+                  <span className="material-symbols-outlined back-link-icon" aria-hidden="true">
+                    open_in_new
+                  </span>
+                  <span className="back-link-label">
+                    {domain || "Visit Project"}
+                  </span>
+
+                  <span className="back-link-arrow material-symbols-outlined" aria-hidden="true">
+                    arrow_forward
+                  </span>
+                </button>
+              ) : (
+                <p className="back-soon">
+                  <span className="material-symbols-outlined" aria-hidden="true">lock</span>
+                  Not publicly available yet
+                </p>
+              )}
+            </div>
+
+          </div>
+          {/* end .card-face--back */}
+
         </div>
+        {/* end .card-flipper */}
       </div>
-
-      {/* ── Below-frame meta ─────────────────────────────────────── */}
-      {/* Animates upward ("defocuses") into frame on hover */}
-      <footer className="card-meta">
-        <span className="card-category">{categoryLabel}</span>
-        <h3 className="card-title">{project.title.replace(/\n/g, " ")}</h3>
-      </footer>
+      {/* end .card-scene */}
     </article>
   );
 };

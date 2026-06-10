@@ -52,7 +52,7 @@ const projectEntries = [
     },
     image: "/assets/projects/thumbnails/portfolio_v1_thumbnail.png",
     tags: ["React", "Vite", "Tailwind CSS", "UI Design", "Template"],
-    size: "medium",
+    size: "small",
     category: ["Case Study", "UI & Dev"],
   },
   {
@@ -64,7 +64,7 @@ const projectEntries = [
       "It is an online resume and cover letter builder. I worked on UI updates and some HTML/CSS improvements.",
     image: "/assets/projects/thumbnails/nerd_thumbnail.png",
     tags: ["HTML/CSS", "UI DESIGN", "FIGMA"],
-    size: "medium",
+    size: "small",
     category: ["UI & Dev"],
   },
   {
@@ -97,7 +97,7 @@ const projectEntries = [
       "Bold India is an internal website for employee onboarding and India-specific company policies. I designed and built it using HTML/CSS, created a UI kit from Bold.com for brand consistency, and published it on Google Sites.",
     image: "/assets/projects/thumbnails/bold_india_thumbnail.png",
     tags: ["WEB DESIGN", "HTML / CSS", "UI KIT", "GOOGLE SITES"],
-    size: "large",
+    size: "medium",
     category: ["UI & Dev"],
   },
 ];

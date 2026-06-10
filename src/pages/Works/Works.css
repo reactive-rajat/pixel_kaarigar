@@ -14,7 +14,7 @@
 .filter-chips {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.75rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
   border-radius: 2rem;
@@ -29,49 +29,44 @@
   white-space: nowrap;
 }
 
+/* ─── Project Grid ───────────────────────────────────────────────
+   3-column editorial layout with mixed spans:
+   • small  → 1×1  compact square
+   • medium → 2×1  wide landscape
+   • large  → 1×2  tall portrait (2 rows high)
+   • full   → 2×2  statement block (2 cols × 2 rows)
+
+   Row height ~220px → a 1×2 card is ~456px (nicely portrait).
+   At 260px min-card-width, 3 columns activate above ~820px.
+────────────────────────────────────────────────────────────────── */
+
 .projects-grid {
   --grid-columns: 1;
   display: grid;
   width: 100%;
   grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
-  /* Taller rows — the card-meta footer (title + category) lives inside each cell */
-  grid-auto-rows: clamp(220px, 21vw, 310px);
-  gap: 1.75rem;
+  /* ~220px rows: 1×1 feels compact square, 1×2 feels portrait tall */
+  grid-auto-rows: clamp(190px, 15.5vw, 230px);
+  gap: 1rem;
   grid-auto-flow: dense;
   align-items: stretch;
 }
 
-.projects-grid--columns-1 {
-  --grid-columns: 1;
+.projects-grid--columns-1 { --grid-columns: 1; }
+.projects-grid--columns-2 { --grid-columns: 2; }
+.projects-grid--columns-3 { 
+  --grid-columns: 3; 
+  aspect-ratio: 1 / 1;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
 }
+.projects-grid--columns-4 { --grid-columns: 4; }
+.projects-grid--columns-5 { --grid-columns: 5; }
+.projects-grid--columns-6 { --grid-columns: 6; }
+.projects-grid--columns-7 { --grid-columns: 7; }
+.projects-grid--columns-8 { --grid-columns: 8; }
 
-.projects-grid--columns-2 {
-  --grid-columns: 2;
-}
-
-.projects-grid--columns-3 {
-  --grid-columns: 3;
-}
-
-.projects-grid--columns-4 {
-  --grid-columns: 4;
-}
-
-.projects-grid--columns-5 {
-  --grid-columns: 5;
-}
-
-.projects-grid--columns-6 {
-  --grid-columns: 6;
-}
-
-.projects-grid--columns-7 {
-  --grid-columns: 7;
-}
-
-.projects-grid--columns-8 {
-  --grid-columns: 8;
-}
+/* ─── Works CTA ──────────────────────────────────────────────── */
 
 .works-cta {
   position: relative;
@@ -97,6 +92,7 @@
   z-index: -1;
 }
 
+/* ─── Responsive ─────────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
   .works-header {
@@ -110,8 +106,8 @@
   }
 
   .projects-grid {
-    grid-auto-rows: clamp(190px, 26vw, 260px);
-    gap: 1.35rem;
+    grid-auto-rows: clamp(170px, 20vw, 210px);
+    gap: 0.85rem;
   }
 }
 
@@ -139,13 +135,13 @@
   }
 
   .filter-chips {
-    gap: 0.65rem;
-    margin-bottom: 2.25rem;
+    gap: 0.55rem;
+    margin-bottom: 2rem;
   }
 
   .projects-grid {
-    gap: 1rem;
-    grid-auto-rows: 250px;
+    gap: 0.75rem;
+    grid-auto-rows: 220px;
   }
 
   .works-cta {
@@ -160,7 +156,6 @@
 }
 
 @media (max-width: 768px) {
-
   .filter-chip:hover,
   .works-cta .primary-btn:hover {
     transform: none;

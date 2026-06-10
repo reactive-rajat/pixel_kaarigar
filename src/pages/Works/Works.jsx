@@ -5,20 +5,24 @@ import projectLinks from "../../data/projectLinks.js";
 import { getProjectCategories } from "../../utils/projectMeta.js";
 import "./Works.css";
 
-const GRID_MIN_CARD_WIDTH = 340;
-const GRID_GAP = 20;
+const GRID_MIN_CARD_WIDTH = 260;
+const GRID_GAP = 16;
 
+/* Span personalities — creates editorial variety:
+   small  → 1×1  compact square
+   medium → 2×1  wide landscape
+   large  → 1×2  tall portrait
+   full   → 2×2  statement square
+*/
 const CARD_MAX_SPAN = {
-  small: { col: 1, row: 1 },
+  small:  { col: 1, row: 1 },
   medium: { col: 2, row: 1 },
-  large: { col: 2, row: 2 },
-  full: { col: 2, row: 2 },
+  large:  { col: 1, row: 2 },
+  full:   { col: 2, row: 2 },
 };
 
-const STACKED_CARD_PAIRS = [
-  [2, 3],
-  [4, 5],
-];
+/* Empty the stacked pairs to let cards flow naturally based on their size */
+const STACKED_CARD_PAIRS = [];
 
 const STACKED_PAIR_LOOKUP = new Map(
   STACKED_CARD_PAIRS.map(([firstId, secondId]) => [firstId, secondId]),
@@ -62,6 +66,7 @@ const getSpanOptions = (size, columns) => {
   const maxSpan = CARD_MAX_SPAN[size] || CARD_MAX_SPAN.small;
   const maxCol = Math.min(maxSpan.col, columns);
 
+  // Tall cards (row: 2)
   if (maxSpan.row === 2) {
     if (maxCol === 2) {
       return [
@@ -70,13 +75,13 @@ const getSpanOptions = (size, columns) => {
         { col: 1, row: 1 },
       ];
     }
-
     return [
       { col: 1, row: 2 },
       { col: 1, row: 1 },
     ];
   }
 
+  // Wide cards (col: 2, row: 1)
   if (maxCol === 2) {
     return [
       { col: 2, row: 1 },
@@ -84,6 +89,7 @@ const getSpanOptions = (size, columns) => {
     ];
   }
 
+  // Small 1×1
   return [{ col: 1, row: 1 }];
 };
 
@@ -241,9 +247,12 @@ const Works = () => {
 
     const updateColumnCount = () => {
       const width = gridElement.clientWidth;
-      const nextColumns = Math.max(
-        1,
-        Math.floor((width + GRID_GAP) / (GRID_MIN_CARD_WIDTH + GRID_GAP)),
+      const nextColumns = Math.min(
+        3,
+        Math.max(
+          1,
+          Math.floor((width + GRID_GAP) / (GRID_MIN_CARD_WIDTH + GRID_GAP)),
+        )
       );
 
       setColumnCount((current) =>
@@ -356,10 +365,6 @@ const Works = () => {
               project={project}
               layout={layout}
               externalUrl={projectLinks[project.folder] ?? ""}
-              onProjectOpen={() => {
-                const url = projectLinks[project.folder];
-                if (url) window.open(url, "_blank", "noopener,noreferrer");
-              }}
             />
           ))}
         </div>
