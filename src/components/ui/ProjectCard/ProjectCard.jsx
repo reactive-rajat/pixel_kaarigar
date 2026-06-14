@@ -1,28 +1,15 @@
 import React, { useMemo, useRef, useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import {
   getProjectCategories,
   isVideoPath,
 } from "../../../utils/projectMeta.js";
 import "./ProjectCard.css";
 
-/*
-  Unidirectional flip state machine
-  ─────────────────────────────────
-  idle        → hovering  : animate 0° → 180°  (flip to back)
-  hovering    → leaving   : animate 180° → 360° (continue same direction, show front)
-  leaving     → idle      : reset to 0° (instant, no transition)
-
-  Description expand state:
-  When user hovers the clipped description on the back face, an overlay
-  fades in covering the full back face with the complete description text.
-*/
-
-const ProjectCard = ({ project, layout, externalUrl }) => {
+const ProjectCard = ({ project, externalUrl }) => {
   const videoRef = useRef(null);
-  const flipTimeoutRef = useRef(null);
-
-  // "idle" | "hovering" | "leaving"
-  const [flipState, setFlipState] = useState("idle");
+  const [isHovered, setIsHovered] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const categories = getProjectCategories(project);
   const mediaSrc = project.image || "";
@@ -30,7 +17,6 @@ const ProjectCard = ({ project, layout, externalUrl }) => {
     categories.includes("Motion") && isVideoPath(mediaSrc);
   const hasExternalUrl = Boolean(externalUrl);
   const categoryLabel = categories.filter(Boolean).join(" · ");
-  const projectIndex = String(project.id || "").padStart(2, "0");
 
   const domain = useMemo(() => {
     if (!externalUrl) return null;
@@ -41,168 +27,186 @@ const ProjectCard = ({ project, layout, externalUrl }) => {
     }
   }, [externalUrl]);
 
-  const layoutStyle = layout
-    ? {
-        gridColumnStart: layout.columnStart,
-        gridRowStart: layout.rowStart,
-        gridColumnEnd: `span ${layout.colSpan}`,
-        gridRowEnd: `span ${layout.rowSpan}`,
-      }
-    : {};
-
-  // Clean up on unmount
-  useEffect(() => {
-    return () => {
-      if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
-    };
-  }, []);
-
   const handleMouseEnter = useCallback(() => {
-    if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
-    setFlipState("hovering");
+    setIsHovered(true);
     if (videoRef.current && canPreviewVideo) {
       videoRef.current.play().catch(() => {});
     }
   }, [canPreviewVideo]);
 
   const handleMouseLeave = useCallback(() => {
-    if (flipTimeoutRef.current) clearTimeout(flipTimeoutRef.current);
-    setFlipState("leaving");
+    setIsHovered(false);
     if (videoRef.current && canPreviewVideo) {
       videoRef.current.pause();
     }
-    // After leave animation completes, reset flipper to 0° instantly
-    flipTimeoutRef.current = setTimeout(() => {
-      setFlipState("idle");
-    }, 580);
   }, [canPreviewVideo]);
 
-  const handleLinkClick = (e) => {
-    e.stopPropagation();
-    if (hasExternalUrl) {
-      window.open(externalUrl, "_blank", "noopener,noreferrer");
-    }
-  };
-
-  // Card body click does nothing
   const handleCardClick = (e) => {
     e.preventDefault();
+    setIsModalOpen(true);
   };
 
-  return (
-    <article
-      className={`project-card ${project.size || ""} flip-${flipState}`.trim()}
-      style={layoutStyle}
-      onClick={handleCardClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* ── 3D flip scene ─────────────────────────────────────────── */}
-      <div className="card-scene">
-        <div className="card-flipper">
+  const handleCloseModal = (e) => {
+    e.stopPropagation();
+    setIsModalOpen(false);
+  };
 
-          {/* ── FRONT FACE — pure thumbnail, no text overlays ──────── */}
-          <div className="card-face card-face--front">
-            {canPreviewVideo ? (
-              <video
-                ref={videoRef}
-                src={mediaSrc}
-                className="card-thumb"
-                muted
-                loop
-                playsInline
-                preload="metadata"
-              />
-            ) : (
-              <img
-                src={project.image}
-                alt={project.title}
-                className="card-thumb"
-                referrerPolicy="no-referrer"
-              />
-            )}
+  const primaryBtn = project.primaryButton || (hasExternalUrl ? { label: domain || "Visit Project", url: externalUrl } : null);
+  const secondaryBtn = project.secondaryButton || null;
 
-            {/* One-time scan sheen on hover entry */}
-            <div className="card-sheen" aria-hidden="true" />
+  // Card body click does nothing
 
-            {/* Badge */}
-            {project.badge && (
-              <div className="card-badge label-tag">{project.badge}</div>
-            )}
+  // Close modal on escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && isModalOpen) {
+        setIsModalOpen(false);
+      }
+    };
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden"; // Prevent background scroll
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isModalOpen]);
 
-          </div>
-
-          {/* ── BACK FACE — all project info ───────────────────────── */}
-          <div className="card-face card-face--back">
-
-            {/* ── Normal back layout ──────────────────────────────── */}
-            <div className="card-back-inner">
-
-              {/* Category */}
-              <span className="back-category">{categoryLabel}</span>
-
-              {/* Title */}
-              <h3 className="back-title">{project.title.replace(/\n/g, " ")}</h3>
-
-              {/* Accent rule */}
-              <div className="back-rule" />
-
-              {/* Description */}
-              {project.description && (
-                <div className="desc-container">
-                  <div className="back-desc-wrap">
-                    <p className="back-desc">{project.description}</p>
-                  </div>
-                </div>
-              )}
-
-              {/* Tags */}
-              {(project.tags || []).length > 0 && (
-                <ul className="back-tags">
-                  {project.tags.map((tag) => (
-                    <li key={tag} className="back-tag">{tag}</li>
-                  ))}
-                </ul>
-              )}
-
-              {/* Spacer */}
-              <div className="back-spacer" />
-
-              {/* CTA */}
-              {hasExternalUrl ? (
-                <button
-                  className="btn btn-primary back-link-btn"
-                  onClick={handleLinkClick}
-                  aria-label={`Visit ${project.title} — opens ${domain}`}
-                  type="button"
-                >
-                  <span className="material-symbols-outlined back-link-icon" aria-hidden="true">
-                    open_in_new
-                  </span>
-                  <span className="back-link-label">
-                    {domain || "Visit Project"}
-                  </span>
-
-                  <span className="back-link-arrow material-symbols-outlined" aria-hidden="true">
-                    arrow_forward
-                  </span>
-                </button>
-              ) : (
-                <p className="back-soon">
-                  <span className="material-symbols-outlined" aria-hidden="true">lock</span>
-                  Not publicly available yet
-                </p>
-              )}
-            </div>
-
-          </div>
-          {/* end .card-face--back */}
-
+  const modalContent = isModalOpen && (
+    <div className="project-modal-backdrop" onClick={handleCloseModal}>
+      <div 
+        className="project-modal-content" 
+        onClick={(e) => e.stopPropagation()} // Prevent clicks inside modal from closing it
+      >
+        <button className="project-modal-close" onClick={handleCloseModal} aria-label="Close modal">
+          <span className="material-symbols-outlined">close</span>
+        </button>
+        
+        <div className="project-modal-header">
+          <span className="back-category">{categoryLabel}</span>
+          <h2 className="project-modal-title">{project.title.replace(/\n/g, " ")}</h2>
+          {project.tagline && (
+            <p className="project-modal-tagline">{project.tagline}</p>
+          )}
+          <div className="back-rule" />
         </div>
-        {/* end .card-flipper */}
+
+        <div className="project-modal-body">
+          {project.description && (
+            <div className="project-modal-section">
+              <p className="project-modal-desc">{project.description}</p>
+            </div>
+          )}
+
+          {project.quickContext && (
+            <div className="project-modal-section">
+              <div className="project-modal-context">
+                {Object.entries(project.quickContext).map(([key, value]) => (
+                  <div key={key} className="context-item">
+                    <span className="context-key">{key}</span>
+                    <span className="context-val">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {(project.tags || []).length > 0 && (
+            <div className="project-modal-section">
+              <ul className="back-tags">
+                {project.tags.map((tag) => (
+                  <li key={tag} className="back-tag">{tag}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        <div className="project-modal-footer">
+          {primaryBtn ? (
+            <a
+              className="btn btn-primary"
+              href={primaryBtn.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              aria-label={`Visit ${project.title}`}
+            >
+              <span>{primaryBtn.label}</span>
+            </a>
+          ) : (
+            <p className="back-soon">
+              <span className="material-symbols-outlined" aria-hidden="true">lock</span>
+              Not publicly available yet
+            </p>
+          )}
+
+          {secondaryBtn && (
+            <a
+              className="btn btn-secondary"
+              href={secondaryBtn.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              aria-label={secondaryBtn.label}
+            >
+              <span>{secondaryBtn.label}</span>
+            </a>
+          )}
+        </div>
       </div>
-      {/* end .card-scene */}
-    </article>
+    </div>
+  );
+
+  return (
+    <>
+      <article
+        className={`project-card ${project.size || ""} ${isHovered ? 'hovered' : ''}`.trim()}
+        onClick={handleCardClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className="card-scene">
+          {canPreviewVideo ? (
+            <video
+              ref={videoRef}
+              src={mediaSrc}
+              className="card-thumb"
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+          ) : (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="card-thumb"
+              referrerPolicy="no-referrer"
+            />
+          )}
+
+          <div className="card-sheen" aria-hidden="true" />
+
+          {project.badge && (
+            <div className="card-badge label-tag">{project.badge}</div>
+          )}
+        </div>
+
+        <div className="card-preview-info">
+          <h3 className="card-preview-title">{project.title.replace(/\n/g, " ")}</h3>
+          <p className="card-preview-category">{project.tagline || categoryLabel}</p>
+        </div>
+      </article>
+
+      {/* Render modal using React Portal if document.body is available, otherwise normal render (useful for SSR safety though this is CRA/Vite usually) */}
+      {isModalOpen && typeof document !== 'undefined' 
+        ? createPortal(modalContent, document.body) 
+        : modalContent}
+    </>
   );
 };
 

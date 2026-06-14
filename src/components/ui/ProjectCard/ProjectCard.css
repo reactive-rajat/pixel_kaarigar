@@ -1,13 +1,9 @@
 /* ═══════════════════════════════════════════════════════════════
-   PROJECT CARD  ·  Unidirectional Flip v5
+   PROJECT CARD & MODAL
    ─────────────────────────────────────────────────────────────
-   Flip mechanic (JS-class-driven):
-   • .flip-idle      → rotateY(0°)   no transition  (front visible)
-   • .flip-hovering  → rotateY(180°) with transition (back visible)
-   • .flip-leaving   → rotateY(360°) with transition (front visible again)
-
-   Description expand:
-   • .desc-expanded  → .back-desc-overlay fades in over entire back face
+   Cards no longer flip on hover. Instead, clicking them opens
+   a center-screen modal with an overflow backdrop and vertical
+   scroll for content.
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─── Card shell ─────────────────────────────────────────────── */
@@ -17,74 +13,53 @@
   flex-direction: column;
   height: 100%;
   min-height: 0;
-  cursor: default;
+  cursor: pointer;
+  grid-column: span 1;
 }
 
-/* ─── 3D Scene (perspective container) ──────────────────────── */
+.project-card.featured {
+  grid-column: span 2;
+}
+
+@media (max-width: 640px) {
+  .project-card.featured {
+    grid-column: span 1;
+  }
+}
+
+/* ─── Card Scene (Visual Container) ─────────────────────────── */
 
 .card-scene {
-  flex: 1;
-  min-height: 0;
-  perspective: 1000px;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   border-radius: var(--radius-lg);
   box-shadow:
     0 0 0 1px var(--color-border),
     0 4px 20px rgba(var(--rgb-text), 0.04);
-  transition: box-shadow 0.4s ease;
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
+  overflow: hidden;
+}
+
+.project-card.featured .card-scene {
+  aspect-ratio: 2 / 1;
+}
+
+@media (max-width: 640px) {
+  .project-card.featured .card-scene {
+    aspect-ratio: 4 / 3;
+  }
 }
 
 .project-card:hover .card-scene {
   box-shadow:
     0 0 0 1.5px rgba(var(--rgb-primary), 0.45),
     0 8px 36px rgba(var(--rgb-primary), 0.10);
+  transform: translateY(-4px);
 }
 
-/* ─── Flipper ────────────────────────────────────────────────── */
-
-.card-flipper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  transform-style: preserve-3d;
-  /* Default idle — no transition so reset is instant */
-  transform: rotateY(0deg);
-}
-
-.flip-idle .card-flipper {
-  transform: rotateY(0deg);
-  transition: none;
-}
-
-/* Hover: 0° → 180° */
-.flip-hovering .card-flipper {
-  transform: rotateY(180deg);
-  transition: transform 0.58s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Leave: 180° → 360° (same direction, no reversal) */
-.flip-leaving .card-flipper {
-  transform: rotateY(360deg);
-  transition: transform 0.58s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ─── Card faces ─────────────────────────────────────────────── */
-
-.card-face {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  overflow: hidden;
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   FRONT FACE
-   ═══════════════════════════════════════════════════════════════ */
-
-.card-face--front {
-  transform: rotateY(0deg);
+.project-card:active .card-scene {
+  transform: translateY(0);
 }
 
 /* ─── Thumbnail ──────────────────────────────────────────────── */
@@ -104,8 +79,8 @@
   pointer-events: none;
 }
 
-/* Subtle zoom on hover start — no darkening, no overlays */
-.flip-hovering .card-face--front .card-thumb {
+/* Subtle zoom on hover */
+.project-card.hovered .card-thumb {
   transform: scale(1.07);
 }
 
@@ -125,7 +100,7 @@
   z-index: 2;
 }
 
-.flip-hovering .card-sheen {
+.project-card.hovered .card-sheen {
   animation: sheenSweep 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
@@ -143,120 +118,207 @@
   z-index: 8;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   BACK FACE
-   ─────────────────────────────────────────────────────────────
-   Solid card background with full project info.
-   Layout: flex column — category → title → rule →
-           [desc fills remaining space] → tags → CTA
-   ═══════════════════════════════════════════════════════════════ */
+/* ─── Preview Info ───────────────────────────────────────────── */
 
-.card-face--back {
-  transform: rotateY(180deg);
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
+.card-preview-info {
+  margin-top: 1.2rem;
   display: flex;
   flex-direction: column;
+  gap: 0.35rem;
+  padding: 0 0.25rem;
 }
 
-/* ─── Normal back layout container ──────────────────────────── */
-
-.card-back-inner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  min-height: 0;
-  padding: 1.5rem;
-  gap: 0;
-  /* When overlay is active, keep this underneath */
-  position: relative;
-  z-index: 0;
-}
-
-/* Category */
-.back-category {
-  font-size: var(--text-xs);
-  font-weight: var(--weight-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--color-primary);
-  line-height: var(--leading-tight);
-  margin-bottom: 0.6rem;
-  display: block;
-  flex-shrink: 0;
-}
-
-/* Title */
-.back-title {
-  font-size: var(--text-base);
+.card-preview-title {
+  font-size: var(--text-lg);
   font-weight: var(--weight-semi);
-  line-height: var(--leading-snug);
   color: var(--color-text);
-  margin: 0 0 1rem 0;
+  line-height: var(--leading-tight);
+  margin: 0;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.card-preview-category {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-weight: var(--weight-medium);
+  margin: 0;
+  line-height: var(--leading-snug);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MODAL OVERLAY
+   ═══════════════════════════════════════════════════════════════ */
+
+.project-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.project-modal-content {
+  position: relative;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(var(--rgb-text), 0.05);
+  border: 1px solid rgba(var(--rgb-text), 0.1);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.project-modal-close:hover {
+  background: rgba(var(--rgb-text), 0.1);
+  transform: scale(1.05);
+}
+
+/* ─── Modal Inner Sections ───────────────────────────────────── */
+
+.project-modal-header {
+  padding: 2rem 2rem 1.75rem;
   flex-shrink: 0;
 }
 
-/* Accent rule */
+.back-category {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semi);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  background: rgba(var(--rgb-text), 0.04);
+  border: 1px solid rgba(var(--rgb-text), 0.08);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1.5rem;
+}
+
+.project-modal-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semi);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+  margin: 0 0 0.55rem 0;
+  padding-right: 2rem; /* space for close button */
+}
+
+.project-modal-tagline {
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+  margin: 0 0 1.25rem 0;
+  line-height: var(--leading-snug);
+  opacity: 0.9;
+}
+
 .back-rule {
-  height: 1.5px;
-  width: 2rem;
+  height: 2px;
+  width: 3rem;
   background: linear-gradient(
     90deg,
     var(--color-primary) 0%,
     rgba(var(--rgb-primary), 0.25) 100%
   );
   border-radius: 2px;
-  margin-bottom: 1.25rem;
-  flex-shrink: 0;
 }
 
-/* ─── Description wrapper ────────────────────────────────────
-   flex: 0 1 auto allows it to shrink if needed, but not stretch
-   to fill empty space in tall cards.
-──────────────────────────────────────────────────────────── */
+/* ─── Modal Scrollable Body ──────────────────────────────────── */
 
-.desc-container {
-  flex: 0 1 auto;
-  min-height: 0;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.25rem;
+.project-modal-body {
+  padding: 0 2rem 2rem;
+  overflow-y: auto;
+  flex: 1;
+  /* Scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--rgb-primary), 0.3) transparent;
 }
 
-.back-desc-wrap {
-  flex: 0 1 auto;
-  min-height: 0;
-  overflow: hidden;
-  position: relative;
+.project-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.project-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.project-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(var(--rgb-primary), 0.3);
+  border-radius: 4px;
 }
 
-.back-desc {
+.project-modal-section {
+  margin-bottom: 2rem;
+}
+
+.project-modal-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-subtitle {
   font-size: var(--text-sm);
+  font-weight: var(--weight-semi);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.project-modal-desc {
+  font-size: var(--text-base);
   line-height: var(--leading-relaxed);
   color: var(--color-text-muted);
   margin: 0;
 }
 
-
-
-
-
-/* ─── Tags ───────────────────────────────────────────────────── */
-
+/* Tags */
 .back-tags {
   list-style: none;
-  margin: 0 0 2rem 0;
+  margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  flex-shrink: 0;
+  gap: 0.5rem;
 }
 
 .back-tag {
@@ -264,225 +326,101 @@
   font-weight: var(--weight-medium);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  padding: 0.25rem 0.6rem;
+  padding: 0.35rem 0.75rem;
   border-radius: var(--radius-full);
   border: 1px solid rgba(var(--rgb-secondary), 0.35);
   color: var(--color-secondary);
   background: rgba(var(--rgb-secondary), 0.08);
   white-space: nowrap;
-  line-height: var(--leading-tight);
 }
 
-/* Push CTA to bottom (Removed to allow pure vertical centering) */
-.back-spacer {
-  display: none;
+/* Quick Context Grid */
+.project-modal-context {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  background: rgba(var(--rgb-text), 0.02);
+  border: 1px solid rgba(var(--rgb-border), 0.5);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
 }
 
-/* ─── External link CTA ──────────────────────────────────────── */
-
-.back-link-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.25rem;
-  border-radius: var(--radius-md); /* Slightly more rounded */
-  border: none;
-  background: var(--color-primary);
-  color: #ffffff; /* White text for primary button */
-  cursor: pointer;
-  font-size: var(--text-base); /* Bigger font size */
-  font-weight: var(--weight-semi);
-  font-family: inherit;
-  line-height: 1;
-  align-self: flex-start;
-  flex-shrink: 0;
-  transition:
-    background 0.2s ease,
-    transform 0.18s ease,
-    box-shadow 0.2s ease;
+.context-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-.back-link-btn:hover {
-  background: color-mix(in srgb, var(--color-primary) 85%, black);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(var(--rgb-primary), 0.3);
-}
-
-.back-link-btn:active {
-  transform: translateY(0);
-}
-
-.back-link-icon {
-  font-size: var(--text-sm) !important;
-  line-height: 1;
-  flex-shrink: 0;
-  color: #ffffff;
-}
-
-.back-link-label {
+.context-key {
   font-size: var(--text-xs);
-  font-family: ui-monospace, "SF Mono", monospace;
-  font-weight: var(--weight-medium);
-  letter-spacing: 0.02em;
-  flex: 1;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #ffffff;
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
 }
 
-.back-link-arrow {
-  font-size: var(--text-sm) !important;
-  line-height: 1;
+.context-val {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-snug);
+}
+
+/* ─── Modal Footer ───────────────────────────────────────────── */
+
+.project-modal-footer {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--color-border);
+  background: rgba(var(--rgb-card), 0.95);
   flex-shrink: 0;
-  transition: transform 0.18s ease;
-  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.back-link-btn:hover .back-link-arrow {
-  transform: translateX(3px);
-}
-
-/* ─── Coming soon ────────────────────────────────────────────── */
+/* Removed legacy back-link-btn styles */
 
 .back-soon {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: var(--text-xs);
+  gap: 0.5rem;
+  font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   color: var(--color-text-muted);
   margin: 0;
-  line-height: 1;
-  flex-shrink: 0;
 }
 
 .back-soon .material-symbols-outlined {
-  font-size: var(--text-sm) !important;
+  font-size: var(--text-base) !important;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   DESCRIPTION EXPANDED OVERLAY
-   ─────────────────────────────────────────────────────────────
-   Triggered by hovering over .back-desc-wrap.
-   Covers the entire back face. Shows full description text
-   (overflowing via scroll if needed) + CTA at bottom.
-   Mouse-leave on overlay collapses it.
-   ═══════════════════════════════════════════════════════════════ */
+/* ─── Responsive ─────────────────────────────────────────────── */
 
-.back-desc-overlay {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: var(--color-card);
-  /* Subtle left border accent */
-  border-left: 2.5px solid rgba(var(--rgb-primary), 0.55);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-
-  /* Hidden by default */
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.985);
-  transition:
-    opacity 0.22s ease,
-    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Visible when .desc-expanded is on the back face */
-.desc-expanded .back-desc-overlay {
-  opacity: 1;
-  pointer-events: auto;
-  transform: scale(1);
-}
-
-/* Inner container — flex column, full height */
-.overlay-inner {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 0;
-  padding: 1.1rem 1.1rem 1rem;
-  gap: 0;
-}
-
-/* Overlay header row: category + hint label */
-.overlay-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  flex-shrink: 0;
-}
-
-.overlay-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.2rem;
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  opacity: 0.7;
-  line-height: 1;
-}
-
-.overlay-hint .material-symbols-outlined {
-  font-size: 0.8rem !important;
-  line-height: 1;
-}
-
-/* Full description — overflow auto for very long text */
-.overlay-desc {
-  font-size: var(--text-sm);
-  line-height: var(--leading-relaxed);
-  color: var(--color-text);
-  margin: 0 0 0.75rem 0;
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  /* Subtle scrollbar */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(var(--rgb-primary), 0.3) transparent;
-}
-
-.overlay-desc::-webkit-scrollbar {
-  width: 3px;
-}
-
-.overlay-desc::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.overlay-desc::-webkit-scrollbar-thumb {
-  background: rgba(var(--rgb-primary), 0.3);
-  border-radius: 2px;
-}
-
-/* Tags inside overlay */
-.overlay-tags {
-  margin-bottom: 0.6rem;
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   MOBILE — disable flip, show front statically
-   ═══════════════════════════════════════════════════════════════ */
-
-@media (max-width: 768px) {
-  .card-scene {
-    perspective: none;
+@media (max-width: 640px) {
+  .project-modal-backdrop {
+    padding: 1rem;
+  }
+  
+  .project-modal-content {
+    max-height: 95vh;
   }
 
-  .card-flipper {
-    transform: none !important;
-    transition: none !important;
+  .project-modal-header {
+    padding: 1.5rem 1.5rem 1rem;
   }
 
-  .card-face--back {
-    display: none;
+  .project-modal-title {
+    font-size: var(--text-lg);
   }
 
-  .card-index {
-    opacity: 1;
+  .project-modal-body {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .project-modal-footer {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .project-modal-context {
+    grid-template-columns: 1fr;
   }
 }

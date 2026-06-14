@@ -17,7 +17,7 @@ import { slugifyProjectTitle } from "../utils/projectMeta";
 
 const projectEntries = [
   {
-    title: "Rebuilding ResumeHelp's Design Foundation",
+    title: "Rebuilding Design Foundation of ResumeHelp",
     tagline: "Fixing What Broke at Scale",
     projectType: "case-study",
     featuredOrder: 1,
@@ -31,7 +31,7 @@ const projectEntries = [
     },
     image: "/assets/projects/thumbnails/resumehelp_thumbnail.png",
     tags: ["UX", "DESIGN SYSTEM", "FIGMA"],
-    size: "large",
+    size: "small",
     category: ["Case Study"],
   },
 
@@ -46,13 +46,17 @@ const projectEntries = [
       Type: "Commercial Template",
       Pages: "5 Unique Pages"
     },
-    customButton: {
-      name: "Buy on Gumroad",
+    primaryButton: {
+      label: "Buy on Gumroad",
       url: "https://gumroad.com"
+    },
+    secondaryButton: {
+      label: "Case study",
+      url: "https://www.behance.net/gallery/250532981/Obsidian-Dark-Portfolio-UI-UX-Design"
     },
     image: "/assets/projects/thumbnails/portfolio_v1_thumbnail.png",
     tags: ["React", "Vite", "Tailwind CSS", "UI Design", "Template"],
-    size: "small",
+    size: "featured",
     category: ["Case Study", "UI & Dev"],
   },
   {
@@ -97,7 +101,7 @@ const projectEntries = [
       "Bold India is an internal website for employee onboarding and India-specific company policies. I designed and built it using HTML/CSS, created a UI kit from Bold.com for brand consistency, and published it on Google Sites.",
     image: "/assets/projects/thumbnails/bold_india_thumbnail.png",
     tags: ["WEB DESIGN", "HTML / CSS", "UI KIT", "GOOGLE SITES"],
-    size: "medium",
+    size: "featured",
     category: ["UI & Dev"],
   },
 ];

@@ -30,41 +30,25 @@
 }
 
 /* ─── Project Grid ───────────────────────────────────────────────
-   3-column editorial layout with mixed spans:
-   • small  → 1×1  compact square
-   • medium → 2×1  wide landscape
-   • large  → 1×2  tall portrait (2 rows high)
-   • full   → 2×2  statement block (2 cols × 2 rows)
-
-   Row height ~220px → a 1×2 card is ~456px (nicely portrait).
-   At 260px min-card-width, 3 columns activate above ~820px.
+   Strict 3x3 layout with increased breathing space.
 ────────────────────────────────────────────────────────────────── */
 
 .projects-grid {
-  --grid-columns: 1;
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
-  /* ~220px rows: 1×1 feels compact square, 1×2 feels portrait tall */
-  grid-auto-rows: clamp(190px, 15.5vw, 230px);
-  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem 2rem;
   grid-auto-flow: dense;
   align-items: stretch;
 }
 
-.projects-grid--columns-1 { --grid-columns: 1; }
-.projects-grid--columns-2 { --grid-columns: 2; }
-.projects-grid--columns-3 { 
-  --grid-columns: 3; 
-  aspect-ratio: 1 / 1;
-  grid-template-rows: repeat(3, 1fr);
-  grid-auto-rows: 1fr;
+.works-3x3-grid .project-card.featured {
+  grid-column: span 1;
 }
-.projects-grid--columns-4 { --grid-columns: 4; }
-.projects-grid--columns-5 { --grid-columns: 5; }
-.projects-grid--columns-6 { --grid-columns: 6; }
-.projects-grid--columns-7 { --grid-columns: 7; }
-.projects-grid--columns-8 { --grid-columns: 8; }
+
+.works-3x3-grid .project-card.featured .card-scene {
+  aspect-ratio: 4 / 3;
+}
 
 /* ─── Works CTA ──────────────────────────────────────────────── */
 
@@ -106,8 +90,8 @@
   }
 
   .projects-grid {
-    grid-auto-rows: clamp(170px, 20vw, 210px);
-    gap: 0.85rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
   }
 }
 
@@ -115,6 +99,81 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+}
+
+/* ── Showcase (Copied from Home for Works Header) ── */
+.showcase-stage.works-showcase-stage {
+  position: relative;
+  min-height: 26rem;
+}
+
+.showcase-slide.works-showcase-slide {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.works-overlay-tag {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 10;
+  background: rgba(var(--rgb-bg-main), 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-text);
+  border: 1px solid rgba(var(--rgb-text), 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.showcase-media.works-showcase-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-text) 3%, transparent);
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+.showcase-media.works-showcase-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-bg-main) 6%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-main) 28%, transparent) 100%
+  );
+}
+
+.showcase-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.showcase-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: var(--space-6);
+}
+
+.showcase-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-text) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-text) 16%, transparent);
+  transition:
+    transform 0.25s ease,
+    width 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.showcase-dot.active {
+  background: var(--color-primary);
+  width: 1.5rem;
+  box-shadow: 0 0 10px var(--color-primary-glow);
 }
 
 @media (max-width: 640px) {
@@ -140,9 +199,14 @@
   }
 
   .projects-grid {
-    gap: 0.75rem;
-    grid-auto-rows: 220px;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
+
+  /* Responsive showcase */
+  .showcase-stage.works-showcase-stage { min-height: 20rem; }
+  .showcase-slide.works-showcase-slide { display: block; }
+  .showcase-media.works-showcase-media { min-height: 16rem; }
 
   .works-cta {
     margin-top: 4.5rem;
