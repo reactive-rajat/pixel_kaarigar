@@ -122,7 +122,7 @@ const Works = () => {
               </AnimatePresence>
             </div>
 
-            <div className="showcase-dots" aria-label="Featured projects">
+            <div className="showcase-dots vertical-dots" aria-label="Featured projects">
               {showcaseProjects.map((project, index) => (
                 <button
                   key={project.id}

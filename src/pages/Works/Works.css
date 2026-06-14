@@ -104,7 +104,7 @@
 /* ── Showcase (Copied from Home for Works Header) ── */
 .showcase-stage.works-showcase-stage {
   position: relative;
-  min-height: 26rem;
+  min-height: 24rem;
 }
 
 .showcase-slide.works-showcase-slide {
@@ -136,24 +136,24 @@
   border: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
 }
 
-.showcase-media.works-showcase-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--color-bg-main) 6%, transparent) 0%,
-    color-mix(in srgb, var(--color-bg-main) 28%, transparent) 100%
-  );
-}
+
 
 .showcase-image { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.showcase-dots {
-  display: flex;
-  justify-content: center;
+.showcase-shell {
+  position: relative;
+}
+
+.vertical-dots {
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
   gap: 0.65rem;
-  margin-top: var(--space-6);
+  margin: 0;
+  display: flex;
+  z-index: 10;
 }
 
 .showcase-dot {
@@ -164,15 +164,17 @@
   border: 1px solid color-mix(in srgb, var(--color-text) 16%, transparent);
   transition:
     transform 0.25s ease,
+    height 0.25s ease,
     width 0.25s ease,
     background 0.25s ease,
     box-shadow 0.25s ease;
   cursor: pointer;
 }
 
-.showcase-dot.active {
+.vertical-dots .showcase-dot.active {
   background: var(--color-primary);
-  width: 1.5rem;
+  height: 1.5rem;
+  width: 0.55rem;
   box-shadow: 0 0 10px var(--color-primary-glow);
 }
 
@@ -207,6 +209,19 @@
   .showcase-stage.works-showcase-stage { min-height: 20rem; }
   .showcase-slide.works-showcase-slide { display: block; }
   .showcase-media.works-showcase-media { min-height: 16rem; }
+
+  .vertical-dots {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    transform: none;
+    margin-top: var(--space-6);
+  }
+
+  .vertical-dots .showcase-dot.active {
+    width: 1.5rem;
+    height: 0.55rem;
+  }
 
   .works-cta {
     margin-top: 4.5rem;

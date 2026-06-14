@@ -191,6 +191,10 @@ const ProjectCard = ({ project, externalUrl }) => {
 
           <div className="card-sheen" aria-hidden="true" />
 
+          <span className="pill card-overlay-tag">
+            {project.category?.[0] || project.projectType}
+          </span>
+
           {project.badge && (
             <div className="card-badge label-tag">{project.badge}</div>
           )}

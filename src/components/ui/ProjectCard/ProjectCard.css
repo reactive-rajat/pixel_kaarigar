@@ -118,6 +118,21 @@
   z-index: 8;
 }
 
+.card-overlay-tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  background: rgba(var(--rgb-bg-main), 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-text);
+  border: 1px solid rgba(var(--rgb-text), 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+}
+
 /* ─── Preview Info ───────────────────────────────────────────── */
 
 .card-preview-info {

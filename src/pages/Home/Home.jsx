@@ -89,13 +89,12 @@ const Home = ({ setActivePage }) => {
   };
 
   const skills = [
-    "UX Design",
-    "Design Systems",
-    "Figma",
-    "Accessibility",
-    "User Research",
+    "Wireframing",
+    "Prototyping",
     "HTML & CSS",
-    "React",
+    "User Research",
+    "Accessibility",
+    "Figma",
   ];
 
   const showcaseProjects = useMemo(() => {
@@ -140,8 +139,7 @@ const Home = ({ setActivePage }) => {
           </h1>
 
           <p className="hero-description">
-            I design experiences that solve real problems — then bring them to
-            life with code.
+            I turn messy product problems into clean, usable interfaces — and yes, I can build them too.
           </p>
 
           <div className="skills-marquee-container">
@@ -189,13 +187,13 @@ const Home = ({ setActivePage }) => {
       >
         <div className="container-lg">
           <SectionHeading
-            label="Snapshot"
+            label="By the Numbers"
             title={
               <>
-                A quick <span className="text-primary">Snapshot</span>
+                The work,<span className="text-primary"> in numbers.</span>
               </>
             }
-            description="The short version of my impact and the scale of work I've delivered."
+            description="7 years. 50+ projects. Still enjoying the work."
           />
         </div>
         <motion.div
@@ -219,20 +217,24 @@ const Home = ({ setActivePage }) => {
               >
                 
                 <div className="snapshot-content-wrapper">
-                  <div className="snapshot-icon-wrapper">
-                    <span className="material-symbols-outlined snapshot-icon">
-                      {card.id === "experience" ? "hourglass_top" : "memory"}
-                    </span>
-                  </div>
+                  <h2 className="snapshot-value h2">
+                    <CountUpNumber
+                      value={card.value}
+                      suffix={card.suffix}
+                      start={startSnapshotCount}
+                    />
+                  </h2>
                   <div className="snapshot-text-content">
-                    <h2 className="snapshot-value h2">
-                      <CountUpNumber
-                        value={card.value}
-                        suffix={card.suffix}
-                        start={startSnapshotCount}
-                      />
-                    </h2>
-                    <h4 className="snapshot-label">{card.label}</h4>
+                    <div className="icon-heading-header m-0">
+                      <div className="icon-heading-icon">
+                        <span className="material-symbols-outlined snapshot-icon">
+                          {card.id === "experience" ? "hourglass_top" : "memory"}
+                        </span>
+                      </div>
+                      <div className="icon-heading-text">
+                        <h4 className="snapshot-label">{card.label}</h4>
+                      </div>
+                    </div>
                     <p className="snapshot-text">{card.description}</p>
                   </div>
                 </div>
@@ -270,10 +272,6 @@ const Home = ({ setActivePage }) => {
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="showcase-copy">
-                  <span className="pill pill-secondary">
-                    {activeProject.category?.[0] || activeProject.projectType}
-                  </span>
-
                   <h2 className="showcase-title">
                     {activeProject.title.replace(/\n/g, " ")}
                   </h2>
@@ -289,20 +287,12 @@ const Home = ({ setActivePage }) => {
                       </span>
                     ))}
                   </div>
-
-                  {projectLinks[activeProject.folder] && (
-                    <a
-                      className="showcase-link btn btn-primary"
-                      href={projectLinks[activeProject.folder]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Project →
-                    </a>
-                  )}
                 </div>
 
                 <div className="showcase-media">
+                  <span className="pill showcase-overlay-tag">
+                    {activeProject.category?.[0] || activeProject.projectType}
+                  </span>
                   {activeProject.image?.endsWith(".mp4") ? (
                     <video
                       className="showcase-image"
@@ -322,20 +312,29 @@ const Home = ({ setActivePage }) => {
                 </div>
               </motion.div>
             </AnimatePresence>
+
+            <div className="showcase-dots vertical-dots" aria-label="Featured projects">
+              {showcaseProjects.map((project, index) => (
+                <button
+                  key={project.id}
+                  type="button"
+                  className={`showcase-dot ${
+                    activeProjectIndex === index ? "active" : ""
+                  }`}
+                  aria-label={`Show ${project.title.replace(/\n/g, " ")}`}
+                  onClick={() => setActiveProjectIndex(index)}
+                />
+              ))}
+            </div>
           </div>
 
-          <div className="showcase-dots" aria-label="Featured projects">
-            {showcaseProjects.map((project, index) => (
-              <button
-                key={project.id}
-                type="button"
-                className={`showcase-dot ${
-                  activeProjectIndex === index ? "active" : ""
-                }`}
-                aria-label={`Show ${project.title.replace(/\n/g, " ")}`}
-                onClick={() => setActiveProjectIndex(index)}
-              />
-            ))}
+          <div className="showcase-btn-container">
+            <button
+              className="btn btn-primary m-0"
+              onClick={() => setActivePage("works")}
+            >
+              See All Projects <span className="material-symbols-outlined right-fix">arrow_forward</span>
+            </button>
           </div>
         </div>
       </motion.section>
@@ -361,7 +360,7 @@ const Home = ({ setActivePage }) => {
             <div className="head-group skills-glimpse-header">
               <span className="pill">Skills & tools</span>
               <h3 className="section-title">
-                A quick glimpse of the tools behind the work.
+                The tools I actually use — not just list on a resume.
               </h3>
             </div>
 

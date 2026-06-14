@@ -28,7 +28,7 @@ const Testimonials = () => {
     <section className="testimonials-section content-section card-2">
       <div className="container-lg">
         <SectionHeading
-        label="Testimonials"
+        label="PEOPLE I'VE WORKED WITH"
         title={
           <>
             What People Say<span className="text-primary"> About Me</span>

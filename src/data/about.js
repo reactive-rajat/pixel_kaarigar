@@ -16,7 +16,7 @@ export const aboutSnapshotCards = [
     value: 7,
     suffix: "+",
     label: "Years of Experience",
-    description: "Designing digital products people actually use",
+    description: "From NGOs to US SaaS products — always in Figma.",
   },
   {
     id: "projects",
@@ -24,7 +24,7 @@ export const aboutSnapshotCards = [
     value: 50,
     suffix: "+",
     label: "Projects Delivered",
-    description: "Across UX, design systems, and frontend",
+    description: "Web products, design systems, pages, and side projects.",
   },
   {
     id: "brands",

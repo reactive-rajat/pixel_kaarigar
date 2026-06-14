@@ -29,26 +29,62 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      label: "LinkedIn",
-      href: "https://linkedin.com/in/rajatgulati",
-      icon: "link",
+      label: "Behance",
+      href: "https://www.behance.net/rajatuiux",
+      icon: "Behance",
     },
     {
       label: "GitHub",
-      href: "https://github.com/rajatgulati",
-      icon: "code",
+      href: "https://github.com/reactive-rajat",
+      icon: "GitHub",
     },
     {
-      label: "Dribbble",
-      href: "https://dribbble.com/rajatgulati",
-      icon: "palette",
+      label: "Upwork",
+      href: "https://www.upwork.com/freelancers/~0118b453dc83e75d1b",
+      icon: "Upwork",
     },
     {
-      label: "Twitter",
-      href: "https://twitter.com/rajatgulati",
-      icon: "tag",
+      label: "Instagram",
+      href: "https://www.instagram.com/pixel.kaarigar/",
+      icon: "Instagram",
     },
   ];
+
+  const SocialIcon = ({ name }) => {
+    switch (name) {
+      case "Behance":
+        return (
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 18v-12h4.5a3 3 0 0 1 0 6a3 3 0 0 1 0 6h-4.5" />
+            <path d="M3 12l4.5 0" />
+            <path d="M14 13h7a3.5 3.5 0 0 0 -7 0v2a3.5 3.5 0 0 0 6.64 1" />
+            <path d="M16 6l3 0" />
+          </svg>
+        );
+      case "GitHub":
+        return (
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+          </svg>
+        );
+      case "Upwork":
+        return (
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 7v5a3 3 0 0 0 6 0v-5h1l4 6c.824 1.319 1.945 2 3.5 2a3.5 3.5 0 0 0 0 -7c-2.027 0 -3.137 1 -3.5 3c-.242 1.33 -.908 4 -2 8" />
+          </svg>
+        );
+      case "Instagram":
+        return (
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8" />
+            <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+            <path d="M16.5 7.5v.01" />
+          </svg>
+        );
+      default:
+        return <span className="material-symbols-outlined">{name}</span>;
+    }
+  };
 
   const contactMethods = [
     {
@@ -94,12 +130,10 @@ const Footer = () => {
                   Available for work
                 </div>
                 <h2 className="mt-2">
-                  Let's create something{" "}
-                  <span className="text-gradient">amazing</span> together
+                  Got a problem{" "}
+                  <span className="text-gradient">worth solving?</span>
                 </h2>
-                <p className="text-[var(--color-text-muted)] leading-relaxed mt-2">
-                  I'm always excited to work on innovative projects that make a
-                  difference. Let's turn your vision into reality.
+                <p className="text-[var(--color-text-muted)] leading-relaxed mt-2">I'm actively looking for UX design roles — full-time or contract. If you're building something, let's talk.
                 </p>
               </div>
               <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-center gap-4 shrink-0 relative z-10 w-full lg:w-auto">
@@ -133,7 +167,7 @@ const Footer = () => {
                   />
                   <div>
                     <h3 className="brand-name">Rajat Gulati</h3>
-                    <p className="brand-tagline">UX Designer & Developer</p>
+                    <p className="brand-tagline">Senior UX Designer · Open to Work</p>
                   </div>
                 </div>
               </div>
@@ -150,8 +184,7 @@ const Footer = () => {
                 </div>
               </div>
               <p className="footer-bio">
-                Designing experiences that solve real problems and bringing them
-                to life with code.
+                7 years in design. Looking for the right team. Open to UX roles — full-time or freelance.
               </p>
               <div className="social-links">
                 {socialLinks.map(({ label, href, icon }) => (
@@ -163,7 +196,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <span className="material-symbols-outlined">{icon}</span>
+                    <SocialIcon name={icon} />
                   </a>
                 ))}
               </div>

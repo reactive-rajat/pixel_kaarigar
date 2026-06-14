@@ -29,7 +29,7 @@ const projectEntries = [
       Timeline: "3 Months",
       Deliverables: "UI Audit, Design Tokens, Component Library, Developer Specs"
     },
-    image: "/assets/projects/thumbnails/resumehelp_thumbnail.png",
+    image: "/assets/projects/thumbnails/rh_designsystem.jpg",
     tags: ["UX", "DESIGN SYSTEM", "FIGMA"],
     size: "small",
     category: ["Case Study"],
@@ -47,14 +47,14 @@ const projectEntries = [
       Pages: "5 Unique Pages"
     },
     primaryButton: {
-      label: "Buy on Gumroad",
-      url: "https://gumroad.com"
+      label: "See it in Action",
+      url: "https://obsidian-react-portfolio.netlify.app/"
     },
     secondaryButton: {
-      label: "Case study",
+      label: "View Case study",
       url: "https://www.behance.net/gallery/250532981/Obsidian-Dark-Portfolio-UI-UX-Design"
     },
-    image: "/assets/projects/thumbnails/portfolio_v1_thumbnail.png",
+    image: "/assets/projects/thumbnails/obsidian_portfolio.jpg",
     tags: ["React", "Vite", "Tailwind CSS", "UI Design", "Template"],
     size: "featured",
     category: ["Case Study", "UI & Dev"],
@@ -65,7 +65,7 @@ const projectEntries = [
     featuredOrder: 2,
     folder: "resume-nerd",
     description:
-      "It is an online resume and cover letter builder. I worked on UI updates and some HTML/CSS improvements.",
+      "An online resume and cover letter builder. I worked on UI redesigns, page-level updates, and HTML/CSS improvements across multiple sections.",
     image: "/assets/projects/thumbnails/nerd_thumbnail.png",
     tags: ["HTML/CSS", "UI DESIGN", "FIGMA"],
     size: "small",

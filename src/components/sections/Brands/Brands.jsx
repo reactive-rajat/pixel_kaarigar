@@ -66,14 +66,14 @@ function Brands() {
     <section className="brands-wrapper card-3">
       <div className="container-lg">
         <SectionHeading
-          label="Brands I've worked with"
+          label="COMPANIES & CLIENTS"
           title={
             <>
               <span className="text-primary">Brands</span> I&apos;ve designed
               and built for.
             </>
           }
-          description="From early wireframes to shipped interfaces — these are the teams I've collaborated with as a UI/UX designer who codes."
+          description="Real companies. Real products. Real deadlines."
         />
       </div>
       <div className="container-md">

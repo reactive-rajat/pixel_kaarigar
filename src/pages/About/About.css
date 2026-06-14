@@ -48,33 +48,6 @@
   width: 100%;
 }
 
-
-.toolkit-header {
-  display: flex;
-  gap: var(--space-3);
-  align-items: center;
-  margin: var(--space-2) 0 var(--space-6);
-}
-
-.toolkit-icon { 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-primary);
-  flex-shrink: 0;
-}
-
-.toolkit-icon > span {
-  font-size: 2.3rem;
-}
-
-.toolkit-heading-text {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  align-items: flex-start;
-}
-
 .toolkit-pills {
   display: flex;
   flex-wrap: wrap;

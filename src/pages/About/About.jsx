@@ -25,9 +25,10 @@ const About = () => {
                 <span className="text-primary"> people actually enjoy.</span>
               </h1>
               <p className="about-lead">
-                Hi, I'm Rajat — a Senior UX Designer with 7+ years of
-                experience. I design digital products, and I also code. Which
-                means I know exactly what's buildable, and why it matters.
+                Hi, I'm Rajat — a Senior Web Designer moving into UX.
+                7 years of designing digital products, working with dev teams,
+                and understanding what actually makes a product work.
+                I also code, which means I know exactly what's buildable.
               </p>
 
               <div className="about-actions mt-3">
@@ -60,7 +61,7 @@ const About = () => {
                 <span className="text-primary">going</span>
               </>
             }
-            description="The short version of how I got here and what I'm building next."
+            description="6 years of full-time work. Now looking for the right next step."
           />
         </div>
         <div
@@ -77,25 +78,18 @@ const About = () => {
                 <div className="timeline-content">
                   <span className="timeline-year start pill">Now</span>
                   <span className="timeline-year end pill">May 2025</span>
-                  <h4>Independent UI/UX & Frontend Developer | Freelance </h4>
+                  <h4>Freelance UX Designer & Frontend Developer</h4>
                   <div className="timeline-details">
                     <ul>
                       <li className="timeline-list-item">
                         <p>
-                          <span className="main-text">
-                            Product Development:
-                          </span>{" "}
-                          Designing and building responsive web applications and
-                          a personal portfolio using React, Tailwind CSS, and
-                          AI-assisted workflows.
+                          Designing and building my own portfolio in React — learning by doing, not just watching tutorials.
                         </p>
                       </li>
                       <li className="timeline-list-item">
                         <p>
-                          <span className="main-text">Client Consulting: </span>{" "}
-                          Transforming complex requirements into high-fidelity
-                          Figma designs and production-ready UI code with 100%
-                          design fidelity.
+                          Taking on small UI/UX consulting projects — from
+                          Figma designs to working code.
                         </p>
                       </li>
                     </ul>
@@ -111,34 +105,27 @@ const About = () => {
                 <div className="timeline-content">
                   <span className="timeline-year start pill">Sep 2021</span>
                   <span className="timeline-year end pill">May 2025</span>
-                  <h4>Senior Web Designer / UI Developer | BOLD </h4>
+                  <h4>Senior Web Designer | BOLD</h4>
                   <div className="timeline-details">
                     <ul>
                       <li className="timeline-list-item">
                         <p>
-                          Led the UI/UX migration for 'ResumeHelp', creating a
-                          modern app interface that significantly improved user
-                          metrics.
+                          Owned the full design system migration for ResumeHelp — rebuilt colours, typography, grid, and components from scratch. Used by internal designers, developers, and an external agency.
                         </p>
                       </li>
                       <li className="timeline-list-item">
                         <p>
-                          Acted as the technical bridge between Creative & Dev
-                          teams to ensure 100% pixel-perfect implementation of
-                          design systems.
+                          Reviewed designs from team and agency partners — making sure everything matched the system before it went to developers.
                         </p>
                       </li>
                       <li className="timeline-list-item">
                         <p>
-                          Developed the 'Bold India' site independently,
-                          adapting global design standards for local performance
+                          Designed and built the BOLD India internal site independently — UI, content, and publishing.
                         </p>
                       </li>
                       <li className="timeline-list-item">
                         <p>
-                          Managed design reviews for internal teams and external
-                          agencies to maintain brand consistency across
-                          products.
+                          Managed design reviews for internal teams and external agencies to maintain brand consistency.
                         </p>
                       </li>
                     </ul>
@@ -154,19 +141,18 @@ const About = () => {
                 <div className="timeline-content">
                   <span className="timeline-year start pill">Jan 2019</span>
                   <span className="timeline-year end pill">Sep 2021</span>
-                  <h4>UI Designer / Developer | Avalon Infosys</h4>
+                  <h4>UI Designer | Avalon Infosys</h4>
                   <div className="timeline-details">
                     <ul>
                       <li className="timeline-list-item">
                         <p>
-                          Designed data-driven web platforms for international
-                          NGOs and UN agencies across 130+ countries.
+                          Designed data-driven web platforms
+                          for international NGOs and UN agencies across 130+ countries.
                         </p>
                       </li>
                       <li className="timeline-list-item">
                         <p>
-                          Engineered reusable HTML/SCSS markups, significantly
-                          reducing development cycles and UI regressions.
+                          Built reusable HTML/SCSS components — saved time on repeat builds and reduced inconsistencies.
                         </p>
                       </li>
                       <li className="timeline-list-item">
@@ -202,7 +188,7 @@ const About = () => {
       <section className="">
         <div className="container-lg">
           <SectionHeading
-            label="Services"
+            label="WHAT I DO"
             title={
               <>
                 What I <span className="text-primary">Deliver</span>
@@ -211,26 +197,38 @@ const About = () => {
             description="Strategy, design, and development tailored to your product goals."
           />
           <div className="container-lg deliver-grid">
-            <div className="card card-1 card-md card-hover justify-between h-full">
-              <div className="snapshot-icon-wrapper mb-2">
-                <span className="material-symbols-outlined snapshot-icon">strategy</span>
+            <div className="card card-1 card-md card-hover justify-start h-full">
+              <div className="icon-heading-header">
+                <div className="icon-heading-icon">
+                  <span className="material-symbols-outlined">strategy</span>
+                </div>
+                <div className="icon-heading-text">
+                  <h3>Strategy</h3>
+                </div>
               </div>
-              <h3>Strategy</h3>
-              <p className="text-muted leading-relaxed">Define the purpose and map the journey for maximum impact.</p>
+              <p className="text-muted leading-relaxed">Understand the real problem before jumping to solutions.</p>
             </div>
-            <div className="card card-1 card-md card-hover justify-between h-full">
-              <div className="snapshot-icon-wrapper mb-2">
-                <span className="material-symbols-outlined snapshot-icon">brush</span>
+            <div className="card card-1 card-md card-hover justify-start h-full">
+              <div className="icon-heading-header">
+                <div className="icon-heading-icon">
+                  <span className="material-symbols-outlined">brush</span>
+                </div>
+                <div className="icon-heading-text">
+                  <h3>Design</h3>
+                </div>
               </div>
-              <h3>Design</h3>
-              <p className="text-muted leading-relaxed">Craft crisp, intuitive interfaces with clear hierarchy.</p>
+              <p className="text-muted leading-relaxed">Clean, usable interfaces — designed to be understood, not just admired.</p>
             </div>
-            <div className="card card-1 card-md card-hover justify-between h-full">
-              <div className="snapshot-icon-wrapper mb-2">
-                <span className="material-symbols-outlined snapshot-icon">code</span>
+            <div className="card card-1 card-md card-hover justify-start h-full">
+              <div className="icon-heading-header">
+                <div className="icon-heading-icon">
+                  <span className="material-symbols-outlined">code</span>
+                </div>
+                <div className="icon-heading-text">
+                  <h3>Development</h3>
+                </div>
               </div>
-              <h3>Development</h3>
-              <p className="text-muted leading-relaxed">Build scalable products with clean code and smooth UX.</p>
+              <p className="text-muted leading-relaxed">I can build what I design. No handoff confusion, no lost details.</p>
             </div>
           </div>
         </div>
@@ -247,16 +245,16 @@ const About = () => {
               <span className="text-primary">Power-ups</span>
             </>
           }
-          description="The tools I reach for to design, build, and ship polished experiences."
+          description="What I actually use day to day — not just what sounds good on a resume."
         />
         </div>
         <div className="container-md toolkit-grid">
           <div className="card card-1 card-md card-hover self-start h-full">
-            <div className="toolkit-header">
-              <div className="toolkit-icon">
+            <div className="icon-heading-header">
+              <div className="icon-heading-icon">
                 <span className="material-symbols-outlined">auto_awesome</span>
               </div>
-              <div className="toolkit-heading-text">
+              <div className="icon-heading-text">
                 <h3>Design Stack</h3>
               </div>
             </div>
@@ -273,13 +271,11 @@ const About = () => {
           </div>
 
           <div className="card card-1 card-md card-hover self-start h-full">
-            <div className="toolkit-header">
-              <div className="toolkit-icon">
-                <span className="material-symbols-outlined">
-                  workspace_premium
-                </span>
+            <div className="icon-heading-header">
+              <div className="icon-heading-icon">
+                <span className="material-symbols-outlined">workspace_premium</span>
               </div>
-              <div className="toolkit-heading-text">
+              <div className="icon-heading-text">
                 <h3>Certifications</h3>
               </div>
             </div>
@@ -320,23 +316,25 @@ const About = () => {
           label="Approach"
           title={
             <>
-              I&apos;m not just an average{" "}
-              <span className="text-primary">pixel pusher</span>
+              How I think about{" "}
+              <span className="text-primary">design</span>
             </>
           }
-          description="Balancing expressive visuals with systems that scale gracefully."
+          description="I design for clarity, not just aesthetics."
         />
         </div>
         <div className="container-md dual-grid">
           <div className="card card-1 card-md card-hover">
             <span className="pill card-tag w-fit mb-2">THE VISUALIST</span>
-            <h3>I craft stories through visuals.</h3>
-            <p className="text-muted leading-relaxed">Every pixel has a purpose. I focus on hierarchy and emotion.</p>
+            <h3>Every pixel has a reason.</h3>
+            <p className="text-muted leading-relaxed">Hierarchy, contrast, spacing — nothing placed by eye.
+Everything has intent behind it.</p>
           </div>
           <div className="card card-1 card-md card-hover">
             <span className="pill card-tag w-fit mb-2">THE ARCHITECT</span>
-            <h3>I build systems that scale.</h3>
-            <p className="text-muted leading-relaxed">Robust, maintainable systems that evolve with the product.</p>
+            <h3>I think in systems.</h3>
+            <p className="text-muted leading-relaxed">Components, tokens, rules — I design so developers
+don't have to guess.</p>
           </div>
         </div>
       </section>
