@@ -3,9 +3,9 @@ export const aboutSkills = [
   { name: "Prototyping", icon: "architecture" },
   { name: "Design Systems", icon: "layers" },
   { name: "Visual Design", icon: "palette" },
-  { name: "React.js", icon: "code_blocks" },
-  { name: "Tailwind", icon: "style" },
-  { name: "Javascript", icon: "data_object" },
+  { name: "Wireframing", icon: "view_quilt" },
+  { name: "Accessibility", icon: "accessibility_new" },
+  { name: "User Research", icon: "person_search" },
   { name: "HTML/CSS", icon: "code" },
 ];
 

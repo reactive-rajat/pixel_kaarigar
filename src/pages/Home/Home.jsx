@@ -369,6 +369,7 @@ const Home = ({ setActivePage }) => {
                 <motion.div
                   key={skill.name}
                   className="card card-2 card-md card-hover text-center items-center justify-center"
+                  style={{paddingLeft: "16px", paddingRight: "16px"}}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}

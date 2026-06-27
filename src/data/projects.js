@@ -72,23 +72,16 @@ const projectEntries = [
     category: ["UI & Dev"],
   },
   {
-    title: "Graphic & Marketing Design",
+    title: "Amazon Product Listing — Zalvio Kitchen",
     projectType: "case-study",
     folder: "graphic-design",
     description: "A consolidated archive of branding, social media overhauls, print, and packaging design across multiple clients.",
+    primaryButton: {
+      label: "View on Behance",
+      url: "https://www.behance.net/gallery/251297019/Amazon-Product-Listing-Design-Zalvio-Kitchen"
+    },
     image: "/assets/projects/thumbnails/graphic_design_thumbnail.png",
     tags: ["BRANDING", "SOCIAL MEDIA", "PRINT"],
-    size: "small",
-    category: ["Creative"],
-  },
-  {
-    title: "Wedding Invite",
-    projectType: "motion",
-    folder: "wedding-invite",
-    description:
-      "A custom animated wedding invitation video created for a special celebration.",
-    image: "/assets/projects/thumbnails/harshit_himanshi_invite.mp4",
-    tags: ["VIDEO", "INVITATION"],
     size: "small",
     category: ["Creative"],
   },
