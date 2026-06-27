@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import StatusBadge from "../../components/ui/StatusBadge/StatusBadge";
 import HeroVisual from "../../components/sections/HeroVisual/HeroVisual";
+import HeroMoreMenu from "../../components/ui/HeroMoreMenu/HeroMoreMenu";
 import projects, { featuredProjects } from "../../data/projects.js";
 import projectLinks from "../../data/projectLinks.js";
 import "./Home.css";
@@ -89,12 +90,18 @@ const Home = ({ setActivePage }) => {
   };
 
   const skills = [
-    "Wireframing",
-    "Prototyping",
-    "HTML & CSS",
-    "User Research",
-    "Accessibility",
+    "UX Design",
+    "Design Systems",
     "Figma",
+    "Prototyping",
+    "Wireframing",
+    "User Research",
+    "Interaction Design",
+    "Accessibility",
+    "Mobile-First",
+    "HTML & CSS",
+    "AI-Augmented",
+    "SaaS Products",
   ];
 
   const showcaseProjects = useMemo(() => {
@@ -168,6 +175,7 @@ const Home = ({ setActivePage }) => {
             >
               Let&apos;s Talk
             </button>
+            <HeroMoreMenu />
           </div>
         </div>
 

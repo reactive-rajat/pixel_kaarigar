@@ -1,4 +1,4 @@
-.fixed-nav-container {
+        .fixed-nav-container {
           position: fixed;
           top: 1.5rem;
           left: 0;
@@ -167,12 +167,12 @@
         }
 
         @media (max-width: 767px) {
-        .theme-toggle{
-          background: var(--surface-light);
-          border: 1px solid var(--color-primary);
-          box-shadow: none;
-        }
-          .material-symbols-outlined{
+          .theme-toggle {
+            background: var(--surface-light);
+            border: 1px solid var(--color-primary);
+            box-shadow: none;
+          }
+          .material-symbols-outlined {
             color: var(--color-primary);
           }
           .fixed-nav-container {
@@ -193,11 +193,11 @@
             background: var(--color-primary);
           }
 
-          .menu-toggle .material-symbols-outlined{
+          .menu-toggle .material-symbols-outlined {
             color: var(--surface-light);
           }
 
-          button[aria-expanded="true"]{
+          button[aria-expanded="true"] {
             background: var(--color-danger);
           }
 

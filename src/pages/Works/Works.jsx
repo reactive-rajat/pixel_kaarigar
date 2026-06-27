@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { Link } from "react-router-dom";
 import ProjectCard from "../../components/ui/ProjectCard/ProjectCard";
+import HeroMoreMenu from "../../components/ui/HeroMoreMenu/HeroMoreMenu";
 import projects, { featuredProjects } from "../../data/projects.js";
 import projectLinks from "../../data/projectLinks.js";
 import { getProjectCategories } from "../../utils/projectMeta.js";
@@ -39,29 +41,7 @@ const Works = () => {
         );
 
   const orderedProjects = useMemo(() => {
-    const nextProjects = [...filteredProjects];
-    const travelAppIndex = nextProjects.findIndex(
-      (project) => project.title === "Travel App"
-    );
-    const experimentalPlaygroundIndex = nextProjects.findIndex(
-      (project) => project.title === "Experimental Playground"
-    );
-
-    if (
-      travelAppIndex !== -1 &&
-      experimentalPlaygroundIndex !== -1 &&
-      travelAppIndex < experimentalPlaygroundIndex
-    ) {
-      [
-        nextProjects[travelAppIndex],
-        nextProjects[experimentalPlaygroundIndex],
-      ] = [
-        nextProjects[experimentalPlaygroundIndex],
-        nextProjects[travelAppIndex],
-      ];
-    }
-
-    return nextProjects;
+    return [...filteredProjects];
   }, [filteredProjects]);
 
   return (
@@ -79,6 +59,13 @@ const Works = () => {
               Real problems, real decisions, real outcomes — this is how I think
               and what I make.
             </p>
+            <div className="hero-actions works-hero-actions">
+              <Link to="/contact" className="btn btn-primary">
+                <span>Let&apos;s Work Together</span>
+                <span className="material-symbols-outlined right-fix">arrow_forward</span>
+              </Link>
+              <HeroMoreMenu />
+            </div>
           </div>
           
           <div
@@ -142,7 +129,7 @@ const Works = () => {
       <section className="p-0 works-grid-section">
         <div className="container-lg filter-container">
           <div className="filter-chips">
-            {["All", "Case Study", "UI & Dev", "Creative"].map((cat) => (
+            {["All", "UI/UX Design", "Graphic Design"].map((cat) => (
               <button
                 key={cat}
                 className={

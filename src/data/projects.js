@@ -24,15 +24,18 @@ const projectEntries = [
     folder: "resume-help",
     description:
       "How I transformed a fragmented, inconsistent UI into a scalable, accessible, and developer-friendly design system to support rapid product growth.",
-    quickContext: {
-      Role: "Lead UI/UX Designer",
-      Timeline: "3 Months",
-      Deliverables: "UI Audit, Design Tokens, Component Library, Developer Specs"
+    primaryButton: {
+      label: "See it in Action",
+      url: "https://www.resumehelp.com"
+    },
+    secondaryButton: {
+      label: "View Case Study",
+      url: "https://www.behance.net/gallery/248642551/Rebuilding-ResumeHelps-Design-Foundation"
     },
     image: "/assets/projects/thumbnails/rh_designsystem.jpg",
     tags: ["UX", "DESIGN SYSTEM", "FIGMA"],
     size: "small",
-    category: ["Case Study"],
+    category: ["UI/UX Design"],
   },
 
   {
@@ -51,13 +54,13 @@ const projectEntries = [
       url: "https://obsidian-react-portfolio.netlify.app/"
     },
     secondaryButton: {
-      label: "View Case study",
+      label: "View Case Study",
       url: "https://www.behance.net/gallery/250532981/Obsidian-Dark-Portfolio-UI-UX-Design"
     },
     image: "/assets/projects/thumbnails/obsidian_portfolio.jpg",
     tags: ["React", "Vite", "Tailwind CSS", "UI Design", "Template"],
     size: "featured",
-    category: ["Case Study", "UI & Dev"],
+    category: ["UI/UX Design"],
   },
   {
     title: "Resume Nerd",
@@ -69,7 +72,7 @@ const projectEntries = [
     image: "/assets/projects/thumbnails/nerd_thumbnail.png",
     tags: ["HTML/CSS", "UI DESIGN", "FIGMA"],
     size: "small",
-    category: ["UI & Dev"],
+    category: ["UI/UX Design"],
   },
   {
     title: "Amazon Product Listing — Zalvio Kitchen",
@@ -83,7 +86,7 @@ const projectEntries = [
     image: "/assets/projects/thumbnails/graphic_design_thumbnail.png",
     tags: ["BRANDING", "SOCIAL MEDIA", "PRINT"],
     size: "small",
-    category: ["Creative"],
+    category: ["Graphic Design"],
   },
   {
     title: "BOLD India",
@@ -95,7 +98,7 @@ const projectEntries = [
     image: "/assets/projects/thumbnails/bold_india_thumbnail.png",
     tags: ["WEB DESIGN", "HTML / CSS", "UI KIT", "GOOGLE SITES"],
     size: "featured",
-    category: ["UI & Dev"],
+    category: ["UI/UX Design"],
   },
 ];
 

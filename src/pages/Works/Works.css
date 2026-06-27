@@ -101,6 +101,13 @@
   gap: var(--space-lg);
 }
 
+.works-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 /* ── Showcase (Copied from Home for Works Header) ── */
 .showcase-stage.works-showcase-stage {
   position: relative;

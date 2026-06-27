@@ -1,0 +1,121 @@
+/* ─── Hero More Menu (⋮) ─────────────────────────────────────── */
+
+.hero-more-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+/*
+  The ⋮ trigger inherits .btn .btn-secondary.
+  We only override min-width and padding so it
+  stays the same HEIGHT as sibling buttons but
+  doesn't stretch wide.
+*/
+.hero-more-btn {
+  min-width: auto !important;  /* override .btn min-width:120px */
+  padding: 1rem 0.85rem;       /* matches .btn py-4 vertically  */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 0;
+}
+
+.hero-more-btn .material-symbols-outlined {
+  font-size: 1.4rem;
+  line-height: 1;
+  letter-spacing: 0.08em; /* slight spread makes dots easier to read */
+}
+
+.hero-more-btn.active {
+  background: var(--color-primary-20);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ─── Popover ─────────────────────────────────────────────────── */
+.hero-more-popover {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  left: 0;
+  min-width: 12rem;
+  padding: 0.4rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  animation: heroPopoverIn 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes heroPopoverIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ─── Menu Items ──────────────────────────────────────────────── */
+.hero-more-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: calc(var(--radius-lg) - 2px);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semi);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.hero-more-item:hover {
+  background: var(--color-primary-20);
+  color: var(--color-primary);
+}
+
+/*
+  Single icon wrapper — used for ALL menu item icons.
+  Fixed square container ensures every icon renders at
+  the same visual size, alignment, and color regardless
+  of whether it's an SVG or any other element inside.
+*/
+.hero-more-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  opacity: 0.6;
+  color: currentColor;          /* inherits .hero-more-item color  */
+  transition: opacity 0.15s;
+}
+
+/* All SVGs inside the wrapper fill the container precisely */
+.hero-more-icon-wrap svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  stroke: currentColor;         /* ensures color inheritance works */
+}
+
+.hero-more-item:hover .hero-more-icon-wrap {
+  opacity: 1;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hero-more-popover {
+    /* On small screens, anchor right-side so it doesn't clip */
+    left: auto;
+    right: 0;
+  }
+}

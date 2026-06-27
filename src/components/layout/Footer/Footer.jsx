@@ -21,13 +21,22 @@ const Footer = () => {
   };
 
   const quickLinks = [
-    { label: "Work", href: "#work" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
-    { label: "Resume", href: "/resume.pdf" },
+    { label: "Work", href: "/work" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
+    {
+      label: "Resume",
+      href: "/assets/resume/Rajat_Gulati_UI_UX_Designer.pdf",
+      download: "Rajat_Gulati_UI_UX_Designer.pdf",
+    },
   ];
 
   const socialLinks = [
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/rajatui/",
+      icon: "LinkedIn",
+    },
     {
       label: "Behance",
       href: "https://www.behance.net/rajatuiux",
@@ -52,6 +61,23 @@ const Footer = () => {
 
   const SocialIcon = ({ name }) => {
     switch (name) {
+      case "LinkedIn":
+        return (
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        );
       case "Behance":
         return (
           <svg
@@ -261,8 +287,8 @@ const Footer = () => {
             <div className="footer-col">
               <h4 className="footer-heading">Quick Links</h4>
               <nav className="footer-nav">
-                {quickLinks.map(({ label, href }) => (
-                  <a key={label} href={href} className="footer-nav-link">
+                {quickLinks.map(({ label, href, download }) => (
+                  <a key={label} href={href} className="footer-nav-link" {...(download ? { download } : {})}>
                     <span className="quick-link-label">{label}</span>
                   </a>
                 ))}

@@ -4,6 +4,7 @@ import Brands from "../../components/sections/Brands/Brands";
 import HeroVisual from "../../components/sections/HeroVisual/HeroVisual";
 import StatusBadge from "../../components/ui/StatusBadge/StatusBadge";
 import SectionHeading from "../../components/ui/SectionHeading/SectionHeading";
+import HeroMoreMenu from "../../components/ui/HeroMoreMenu/HeroMoreMenu";
 import { aboutSkills } from "../../data/about.js";
 import Testimonials from "../../components/sections/Testimonials/Testimonials";
 import "./About.css";
@@ -32,13 +33,18 @@ const About = () => {
               </p>
 
               <div className="about-actions mt-3">
-                <button className="btn btn-primary">
+                <a
+                  href="/assets/resume/Rajat_Gulati_UI_UX_Designer.pdf"
+                  download="Rajat_Gulati_UI_UX_Designer.pdf"
+                  className="btn btn-primary"
+                >
                   <span>Download Resume</span>
                   <span className="material-symbols-outlined right-fix">
                     download
                   </span>
-                </button>
+                </a>
                 <button className="btn btn-secondary">Let&apos;s Talk</button>
+                <HeroMoreMenu />
               </div>
             </div>
 
